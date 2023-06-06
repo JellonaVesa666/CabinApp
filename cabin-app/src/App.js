@@ -67,7 +67,7 @@ function App() {
   }
 
   return (
-    <div style={{ width: "100vw", height: "100vh", position: "relative" }}>
+    <div style={{ position: "relative" }}>
       <img ref={imgRef} src={map} alt="" onClick={(event) => getMarkerPosition(event)}
         style={{ zIndex: -1, width: "100%", top: 0, left: 0, right: 0, bottom: 0, resizeMode: 'cover' }} />
       <div style={circle(markerPos)} />
