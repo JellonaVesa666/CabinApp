@@ -6,62 +6,64 @@ import './App.css';
 function App() {
 
   // Window size
-  const [windowSize, setWindowSize] = useState([
-    window.innerWidth,
-    window.innerHeight,
-  ]);
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
   //Mouse Position
   const [mousePos, setMousePos] = useState({});
+  const [multiplier, setMultiplier] = useState({});
 
   const imgRef = useRef();
 
   useEffect(() => {
-    const handleWindowResize = () => {
-      setWindowSize([imgRef.current.clientWidth, imgRef.current.clientHeight]);
-    };
 
-    window.addEventListener('resize', handleWindowResize);
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    }
+    window.addEventListener('resize', updateDimension);
 
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, []);
+    return (() => {
+      setMultiplier({ x: screenSize.width})
+      window.removeEventListener('resize', updateDimension);
+    })
+  }, [screenSize])
 
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      console.log(event.clientX, event.clientY)
-      setMousePos({ x: event.clientX, y: event.clientY });
-    };
+  //console.log(mousePos.x / window.screen.width * screenSize.width);
 
-    window.addEventListener('click', handleMouseMove);
+  const handleMouseClick = (event) => {
+    setMousePos({ x: event.clientX, y: event.clientY });
+  };
 
-    return () => {
-      window.removeEventListener('mousemove',handleMouseMove);
-    };
-  }, []);
+  function getCurrentDimension() {
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight
+    }
+  }
 
   return (
     <div style={{ width: "100vw", height: "100vh", position: "relative" }}>
-      <img ref={imgRef} src={map}
+      <img ref={imgRef} src={map} alt="" onClick={(event) => handleMouseClick(event)}
         style={{ zIndex: -1, width: "100%", top: 0, left: 0, right: 0, bottom: 0, resizeMode: 'cover' }} />
-      <div style={circle(windowSize, mousePos)} />
-      <h2>left: {1000 / window.screen.width * windowSize[0]}</h2>
-      <h2>top: {40 / window.screen.height * windowSize[1]}</h2>
+      <div style={circle(screenSize, mousePos)} />
+      <h1>{1 * multiplier.x}</h1>
+      <h1>{1 * screenSize.width}</h1>
+      <h2>left: {mousePos.x / screenSize.width * screenSize.width}</h2>
+      <h2>top: {mousePos.y / screenSize.height * screenSize.height}</h2>
+      <h2>leftFixed: {1000 / window.screen.width * screenSize.width}</h2>
+      <h2>topFixed: {40 / window.screen.height * screenSize.height}</h2>
     </div>
   );
 }
 
-const circle = (windowSize, mousePos) => ({
-  aspectRatio: 1 / 8,
+const circle = (screenSize, mousePos) => ({
   position: "absolute",
   margin: "auto",
   width: "1vw",
   aspectRatio: 1 / 1,
   borderRadius: 22,
   background: "red",
-  left: mousePos.x,
-  top: mousePos.y,
+  left: 1000 / window.screen.width * screenSize.width,
+  top: 40 / window.screen.height * screenSize.height,
 });
 
 export default App;
