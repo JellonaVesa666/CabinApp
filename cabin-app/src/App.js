@@ -17,6 +17,7 @@ function App() {
 
   //Mouse Position
   const [mousePos, setMousePos] = useState({});
+  const [markerPos, setMarkerPos] = useState({});
 
   const imgRef = useRef();
 
@@ -28,7 +29,7 @@ function App() {
 
     setCount(() => getCurrentDimension().width);
     console.log(Math.round((getCurrentDimension().width / prevCount) * (mousePos.x / prevCount * prevCount)));
-    setMousePos({x: Math.round((getCurrentDimension().width / prevCount) * (mousePos.x / prevCount * prevCount)), y: mousePos.y})
+    setMarkerPos({ x: Math.round((getCurrentDimension().width / prevCount) * (mousePos.x / prevCount * prevCount)), y: mousePos.y })
 
     const updateDimension = () => {
       setScreenSize(getCurrentDimension());
@@ -45,7 +46,11 @@ function App() {
 
 
   const getMousePosition = (event) => {
-    setMousePos({ x: event.clientX, y: event.clientY });
+    setMousePos({ x: event.clientX, y: event.clientX });
+    setMarkerPos({
+      x: Math.round(event.clientX / screenSize.width * screenSize.width),
+      y: Math.round(event.clientY / screenSize.height * screenSize.height)
+    });
   };
 
 
@@ -63,8 +68,8 @@ function App() {
       <div style={circle(screenSize, mousePos)} />
       {/* <h1>{1 * multiplier.x}</h1> */}
       <h1>{1 * screenSize.width}</h1>
-      <h2>left: {mousePos.x / screenSize.width * screenSize.width}</h2>
-      <h2>top: {mousePos.y / screenSize.height * screenSize.height}</h2>
+      <h2>left: {1 * markerPos.x}</h2>
+      <h2>top: {1 * markerPos.y}</h2>
       <h2>leftFixed: {Math.round(1000 / window.screen.width * screenSize.width)}</h2>
       <h2>topFixed: {Math.round(40 / window.screen.height * screenSize.height)}</h2>
     </div>
