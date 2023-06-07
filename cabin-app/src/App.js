@@ -29,14 +29,22 @@ function App() {
 
   useEffect(() => {
 
-    setCount(() => window.innerWidth);
-    setMarkerPos({
-      x: Math.round(window.innerWidth / prevCount * markerPos.x),
-      y: markerPos.y
-    })
+    setCount({
+      width: window.innerWidth,
+      height: imgRef.current.height,
+    });
+
+    if (prevCount) {
+      console.log("true");
+      setMarkerPos({
+        x: Math.round(window.innerWidth / prevCount.width * markerPos.x),
+        y: Math.round(imgRef.current.height / prevCount.height * markerPos.y)
+      })
+    }
+
 
     const updateDimension = () => {
-      SetWindowSize( {
+      SetWindowSize({
         width: window.innerWidth,
         height: window.innerHeight
       });
@@ -48,14 +56,14 @@ function App() {
     })
   }, [windowSize])
 
-
-  //console.log(mousePos.x / window.screen.width * windowSize.width);
+  if (prevCount)
+    console.log(imgRef.current.height / prevCount.height * markerPos.y);
 
 
   const getMarkerPosition = (event) => {
     setMarkerPos({
       x: CalculatePos(event.clientX, windowSize.width, windowSize.width),
-      y: CalculatePos(event.clientY, windowSize.height, windowSize.width),
+      y: CalculatePos(event.clientY, windowSize.height, windowSize.height),
     });
   }
 
@@ -86,8 +94,8 @@ const circle = (markerPos) => ({
   aspectRatio: 1 / 1,
   borderRadius: 22,
   background: "red",
-  left: markerPos.x,
-  top: 0,
+  left: 0,
+  top: markerPos.y,
 });
 
 export default App;
