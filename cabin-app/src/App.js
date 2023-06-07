@@ -13,7 +13,10 @@ const usePrevious = (value) => {
 function App() {
 
   // Window size
-  const [windowSize, SetWindowSize] = useState(getCurrentDimension());
+  const [windowSize, SetWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
 
   //Marker Position
   const [markerPos, setMarkerPos] = useState({});
@@ -26,14 +29,17 @@ function App() {
 
   useEffect(() => {
 
-    setCount(() => getCurrentDimension().width);
+    setCount(() => window.innerWidth);
     setMarkerPos({
-      x: Math.round(getCurrentDimension().width / prevCount * markerPos.x),
+      x: Math.round(window.innerWidth / prevCount * markerPos.x),
       y: markerPos.y
     })
 
     const updateDimension = () => {
-      SetWindowSize(getCurrentDimension());
+      SetWindowSize( {
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
     }
     window.addEventListener('resize', updateDimension);
 
@@ -56,14 +62,6 @@ function App() {
 
   const CalculatePos = (A, B, C) => {
     return Math.round(A / B * C)
-  }
-
-
-  function getCurrentDimension() {
-    return {
-      width: window.innerWidth,
-      height: window.innerHeight
-    }
   }
 
   return (
