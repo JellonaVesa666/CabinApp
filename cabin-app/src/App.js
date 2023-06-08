@@ -33,9 +33,30 @@ function App() {
   }, [initialize]);
 
   const CalculateMarkerPos = (node) => {
-    const boundingBox = node.getBoundingClientRect();
-    const X = ((boundingBox.right - boundingBox.left) * cabins.cabins[0].y) + boundingBox.left;
-    const Y = ((boundingBox.bottom - boundingBox.top) * cabins.cabins[0].x) + boundingBox.top;
+
+    const boundingBox = node.target ? node.target.getBoundingClientRect() : node.getBoundingClientRect()
+    var X, Y;
+
+    // Mouse click event
+    if (node.target) {
+
+      console.log(node.target);
+
+      X = (node.clientX - boundingBox.left) / boundingBox.width;
+      Y = (node.clientY - boundingBox.top) / boundingBox.height;
+
+      console.log(X, Y);
+
+      // Set new coordinates
+      cabins.cabins[0].x = X;
+      cabins.cabins[0].y = Y;
+
+      console.log(((boundingBox.right - boundingBox.left) * cabins.cabins[0].x) + boundingBox.left);
+      console.log(((boundingBox.bottom - boundingBox.top) * cabins.cabins[0].y) + boundingBox.top);
+    }
+
+    X = ((boundingBox.right - boundingBox.left) * cabins.cabins[0].x) + boundingBox.left;
+    Y = ((boundingBox.bottom - boundingBox.top) * cabins.cabins[0].y) + boundingBox.top;
 
     SetMarkerPos({
       x: X,
@@ -46,7 +67,7 @@ function App() {
   return (
     <div style={{ position: "relative" }}>
       <div style={{ justifyContent: "center", display: "flex" }}>
-        <img ref={imgRef} src={map} alt=""
+        <img ref={imgRef} src={map} alt="" onClick={(event) => CalculateMarkerPos(event)}
           style={{ width: "70%", marginTop: "100px" }} />
       </div>
       <div style={circle(markerPos)} />
