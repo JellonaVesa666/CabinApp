@@ -1,9 +1,9 @@
+import LoginPage from "./containers/LoginPage"
 import './App.css';
 
 function App() {
   return (
-    <div>
-    </div>
+    <LoginPage/>
   );
 }
 
