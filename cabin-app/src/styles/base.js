@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import backgroundLight from "../images/background_Light.png";
+import backgroundGray from "../images/background_Gray.png";
 
 export const MainBody = styled.div`
-  background-image: url(${backgroundLight});
+  background-image: url(${backgroundGray});
   width: 100vw;
   height: 100vh;
 `

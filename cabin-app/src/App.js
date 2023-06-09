@@ -1,9 +1,12 @@
 import LoginPage from "./containers/LoginPage"
+import {MainBody} from "./styles/base"
 import './App.css';
 
 function App() {
   return (
-    <LoginPage/>
+    <MainBody>
+        <LoginPage/>
+    </MainBody>
   );
 }
 
