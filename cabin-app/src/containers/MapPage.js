@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import map from "./images/revised-campground-map-without-tents.png"
-import cabins from "./test/testData.json"
+import cabins from "../mockup/mapData.json"
 import './App.css';
 
 export default function Map() {

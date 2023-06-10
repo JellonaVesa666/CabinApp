@@ -1,11 +1,11 @@
-import LoginPage from "./containers/LoginPage"
 import {MainBody} from "./styles/base"
 import './App.css';
+import LoginPage from "./containers/LoginPage";
 
 function App() {
   return (
     <MainBody>
-        <LoginPage/>
+      <LoginPage/>
     </MainBody>
   );
 }

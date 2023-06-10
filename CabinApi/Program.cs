@@ -17,6 +17,9 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 
 var app = builder.Build();
 
+// Enable CORS
+app.UseCors(options => options.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader());
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
