@@ -2,7 +2,6 @@
 using CabinApi.DTOs;
 using CabinApi.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace CabinApi.Controllers
 {
@@ -29,13 +28,17 @@ namespace CabinApi.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterDTO dto)
         {
+
             var user = new User
             {
+                Role = dto.Role,
                 Name = dto.Name,
                 Email = dto.Email,
-                Password = dto.Password,
+                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
             };
-            return Ok("Hello");
+
+            return Created("success", user);
+            //return Ok("success");
         }
     }
 }
