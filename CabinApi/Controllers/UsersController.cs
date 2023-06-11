@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CabinApi.Data;
-using CabinApi.Data.Models;
+using CabinApi.Models;
 
 namespace CabinApi.Controllers
 {

@@ -1,4 +1,4 @@
-﻿using CabinApi.Data.Models;
+﻿using CabinApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CabinApi.Data
