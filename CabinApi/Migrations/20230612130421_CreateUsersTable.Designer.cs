@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CabinApi.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20230611202212_CreateUsersTable")]
+    [Migration("20230612130421_CreateUsersTable")]
     partial class CreateUsersTable
     {
         /// <inheritdoc />
@@ -34,7 +34,7 @@ namespace CabinApi.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -46,6 +46,10 @@ namespace CabinApi.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
 
                     b.ToTable("Users");
                 });

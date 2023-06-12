@@ -2,6 +2,10 @@
 using CabinApi.DTOs;
 using CabinApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Text.Json;
 
 namespace CabinApi.Controllers
 {
@@ -24,9 +28,14 @@ namespace CabinApi.Controllers
             return user;
         }
 
-        // GET: api/Users
+        public User? GetByEmail(string email)
+        {
+            return _context.Users.FirstOrDefault(user => user.Email == email);
+        }
+
+        // POST: api/register
         [HttpPost("register")]
-        public IActionResult Register(RegisterDTO dto)
+        public async Task<ActionResult<IEnumerable<User>>> Register(RegisterDTO dto)
         {
 
             var user = new User
@@ -37,8 +46,33 @@ namespace CabinApi.Controllers
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
             };
 
-            return Created("success", user);
-            //return Ok("success");
+            _context.Add(user);
+            await _context.SaveChangesAsync();
+
+            byte[] utf8bytesJson = JsonSerializer.SerializeToUtf8Bytes(user);
+            string strJson = System.Text.Encoding.UTF8.GetString(utf8bytesJson);
+            return Ok($"success added user: {strJson}");
+        }
+
+        // POST: api/login
+        [HttpPost("login")]
+        public IActionResult Login(LoginDTO dto)
+        {
+            User user = GetByEmail(dto.Email);
+
+            // Check for login data
+            if (user == null) 
+            {
+                return BadRequest(new { message = "Invalid Login Data" });
+            }
+
+            // Check for password
+            if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
+            {
+                return BadRequest(new { message = "Invalid Login Data" });
+            }
+
+            return Ok(user);
         }
     }
 }
