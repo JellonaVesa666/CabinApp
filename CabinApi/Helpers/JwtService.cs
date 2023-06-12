@@ -10,15 +10,30 @@ namespace CabinApi.Helpers
         public string Generate(int id)
         {
             // HTML header, creates security key
-            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey));
-            var credentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature);
-            var header = new JwtHeader(credentials);
+            SymmetricSecurityKey symmetricSecurityKey = new(Encoding.UTF8.GetBytes(securityKey));
+            SigningCredentials credentials = new(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature);
+            JwtHeader header = new(credentials);
 
             // HTML payload, token expiration time
-            var payload = new JwtPayload(id.ToString(), null, null, null, DateTime.Today.AddMinutes(20));
+            JwtPayload payload = new(id.ToString(), null, null, null, DateTime.Now.AddHours(2));
 
-            var securityToken = new JwtSecurityToken(header, payload);
+            JwtSecurityToken securityToken = new(header, payload);
             return new JwtSecurityTokenHandler().WriteToken(securityToken);
+        }
+
+        public JwtSecurityToken Verify(string jwt)
+        {
+            byte[] key = Encoding.ASCII.GetBytes(securityKey);
+            JwtSecurityTokenHandler tokenHandler = new();
+            tokenHandler.ValidateToken(jwt, new TokenValidationParameters
+            {
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuerSigningKey = true,
+                ValidateIssuer = false,
+                ValidateAudience = false,
+            }, out SecurityToken validatedToken);
+
+            return (JwtSecurityToken)validatedToken;
         }
     }
 }

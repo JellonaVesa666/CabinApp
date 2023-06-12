@@ -3,12 +3,10 @@ using CabinApi.DTOs;
 using CabinApi.Helpers;
 using CabinApi.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Runtime.ConstrainedExecution;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text.Json;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
 
 namespace CabinApi.Controllers
 {
@@ -51,10 +49,8 @@ namespace CabinApi.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<IEnumerable<User>>> Login(LoginDTO dto)
         {
-            User? user = null;
-            
             // Find user by email
-            user = await _context.Users.FirstOrDefaultAsync(user => user.Email == dto.Email);
+            User? user = await _context.Users.FirstOrDefaultAsync(user => user.Email == dto.Email);
 
             // Check email
             if (user == null)
@@ -67,10 +63,49 @@ namespace CabinApi.Controllers
                 return BadRequest(new { message = "Invalid Login Data" });
             }
 
-            // Generates json web token by using user id
+            // Generates jwt by using user id
             var jwt = _jwtService.Generate(user.Id);
 
-            return Ok(jwt);
+            // HTML response adds a cookie which contains the jwt
+            Response.Cookies.Append("jwt", jwt, new CookieOptions
+            {
+                HttpOnly = true,
+            });
+
+            byte[] utf8bytesJson = JsonSerializer.SerializeToUtf8Bytes(user);
+            string strJson = System.Text.Encoding.UTF8.GetString(utf8bytesJson);
+
+            return Ok(new {message = $"Logged in successfully\n{strJson}" });
+        }
+
+        // GET: api/user
+        [HttpGet("user")]
+        public async Task<ActionResult<IEnumerable<User>>> VerifyUser()
+        {
+            string? jwt = Request.Cookies["jwt"];
+            JwtSecurityToken token = _jwtService.Verify(jwt);
+            int usedId = int.Parse(token.Issuer);
+
+            User? user = null;
+
+            try
+            {
+                user = await _context.Users.FirstOrDefaultAsync(user => user.Id == usedId);
+
+                return Ok(user);
+            }
+            catch
+            {
+                return Unauthorized();
+            }
+        }
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+                Response.Cookies.Delete("jwt");
+
+                return Ok(new { message = "Logged out successfully" });
         }
     }
 }
