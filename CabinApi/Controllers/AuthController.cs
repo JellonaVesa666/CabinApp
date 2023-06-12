@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Runtime.ConstrainedExecution;
 using System.Text.Json;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CabinApi.Controllers
 {
@@ -18,19 +20,6 @@ namespace CabinApi.Controllers
         public AuthController(AppDBContext context)
         {
             _context = context;
-        }
-
-        public User Create(User user)
-        {
-            _context.Users.Add(user);
-            _context.SaveChanges();
-
-            return user;
-        }
-
-        public User? GetByEmail(string email)
-        {
-            return _context.Users.FirstOrDefault(user => user.Email == email);
         }
 
         // POST: api/register
@@ -46,6 +35,7 @@ namespace CabinApi.Controllers
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
             };
 
+            // Add User
             _context.Add(user);
             await _context.SaveChangesAsync();
 
@@ -56,17 +46,19 @@ namespace CabinApi.Controllers
 
         // POST: api/login
         [HttpPost("login")]
-        public IActionResult Login(LoginDTO dto)
+        public async Task<ActionResult<IEnumerable<User>>> Login(LoginDTO dto)
         {
-            User user = GetByEmail(dto.Email);
+            User? user = null;
+            
+            // Find user by email
+            user = await _context.Users.FirstOrDefaultAsync(user => user.Email == dto.Email);
 
-            // Check for login data
-            if (user == null) 
+            // Check email
+            if (user == null)
             {
                 return BadRequest(new { message = "Invalid Login Data" });
             }
-
-            // Check for password
+            // Check password
             if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
             {
                 return BadRequest(new { message = "Invalid Login Data" });
