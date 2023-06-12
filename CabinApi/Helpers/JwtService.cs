@@ -21,7 +21,7 @@ namespace CabinApi.Helpers
             return new JwtSecurityTokenHandler().WriteToken(securityToken);
         }
 
-        public JwtSecurityToken Verify(string jwt)
+        public JwtSecurityToken Verify(string? jwt)
         {
             byte[] key = Encoding.ASCII.GetBytes(securityKey);
             JwtSecurityTokenHandler tokenHandler = new();
