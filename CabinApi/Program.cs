@@ -1,29 +1,28 @@
 using CabinApi.Data;
+using CabinApi.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddScoped<JwtService>();
 
-// Creates connection to database
+// Context connection to database
 builder.Services.AddDbContext<AppDBContext>(options => 
 { 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); 
 });
 
+
 var app = builder.Build();
 
-// Enable CORS
-app.UseCors(options => options.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader());
-
-// Configure the HTTP request pipeline.
+// Development build settings
 if (app.Environment.IsDevelopment())
 {
-    // Development build settings
+    // Enable CORS
+    app.UseCors(options => options.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader());
 }
 
 app.UseAuthorization();

@@ -1,5 +1,6 @@
 ﻿using CabinApi.Data;
 using CabinApi.DTOs;
+using CabinApi.Helpers;
 using CabinApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
@@ -16,10 +17,12 @@ namespace CabinApi.Controllers
     public class AuthController : Controller
     {
         private readonly AppDBContext _context;
+        private readonly JwtService _jwtService;
 
-        public AuthController(AppDBContext context)
+        public AuthController(AppDBContext context, JwtService jwtService)
         {
             _context = context;
+            _jwtService = jwtService;
         }
 
         // POST: api/register
@@ -64,7 +67,10 @@ namespace CabinApi.Controllers
                 return BadRequest(new { message = "Invalid Login Data" });
             }
 
-            return Ok(user);
+            // Generates json web token by using user id
+            var jwt = _jwtService.Generate(user.Id);
+
+            return Ok(jwt);
         }
     }
 }
