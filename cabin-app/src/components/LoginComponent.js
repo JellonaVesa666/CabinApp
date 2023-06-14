@@ -1,6 +1,6 @@
 import React from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
-import { LoginBody } from "../styles/LoginStyle";
+import { LoginBody, Input, Checkbox } from "../styles/LoginStyle";
 
 export default function LoginComponent(props) {
 
@@ -20,11 +20,11 @@ export default function LoginComponent(props) {
         <h3 className="text-black-50 text-center" style={{ fontWeight: "300", marginBottom: "40px" }}>Have an account?</h3>
 
         <div className="mb-4" style={{ padding: "0px 20px 0px 20px" }}>
-          <input type="email" placeholder="Username/Email" id="typeEmailX" className="form-control form-control-lg" style={{ padding: "25px 20px 25px 20px", height: "50px", color: "black !important", border: "2px solid rgba(0, 0, 0, 0.2)", borderRadius: "40px", background: "rgba(255, 255, 255, 0.9)" }} />
+          <Input type="email" placeholder="Username/Email" id="typeEmailX" className="form-control form-control-lg"/>
         </div>
 
         <div className="mb-4" style={{ padding: "0px 20px 0px 20px" }}>
-          <input type="password" placeholder="Password" id="typePasswordX" className="form-control form-control-lg" style={{ padding: "25px 20px 25px 20px", height: "50px", color: "black !important", border: "2px solid rgba(0, 0, 0, 0.2)", borderRadius: "40px", background: "rgba(255, 255, 255, 0.9)" }} />
+          <Input type="password" placeholder="Password" id="typePasswordX" className="form-control form-control-lg"/>
         </div>
 
         <div className="mb-4" style={{ padding: "0px 20px 0px 20px" }}>
@@ -45,7 +45,7 @@ export default function LoginComponent(props) {
 
         <div className=" row form-group d-md-flex" style={{ padding: "0px 20px 0px 20px" }}>
           <div className="w-50">
-            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" style={{ backgroundColor: "rgba(255, 255, 255, 0.7)"/* backgroundColor: "#7D91B1" */ }} />
+            <Checkbox className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
             <label className="form-check-label ps-2" htmlFor="flexCheckDefault" style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "500" }}>
               Remember Me
             </label>
