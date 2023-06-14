@@ -1,33 +1,22 @@
 import React from "react";
-import { RegisterBody } from "../styles/RegisterStyle";
+import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox } from "../styles/RegisterStyle";
 
 export default function RegisterComponent(props) {
   return (
     <RegisterBody {...props} className="col-12 col-md-8 col-lg-6 col-xl-5 shadow-lg">
       <div className="p-5" style={{ position: "relative" }}>
-        <div style=
-          {{
-            position: "absolute",
-            top: "0px",
-            right: "0px",
-            backgroundColor: "black",
-            color: "white",
-            borderRadius: "10px 16px 0px 10px",
-            width: 100,
-            height: 40,
-            marginRight: -12
-          }}
+        <CloseBtn
           onClick={() => props.onHideRegister(0)}
         >
           <p className="text-center" style=
             {{
               marginTop: 8,
-              textTransform:"uppercase"
+              textTransform: "uppercase"
             }}
           >
             close
           </p>
-        </div>
+        </CloseBtn>
         <h4 className="mb-4 mt-2 text-center"
           style=
           {{
@@ -349,18 +338,10 @@ export default function RegisterComponent(props) {
             alignItems: "center"
           }}
         >
-          <input
+          <Checkbox
             className="form-check-input"
-            type="checkbox"
             value="false"
             id="flexCheckDefault"
-            style=
-            {{
-              width: 25,
-              height: 25,
-              border: "2px solid grey",
-              background: "transparent"
-            }}
           />
           <label className="form-check-label" htmlFor="flexCheckDefault"
             style={{
@@ -375,18 +356,11 @@ export default function RegisterComponent(props) {
 
 
         <div className="mb-4 mt-4" style={{ padding: "0px 20px 0px 20px" }}>
-          <button
-            type="submit"
+          <SubmitBtn
             className="form-control text-uppercase"
-            style={{
-              height: "50px", color: "rgba(255, 255, 255, 1)",
-              border: "2px solid rgba(0, 0, 0, 0.2)",
-              borderRadius: "40px",
-              background: "black"
-            }}
           >
             Submit
-          </button>
+          </SubmitBtn>
         </div>
 
         <div
@@ -397,14 +371,10 @@ export default function RegisterComponent(props) {
           }}
           onClick={() => props.onHideRegister(0)}
         >
-          <h4 className="mt-2"
-            style=
-            {{
-              fontWeight: "300",
-            }}
+          <LinkH4 className="mt-2"
           >
             Cancel
-          </h4>
+          </LinkH4>
         </div>
 
       </div>

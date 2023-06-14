@@ -15,21 +15,13 @@ export const Input = styled.input`
   border: 0.1rem solid rgba(0, 0, 0, 0.2);
   border-radius: 40px;
   background: rgba(255, 255, 255, 0.9) !important;
-  &:focus {
-    border: 0.1rem solid rgba(0, 0, 0, 0.4);
-    outline: none !important;
-    box-shadow: none !important;
-    cursor: pointer;
-  }
-  &:hover {
-    border: 0.1rem solid rgba(0, 0, 0, 0.4);
-    cursor: pointer;
-  }
 `
 
 export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
-  backgroundColor: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.7);
   border: 0.15rem solid rgba(0, 0, 0, 0.2);
+  width: 20px;
+  height: 20px;
   outline: none;
   outline: 0px !important;
   -webkit-appearance:none !important;
@@ -47,6 +39,16 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
 
   }
   &:checked {
+    border: 0.15rem solid rgba(0, 0, 0, 0.4);
     background-color: black;
+  }
+`
+
+export const Link = styled.a`
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  &:hover {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 1);
   }
 `
