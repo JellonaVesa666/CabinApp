@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 export const LoginBody = styled.div`
-  background: #212529;
-  aspectRatio: 1 / 1;
-  width: 20vw;
-  height: 20%;
-  `
+  position: absolute;
+  margin-bottom: 280;
+  width: 35rem;
+  transition: 1s ease-in-out;
+  top: ${props => (props.show === 1 ? "-100vh" : "12.5vh")};
+`

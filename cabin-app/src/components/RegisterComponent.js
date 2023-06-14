@@ -1,14 +1,9 @@
 import React from "react";
+import { RegisterBody } from "../styles/RegisterStyle";
 
-export default function RegisterModal() {
-
+export default function RegisterComponent(props) {
   return (
-    <div
-      className="col-12 col-md-8 col-lg-6 col-xl-5 shadow-lg"
-      style={{
-        borderRadius: 16,
-      }}
-    >
+    <RegisterBody {...props} className="col-12 col-md-8 col-lg-6 col-xl-5 shadow-lg">
       <div className="p-5" style={{ position: "relative" }}>
         <div style=
           {{
@@ -20,8 +15,9 @@ export default function RegisterModal() {
             borderRadius: "10px 16px 0px 10px",
             width: 100,
             height: 40,
-            marginRight: -12,
+            marginRight: -12
           }}
+          onClick={() => props.onHideRegister(0)}
         >
           <p className="text-center" style=
             {{
@@ -399,6 +395,7 @@ export default function RegisterModal() {
             justifyContent: "center",
             alignItems: "center"
           }}
+          onClick={() => props.onHideRegister(0)}
         >
           <h4 className="mt-2"
             style=
@@ -411,6 +408,6 @@ export default function RegisterModal() {
         </div>
 
       </div>
-    </div>
+    </RegisterBody>
   )
 }

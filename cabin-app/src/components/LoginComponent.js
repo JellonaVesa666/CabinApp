@@ -1,5 +1,6 @@
 import React from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
+import { LoginBody } from "../styles/LoginStyle";
 
 export default function LoginComponent(props) {
 
@@ -12,7 +13,7 @@ export default function LoginComponent(props) {
   }
 
   return (
-    <div className="col-12 col-md-8 col-lg-6 col-xl-5" style={{ marginBottom: 280 }}>
+    <LoginBody {...props} className="col-12 col-md-8 col-lg-6 col-xl-5">
       <div className="p-5">
 
         <h2 className="mb-5 text-center" style={{ fontWeight: "300" }}>Login</h2>
@@ -71,6 +72,6 @@ export default function LoginComponent(props) {
         </div>
 
       </div>
-    </div>
+    </LoginBody>
   )
 }
