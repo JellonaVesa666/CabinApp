@@ -1,7 +1,14 @@
-import React from "react";
-import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox } from "../styles/RegisterStyle";
+import React, { useState } from "react";
+import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, Input, Select } from "../styles/RegisterStyle";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function RegisterComponent(props) {
+
+  const [showPassword1, setHidePassword1] = useState(false);
+  const [showPassword2, setHidePassword2] = useState(false);
+
   return (
     <RegisterBody {...props} className="col-12 col-md-8 col-lg-6 col-xl-5 shadow-lg">
       <div className="p-5" style={{ position: "relative" }}>
@@ -47,19 +54,11 @@ export default function RegisterComponent(props) {
         <div
           className="mb-2"
         >
-          <input
+          <Input
             type="email"
             placeholder="Fullname"
             id="typeEmailX"
             className="form-control form-control-d"
-            style={{
-              padding: "0px 20px 0px 20px",
-              height: "40px", color: "black !important",
-              border: "2px solid rgba(0, 0, 0, 0.2)",
-              borderRadius: "40px",
-              background: "rgba(255, 255, 255, 0.9)",
-              fontWeight: "400"
-            }}
           />
         </div>
 
@@ -78,19 +77,11 @@ export default function RegisterComponent(props) {
           className="mb-2"
 
         >
-          <input
+          <Input
             type="email"
             placeholder="Username"
             id="typeEmailX"
             className="form-control form-control-d"
-            style={{
-              padding: "0px 20px 0px 20px",
-              height: "40px", color: "black !important",
-              border: "2px solid rgba(0, 0, 0, 0.2)",
-              borderRadius: "40px",
-              background: "rgba(255, 255, 255, 0.9)",
-              fontWeight: "400"
-            }}
           />
         </div>
 
@@ -108,19 +99,11 @@ export default function RegisterComponent(props) {
         <div
           className="mb-2"
         >
-          <input
+          <Input
             type="email"
             placeholder="Email"
             id="typeEmailX"
             className="form-control form-control-d"
-            style={{
-              padding: "0px 20px 0px 20px",
-              height: "40px", color: "black !important",
-              border: "2px solid rgba(0, 0, 0, 0.2)",
-              borderRadius: "40px",
-              background: "rgba(255, 255, 255, 0.9)",
-              fontWeight: "400"
-            }}
           />
         </div>
 
@@ -138,19 +121,11 @@ export default function RegisterComponent(props) {
         <div
           className="mb-2"
         >
-          <input
+          <Input
             type="email"
             placeholder="Confirm email"
             id="typeEmailX"
             className="form-control form-control-d"
-            style={{
-              padding: "0px 20px 0px 20px",
-              height: "40px", color: "black !important",
-              border: "2px solid rgba(0, 0, 0, 0.2)",
-              borderRadius: "40px",
-              background: "rgba(255, 255, 255, 0.9)",
-              fontWeight: "400"
-            }}
           />
         </div>
 
@@ -167,35 +142,19 @@ export default function RegisterComponent(props) {
         </div>
         <div class="row gx-3">
           <div class="col-3">
-            <input
+            <Input
               type="email"
               placeholder="+358"
               id="typeEmailX"
               className="form-control form-control-d"
-              style={{
-                padding: "0px 20px 0px 20px",
-                height: "40px", color: "black !important",
-                border: "2px solid rgba(0, 0, 0, 0.2)",
-                borderRadius: "40px",
-                background: "rgba(255, 255, 255, 0.9)",
-                fontWeight: "400"
-              }}
             />
           </div>
           <div class="col-9">
-            <input
+            <Input
               type="email"
               placeholder=""
               id="typeEmailX"
               className="form-control form-control-d"
-              style={{
-                padding: "0px 20px 0px 20px",
-                height: "40px", color: "black !important",
-                border: "2px solid rgba(0, 0, 0, 0.2)",
-                borderRadius: "40px",
-                background: "rgba(255, 255, 255, 0.9)",
-                fontWeight: "400"
-              }}
             />
           </div>
         </div>
@@ -224,35 +183,19 @@ export default function RegisterComponent(props) {
         </div>
         <div class="row gx-3">
           <div class="col-8">
-            <input
+            <Input
               type="email"
               placeholder="Address"
               id="typeEmailX"
               className="form-control form-control-d"
-              style={{
-                padding: "0px 20px 0px 20px",
-                height: "40px", color: "black !important",
-                border: "2px solid rgba(0, 0, 0, 0.2)",
-                borderRadius: "40px",
-                background: "rgba(255, 255, 255, 0.9)",
-                fontWeight: "400"
-              }}
             />
           </div>
           <div class="col-4">
-            <input
+            <Input
               type="email"
               placeholder="Postal Code"
               id="typeEmailX"
               className="form-control form-control-d"
-              style={{
-                padding: "0px 20px 0px 20px",
-                height: "40px", color: "black !important",
-                border: "2px solid rgba(0, 0, 0, 0.2)",
-                borderRadius: "40px",
-                background: "rgba(255, 255, 255, 0.9)",
-                fontWeight: "400"
-              }}
             />
           </div>
         </div>
@@ -267,23 +210,16 @@ export default function RegisterComponent(props) {
         >
           Role
         </div>
-        <select
+        <Select
           class="form-select"
           aria-label="Default select example"
-          style={{
-            padding: "0px 20px 0px 20px",
-            height: "40px", color: "black !important",
-            border: "2px solid rgba(0, 0, 0, 0.2)",
-            borderRadius: "20px",
-            backgroundColor: "rgba(255, 255, 255, 0.9)",
-          }}
         >
           <option selected>Role</option>
           <option value="1">Admin</option>
           <option value="2">Manager</option>
           <option value="3">Supervisor</option>
           <option value="3">Maid</option>
-        </select>
+        </Select>
 
         <div class="row gx-3 mt-3 mb-2">
           <div
@@ -298,34 +234,24 @@ export default function RegisterComponent(props) {
           </div>
         </div>
         <div class="row gx-3 mb-5">
-          <div class="col">
-            <input
-              type="email"
+          <div class="col" style={{ position: "relative" }}>
+            <Input
+              type={showPassword1 ? "text" : "password"}
               placeholder="Password"
               id="typeEmailX"
               className="form-control form-control-d"
-              style={{
-                padding: "0px 20px 0px 20px",
-                height: "40px", color: "black !important",
-                border: "2px solid rgba(0, 0, 0, 0.2)",
-                borderRadius: "40px",
-                background: "rgba(255, 255, 255, 0.9)"
-              }}
             />
+            {showPassword1 && < FontAwesomeIcon icon={faEye} onClick={() => setHidePassword1(false)} style={{ position: "absolute", top: 12, left: 190 }} />}
+            {showPassword2 && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword2(false)} style={{ position: "absolute", top: 12, left: 420 }} />}
+            {!showPassword1 && < FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword1(true)} style={{ position: "absolute", top: 12, left: 190 }} />}
+            {!showPassword2 && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword2(true)} style={{ position: "absolute", top: 12, left: 420 }} />}
           </div>
           <div class="col">
-            <input
-              type="email"
+            <Input
+              type={showPassword2 ? "text" : "password"}
               placeholder="Confirm Password"
               id="typeEmailX"
               className="form-control form-control-d"
-              style={{
-                padding: "0px 20px 0px 20px",
-                height: "40px", color: "black !important",
-                border: "2px solid rgba(0, 0, 0, 0.2)",
-                borderRadius: "40px",
-                background: "rgba(255, 255, 255, 0.9)"
-              }}
             />
           </div>
         </div>

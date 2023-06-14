@@ -18,6 +18,26 @@ export const LinkH4 = styled.h4`
   }
 `
 
+export const Input = styled.input`
+  padding: 0px 20px 0px 20px;
+  height: 40px; 
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+  }
+`
+
+export const Select = styled.select`
+  padding: 0px 20px 0px 20px;
+  height: 40px;
+  width: 100%;
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.9);
+`
+
 export const SubmitBtn = styled.button.attrs({ type: 'submit' })`
   height: 50px; 
   color: white !important;
