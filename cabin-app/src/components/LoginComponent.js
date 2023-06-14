@@ -13,7 +13,7 @@ export default function LoginComponent(props) {
   }
 
   return (
-    <LoginBody {...props} className="col-12 col-md-8 col-lg-6 col-xl-5">
+    <LoginBody show={props.show} className="col-12 col-md-8 col-lg-6 col-xl-5">
       <div className="p-5">
 
         <h2 className="mb-5 text-center" style={{ fontWeight: "300" }}>Login</h2>
@@ -63,7 +63,7 @@ export default function LoginComponent(props) {
             <Link
               href="#!"
               className=""
-              onClick={() => props.onShowRegister(1)}
+              onClick={() => props.onRegisterShow(1)}
             >
               Sign Up
             </Link>

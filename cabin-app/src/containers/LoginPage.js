@@ -6,11 +6,18 @@ export default function LoginPage() {
 
   const [show, setShow] = useState(0);
 
+
+  const handleClick = (childProps) => {
+    // 👇️ take the parameter passed from the Child component
+    setShow(childProps);
+  };
+
+
   return (
     <div className="container h-100">
       <div className="row d-flex justify-content-center align-items-center h-100">
-        <LoginComponent onShowRegister={(childProps) => setShow(childProps)} show={show}/>
-        <RegisterModal onHideRegister={(childProps) => setShow(childProps)} show={show}/>
+        <LoginComponent onRegisterShow={(childProps) => handleClick(childProps)} show={show}/>
+        <RegisterModal onRegisterHide={(childProps) => handleClick(childProps)} show={show}/>
       </div>
     </div>
   )
