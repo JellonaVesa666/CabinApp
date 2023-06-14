@@ -17,12 +17,12 @@ export const MainBody = styled.div`
 `
 
 export const Logo = styled.div`
-  background: url(${campingLogo}) no-repeat; 
+  background: url(${campingLogo}) no-repeat;
   position:absolute;
-  bottom:0;
-  left:50px;
-  width: 20%;
-  height: 20%;
-  margin: 0;
+  width: 360px;
+  height: 220px;
+  bottom: 3%;
+  left: 2%;
   padding: 0;
+  margin: 0;
 `
