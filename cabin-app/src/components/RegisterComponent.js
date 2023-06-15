@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, Input, Select } from "../styles/RegisterStyle";
+import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, Input, InputTitle, Select, ErrorMessage } from "../styles/RegisterStyle";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,137 +10,187 @@ export default function RegisterComponent(props) {
   const [showPassword2, setHidePassword2] = useState(false);
 
   const initialData = {
-    address: "",
-    countryCode: "+358",
-    email: "",
-    emailConfirm: "",
-    fullName: "",
-    password: "",
-    passwordConfirm: "",
-    phone: "",
-    postalCode: "",
-    role: 0,
-    termsOfService: "",
-    username: ""
+    address: {
+      value: "",
+      errors: "",
+    },
+    countryCode: {
+      value: "+358",
+      errors: "",
+    },
+    email: {
+      value: "",
+      errors: "",
+    },
+    emailConfirm: {
+      value: "",
+      errors: "",
+    },
+    fullName: {
+      value: "",
+      errors: "",
+    },
+    password: {
+      value: "",
+      errors: "",
+    },
+    passwordConfirm: {
+      value: "",
+      errors: "",
+    },
+    phone: {
+      value: "",
+      errors: "",
+    },
+    postalCode: {
+      value: "",
+      errors: "",
+    },
+    role: {
+      value: 0,
+      errors: "",
+    },
+    termsOfService: {
+      value: "",
+      errors: "",
+    },
+    username: {
+      value: "",
+      errors: "",
+    },
   };
 
   const [data, setFormData] = useState(initialData);
 
   const formChange = (event) => {
-    setFormData({ ...data, [event.target.id]: event.target.value });
-  };
+    setFormData({
+      ...data,
+      [event.target.id]: { ...data[event.target.id], value: event.target.value },
+    });
+  }
+
+  const SetErrors = (property, errorMsg) => {
+    setFormData(prevData => ({
+      ...prevData, [property]: { ...prevData[property], errors: errorMsg }
+    }));
+  }
+
 
   const validateForm = () => {
     console.log(data);
     var formIsValid = true;
 
+    Object.keys(data).forEach(key => {
+      if ([key].errors !== "") {
+        setFormData(prevData => ({
+          ...prevData, [key]: { ...prevData[key], errors: "" }
+        }));
+      }
+    });
+
     //Name
-    if (data.fullName.length === 0) {
+    if (data.fullName.value.length === 0) {
       formIsValid = false;
-      console.log("Fullname cannot be empty")
-      //errors["name"] = "Cannot be empty";
+      SetErrors("fullName", "Cannot be empty");
     }
     else {
-      if (!data.fullName.match(/^[a-zA-Z]+$/)) {
+      if (!data.fullName.value.match(/^[a-zA-Z]+$/)) {
         formIsValid = false;
-        console.log("Only letters")
-        //errors["name"] = "Only letters";
+        SetErrors("fullName", "Only letters are accepted");
       }
     }
 
     //Username
-    if (data.fullName.length === 0) {
+    if (data.username.value.length === 0) {
       formIsValid = false;
-      console.log("Fullname cannot be empty")
-      //errors["name"] = "Cannot be empty";
+      SetErrors("username", "Cannot be empty");
     }
     else {
-      if (!data.fullName.match(/^[a-zA-Z]+$/)) {
+      if (!data.username.value.match(/^[a-zA-Z]+$/)) {
         formIsValid = false;
-        console.log("Only letters")
-        //errors["name"] = "Only letters";
+        SetErrors("username", "Only letters are accepted");
       }
     }
 
     //Email
-    if (data.email.length === 0) {
+    if (data.email.value.length === 0) {
       formIsValid = false;
-      console.log("Email cannot be empty")
+      SetErrors("email", "Cannot be empty");
       //errors["email"] = "Cannot be empty";
     }
     else {
-      let lastAtPos = data.email.lastIndexOf("@");
-      let lastDotPos = data.email.lastIndexOf(".");
+      let lastAtPos = data.email.value.lastIndexOf("@");
+      let lastDotPos = data.email.value.lastIndexOf(".");
 
       if (!(lastAtPos < lastDotPos &&
         lastAtPos > 0 &&
-        data.email.indexOf("@@") === -1 &&
+        data.email.value.indexOf("@@") === -1 &&
         lastDotPos > 2 &&
-        data.email.length - lastDotPos > 2
+        data.email.value.length - lastDotPos > 2
       )) {
         formIsValid = false;
-        console.log("Email is not valid")
+        SetErrors("email", "Email is not valid");
         //data.email = "Email is not valid";
       }
     }
-    if (data.emailConfirm.length === 0) {
+    if (data.emailConfirm.value.length === 0) {
       formIsValid = false;
-      console.log("Confirm email cannot be empty")
+      SetErrors("emailConfirm", "Cannot be empty");
     }
     else {
-      if (data.email !== data.emailConfirm) {
-        console.log("Email do not match")
+      if (data.email.value !== data.emailConfirm.value) {
+        SetErrors("emailConfirm", "Emails do not match");
       }
     }
 
     // Phone
-    if (data.countryCode.length === 0 || data.phone.length === 0) {
+    if (data.countryCode.value.length === 0 || data.phone.value.length === 0) {
       formIsValid = false;
-      console.log("Phone cannot be empty")
+      SetErrors("phone", "Cannot be empty");
     }
     else {
       const phoneRegex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
-      if (!phoneRegex.test(data.countryCode + data.phone)) {
-        console.log("Invalid phone number")
+      if (!phoneRegex.test(data.countryCode.value + data.phone.value)) {
+        SetErrors("phone", "Invalid phone number");
       }
     }
 
     // Address
-    if (data.address.length === 0) {
+    if (data.address.value.length === 0) {
       formIsValid = false;
-      console.log("Address cannot be empty")
+      SetErrors("address", "Cannot be empty");
     }
     else {
       const adressRegex = /^\s*\S+(?:\s+\S+)/;
-      if (!adressRegex.test(data.address)) {
+      if (!adressRegex.test(data.address.value)) {
         formIsValid = false;
-        console.log("Invalid Address")
+        SetErrors("address", "Invalid Address");
       }
     }
 
     // Postal Code
-    if (data.postalCode.length === 0) {
+    if (data.postalCode.value.length === 0) {
       formIsValid = false;
-      console.log("Postal code cannot be empty")
+      SetErrors("postalCode", "Cannot be empty");
     }
     else {
       const postalRegex = /^\d{5}(?:[-\s]\d{4})?$/;
-      if (!postalRegex.test(data.postalCode)) {
+      if (!postalRegex.test(data.postalCode.value)) {
         formIsValid = false;
-        console.log("Invalid postal code")
+        SetErrors("postalCode", "Invalid postal code");
       }
     }
 
     // Role
-    if (data.role === 0) {
-      console.log("Role is required")
+    if (data.role.value === 0) {
+      SetErrors("role", "Role is required");
       formIsValid = false;
     }
 
     // Password
-    if (data.password.length === 0) {
+    if (data.password.value.length === 0) {
       formIsValid = false;
-      console.log("Password cannot be empty")
+      SetErrors("password", "Cannot be empty");
     }
     else {
       // At least one upper case English letter, (?=.*?[A-Z])
@@ -149,34 +199,34 @@ export default function RegisterComponent(props) {
       // At least one special character, (?=.*?[#?!@$%^&*-])
       // Minimum eight in length .{8,} (with the anchors)
       const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-      if (!passwordRegex.test(data.password)) {
+      if (!passwordRegex.test(data.password.value)) {
         formIsValid = false;
-        console.log("Password do not meet requirements")
+        SetErrors("password", "Password do not meet requirements");
       }
     }
-    if (data.passwordConfirm.length === 0) {
+    if (data.passwordConfirm.value.length === 0) {
       formIsValid = false;
-      console.log("Confirm password cannot be empty")
+      SetErrors("passwordConfirm", "Cannot be empty");
     }
     else {
-      if (data.password !== data.passwordConfirm) {
-        console.log("Passwords do not match")
+      if (data.password.value !== data.passwordConfirm.value) {
+        SetErrors("passwordConfirm", "Passwords do not match");
       }
     }
 
     // Terms of Service
-    if (!data.termsOfService) {
+    if (!data.termsOfService.value) {
       formIsValid = false;
-      console.log("Please agree the terms of Service")
+      SetErrors("termsOfService", "Please agree the terms of Service");
     }
+
+    console.log(data);
   }
 
   return (
     <RegisterBody show={props.show} className="col-12 col-md-8 col-lg-6 col-xl-5 shadow-lg">
       <div className="p-5" style={{ position: "relative" }}>
-        <CloseBtn
-          onClick={() => props.onRegisterHide(0)}
-        >
+        <CloseBtn onClick={() => props.onRegisterHide(0)}>
           <p className="text-center" style=
             {{
               marginTop: 8,
@@ -187,201 +237,116 @@ export default function RegisterComponent(props) {
           </p>
         </CloseBtn>
         <h4 className="mb-4 mt-2 text-center"
-          style=
-          {{
-            fontWeight: "300",
-          }}
+          style={{ fontWeight: "300", }}
         >
           Register
         </h4>
-
-        <div
-          className="mb-4"
+        <div className="mb-4"
           style={{
             background: "grey", height: "2px", width: "100%"
           }}
         />
-
-        <div
-          className="px-2"
-          style=
-          {{
-            color: "black",
-            fontWeight: "400",
-            fontSize: "0.95rem"
-          }}
-        >
-          Full name
+        <InputTitle className="px-2">Full name</InputTitle>
+        <Input
+          className={data.fullName.errors.length > 0 ? "invalid" : ""}
+          type="text"
+          placeholder="Fullname"
+          id="fullName"
+          onChange={(event) => formChange(event)}
+        />
+        <ErrorMessage className={data.fullName.errors.length > 0 ? "show1" : ""}>{data.fullName.errors}</ErrorMessage>
+        <InputTitle className="px-2">Username</InputTitle>
+        <Input
+          className={data.username.errors.length > 0 ? "invalid" : ""}
+          type="text"
+          placeholder="Username"
+          id="username"
+          onChange={(event) => formChange(event)}
+        />
+        <ErrorMessage className={data.username.errors.length > 0 ? "show1" : ""}>{data.username.errors}</ErrorMessage>
+        <InputTitle className="px-2">Email</InputTitle>
+        <Input
+          className={data.email.errors.length > 0 ? "invalid" : ""}
+          type="email"
+          placeholder="Email"
+          id="email"
+          onChange={(event) => formChange(event)}
+        />
+        <ErrorMessage className={data.email.errors.length > 0 ? "show1" : ""}>{data.email.errors}</ErrorMessage>
+        <InputTitle className="px-2">Confirm email</InputTitle>
+        <Input
+          className={data.emailConfirm.errors.length > 0 ? "invalid" : ""}
+          type="email"
+          placeholder="Confirm email"
+          id="emailConfirm"
+          onChange={(event) => formChange(event)}
+        />
+        <ErrorMessage className={data.emailConfirm.errors.length > 0 ? "show1" : ""}>{data.emailConfirm.errors}</ErrorMessage>
+        <div class="row">
+          <div class="col-3" />
+          <div class="col-9">
+            <InputTitle className="px-2">Phone</InputTitle>
+          </div>
         </div>
-        <div
-          className="mb-2"
-        >
-          <Input
-            type="text"
-            placeholder="Fullname"
-            id="fullName"
-            onChange={(event) => formChange(event)}
-            className="form-control form-control-d"
-          />
-        </div>
-
-        <div
-          className="mt-3 px-2"
-          style=
-          {{
-            color: "black",
-            fontWeight: "400",
-            fontSize: "0.95rem"
-          }}
-        >
-          Username
-        </div>
-        <div
-          className="mb-2"
-
-        >
-          <Input
-            type="text"
-            placeholder="Username"
-            id="username"
-            onChange={(event) => formChange(event)}
-            className="form-control form-control-d"
-          />
-        </div>
-
-        <div
-          className="mt-3 px-2"
-          style=
-          {{
-            color: "black",
-            fontWeight: "400",
-            fontSize: "0.95rem"
-          }}
-        >
-          Email
-        </div>
-        <div
-          className="mb-2"
-        >
-          <Input
-            type="email"
-            placeholder="Email"
-            id="email"
-            onChange={(event) => formChange(event)}
-            className="form-control form-control-d"
-          />
-        </div>
-
-        <div
-          className="mt-3 px-2"
-          style=
-          {{
-            color: "black",
-            fontWeight: "400",
-            fontSize: "0.95rem"
-          }}
-        >
-          Confirm Email
-        </div>
-        <div
-          className="mb-2"
-        >
-          <Input
-            type="email"
-            placeholder="Confirm email"
-            id="emailConfirm"
-            onChange={(event) => formChange(event)}
-            className="form-control form-control-d"
-          />
-        </div>
-
-        <div
-          className="mt-3 px-2"
-          style=
-          {{
-            color: "black",
-            fontWeight: "400",
-            fontSize: "0.95rem"
-          }}
-        >
-          Phone
-        </div>
-        <div class="row gx-3">
+        <div class="row">
           <div class="col-3">
             <Input
+              className={data.phone.errors.length > 0 ? "invalid" : ""}
               type="tel"
               defaultValue="+358"
               id="countryCode"
               onChange={(event) => formChange(event)}
-              className="form-control form-control-d"
             />
           </div>
           <div class="col-9">
             <Input
+              className={data.phone.errors.length > 0 ? "invalid" : ""}
               type="tel"
               placeholder=""
               id="phone"
               onChange={(event) => formChange(event)}
-              className="form-control form-control-d"
             />
           </div>
         </div>
-
-        <div class="row gx-3 mt-3 px-2">
-          <div
-            className="col-8"
-            style={{
-              color: "black",
-              fontWeight: "400",
-              fontSize: "0.95rem"
-            }}
-          >
-            Address
+        <div class="row">
+          <div class="col-3" />
+          <div class="col-9">
+            <ErrorMessage className={data.phone.errors.length > 0 ? "show1" : ""}>{data.phone.errors}</ErrorMessage>
           </div>
-          <div
-            className="col-4 ps-3"
-            style={{
-              color: "black",
-              fontWeight: "400",
-              fontSize: "0.95rem"
-            }}
-          >
-            Postal Code
-          </div>
+        </div>
+        <div class="row px-2">
+          <InputTitle className="col-8">Address</InputTitle>
+          <InputTitle className="col-4 ps-3">Postal Code</InputTitle>
         </div>
         <div class="row gx-3">
           <div class="col-8">
             <Input
+              className={data.address.errors.length > 0 ? "invalid" : ""}
               type="text"
               placeholder="Address"
               id="address"
-              className="form-control form-control-d"
               onChange={(event) => formChange(event)}
             />
           </div>
           <div class="col-4">
             <Input
+              className={data.postalCode.errors.length > 0 ? "invalid" : ""}
               type="text"
               placeholder="Postal Code"
               id="postalCode"
               pattern="[0-9]{5}"
-              className="form-control form-control-d"
               onChange={(event) => formChange(event)}
             />
           </div>
         </div>
-
-        <div
-          className="mt-3 px-2"
-          style={{
-            color: "black",
-            fontWeight: "400",
-            fontSize: "0.95rem"
-          }}
-        >
-          Role
+        <div class="row gx-3 ">
+          <ErrorMessage className={data.address.errors.length > 0 ? "show1 col-8" : "col-8"}>{data.address.errors}</ErrorMessage>
+          <ErrorMessage className={data.postalCode.errors.length > 0 ? "show2 col-4" : "col-4"}>{data.postalCode.errors}</ErrorMessage>
         </div>
+
+        <InputTitle className="mt-3 px-2">Role</InputTitle>
         <Select
+          className={data.role.errors.length > 0 ? "invalid" : ""}
           class="form-select"
           aria-label="Default select example"
           id="role"
@@ -393,26 +358,18 @@ export default function RegisterComponent(props) {
           <option value="3">Supervisor</option>
           <option value="3">Worker</option>
         </Select>
-
-        <div class="row gx-3 mt-3 mb-2">
-          <div
-            className="col px-3"
-            style={{ color: "black" }}>
-            Password
-          </div>
-          <div
-            className="col"
-            style={{ color: "black" }}>
-            Confirm password
-          </div>
+        <ErrorMessage className={data.role.errors.length > 0 ? "show1 col-4" : "col-4"}>{data.role.errors}</ErrorMessage>
+        <div class="row gx-3">
+          <InputTitle className="col px-3">Password</InputTitle>
+          <InputTitle className="col">Confirm password</InputTitle>
         </div>
-        <div class="row gx-3 mb-5">
+        <div class="row gx-3">
           <div class="col" style={{ position: "relative" }}>
             <Input
+              className={data.password.errors.length > 0 ? "invalid" : ""}
               type={showPassword1 ? "text" : "password"}
               placeholder="Password"
               id="password"
-              className="form-control form-control-d"
               onChange={(event) => formChange(event)}
             />
             {showPassword1 && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword1(false)} style={{ position: "absolute", top: 12, left: 190 }} />}
@@ -422,15 +379,18 @@ export default function RegisterComponent(props) {
           </div>
           <div class="col">
             <Input
+              className={data.passwordConfirm.errors.length > 0 ? "invalid" : ""}
               type={showPassword2 ? "text" : "password"}
               placeholder="Confirm Password"
               id="passwordConfirm"
-              className="form-control form-control-d"
               onChange={(event) => formChange(event)}
             />
           </div>
         </div>
-
+        <div class="row gx-3 mb-5">
+          <ErrorMessage className={data.password.errors.length > 0 ? "show1 col" : "col"}>{data.password.errors}</ErrorMessage>
+          <ErrorMessage className={data.passwordConfirm.errors.length > 0 ? "show1 col" : "col"}>{data.passwordConfirm.errors}</ErrorMessage>
+        </div>
 
         <div class="mb-2"
           style={{
@@ -454,7 +414,7 @@ export default function RegisterComponent(props) {
             I agree to the terms and conditions of the Service
           </label>
         </div>
-
+        <ErrorMessage className={data.termsOfService.errors.length > 0 ? "show1 col-4" : "col-4"}>{data.termsOfService.errors}</ErrorMessage>
 
         <div className="mb-4 mt-4" style={{ padding: "0px 20px 0px 20px" }}>
           <SubmitBtn
