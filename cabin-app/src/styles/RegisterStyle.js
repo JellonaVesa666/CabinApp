@@ -38,7 +38,7 @@ export const Select = styled.select`
   background: rgba(255, 255, 255, 0.9);
 `
 
-export const SubmitBtn = styled.button.attrs({ type: 'submit' })`
+export const SubmitBtn = styled.button`
   height: 50px; 
   color: white !important;
   border-radius: 40px;

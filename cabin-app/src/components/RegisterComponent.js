@@ -9,7 +9,22 @@ export default function RegisterComponent(props) {
   const [showPassword1, setHidePassword1] = useState(false);
   const [showPassword2, setHidePassword2] = useState(false);
 
-  const [data, setFormData] = useState();
+  const initialData = {
+    address: "",
+    countryCode: "+358",
+    email: "",
+    emailConfirm: "",
+    fullName: "",
+    password: "",
+    passwordConfirm: "",
+    phone: "",
+    postalCode: "",
+    role: 0,
+    termsOfService: "",
+    username: ""
+  };
+
+  const [data, setFormData] = useState(initialData);
 
   const formChange = (event) => {
     setFormData({ ...data, [event.target.id]: event.target.value });
@@ -17,46 +32,143 @@ export default function RegisterComponent(props) {
 
   const validateForm = () => {
     console.log(data);
+    var formIsValid = true;
 
     //Name
-    /*     if (!fields["registerFullname"]) {
-          formIsValid = false;
-          errors["name"] = "Cannot be empty";
-        } */
+    if (data.fullName.length === 0) {
+      formIsValid = false;
+      console.log("Fullname cannot be empty")
+      //errors["name"] = "Cannot be empty";
+    }
+    else {
+      if (!data.fullName.match(/^[a-zA-Z]+$/)) {
+        formIsValid = false;
+        console.log("Only letters")
+        //errors["name"] = "Only letters";
+      }
+    }
 
-    /*     if (typeof fields["name"] !== "undefined") {
-          if (!fields["name"].match(/^[a-zA-Z]+$/)) {
-            formIsValid = false;
-            errors["name"] = "Only letters";
-          }
-        }
-    
-        //Email
-        if (!fields["email"]) {
-          formIsValid = false;
-          errors["email"] = "Cannot be empty";
-        }
-    
-        if (typeof fields["email"] !== "undefined") {
-          let lastAtPos = fields["email"].lastIndexOf("@");
-          let lastDotPos = fields["email"].lastIndexOf(".");
-    
-          if (
-            !(
-              lastAtPos < lastDotPos &&
-              lastAtPos > 0 &&
-              fields["email"].indexOf("@@") == -1 &&
-              lastDotPos > 2 &&
-              fields["email"].length - lastDotPos > 2
-            )
-          ) {
-            formIsValid = false;
-            errors["email"] = "Email is not valid";
-          }
-        }
-    
-        this.setState({ errors: errors });
-        return formIsValid; */
+    //Username
+    if (data.fullName.length === 0) {
+      formIsValid = false;
+      console.log("Fullname cannot be empty")
+      //errors["name"] = "Cannot be empty";
+    }
+    else {
+      if (!data.fullName.match(/^[a-zA-Z]+$/)) {
+        formIsValid = false;
+        console.log("Only letters")
+        //errors["name"] = "Only letters";
+      }
+    }
+
+    //Email
+    if (data.email.length === 0) {
+      formIsValid = false;
+      console.log("Email cannot be empty")
+      //errors["email"] = "Cannot be empty";
+    }
+    else {
+      let lastAtPos = data.email.lastIndexOf("@");
+      let lastDotPos = data.email.lastIndexOf(".");
+
+      if (!(lastAtPos < lastDotPos &&
+        lastAtPos > 0 &&
+        data.email.indexOf("@@") === -1 &&
+        lastDotPos > 2 &&
+        data.email.length - lastDotPos > 2
+      )) {
+        formIsValid = false;
+        console.log("Email is not valid")
+        //data.email = "Email is not valid";
+      }
+    }
+    if (data.emailConfirm.length === 0) {
+      formIsValid = false;
+      console.log("Confirm email cannot be empty")
+    }
+    else {
+      if (data.email !== data.emailConfirm) {
+        console.log("Email do not match")
+      }
+    }
+
+    // Phone
+    if (data.countryCode.length === 0 || data.phone.length === 0) {
+      formIsValid = false;
+      console.log("Phone cannot be empty")
+    }
+    else {
+      const phoneRegex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
+      if (!phoneRegex.test(data.countryCode + data.phone)) {
+        console.log("Invalid phone number")
+      }
+    }
+
+    // Address
+    if (data.address.length === 0) {
+      formIsValid = false;
+      console.log("Address cannot be empty")
+    }
+    else {
+      const adressRegex = /^\s*\S+(?:\s+\S+)/;
+      if (!adressRegex.test(data.address)) {
+        formIsValid = false;
+        console.log("Invalid Address")
+      }
+    }
+
+    // Postal Code
+    if (data.postalCode.length === 0) {
+      formIsValid = false;
+      console.log("Postal code cannot be empty")
+    }
+    else {
+      const postalRegex = /^\d{5}(?:[-\s]\d{4})?$/;
+      if (!postalRegex.test(data.postalCode)) {
+        formIsValid = false;
+        console.log("Invalid postal code")
+      }
+    }
+
+    // Role
+    if (data.role === 0) {
+      console.log("Role is required")
+      formIsValid = false;
+    }
+
+    // Password
+    if (data.password.length === 0) {
+      formIsValid = false;
+      console.log("Password cannot be empty")
+    }
+    else {
+      // At least one upper case English letter, (?=.*?[A-Z])
+      // At least one lower case English letter, (?=.*?[a-z])
+      // At least one digit, (?=.*?[0-9])
+      // At least one special character, (?=.*?[#?!@$%^&*-])
+      // Minimum eight in length .{8,} (with the anchors)
+      const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+      if (!passwordRegex.test(data.password)) {
+        formIsValid = false;
+        console.log("Password do not meet requirements")
+      }
+    }
+    if (data.passwordConfirm.length === 0) {
+      formIsValid = false;
+      console.log("Confirm password cannot be empty")
+    }
+    else {
+      if (data.password !== data.passwordConfirm) {
+        console.log("Passwords do not match")
+      }
+    }
+
+    // Terms of Service
+    if (!data.termsOfService) {
+      formIsValid = false;
+      console.log("Please agree the terms of Service")
+    }
   }
 
   return (
@@ -198,7 +310,7 @@ export default function RegisterComponent(props) {
           <div class="col-3">
             <Input
               type="tel"
-              placeholder="+358"
+              defaultValue="+358"
               id="countryCode"
               onChange={(event) => formChange(event)}
               className="form-control form-control-d"
@@ -279,7 +391,7 @@ export default function RegisterComponent(props) {
           <option value="1">Admin</option>
           <option value="2">Manager</option>
           <option value="3">Supervisor</option>
-          <option value="3">Maid</option>
+          <option value="3">Worker</option>
         </Select>
 
         <div class="row gx-3 mt-3 mb-2">
@@ -299,7 +411,6 @@ export default function RegisterComponent(props) {
             <Input
               type={showPassword1 ? "text" : "password"}
               placeholder="Password"
-              id="typeEmailX"
               id="password"
               className="form-control form-control-d"
               onChange={(event) => formChange(event)}
@@ -330,7 +441,6 @@ export default function RegisterComponent(props) {
         >
           <Checkbox
             className="form-check-input"
-            defaultValuevalue="false"
             id="termsOfService"
             onChange={(event) => formChange(event)}
           />
