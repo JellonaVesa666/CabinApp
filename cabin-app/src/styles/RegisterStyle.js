@@ -5,7 +5,7 @@ export const RegisterBody = styled.div`
   width: 35rem;
   border-radius: 16px;
   transition: 1s ease-in-out;
-  top: ${props => (props.show === 1 ? "6rem" : "-100vh")};
+  top: ${props => (props.show === 1 ? "8rem" : "-100vh")};
 `
 
 export const LinkH4 = styled.h4`
@@ -30,7 +30,7 @@ export const ErrorMessage = styled.p`
     color: rgba(0, 0, 0, 0.4);
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     visibility: visible;
     margin: 0;
     margin-left: 2rem;
@@ -55,6 +55,7 @@ export const Input = styled.input`
   border: 0.1rem solid rgba(0, 0, 0, 0.2);
   border-radius: 40px;
   background: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.75rem;
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }
@@ -78,6 +79,16 @@ export const Select = styled.select`
   &.invalid {
     border: 0.1rem solid transparent !important;
     outline: 0.15rem solid rgba(200, 20, 80, 0.4) !important;
+  }
+`
+
+export const TermsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.invalid {
+    border-radius: 6px;
+    outline: 0.15rem solid rgba(200, 20, 80, 0.4);
   }
 `
 

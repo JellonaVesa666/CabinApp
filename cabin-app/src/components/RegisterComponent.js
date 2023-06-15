@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, Input, InputTitle, Select, ErrorMessage } from "../styles/RegisterStyle";
+import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, Input, InputTitle, Select, ErrorMessage, TermsContainer } from "../styles/RegisterStyle";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
@@ -51,7 +51,7 @@ export default function RegisterComponent(props) {
       errors: "",
     },
     termsOfService: {
-      value: "",
+      value: false,
       errors: "",
     },
     username: {
@@ -63,9 +63,12 @@ export default function RegisterComponent(props) {
   const [data, setFormData] = useState(initialData);
 
   const formChange = (event) => {
+
+    const targetValue = event.target.value === "on" ? event.target.checked : event.target.value;
+
     setFormData({
       ...data,
-      [event.target.id]: { ...data[event.target.id], value: event.target.value },
+      [event.target.id]: { ...data[event.target.id], value: targetValue },
     });
   }
 
@@ -215,7 +218,7 @@ export default function RegisterComponent(props) {
     }
 
     // Terms of Service
-    if (!data.termsOfService.value) {
+    if (data.termsOfService.value === false) {
       formIsValid = false;
       SetErrors("termsOfService", "Please agree the terms of Service");
     }
@@ -254,7 +257,7 @@ export default function RegisterComponent(props) {
           id="fullName"
           onChange={(event) => formChange(event)}
         />
-        <ErrorMessage className={data.fullName.errors.length > 0 ? "show1" : ""}>{data.fullName.errors}</ErrorMessage>
+        {/* <ErrorMessage className={data.fullName.errors.length > 0 ? "show1" : ""}>{data.fullName.errors}</ErrorMessage> */}
         <InputTitle className="px-2">Username</InputTitle>
         <Input
           className={data.username.errors.length > 0 ? "invalid" : ""}
@@ -263,7 +266,7 @@ export default function RegisterComponent(props) {
           id="username"
           onChange={(event) => formChange(event)}
         />
-        <ErrorMessage className={data.username.errors.length > 0 ? "show1" : ""}>{data.username.errors}</ErrorMessage>
+        {/* <ErrorMessage className={data.username.errors.length > 0 ? "show1" : ""}>{data.username.errors}</ErrorMessage> */}
         <InputTitle className="px-2">Email</InputTitle>
         <Input
           className={data.email.errors.length > 0 ? "invalid" : ""}
@@ -272,7 +275,7 @@ export default function RegisterComponent(props) {
           id="email"
           onChange={(event) => formChange(event)}
         />
-        <ErrorMessage className={data.email.errors.length > 0 ? "show1" : ""}>{data.email.errors}</ErrorMessage>
+        {/* <ErrorMessage className={data.email.errors.length > 0 ? "show1" : ""}>{data.email.errors}</ErrorMessage> */}
         <InputTitle className="px-2">Confirm email</InputTitle>
         <Input
           className={data.emailConfirm.errors.length > 0 ? "invalid" : ""}
@@ -281,84 +284,7 @@ export default function RegisterComponent(props) {
           id="emailConfirm"
           onChange={(event) => formChange(event)}
         />
-        <ErrorMessage className={data.emailConfirm.errors.length > 0 ? "show1" : ""}>{data.emailConfirm.errors}</ErrorMessage>
-        <div class="row">
-          <div class="col-3" />
-          <div class="col-9">
-            <InputTitle className="px-2">Phone</InputTitle>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-3">
-            <Input
-              className={data.phone.errors.length > 0 ? "invalid" : ""}
-              type="tel"
-              defaultValue="+358"
-              id="countryCode"
-              onChange={(event) => formChange(event)}
-            />
-          </div>
-          <div class="col-9">
-            <Input
-              className={data.phone.errors.length > 0 ? "invalid" : ""}
-              type="tel"
-              placeholder=""
-              id="phone"
-              onChange={(event) => formChange(event)}
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-3" />
-          <div class="col-9">
-            <ErrorMessage className={data.phone.errors.length > 0 ? "show1" : ""}>{data.phone.errors}</ErrorMessage>
-          </div>
-        </div>
-        <div class="row px-2">
-          <InputTitle className="col-8">Address</InputTitle>
-          <InputTitle className="col-4 ps-3">Postal Code</InputTitle>
-        </div>
-        <div class="row gx-3">
-          <div class="col-8">
-            <Input
-              className={data.address.errors.length > 0 ? "invalid" : ""}
-              type="text"
-              placeholder="Address"
-              id="address"
-              onChange={(event) => formChange(event)}
-            />
-          </div>
-          <div class="col-4">
-            <Input
-              className={data.postalCode.errors.length > 0 ? "invalid" : ""}
-              type="text"
-              placeholder="Postal Code"
-              id="postalCode"
-              pattern="[0-9]{5}"
-              onChange={(event) => formChange(event)}
-            />
-          </div>
-        </div>
-        <div class="row gx-3 ">
-          <ErrorMessage className={data.address.errors.length > 0 ? "show1 col-8" : "col-8"}>{data.address.errors}</ErrorMessage>
-          <ErrorMessage className={data.postalCode.errors.length > 0 ? "show2 col-4" : "col-4"}>{data.postalCode.errors}</ErrorMessage>
-        </div>
-
-        <InputTitle className="mt-3 px-2">Role</InputTitle>
-        <Select
-          className={data.role.errors.length > 0 ? "invalid" : ""}
-          class="form-select"
-          aria-label="Default select example"
-          id="role"
-          onChange={(event) => formChange(event)}
-        >
-          <option selected>Role</option>
-          <option value="1">Admin</option>
-          <option value="2">Manager</option>
-          <option value="3">Supervisor</option>
-          <option value="3">Worker</option>
-        </Select>
-        <ErrorMessage className={data.role.errors.length > 0 ? "show1 col-4" : "col-4"}>{data.role.errors}</ErrorMessage>
+        {/* <ErrorMessage className={data.emailConfirm.errors.length > 0 ? "show1" : ""}>{data.emailConfirm.errors}</ErrorMessage> */}
         <div class="row gx-3">
           <InputTitle className="col px-3">Password</InputTitle>
           <InputTitle className="col">Confirm password</InputTitle>
@@ -387,25 +313,96 @@ export default function RegisterComponent(props) {
             />
           </div>
         </div>
-        <div class="row gx-3 mb-5">
-          <ErrorMessage className={data.password.errors.length > 0 ? "show1 col" : "col"}>{data.password.errors}</ErrorMessage>
-          <ErrorMessage className={data.passwordConfirm.errors.length > 0 ? "show1 col" : "col"}>{data.passwordConfirm.errors}</ErrorMessage>
+        <div class="row gx-3">
+          {/* <ErrorMessage className={data.password.errors.length > 0 ? "show1 col" : "col"}>{data.password.errors}</ErrorMessage> */}
+          {/* <ErrorMessage className={data.passwordConfirm.errors.length > 0 ? "show1 col" : "col"}>{data.passwordConfirm.errors}</ErrorMessage> */}
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <InputTitle className="px-2">Phone</InputTitle>
+          </div>
+          <div class="col-9" />
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <Input
+              className={data.phone.errors.length > 0 ? "invalid" : ""}
+              type="tel"
+              defaultValue="+358"
+              id="countryCode"
+              onChange={(event) => formChange(event)}
+            />
+          </div>
+          <div class="col-9">
+            <Input
+              className={data.phone.errors.length > 0 ? "invalid" : ""}
+              type="tel"
+              placeholder=""
+              id="phone"
+              onChange={(event) => formChange(event)}
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3" />
+          <div class="col-9">
+            {/* <ErrorMessage className={data.phone.errors.length > 0 ? "show1" : ""}>{data.phone.errors}</ErrorMessage> */}
+          </div>
+        </div>
+        <div class="row px-2">
+          <InputTitle className="col-8">Address</InputTitle>
+          <InputTitle className="col-4 ps-3">Postal Code</InputTitle>
+        </div>
+        <div class="row gx-3">
+          <div class="col-8">
+            <Input
+              className={data.address.errors.length > 0 ? "invalid" : ""}
+              type="text"
+              placeholder="Address"
+              id="address"
+              onChange={(event) => formChange(event)}
+            />
+          </div>
+          <div class="col-4">
+            <Input
+              className={data.postalCode.errors.length > 0 ? "invalid" : ""}
+              type="text"
+              placeholder="Postal Code"
+              id="postalCode"
+              pattern="[0-9]{5}"
+              onChange={(event) => formChange(event)}
+            />
+          </div>
+        </div>
+        <div class="row gx-3 ">
+          {/* <ErrorMessage className={data.address.errors.length > 0 ? "show1 col-8" : "col-8"}>{data.address.errors}</ErrorMessage> */}
+          {/* <ErrorMessage className={data.postalCode.errors.length > 0 ? "show2 col-4" : "col-4"}>{data.postalCode.errors}</ErrorMessage> */}
         </div>
 
-        <div class="mb-2"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
+        <InputTitle className="px-2">Role</InputTitle>
+        <Select
+          className={data.role.errors.length > 0 ? "invalid" : ""}
+          class="form-select"
+          aria-label="Default select example"
+          id="role"
+          onChange={(event) => formChange(event)}
         >
+          <option selected>Role</option>
+          <option value="1">Admin</option>
+          <option value="2">Manager</option>
+          <option value="3">Supervisor</option>
+          <option value="3">Worker</option>
+        </Select>
+        {/* <ErrorMessage className={data.role.errors.length > 0 ? "show1 col-4" : "col-4"}>{data.role.errors}</ErrorMessage> */}
+        <TermsContainer className={data.termsOfService.errors.length > 0 ? "invalid mb-2 mt-4" : "mb-2 mt-4"}>
           <Checkbox
-            className="form-check-input"
+            className="form-check-input my-auto"
             id="termsOfService"
             onChange={(event) => formChange(event)}
           />
-          <label className="form-check-label" htmlFor="flexCheckDefault"
+          <label className="form-check-label my-auto" htmlFor="flexCheckDefault"
             style={{
+              textAlign: "center",
               color: "rgba(0, 0, 0, 0.5)",
               fontWeight: "500",
               paddingLeft: 15,
@@ -413,9 +410,8 @@ export default function RegisterComponent(props) {
           >
             I agree to the terms and conditions of the Service
           </label>
-        </div>
-        <ErrorMessage className={data.termsOfService.errors.length > 0 ? "show1 col-4" : "col-4"}>{data.termsOfService.errors}</ErrorMessage>
-
+        </TermsContainer>
+        {/* <ErrorMessage className={data.termsOfService.errors.length > 0 ? "show1 col-4" : "col-4"}>{data.termsOfService.errors}</ErrorMessage> */}
         <div className="mb-4 mt-4" style={{ padding: "0px 20px 0px 20px" }}>
           <SubmitBtn
             onClick={() => validateForm()}
@@ -424,7 +420,6 @@ export default function RegisterComponent(props) {
             Submit
           </SubmitBtn>
         </div>
-
         <div
           style={{
             display: "flex",
