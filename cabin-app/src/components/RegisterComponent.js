@@ -63,9 +63,8 @@ export default function RegisterComponent(props) {
   const [data, setFormData] = useState(initialData);
 
   const formChange = (event) => {
-
     const targetValue = event.target.value === "on" ? event.target.checked : event.target.value;
-
+    
     setFormData({
       ...data,
       [event.target.id]: { ...data[event.target.id], value: targetValue },
