@@ -385,9 +385,10 @@ export default function RegisterComponent(props) {
           class="form-select"
           aria-label="Default select example"
           id="role"
+          defaultValue="Role"
           onChange={(event) => formChange(event)}
         >
-          <option selected>Role</option>
+          <option value="Role" disabled>Role</option>
           <option value="1">Admin</option>
           <option value="2">Manager</option>
           <option value="3">Supervisor</option>

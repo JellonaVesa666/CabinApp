@@ -30,10 +30,17 @@ namespace CabinApi.Controllers
 
             var user = new User
             {
-                Role = dto.Role,
-                Name = dto.Name,
+                FullName = dto.FullName,
+                Username = dto.Username,
                 Email = dto.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                Phone = dto.Phone,
+                Address = dto.Address,
+                PostalCode = dto.PostalCode,
+                Role = dto.Role,
+                CreatedDate = dto.CreatedDate,
+                ModifiedDate = dto.ModifiedDate,
+                IsActive = dto.IsActive,
             };
 
             // Add User
