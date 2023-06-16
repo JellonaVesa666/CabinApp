@@ -26,7 +26,8 @@ export default function LoginComponent(props) {
     // Create post data for request
     const postData = {
       email: data.email.value,
-      password: data.password.value
+      password: data.password.value,
+      username: data.email.value
     }
 
     createAPIEndpoint(ENDPOINTS.login)
