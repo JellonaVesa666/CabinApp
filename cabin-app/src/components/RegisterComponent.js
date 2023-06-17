@@ -57,9 +57,8 @@ export default function RegisterComponent(props) {
     }));
   }
 
-
   const validateForm = () => {
-
+    // Reset errors before running check.
     Object.keys(data).forEach(key => {
       if ([key].errors !== "") {
         setFormData(prevData => ({
@@ -67,7 +66,6 @@ export default function RegisterComponent(props) {
         }));
       }
     });
-
     //Name
     if (data.fullName.value.length === 0) {
       SetErrors("fullName", "Cannot be empty");
@@ -81,7 +79,6 @@ export default function RegisterComponent(props) {
         return false;
       }
     }
-
     //Username
     if (data.username.value.length === 0) {
       SetErrors("username", "Cannot be empty");
@@ -93,7 +90,6 @@ export default function RegisterComponent(props) {
         return false;
       }
     }
-
     //Email
     if (data.email.value.length === 0) {
       SetErrors("email", "Cannot be empty");
@@ -123,7 +119,6 @@ export default function RegisterComponent(props) {
         return false;
       }
     }
-
     // Phone
     if (data.countryCode.value.length === 0 || data.phone.value.length === 0) {
       SetErrors("phone", "Cannot be empty");
@@ -136,7 +131,6 @@ export default function RegisterComponent(props) {
         return false;
       }
     }
-
     // Address
     if (data.address.value.length === 0) {
       SetErrors("address", "Cannot be empty");
@@ -149,7 +143,6 @@ export default function RegisterComponent(props) {
         return false;
       }
     }
-
     // Postal Code
     if (data.postalCode.value.length === 0) {
       SetErrors("postalCode", "Cannot be empty");
@@ -162,13 +155,11 @@ export default function RegisterComponent(props) {
         return false;
       }
     }
-
     // Role
     if (data.role.value === 0) {
       SetErrors("role", "Role is required");
       return false;
     }
-
     // Password
     if (data.password.value.length === 0) {
       SetErrors("password", "Cannot be empty");
@@ -196,7 +187,6 @@ export default function RegisterComponent(props) {
         return false;
       }
     }
-
     // Terms of Service
     if (data.termsOfService.value === false) {
       SetErrors("termsOfService", "Please agree the terms of Service");
