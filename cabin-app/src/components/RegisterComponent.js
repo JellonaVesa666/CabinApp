@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
-import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, Input, InputTitle, Select, ErrorMessage, TermsContainer } from "../styles/RegisterStyle";
-import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, Input, InputTitle, Select, ErrorMessage, TermsContainer } from "../styles/RegisterStyle";
+import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 
 
 export default function RegisterComponent(props) {

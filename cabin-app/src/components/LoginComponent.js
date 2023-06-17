@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { LoginBody, Input, Checkbox, Link, SignInBtn } from "../styles/LoginStyle";
 import { LoginDO, LoginDTO } from "../DTO/LoginDTO";
 
 export default function LoginComponent(props) {
 
+  const [showPassword, setHidePassword] = useState(false);
   const [data, setFormData] = useState(LoginDO);
 
   const login = () => {
@@ -47,14 +50,16 @@ export default function LoginComponent(props) {
           />
         </div>
 
-        <div className="mb-4" style={{ padding: "0px 20px 0px 20px" }}>
+        <div className="mb-4" style={{ position: "relative", padding: "0px 20px 0px 20px" }}>
           <Input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             id="loginPassword"
             className="form-control form-control-md"
             onChange={(event) => formChange(event)}
           />
+          {showPassword && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword(false)} style={{ position: "absolute", top: 18, left: 380 }} />}
+          {!showPassword && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword(true)} style={{ position: "absolute", top: 18, left: 380 }} />}
         </div>
 
         <div className="mb-4" style={{ padding: "0px 20px 0px 20px" }}>
