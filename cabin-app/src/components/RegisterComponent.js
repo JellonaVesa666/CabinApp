@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, Input, InputTitle, Select, ErrorMessage, TermsContainer } from "../styles/RegisterStyle";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -62,9 +63,38 @@ export default function RegisterComponent(props) {
 
   const [data, setFormData] = useState(initialData);
 
+  const register = async () => {
+
+    let isValid = validateForm();
+
+    if (isValid) {
+      // Create post data for request
+      const postData = {
+        fullName: data.fullName.value,
+        username: data.username.value,
+        email: data.email.value,
+        emailConfirm: data.emailConfirm.value,
+        password: data.password.value,
+        passwordConfirm: data.passwordConfirm.value,
+        phone: data.phone.value,
+        address: data.address.value,
+        postalCode: data.postalCode.value,
+        role: data.role.value,
+        createdDate: Date.now,
+        modifiedDate: Date.now,
+        isActive: 1,
+      }
+
+      createAPIEndpoint(ENDPOINTS.register)
+        .post(postData)
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
+    }
+  }
+
   const formChange = (event) => {
     const targetValue = event.target.value === "on" ? event.target.checked : event.target.value;
-    
+
     setFormData({
       ...data,
       [event.target.id]: { ...data[event.target.id], value: targetValue },
@@ -79,8 +109,6 @@ export default function RegisterComponent(props) {
 
 
   const validateForm = () => {
-    console.log(data);
-    var formIsValid = true;
 
     Object.keys(data).forEach(key => {
       if ([key].errors !== "") {
@@ -92,33 +120,34 @@ export default function RegisterComponent(props) {
 
     //Name
     if (data.fullName.value.length === 0) {
-      formIsValid = false;
       SetErrors("fullName", "Cannot be empty");
+      return false;
     }
     else {
-      if (!data.fullName.value.match(/^[a-zA-Z]+$/)) {
-        formIsValid = false;
+      const fullNameRegex = /^\w+\s\w+$/gm;
+
+      if (!fullNameRegex.test(data.fullName.value)) {
         SetErrors("fullName", "Only letters are accepted");
+        return false;
       }
     }
 
     //Username
     if (data.username.value.length === 0) {
-      formIsValid = false;
       SetErrors("username", "Cannot be empty");
+      return false;
     }
     else {
       if (!data.username.value.match(/^[a-zA-Z]+$/)) {
-        formIsValid = false;
         SetErrors("username", "Only letters are accepted");
+        return false;
       }
     }
 
     //Email
     if (data.email.value.length === 0) {
-      formIsValid = false;
       SetErrors("email", "Cannot be empty");
-      //errors["email"] = "Cannot be empty";
+      return false;
     }
     else {
       let lastAtPos = data.email.value.lastIndexOf("@");
@@ -130,69 +159,70 @@ export default function RegisterComponent(props) {
         lastDotPos > 2 &&
         data.email.value.length - lastDotPos > 2
       )) {
-        formIsValid = false;
         SetErrors("email", "Email is not valid");
-        //data.email = "Email is not valid";
+        return false;
       }
     }
     if (data.emailConfirm.value.length === 0) {
-      formIsValid = false;
       SetErrors("emailConfirm", "Cannot be empty");
+      return false;
     }
     else {
       if (data.email.value !== data.emailConfirm.value) {
         SetErrors("emailConfirm", "Emails do not match");
+        return false;
       }
     }
 
     // Phone
     if (data.countryCode.value.length === 0 || data.phone.value.length === 0) {
-      formIsValid = false;
       SetErrors("phone", "Cannot be empty");
+      return false;
     }
     else {
       const phoneRegex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
       if (!phoneRegex.test(data.countryCode.value + data.phone.value)) {
         SetErrors("phone", "Invalid phone number");
+        return false;
       }
     }
 
     // Address
     if (data.address.value.length === 0) {
-      formIsValid = false;
       SetErrors("address", "Cannot be empty");
+      return false;
     }
     else {
       const adressRegex = /^\s*\S+(?:\s+\S+)/;
       if (!adressRegex.test(data.address.value)) {
-        formIsValid = false;
         SetErrors("address", "Invalid Address");
+        return false;
       }
     }
 
     // Postal Code
     if (data.postalCode.value.length === 0) {
-      formIsValid = false;
       SetErrors("postalCode", "Cannot be empty");
+      return false;
     }
     else {
       const postalRegex = /^\d{5}(?:[-\s]\d{4})?$/;
       if (!postalRegex.test(data.postalCode.value)) {
-        formIsValid = false;
         SetErrors("postalCode", "Invalid postal code");
+        return false;
       }
     }
 
     // Role
     if (data.role.value === 0) {
       SetErrors("role", "Role is required");
-      formIsValid = false;
+      return false;
     }
 
     // Password
     if (data.password.value.length === 0) {
-      formIsValid = false;
       SetErrors("password", "Cannot be empty");
+      return false;
     }
     else {
       // At least one upper case English letter, (?=.*?[A-Z])
@@ -202,27 +232,28 @@ export default function RegisterComponent(props) {
       // Minimum eight in length .{8,} (with the anchors)
       const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
       if (!passwordRegex.test(data.password.value)) {
-        formIsValid = false;
         SetErrors("password", "Password do not meet requirements");
+        return false;
       }
     }
     if (data.passwordConfirm.value.length === 0) {
-      formIsValid = false;
       SetErrors("passwordConfirm", "Cannot be empty");
+      return false;
     }
     else {
       if (data.password.value !== data.passwordConfirm.value) {
         SetErrors("passwordConfirm", "Passwords do not match");
+        return false;
       }
     }
 
     // Terms of Service
     if (data.termsOfService.value === false) {
-      formIsValid = false;
       SetErrors("termsOfService", "Please agree the terms of Service");
+      return false;
     }
 
-    console.log(data);
+    return true;
   }
 
   return (
@@ -414,7 +445,7 @@ export default function RegisterComponent(props) {
         {/* <ErrorMessage className={data.termsOfService.errors.length > 0 ? "show1 col-4" : "col-4"}>{data.termsOfService.errors}</ErrorMessage> */}
         <div className="mb-4 mt-4" style={{ padding: "0px 20px 0px 20px" }}>
           <SubmitBtn
-            onClick={() => validateForm()}
+            onClick={() => register()}
             className="form-control text-uppercase"
           >
             Submit
