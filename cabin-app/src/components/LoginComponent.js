@@ -1,33 +1,19 @@
 import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { LoginBody, Input, Checkbox, Link } from "../styles/LoginStyle";
+import { LoginDO } from "../DO/LoginDO";
 
 export default function LoginComponent(props) {
 
-  const initialData = {
-    email: {
-      value: "",
-      errors: "",
-    },
-    username: {
-      value: "",
-      errors: "",
-    },
-    password: {
-      value: "",
-      errors: "",
-    },
-  };
-
-  const [data, setFormData] = useState(initialData);
+  const [data, setFormData] = useState(LoginDO);
 
   const login = () => {
 
     // Create post data for request
     const postData = {
-      email: data.email.value,
-      password: data.password.value,
-      username: data.email.value
+      email: data.loginEmail.value,
+      password: data.loginPassword.value,
+      username: data.loginEmail.value
     }
 
     createAPIEndpoint(ENDPOINTS.login)
@@ -58,7 +44,7 @@ export default function LoginComponent(props) {
           <Input
             type="email"
             placeholder="Username/Email"
-            id="email"
+            id="loginEmail"
             className="form-control form-control-md"
             onChange={(event) => formChange(event)}
           />
@@ -68,7 +54,7 @@ export default function LoginComponent(props) {
           <Input
             type="password"
             placeholder="Password"
-            id="password"
+            id="loginPassword"
             className="form-control form-control-md"
             onChange={(event) => formChange(event)}
           />

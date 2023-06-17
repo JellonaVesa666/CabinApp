@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, Input, InputTitle, Select, ErrorMessage, TermsContainer } from "../styles/RegisterStyle";
+import { registerDO } from "../DO/RegisterDO";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,58 +11,7 @@ export default function RegisterComponent(props) {
   const [showPassword1, setHidePassword1] = useState(false);
   const [showPassword2, setHidePassword2] = useState(false);
 
-  const initialData = {
-    address: {
-      value: "",
-      errors: "",
-    },
-    countryCode: {
-      value: "+358",
-      errors: "",
-    },
-    email: {
-      value: "",
-      errors: "",
-    },
-    emailConfirm: {
-      value: "",
-      errors: "",
-    },
-    fullName: {
-      value: "",
-      errors: "",
-    },
-    password: {
-      value: "",
-      errors: "",
-    },
-    passwordConfirm: {
-      value: "",
-      errors: "",
-    },
-    phone: {
-      value: "",
-      errors: "",
-    },
-    postalCode: {
-      value: "",
-      errors: "",
-    },
-    role: {
-      value: 0,
-      errors: "",
-    },
-    termsOfService: {
-      value: false,
-      errors: "",
-    },
-    username: {
-      value: "",
-      errors: "",
-    },
-  };
-
-  const [data, setFormData] = useState(initialData);
+  const [data, setFormData] = useState(registerDO);
 
   const register = async () => {
 
@@ -315,12 +265,12 @@ export default function RegisterComponent(props) {
           onChange={(event) => formChange(event)}
         />
         {/* <ErrorMessage className={data.emailConfirm.errors.length > 0 ? "show1" : ""}>{data.emailConfirm.errors}</ErrorMessage> */}
-        <div class="row gx-3">
+        <div className="row gx-3">
           <InputTitle className="col px-3">Password</InputTitle>
           <InputTitle className="col">Confirm password</InputTitle>
         </div>
-        <div class="row gx-3">
-          <div class="col" style={{ position: "relative" }}>
+        <div className="row gx-3">
+          <div className="col" style={{ position: "relative" }}>
             <Input
               className={data.password.errors.length > 0 ? "invalid" : ""}
               type={showPassword1 ? "text" : "password"}
@@ -333,7 +283,7 @@ export default function RegisterComponent(props) {
             {!showPassword1 && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword1(true)} style={{ position: "absolute", top: 12, left: 190 }} />}
             {!showPassword2 && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword2(true)} style={{ position: "absolute", top: 12, left: 420 }} />}
           </div>
-          <div class="col">
+          <div className="col">
             <Input
               className={data.passwordConfirm.errors.length > 0 ? "invalid" : ""}
               type={showPassword2 ? "text" : "password"}
@@ -343,18 +293,18 @@ export default function RegisterComponent(props) {
             />
           </div>
         </div>
-        <div class="row gx-3">
+        <div className="row gx-3">
           {/* <ErrorMessage className={data.password.errors.length > 0 ? "show1 col" : "col"}>{data.password.errors}</ErrorMessage> */}
           {/* <ErrorMessage className={data.passwordConfirm.errors.length > 0 ? "show1 col" : "col"}>{data.passwordConfirm.errors}</ErrorMessage> */}
         </div>
-        <div class="row">
-          <div class="col-3">
+        <div className="row">
+          <div className="col-3">
             <InputTitle className="px-2">Phone</InputTitle>
           </div>
-          <div class="col-9" />
+          <div className="col-9" />
         </div>
-        <div class="row">
-          <div class="col-3">
+        <div className="row">
+          <div className="col-3">
             <Input
               className={data.phone.errors.length > 0 ? "invalid" : ""}
               type="tel"
@@ -363,7 +313,7 @@ export default function RegisterComponent(props) {
               onChange={(event) => formChange(event)}
             />
           </div>
-          <div class="col-9">
+          <div className="col-9">
             <Input
               className={data.phone.errors.length > 0 ? "invalid" : ""}
               type="tel"
@@ -373,18 +323,18 @@ export default function RegisterComponent(props) {
             />
           </div>
         </div>
-        <div class="row">
-          <div class="col-3" />
-          <div class="col-9">
+        <div className="row">
+          <div className="col-3" />
+          <div className="col-9">
             {/* <ErrorMessage className={data.phone.errors.length > 0 ? "show1" : ""}>{data.phone.errors}</ErrorMessage> */}
           </div>
         </div>
-        <div class="row px-2">
+        <div className="row px-2">
           <InputTitle className="col-8">Address</InputTitle>
           <InputTitle className="col-4 ps-3">Postal Code</InputTitle>
         </div>
-        <div class="row gx-3">
-          <div class="col-8">
+        <div className="row gx-3">
+          <div className="col-8">
             <Input
               className={data.address.errors.length > 0 ? "invalid" : ""}
               type="text"
@@ -393,7 +343,7 @@ export default function RegisterComponent(props) {
               onChange={(event) => formChange(event)}
             />
           </div>
-          <div class="col-4">
+          <div className="col-4">
             <Input
               className={data.postalCode.errors.length > 0 ? "invalid" : ""}
               type="text"
@@ -404,15 +354,14 @@ export default function RegisterComponent(props) {
             />
           </div>
         </div>
-        <div class="row gx-3 ">
+        <div className="row gx-3 ">
           {/* <ErrorMessage className={data.address.errors.length > 0 ? "show1 col-8" : "col-8"}>{data.address.errors}</ErrorMessage> */}
           {/* <ErrorMessage className={data.postalCode.errors.length > 0 ? "show2 col-4" : "col-4"}>{data.postalCode.errors}</ErrorMessage> */}
         </div>
 
         <InputTitle className="px-2">Role</InputTitle>
         <Select
-          className={data.role.errors.length > 0 ? "invalid" : ""}
-          class="form-select"
+          className={data.role.errors.length > 0 ? "invalid form-select" : " form-select"}
           aria-label="Default select example"
           id="role"
           defaultValue="Role"
