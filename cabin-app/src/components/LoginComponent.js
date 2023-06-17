@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { LoginBody, Input, Checkbox, Link } from "../styles/LoginStyle";
-import { LoginDO } from "../DO/LoginDO";
+import { LoginDO, LoginDTO } from "../DTO/LoginDTO";
 
 export default function LoginComponent(props) {
 
@@ -10,14 +10,12 @@ export default function LoginComponent(props) {
   const login = () => {
 
     // Create post data for request
-    const postData = {
-      email: data.loginEmail.value,
-      password: data.loginPassword.value,
-      username: data.loginEmail.value
-    }
+    LoginDTO.username = data.loginEmail.value;
+    LoginDTO.email = data.loginEmail.value;
+    LoginDTO.password = data.loginPassword.value;
 
     createAPIEndpoint(ENDPOINTS.login)
-      .post(postData)
+      .post(LoginDTO)
       .then(response => console.log(response))
       .catch(error => console.log(error));
   }

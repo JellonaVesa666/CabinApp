@@ -8,3 +8,9 @@ export const LoginDO = {
     errors: "",
   },
 };
+
+export const LoginDTO = {
+  username: "",
+  email: "",
+  password: "",
+};

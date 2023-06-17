@@ -48,3 +48,20 @@ export const registerDO = {
     errors: "",
   },
 };
+
+
+export const registerDTO = {
+  fullName: "",
+  username: "",
+  email: "",
+  emailConfirm: "",
+  password: "",
+  passwordConfirm: "",
+  phone: "",
+  address: "",
+  postalCode: "",
+  role: "",
+  createdDate: "",
+  modifiedDate: "",
+  isActive: 0,
+};

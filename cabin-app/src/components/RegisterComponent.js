@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, Input, InputTitle, Select, ErrorMessage, TermsContainer } from "../styles/RegisterStyle";
-import { registerDO } from "../DO/RegisterDO";
+import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,25 +18,25 @@ export default function RegisterComponent(props) {
     let isValid = validateForm();
 
     if (isValid) {
+
       // Create post data for request
-      const postData = {
-        fullName: data.fullName.value,
-        username: data.username.value,
-        email: data.email.value,
-        emailConfirm: data.emailConfirm.value,
-        password: data.password.value,
-        passwordConfirm: data.passwordConfirm.value,
-        phone: data.phone.value,
-        address: data.address.value,
-        postalCode: data.postalCode.value,
-        role: data.role.value,
-        createdDate: Date.now,
-        modifiedDate: Date.now,
-        isActive: 1,
-      }
+      registerDTO.fullName = data.fullName.value;
+      registerDTO.username = data.username.value;
+      registerDTO.email = data.email.value;
+      registerDTO.emailConfirm = data.emailConfirm.value;
+      registerDTO.password = data.password.value;
+      registerDTO.passwordConfirm = data.passwordConfirm.value;
+      registerDTO.phone = data.phone.value;
+      registerDTO.address = data.address.value;
+      registerDTO.postalCode = data.postalCode.value;
+      registerDTO.role = data.role.value;
+      registerDTO.createdDate = Date.now;
+      registerDTO.modifiedDate = Date.now;
+      registerDTO.isActive = 1;
+
 
       createAPIEndpoint(ENDPOINTS.register)
-        .post(postData)
+        .post(registerDTO)
         .then(response => console.log(response))
         .catch(error => console.log(error));
     }
