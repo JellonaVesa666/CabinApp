@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
-import { LoginBody, Input, Checkbox, Link } from "../styles/LoginStyle";
+import { LoginBody, Input, Checkbox, Link, SignInBtn } from "../styles/LoginStyle";
 import { LoginDO, LoginDTO } from "../DTO/LoginDTO";
 
 export default function LoginComponent(props) {
@@ -8,7 +8,6 @@ export default function LoginComponent(props) {
   const [data, setFormData] = useState(LoginDO);
 
   const login = () => {
-
     // Create post data for request
     LoginDTO.username = data.loginEmail.value;
     LoginDTO.email = data.loginEmail.value;
@@ -59,18 +58,13 @@ export default function LoginComponent(props) {
         </div>
 
         <div className="mb-4" style={{ padding: "0px 20px 0px 20px" }}>
-          <button
+          <SignInBtn
             type="submit"
             className="form-control text-uppercase"
             onClick={login}
-            style={{
-              height: "50px", color: "rgba(255, 255, 255, 1)",
-              borderRadius: "40px",
-              background: "black"
-            }}
           >
             Sign In
-          </button>
+          </SignInBtn>
         </div>
 
         <div className=" row form-group d-md-flex" style={{ padding: "0px 20px 0px 20px" }}>

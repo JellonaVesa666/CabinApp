@@ -15,6 +15,17 @@ export const Input = styled.input`
   border: 0.1rem solid rgba(0, 0, 0, 0.2);
   border-radius: 40px;
   background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: none !important;
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    border: 0.1rem solid transparent;
+    outline: 0.15rem solid rgba(0, 0, 0, 0.3);
+  }
 `
 
 export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
@@ -41,6 +52,25 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   &:checked {
     border: 0.15rem solid rgba(0, 0, 0, 0.4);
     background-color: black;
+  }
+`
+
+export const SignInBtn = styled.button`
+  height: 50px; 
+  color: white !important;
+  background-color: black !important;
+  border-radius: 40px;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+  }
+  &:active {
+    border: 0.1rem solid rgba(255, 255, 255, 0.1);
   }
 `
 

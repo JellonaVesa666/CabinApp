@@ -65,7 +65,7 @@ export const Input = styled.input`
   }
   &:focus {
     border: 0.1rem solid transparent;
-    outline: 0.15rem solid #63c7b3;
+    outline: 0.15rem solid rgba(0, 0, 0, 0.3);
   }
 `
 
@@ -95,35 +95,46 @@ export const TermsContainer = styled.div`
 export const SubmitBtn = styled.button`
   height: 50px; 
   color: white !important;
-  border-radius: 40px;
   background-color: black !important;
+  border-radius: 40px;
+  border: none;
   &:hover {
     cursor: pointer;
-    //background-color: #63c7b3 !important;
+  }
+  &:focus {
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+  }
+  &:active {
+    border: 0.1rem solid rgba(255, 255, 255, 0.1);
   }
 `
 
 export const CloseBtn = styled.div`
-  position: absolute; 
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0;
   right: 0;
   background-color: black;
   color: white;
   border-radius: 10px 16px 0px 10px;
+  border: none;
   width: 100px;
   height: 40px;
   margin-right: -12px;
-  outline: none;
-  border: none;
-  outline: 0px !important;
-  -webkit-appearance:none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
   &:hover {
     cursor: pointer;
+  }
+  &:focus {
+    cursor: pointer;
     border: none;
-    //background-color: #b86179;
+    box-shadow: none;
+  }
+  &:active {
+    border: 0.1rem solid rgba(255, 255, 255, 0.8);
   }
 `
 
