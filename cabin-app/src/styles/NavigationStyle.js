@@ -27,7 +27,7 @@ export const NavigationContainer = styled.div`
 export const NavigationExtend = styled.div`
   position: relative;
   background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
+  border-radius: 0.65vw;
   height: 100%;
   &.hide {
     width: 30%;
@@ -43,9 +43,9 @@ export const Navigation = styled.div`
   bottom: 0;
   margin: auto 0;
   background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  border: 0.15rem solid rgba(255, 255, 255, 0.4);
-  width: 4vw;
+  border-radius: 0.5vw;
+  border: 0.1vw solid rgba(255, 255, 255, 0.4);
+  width: 80%;
   height: 98%;
   margin-left: 0.5vw;
 `
@@ -57,14 +57,15 @@ export const NavigationLink = styled.div`
   -webkit-background-size: contain;
   -moz-background-size: contain;
   -o-background-size: contain;
-  width: 100%;
-  height: 2.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  width: auto;
+  height: 1.5vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
   &.user {
-    height: 4.5rem !important;
-    margin-top: 1rem !important;
-    margin-bottom: 4rem !important;
+    margin-top: 0.5vw;
+    margin-bottom: 2.5vw;
+    width: auto;
+    height: 3vw;
     background-image: url(${iconUser});
   }
   &.cabins {
@@ -83,10 +84,7 @@ export const NavigationLink = styled.div`
     background-image: url(${iconSettings});
   }
   &.logout {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin-bottom: 3rem;
+    margin-top: 24vw;
     background-image: url(${iconLogout});
   }
 `
