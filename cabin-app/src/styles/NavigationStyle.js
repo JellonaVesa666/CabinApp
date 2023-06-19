@@ -9,35 +9,46 @@ import iconLogout from "../images/icon_logout.png";
 import iconUser from "../images/icon_user.png";
 
 export const NavigationBody = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-x:hidden;
-  width: 15rem;
+  overflow: hidden;
+  width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
 `
-export const NavExtendContainer = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  left: 8%;
-  width: 50%;
-  height: 90%;
+export const NavigationContainer = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 18vw;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
 `
 
-export const NavigationContainer = styled.div`
+export const NavigationExtend = styled.div`
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  height: 100%;
+  &.hide {
+    width: 30%;
+  }
+  &.show {
+    width: 100%;
+  }
+`
+
+export const Navigation = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   border: 0.15rem solid rgba(255, 255, 255, 0.4);
-  left: 1rem;
-  width: 100%;
+  width: 4vw;
   height: 98%;
+  margin-left: 0.5vw;
 `
 
 export const NavigationLink = styled.div`

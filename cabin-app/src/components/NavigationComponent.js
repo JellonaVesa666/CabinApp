@@ -1,22 +1,32 @@
-import React from "react";
-import { NavigationBody, NavExtendContainer, NavigationContainer, NavigationLink } from "../styles/NavigationStyle";
-
+import React, { useState } from "react";
+import { NavigationBody, NavigationExtend, NavigationContainer, NavigationLink, Navigation } from "../styles/NavigationStyle";
 
 export default function NavigationComponent() {
 
+  const [hideExtended, setHideExtend] = useState(true);
+
+  console.log(hideExtended);
+
   return (
-    <NavigationBody className="row d-md-flex">
-      <NavExtendContainer className="shadow-lg">
+    <>
+      <NavigationBody className="row">
         <NavigationContainer>
-          <NavigationLink className="user" />
-          <NavigationLink className="reservations" />
-          <NavigationLink className="users" />
-          <NavigationLink className="cabins" />
-          <NavigationLink className="map" />
-          <NavigationLink className="settings" />
-          <NavigationLink className="logout" />
+          <NavigationExtend className={hideExtended ? "lg-shadow hide" : "lg-shadow show"}>
+            <Navigation>
+              <NavigationLink className="user" />
+              <NavigationLink className="reservations" onClick={() => setHideExtend(!hideExtended)} />
+              <NavigationLink className="users" />
+              <NavigationLink className="cabins" />
+              <NavigationLink className="map" />
+              <NavigationLink className="settings" />
+              <NavigationLink className="logout" />
+            </Navigation>
+          </NavigationExtend>
         </NavigationContainer>
-      </NavExtendContainer>
-    </NavigationBody>
+      </NavigationBody>
+      <NavigationBody className="row"></NavigationBody>
+    </>
   )
 }
+
+/* className={data.fullName.errors.length > 0 ? "invalid" : ""} */
