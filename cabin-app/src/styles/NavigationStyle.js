@@ -41,13 +41,21 @@ export const Navigation = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
-  margin: auto 0;
+  left: 0;
+  right: 0;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 0.5vw;
   border: 0.1vw solid rgba(255, 255, 255, 0.4);
-  width: 80%;
   height: 98%;
-  margin-left: 0.5vw;
+  &.hide {
+    margin: auto;
+    width: 80%;
+  }
+  &.show {
+    margin: auto;
+    margin-left: 3%;
+    width: 24%;
+  }
 `
 
 export const NavigationLink = styled.div`

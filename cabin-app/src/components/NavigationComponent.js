@@ -12,7 +12,7 @@ export default function NavigationComponent() {
       <NavigationBody className="row">
         <NavigationContainer>
           <NavigationExtend className={hideExtended ? "shadow-lg hide" : "shadow-lg show"}>
-            <Navigation>
+            <Navigation className={hideExtended ? "hide" : "show"}>
               <NavigationLink className="user" />
               <NavigationLink className="reservations" onClick={() => setHideExtend(!hideExtended)} />
               <NavigationLink className="users" />
