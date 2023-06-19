@@ -11,7 +11,7 @@ export default function NavigationComponent() {
     <>
       <NavigationBody className="row">
         <NavigationContainer>
-          <NavigationExtend className={hideExtended ? "lg-shadow hide" : "lg-shadow show"}>
+          <NavigationExtend className={hideExtended ? "shadow-lg hide" : "shadow-lg show"}>
             <Navigation>
               <NavigationLink className="user" />
               <NavigationLink className="reservations" onClick={() => setHideExtend(!hideExtended)} />

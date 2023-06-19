@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import campingLogo from "../images/camping_Logo.png";
 import iconCabins from "../images/icon_cabins.png";
 import iconUsers from "../images/icon_users.png";
 import iconReservations from "../images/icon_reservations.png";
