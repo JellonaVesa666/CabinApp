@@ -32,7 +32,6 @@ export default function LoginComponent(props) {
     console.log(data);
   }
 
-
   return (
     <LoginBody show={props.show} className="col-12 col-md-8 col-lg-6 col-xl-5">
       <div className="p-5">
