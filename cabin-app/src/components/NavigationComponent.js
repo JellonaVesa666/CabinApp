@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavigationBody, NavigationExtend, NavigationContainer, NavigationLink, Navigation } from "../styles/NavigationStyle";
+import { NavigationBody, NavigationContainer, NavigationLink, Navigation } from "../styles/NavigationStyle";
 
 export default function NavigationComponent() {
 
@@ -9,22 +9,25 @@ export default function NavigationComponent() {
 
   return (
     <>
-      <NavigationBody className="row">
-        <NavigationContainer>
-          <NavigationExtend className={hideExtended ? "shadow-lg hide" : "shadow-lg show"}>
+      <NavigationBody>
+          <NavigationContainer className={hideExtended ? "shadow-lg hide" : "shadow-lg show"}>
             <Navigation className={hideExtended ? "hide" : "show"}>
-              <NavigationLink className="user" />
-              <NavigationLink className="reservations" onClick={() => setHideExtend(!hideExtended)} />
-              <NavigationLink className="users" />
-              <NavigationLink className="cabins" />
-              <NavigationLink className="map" />
-              <NavigationLink className="settings" />
-              <NavigationLink className="logout" />
+              <div style={{ height: "10%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                <NavigationLink className="user" />
+              </div>
+              <div style={{ height: "80%", width: "100%", display: "flex", flexDirection: "column", alignItems:"center"}}>
+                <NavigationLink className="reservations" onClick={() => setHideExtend(!hideExtended)} />
+                <NavigationLink className="users" />
+                <NavigationLink className="cabins" />
+                <NavigationLink className="map" />
+                <NavigationLink className="settings" />
+              </div>
+              <div style={{ height: "10%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                <NavigationLink className="logout" />
+              </div>
             </Navigation>
-          </NavigationExtend>
-        </NavigationContainer>
+          </NavigationContainer>
       </NavigationBody>
-      <NavigationBody className="row"></NavigationBody>
     </>
   )
 }

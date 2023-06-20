@@ -8,29 +8,27 @@ import iconLogout from "../images/icon_logout.png";
 import iconUser from "../images/icon_user.png";
 
 export const NavigationBody = styled.div`
+  position: fixed;
   overflow: hidden;
   width: 100vw;
   height: 100vh;
   margin: 0;
-  padding: 0;
-`
-export const NavigationContainer = styled.div`
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  height: 100vh;
-  width: 18vw;
   padding-top: 5vh;
   padding-bottom: 5vh;
+  width: 18vw;
+  @media screen and (max-width: 1024px) {
+    transition: .2s all linear;
+    width: 50vw;
+  }
 `
 
-export const NavigationExtend = styled.div`
-  position: relative;
+export const NavigationContainer = styled.div`
+  display: flex;
   background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 0.65vw;
+  border-radius: 10px;
   height: 100%;
   &.hide {
-    width: 30%;
+    width: 25%;
   }
   &.show {
     width: 100%;
@@ -38,21 +36,15 @@ export const NavigationExtend = styled.div`
 `
 
 export const Navigation = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  margin: auto;
   background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 0.5vw;
+  border-radius: 8px;
   border: 0.1vw solid rgba(255, 255, 255, 0.4);
   height: 98%;
   &.hide {
-    margin: auto;
-    width: 80%;
+    width: 75%;
   }
   &.show {
-    margin: auto;
     margin-left: 3%;
     width: 24%;
   }
@@ -65,15 +57,15 @@ export const NavigationLink = styled.div`
   -webkit-background-size: contain;
   -moz-background-size: contain;
   -o-background-size: contain;
-  width: auto;
-  height: 1.5vw;
-  margin-top: 1vw;
-  margin-bottom: 1vw;
+  width: 40%;
+  height: 5%;
+  padding: 0;
+  margin-top: 20%;
   &.user {
-    margin-top: 0.5vw;
-    margin-bottom: 2.5vw;
-    width: auto;
-    height: 3vw;
+    width: 80%;
+    height: 100%;
+    margin-top: 0%;
+    margin-bottom: 0%;
     background-image: url(${iconUser});
   }
   &.cabins {
@@ -92,7 +84,10 @@ export const NavigationLink = styled.div`
     background-image: url(${iconSettings});
   }
   &.logout {
-    margin-top: 24vw;
+    width: 50%;
+    height: 100%;
+    margin-top: 0%;
+    margin-bottom: 0%;
     background-image: url(${iconLogout});
   }
 `
