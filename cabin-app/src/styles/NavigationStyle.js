@@ -7,46 +7,53 @@ import iconMap from "../images/icon_map.png";
 import iconLogout from "../images/icon_logout.png";
 import iconUser from "../images/icon_user.png";
 
-export const NavigationBody = styled.div`
-  position: fixed;
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding-top: 5vh;
-  padding-bottom: 5vh;
-  width: 18vw;
-  @media screen and (max-width: 1024px) {
-    transition: .2s all linear;
-    width: 50vw;
-  }
-`
-
 export const NavigationContainer = styled.div`
-  display: flex;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  height: 100%;
-  &.hide {
-    width: 25%;
-  }
-  &.show {
-    width: 100%;
-  }
+display: flex;
+align-items: flex-start;
+height: 100vh;
+width: 18vw;
+margin: 0;
+padding: 0;
+overflow: hidden;
+@media (max-width: 1200px) {
+  width: 30vw;
+}
+@media (max-width: 600px) {
+  width: 50vw;
+}
 `
 
 export const Navigation = styled.div`
-  margin: auto;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  border: 0.1vw solid rgba(255, 255, 255, 0.4);
-  height: 98%;
+z-index: 2;
+align-self: center;
+background-color: rgba(0, 0, 0, 0.1);
+height: 90%;
+width: 25%;
+margin-left: 5%;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+&.hide {
+  border-radius: 10px 10px 10px 10px;
+}
+&.show {
+  border-radius: 10px 0px 0px 10px;
+}
+`
+
+export const NavigationExtend = styled.div`
+  z-index: 1;
+  align-self: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 90%;
+  margin-right: 5%;
+  border-radius: 0px 10px 10px 0px;
   &.hide {
-    width: 75%;
+    width: 0%;
+    transition: 0.1s ease-in-out;
   }
   &.show {
-    margin-left: 3%;
-    width: 19%;
+    transition: 0.1s ease-in-out;
+    width: 65%;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
   }
 `
 
@@ -60,12 +67,18 @@ export const NavigationLink = styled.div`
   width: 32px;
   height: 5%;
   padding: 0;
-  margin-top: 1vh;
+  margin-top: 2vh;
   &.user {
+    background-image: url(${iconUser});
     width: 70px;
     height: 100%;
     margin: 0;
-    background-image: url(${iconUser});
+    @media (max-width: 1200px) {
+      width: 50px;
+    }
+    @media (max-width: 600px) {
+      width: 60px;
+    }
   }
   &.cabins {
     background-image: url(${iconCabins});
@@ -83,8 +96,14 @@ export const NavigationLink = styled.div`
     background-image: url(${iconSettings});
   }
   &.logout {
+    background-image: url(${iconLogout});
     width: 40px;
     height: 100%;
-    background-image: url(${iconLogout});
+    @media (max-width: 1200px) {
+      width: 30px;
+    }
+    @media (max-width: 600px) {
+      width: 20px;
+    }
   }
 `
