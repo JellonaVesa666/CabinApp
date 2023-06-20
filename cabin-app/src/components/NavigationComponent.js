@@ -3,29 +3,30 @@ import { NavigationContainer, NavigationExtend, NavigationLink, Navigation } fro
 
 export default function NavigationComponent() {
 
-  const [hideExtended, setHideExtend] = useState(true);
+  const [isActive, setIsActive] = useState("");
 
-  console.log(hideExtended);
+
+  console.log(isActive);
 
   return (
     <>
       <NavigationContainer>
-          <Navigation className={hideExtended ? "hide" : "show"}>
-            <div style={{ height: "10%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-              <NavigationLink className="user" />
-            </div>
-            <div style={{ height: "80%", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <NavigationLink className="reservations" onClick={() => setHideExtend(!hideExtended)} />
-              <NavigationLink className="users" />
-              <NavigationLink className="cabins" />
-              <NavigationLink className="map" />
-              <NavigationLink className="settings" />
-            </div>
-            <div style={{ height: "10%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-              <NavigationLink className="logout" />
-            </div>
-          </Navigation>
-        <NavigationExtend className={hideExtended ? "hide" : "show"} />
+        <Navigation className={isActive ? "hide" : "show"}>
+          <div style={{ height: "10%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+            <NavigationLink className="user" onClick={() => setIsActive("")}/>
+          </div>
+          <div style={{ height: "80%", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <NavigationLink id="reservations" className={isActive === "reservations" ? "reservations selected" : "reservations"} onClick={(event) => setIsActive(event.target.id)} />
+            <NavigationLink id="users" className={isActive === "users" ? "users selected" : "users"} onClick={(event) => setIsActive(event.target.id)} />
+            <NavigationLink id="cabins" className={isActive === "cabins" ? "cabins selected" : "cabins"} onClick={(event) => setIsActive(event.target.id)} />
+            <NavigationLink id="map" className={isActive === "map" ? "map selected" : "map"} onClick={(event) => setIsActive(event.target.id)} />
+            <NavigationLink id="settings" className={isActive === "settings" ? "settings selected" : "settings"} onClick={(event) => setIsActive(event.target.id)} />
+          </div>
+          <div style={{ height: "10%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+            <NavigationLink className="logout" />
+          </div>
+        </Navigation>
+        <NavigationExtend className={isActive === "" ? "hide" : "show"} />
       </NavigationContainer>
     </>
   )

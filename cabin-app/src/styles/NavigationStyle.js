@@ -65,7 +65,7 @@ export const NavigationLink = styled.div`
   -moz-background-size: contain;
   -o-background-size: contain;
   width: 32px;
-  height: 5%;
+  height: 4%;
   padding: 0;
   margin-top: 2vh;
   &.user {
@@ -80,14 +80,14 @@ export const NavigationLink = styled.div`
       width: 60px;
     }
   }
-  &.cabins {
-    background-image: url(${iconCabins});
+  &.reservations {
+    background-image: url(${iconReservations});
   }
   &.users {
     background-image: url(${iconUsers});
   }
-  &.reservations {
-    background-image: url(${iconReservations});
+  &.cabins {
+    background-image: url(${iconCabins});
   }
   &.map {
     background-image: url(${iconMap});
@@ -105,5 +105,11 @@ export const NavigationLink = styled.div`
     @media (max-width: 600px) {
       width: 20px;
     }
+  }
+  &.selected {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    padding: 0px 35px 0px 35px;
   }
 `
