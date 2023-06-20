@@ -46,7 +46,7 @@ export const Navigation = styled.div`
   }
   &.show {
     margin-left: 3%;
-    width: 24%;
+    width: 19%;
   }
 `
 
@@ -57,15 +57,14 @@ export const NavigationLink = styled.div`
   -webkit-background-size: contain;
   -moz-background-size: contain;
   -o-background-size: contain;
-  width: 40%;
+  width: 32px;
   height: 5%;
   padding: 0;
-  margin-top: 20%;
+  margin-top: 1vh;
   &.user {
-    width: 80%;
+    width: 70px;
     height: 100%;
-    margin-top: 0%;
-    margin-bottom: 0%;
+    margin: 0;
     background-image: url(${iconUser});
   }
   &.cabins {
@@ -84,10 +83,8 @@ export const NavigationLink = styled.div`
     background-image: url(${iconSettings});
   }
   &.logout {
-    width: 50%;
+    width: 40px;
     height: 100%;
-    margin-top: 0%;
-    margin-bottom: 0%;
     background-image: url(${iconLogout});
   }
 `
