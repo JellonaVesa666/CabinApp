@@ -7,7 +7,7 @@ import iconMap from "../images/icon_map.png";
 import iconLogout from "../images/icon_logout.png";
 import iconUser from "../images/icon_user.png";
 
-export const NavigationContainer = styled.div`
+export const NavigationBody = styled.div`
 display: flex;
 align-items: flex-start;
 height: 100vh;
@@ -42,7 +42,7 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 export const NavigationExtend = styled.div`
   z-index: 1;
   align-self: center;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   height: 90%;
   margin-right: 5%;
   border-radius: 0px 10px 10px 0px;

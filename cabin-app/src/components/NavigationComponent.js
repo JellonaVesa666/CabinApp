@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { NavigationContainer, NavigationExtend, NavigationLink, Navigation } from "../styles/NavigationStyle";
+import { NavigationBody, NavigationExtend, NavigationLink, Navigation } from "../styles/NavigationStyle";
+import SearchCardComponent from "./SearchCardComponent";
 
 export default function NavigationComponent() {
 
@@ -10,7 +11,7 @@ export default function NavigationComponent() {
 
   return (
     <>
-      <NavigationContainer>
+      <NavigationBody>
         <Navigation className={isActive ? "hide" : "show"}>
           <div style={{ height: "10%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
             <NavigationLink className="user" onClick={() => setIsActive("")}/>
@@ -26,8 +27,10 @@ export default function NavigationComponent() {
             <NavigationLink className="logout" />
           </div>
         </Navigation>
-        <NavigationExtend className={isActive === "" ? "hide" : "show"} />
-      </NavigationContainer>
+        <NavigationExtend className={isActive === "" ? "hide" : "show"}>
+          <SearchCardComponent/>
+        </NavigationExtend>
+      </NavigationBody>
     </>
   )
 }
