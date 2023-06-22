@@ -4,15 +4,14 @@ import signMinus from "../images/sign_minus.png";
 import iconDropdown from "../images/icon_dropdown.png";
 
 export const SearchCardBody = styled.div`
-  width: 100%;
+  width: 85%;
   height: 100%;
-  //background-color: red;
+  margin: auto;
 `
 
 export const Container = styled.div`
   position: relative;
   display: flex;
-  padding-left: ${props => (props.paddingLeft)};
   margin-top: ${props => (props.marginTop)};
 `
 
@@ -36,7 +35,6 @@ export const CardList = styled.ul`
 export const CardBody = styled.li`
   display: flex;
   flex-flow: row wrap;
-  width: 80%;
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.4);
   color: black;
@@ -69,7 +67,7 @@ export const AddButton = styled.input`
   margin-top: ${props => (props.marginTop)};
 `
 
-export const AddSign = styled.div`
+export const PlusSign = styled.div`
   position: absolute;
   bottom: 0;
   left: 75%;
@@ -85,7 +83,7 @@ export const AddSign = styled.div`
   padding: 0;
 `
 
-export const RemoveSearchCard = styled.div`
+export const MinusSign = styled.div`
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
