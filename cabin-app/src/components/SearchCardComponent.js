@@ -6,11 +6,26 @@ export default function SearchCardComponent() {
     koko: {
       isActive: false,
       dropdown: true,
-      0: "> 22m",
-      1: "> 30m",
-      2: "> 30m",
-      3: "> 30m",
-      4: "> 50m",
+      0: {
+        value: "> 10m",
+        selected: false
+      },
+      1: {
+        value: "> 20m",
+        selected: false
+      },
+      2: {
+        value: "> 30m",
+        selected: false
+      },
+      3: {
+        value: "> 40m",
+        selected: false
+      },
+      4: {
+        value: "> 50m",
+        selected: false
+      }
     },
     hinta: {
       isActive: false,
@@ -28,6 +43,7 @@ export default function SearchCardComponent() {
     if (searchFilters[props.index].isActive)
       return (
         <CardBody marginTop={"10%"}>
+          <>{ }</>
           <MinusSign width={"15%"} onClick={() => toggleSearchFilter(props.index, "isActive", false)} />
           <CardHeader width={"70%"} alignCenter={true}>
             {props.index}
@@ -35,8 +51,8 @@ export default function SearchCardComponent() {
           <DropDown width={"15%"} onClick={() => toggleSearchFilter(props.index, "dropdown", !searchFilters[props.index].dropdown)} />
           {searchFilters[props.index].dropdown &&
             <ul style={{ width: "100%" }}>
-              {Object.values(searchFilters[props.index]).map(value => (
-                <ListItem >{value}</ListItem >
+              {Object.entries(searchFilters[props.index]).map((key, val) => (
+                <ListItem onClick={() => toggleSearchFilter(props.index, "selected", !key.selected, val)}>{Object.values(key[1])} / {JSON.stringify(Object.values(key[1])[1])}</ListItem >
               ))}
             </ul>
           }
@@ -44,11 +60,25 @@ export default function SearchCardComponent() {
       )
   }
 
-  const toggleSearchFilter = (index, property, bool) => {
-    setSearchFilters({
-      ...searchFilters,
-      [index]: { ...searchFilters[index], [property]: bool },
-    });
+  const toggleSearchFilter = (index, property, bool, value) => {
+    console.log(searchFilters[index][value]);
+
+    if (value === null || value === undefined)
+      setSearchFilters({
+        ...searchFilters,
+        [index]: { ...searchFilters[index], [property]: bool },
+      });
+    else
+      setSearchFilters({
+        ...searchFilters,
+        [index]: {
+          ...searchFilters[index],
+          [value]: {
+            ...searchFilters[index][value],
+            [property]: bool
+          },
+        },
+      });
   }
 
   console.log(searchFilters);
