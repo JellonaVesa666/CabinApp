@@ -52,7 +52,7 @@ export default function SearchCardComponent() {
           {searchFilters[props.index].dropdown &&
             <ul style={{ width: "100%" }}>
               {Object.entries(searchFilters[props.index]).map((key, val) => (
-                <ListItem onClick={() => toggleSearchFilter(props.index, "selected", !key.selected, val)}>{Object.values(key[1])} / {JSON.stringify(Object.values(key[1])[1])}</ListItem >
+                <ListItem onClick={() => toggleSearchFilter(props.index, "selected", Object.values(key[1])[1], val)}>{Object.values(key[1])} / {JSON.stringify(Object.values(key[1])[1])}</ListItem >
               ))}
             </ul>
           }
@@ -61,7 +61,6 @@ export default function SearchCardComponent() {
   }
 
   const toggleSearchFilter = (index, property, bool, value) => {
-    console.log(searchFilters[index][value]);
 
     if (value === null || value === undefined)
       setSearchFilters({
@@ -75,7 +74,7 @@ export default function SearchCardComponent() {
           ...searchFilters[index],
           [value]: {
             ...searchFilters[index][value],
-            [property]: bool
+            [property]: !bool
           },
         },
       });
