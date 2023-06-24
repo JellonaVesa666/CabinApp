@@ -3,8 +3,16 @@ import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, L
 export default function SearchCardComponent() {
 
   const countByStatus = {
-    "Kaikki": 100,
-    "Varatut": 30,
+    0: {
+      name: "kaikki",
+      count: "100",
+      selected: false,
+    },
+    1: {
+      name: "varattu",
+      count: "30",
+      selected: false,
+    }
   };
 
   const searchParameters = {
@@ -87,22 +95,20 @@ export default function SearchCardComponent() {
   }
 
   const Status = (props) => {
+    console.log(props);
     return (
-      <li key={props.data.key}>
-        <span style={{ marginLeft: "10%"}}>
-          {props.data.key}
-        </span>
-        <span style={{ float: "right" }}>
-          {statusFilters[props.data.key]}
-        </span>
-        {/*         <span className="input-label">{props.data.key}</span>
-        <span className="input-label">{statusFilters[props.data.key]}</span> */}
-      </li>
+      <ul>
+        <li /* key={props.entry} */>
+          <span style={{ marginLeft: "10%" }}>
+            {statusFilters[props.status].name}
+          </span>
+          <span style={{ float: "right" }}>
+            {statusFilters[props.status].count}
+          </span>
+        </li>
+      </ul >
     )
   }
-
-
-  console.log(searchFilters);
 
   const Filter = (props) => {
     return (
@@ -121,18 +127,16 @@ export default function SearchCardComponent() {
         <br />
         Keijo Kurpitsa
       </Container>
-      <Container marginTop="20%">
+      {/*       <Container marginTop="20%">
         <CardHeader width="100%" style={{ margin: 0, padding: 0 }}>
           Varaukset
         </CardHeader>
         <Container style={{ padding: 0, margin: 0 }}>
-          <ul style={{ width: "100%", listStyle: "none", margin: 0, padding: 0 }}>
-            {Object.keys(statusFilters).map((key, index) => (
-              <Status key={index} data={{ key, index }} />
-            ))}
-          </ul>
+          {Object.keys(statusFilters).map((status, index) => (
+            <Status status={status} key={index}  />
+          ))}
         </Container>
-      </Container>
+      </Container> */}
       <Container>
         <AddButton type="button" value="Add Filter" onClick={() => setDropdown(!dropdown)} marginTop={"20%"} />
         <PlusSign />
