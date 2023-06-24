@@ -66,9 +66,12 @@ export default function SearchCardComponent() {
           {searchFilters[props.filter].dropdown &&
             <ul style={{ width: "100%" }}>
               {Object.entries(searchFilters[props.filter]).map((entry, index) => (
-                <>
-                  <ListItem onClick={() => toggleSearchFilter(props.filter, "selected", entry[1].selected, index)}>{entry[1].value} / {JSON.stringify(entry[1].selected)}</ListItem >
-                </>
+                  <ListItem
+                    key={index}
+                    onClick={() => toggleSearchFilter(props.filter, "selected", entry[1].selected, index)}
+                  >
+                    {entry[1].value} / {JSON.stringify(entry[1].selected)}
+                  </ListItem >
               ))}
             </ul>
           }
