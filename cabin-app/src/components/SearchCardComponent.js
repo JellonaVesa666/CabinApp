@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, ListItem, PlusSign, MinusSign, DropDown } from "../styles/SearchCardStyle";
 export default function SearchCardComponent() {
 
+  const countByStatus = {
+    "Kaikki": 100,
+    "Varatut": 30,
+  };
+
   const searchParameters = {
     koko: {
       isActive: false,
@@ -38,6 +43,7 @@ export default function SearchCardComponent() {
 
   const [dropdown, setDropdown] = useState(false);
   const [searchFilters, setSearchFilters] = useState(searchParameters);
+  const [statusFilters, setStatusFilters] = useState(countByStatus);
 
   function Card(props) {
     if (searchFilters[props.index].isActive)
@@ -80,9 +86,25 @@ export default function SearchCardComponent() {
       });
   }
 
+  const Status = (props) => {
+    return (
+      <li key={props.data.key}>
+        <span style={{ marginLeft: "10%"}}>
+          {props.data.key}
+        </span>
+        <span style={{ float: "right" }}>
+          {statusFilters[props.data.key]}
+        </span>
+        {/*         <span className="input-label">{props.data.key}</span>
+        <span className="input-label">{statusFilters[props.data.key]}</span> */}
+      </li>
+    )
+  }
+
+
   console.log(searchFilters);
 
-  function Filter(props) {
+  const Filter = (props) => {
     return (
       <CardBody marginTop={"10%"}>
         <CardHeader width={"70%"} alignCenter={true} onClick={() => toggleSearchFilter(props.index, "isActive", true)}>
@@ -98,6 +120,18 @@ export default function SearchCardComponent() {
         Admin
         <br />
         Keijo Kurpitsa
+      </Container>
+      <Container marginTop="20%">
+        <CardHeader width="100%" style={{ margin: 0, padding: 0 }}>
+          Varaukset
+        </CardHeader>
+        <Container style={{ padding: 0, margin: 0 }}>
+          <ul style={{ width: "100%", listStyle: "none", margin: 0, padding: 0 }}>
+            {Object.keys(statusFilters).map((key, index) => (
+              <Status key={index} data={{ key, index }} />
+            ))}
+          </ul>
+        </Container>
       </Container>
       <Container>
         <AddButton type="button" value="Add Filter" onClick={() => setDropdown(!dropdown)} marginTop={"20%"} />

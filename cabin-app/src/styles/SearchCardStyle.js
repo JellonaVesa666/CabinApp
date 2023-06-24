@@ -12,7 +12,9 @@ export const SearchCardBody = styled.div`
 export const Container = styled.div`
   position: relative;
   display: flex;
+  flex-direction: column;
   margin-top: ${props => (props.marginTop)};
+  margin-left: ${props => (props.marginLeft)};
 `
 
 export const CardHeader = styled.p`
