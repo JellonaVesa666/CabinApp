@@ -54,40 +54,43 @@ export default function SearchCardComponent() {
   const [statusFilters, setStatusFilters] = useState(countByStatus);
 
   function Card(props) {
-    if (searchFilters[props.index].isActive)
+    if (searchFilters[props.filter].isActive)
       return (
         <CardBody marginTop={"10%"}>
           <>{ }</>
-          <MinusSign width={"15%"} onClick={() => toggleSearchFilter(props.index, "isActive", false)} />
+          <MinusSign width={"15%"} onClick={() => toggleSearchFilter(props.filter, "isActive", false)} />
           <CardHeader width={"70%"} alignCenter={true}>
-            {props.index}
+            {props.filter}
           </CardHeader>
-          <DropDown width={"15%"} onClick={() => toggleSearchFilter(props.index, "dropdown", !searchFilters[props.index].dropdown)} />
-          {searchFilters[props.index].dropdown &&
+          <DropDown width={"15%"} onClick={() => toggleSearchFilter(props.filter, "dropdown", !searchFilters[props.filter].dropdown)} />
+          {searchFilters[props.filter].dropdown &&
             <ul style={{ width: "100%" }}>
-              {Object.entries(searchFilters[props.index]).map((key, val) => (
-                <ListItem onClick={() => toggleSearchFilter(props.index, "selected", Object.values(key[1])[1], val)}>{Object.values(key[1])} / {JSON.stringify(Object.values(key[1])[1])}</ListItem >
+              {Object.entries(searchFilters[props.filter]).map((entry, index) => (
+                <>
+                  <ListItem onClick={() => toggleSearchFilter(props.filter, "selected", entry[1].selected, index)}>{entry[1].value} / {JSON.stringify(entry[1].selected)}</ListItem >
+                </>
               ))}
             </ul>
           }
-        </CardBody>
+        </CardBody >
       )
   }
 
-  const toggleSearchFilter = (index, property, bool, value) => {
+  // TODO: switch index2 and bool places from args
+  const toggleSearchFilter = (index1, property, bool, index2) => {
 
-    if (value === null || value === undefined)
+    if (index2 === null || index2 === undefined)
       setSearchFilters({
         ...searchFilters,
-        [index]: { ...searchFilters[index], [property]: bool },
+        [index1]: { ...searchFilters[index1], [property]: bool },
       });
     else
       setSearchFilters({
         ...searchFilters,
-        [index]: {
-          ...searchFilters[index],
-          [value]: {
-            ...searchFilters[index][value],
+        [index1]: {
+          ...searchFilters[index1],
+          [index2]: {
+            ...searchFilters[index1][index2],
             [property]: !bool
           },
         },
@@ -149,7 +152,7 @@ export default function SearchCardComponent() {
         </Container>
       }
       <CardList>
-        {Object.keys(searchFilters).map(key => <Card key={key} index={key} />)}
+        {Object.keys(searchFilters).map((filter, index) => <Card key={index} filter={filter} />)}
       </CardList>
     </SearchCardBody>
   )
