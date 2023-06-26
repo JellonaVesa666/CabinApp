@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Modal from "./ModalComponent"
 import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, ListItem, MinusSign, DropDown } from "../styles/SearchCardStyle";
-export default function SearchCardComponent() {
+const SearchCardComponent = () => {
 
   const countByStatus = {
     0: {
@@ -59,6 +60,7 @@ export default function SearchCardComponent() {
   };
 
   const [dropdown, setDropdown] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [searchFilters, setSearchFilters] = useState(searchParameters);
   const [statusFilters, setStatusFilters] = useState(countByStatus);
 
@@ -147,6 +149,15 @@ export default function SearchCardComponent() {
 
   return (
     <SearchCardBody >
+
+
+      <Modal show={showModal} handleClose={() => setShowModal(false)}>
+        <p>Modal</p>
+      </Modal>
+      <button type="button" onClick={() => setShowModal(true)}>
+        Open
+      </button>
+
       <Container>
         Admin
         <br />
@@ -178,3 +189,5 @@ export default function SearchCardComponent() {
     </SearchCardBody>
   )
 }
+
+export default SearchCardComponent;
