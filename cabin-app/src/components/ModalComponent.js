@@ -1,35 +1,30 @@
-import { ModalBody, ModalContent } from "../styles/ModalStyle";
-import { CardHeader, CardBody } from "../styles/SearchCardStyle";
+import { ModalContent, ModalHeader } from "../styles/ModalStyle";
 
 const Modal = ({ handleClose, setActive, show, options }) => {
   const showHideClassName = show ? "show" : "hide";
 
   const Filter = (props) => {
     return (
-      <CardHeader
+      <ModalHeader
         className={options[props.index].isActive ? "isActive" : ""}
         width={"70%"}
+        marginBottom={"3%"}
+        marginTop={"3%"}
         alignCenter={true}
         onClick={() => setActive(props.index)}
       >
         {props.index}
-      </CardHeader>
+      </ModalHeader >
     )
   }
 
   return (
-    <ModalBody className={showHideClassName}>
-      <ModalContent>
-        <div>
-          <div style={{ width: "80%", margin: "auto", height: "50%", backgroundColor: "rgba(255, 255, 255, 0.1)" }}>
-            {Object.keys(options).map(key => <Filter key={key} index={key} />)}
-          </div>
-        </div>
-        <button type="button" onClick={handleClose}>
-          Close
-        </button>
-      </ModalContent>
-    </ModalBody>
+    <ModalContent className={showHideClassName}>
+      {Object.keys(options).map(key => <Filter key={key} index={key} />)}
+      <button type="button" onClick={handleClose}>
+        Close
+      </button>
+    </ModalContent>
   );
 };
 
