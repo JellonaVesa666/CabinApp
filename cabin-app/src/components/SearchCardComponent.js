@@ -43,9 +43,18 @@ export default function SearchCardComponent() {
     hinta: {
       isActive: false,
       dropdown: true,
-      0: "100",
-      1: "200",
-      2: "300",
+      0: {
+        value: "100 €",
+        selected: false
+      },
+      1: {
+        value: "200 €",
+        selected: false
+      },
+      2: {
+        value: "200 €",
+        selected: false
+      },
     }
   };
 
@@ -56,23 +65,33 @@ export default function SearchCardComponent() {
   function Card(props) {
     if (searchFilters[props.filter].isActive)
       return (
-        <CardBody marginTop={"10%"}>
-          <>{ }</>
+        <CardBody
+          className={searchFilters[props.filter].dropdown ? "dropdownActive" : ""}
+          marginTop={"10%"}
+        >
           <MinusSign width={"15%"} onClick={() => toggleSearchFilter(props.filter, "isActive", false)} />
-          <CardHeader width={"70%"} alignCenter={true}>
+          <CardHeader width={"70%"} paddingLeft={"5%"}>
             {props.filter}
           </CardHeader>
           <DropDown width={"15%"} onClick={() => toggleSearchFilter(props.filter, "dropdown", !searchFilters[props.filter].dropdown)} />
           {searchFilters[props.filter].dropdown &&
-            <ul style={{ width: "100%" }}>
-              {Object.entries(searchFilters[props.filter]).map((entry, index) => (
-                  <ListItem
-                    key={index}
-                    onClick={() => toggleSearchFilter(props.filter, "selected", entry[1].selected, index)}
-                  >
-                    {entry[1].value} / {JSON.stringify(entry[1].selected)}
-                  </ListItem >
-              ))}
+            <ul style={{ width: "100%", listStyleType: "none", margin: "0", padding: "0" }}>
+              {Object.entries(searchFilters[props.filter]).map((entry, index) => {
+                if (typeof entry[0] === "string" && !isNaN(entry[0])) {
+                  return (
+                    <ListItem
+                      className={entry[1].selected === true ? "selected" : ""}
+                      marginTop={"3%"}
+                      marginBottom={"3%"}
+                      paddingLeft={"5%"}
+                      key={index}
+                      onClick={() => toggleSearchFilter(props.filter, "selected", entry[1].selected, index)}
+                    >
+                      {entry[1].value} / {JSON.stringify(entry[1].selected)}
+                    </ListItem >
+                  )
+                }
+              })}
             </ul>
           }
         </CardBody >
@@ -103,7 +122,7 @@ export default function SearchCardComponent() {
   const Status = (props) => {
     console.log(props);
     return (
-      <ul>
+      <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
         <li /* key={props.entry} */>
           <span style={{ marginLeft: "10%" }}>
             {statusFilters[props.status].name}
@@ -133,16 +152,16 @@ export default function SearchCardComponent() {
         <br />
         Keijo Kurpitsa
       </Container>
-      {/*       <Container marginTop="20%">
+      <Container marginTop="20%">
         <CardHeader width="100%" style={{ margin: 0, padding: 0 }}>
           Varaukset
         </CardHeader>
         <Container style={{ padding: 0, margin: 0 }}>
           {Object.keys(statusFilters).map((status, index) => (
-            <Status status={status} key={index}  />
+            <Status status={status} key={index} />
           ))}
         </Container>
-      </Container> */}
+      </Container>
       <Container>
         <AddButton type="button" value="Add Filter" onClick={() => setDropdown(!dropdown)} marginTop={"20%"} />
         <PlusSign />

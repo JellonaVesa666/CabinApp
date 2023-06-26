@@ -6,9 +6,6 @@ export default function NavigationComponent() {
 
   const [isActive, setIsActive] = useState("");
 
-
-  console.log(isActive);
-
   return (
     <>
       <NavigationBody>
