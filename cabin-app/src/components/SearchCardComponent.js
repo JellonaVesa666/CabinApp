@@ -122,10 +122,9 @@ const SearchCardComponent = () => {
   }
 
   const Status = (props) => {
-    console.log(props);
     return (
       <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
-        <li /* key={props.entry} */>
+        <li>
           <span style={{ marginLeft: "10%" }}>
             {statusFilters[props.status].name}
           </span>

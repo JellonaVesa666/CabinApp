@@ -22,6 +22,7 @@ export const CardHeader = styled.p`
   margin: auto;
   padding-left: ${props => (props.paddingLeft)};
   width: ${props => (props.width)};
+  text-transform: capitalize;
   &.isActive {
     background-color: rgba(0, 0, 0, 0.25);
   }
@@ -43,6 +44,8 @@ export const CardBody = styled.li`
   color: black;
   margin: 0;
   padding: 0;
+  padding-top: 4px;
+  padding-bottom: 4px;
   margin-top: ${props => (props.marginTop)};
   &.dropdownActive {
     flex-flow: row wrap;
@@ -61,8 +64,15 @@ export const ListItem = styled.li`
   margin-bottom: ${props => (props.marginBottom)};
   border: 1.5px solid rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.3);
+  color: rgba(0, 0, 0, 0.4);
   &.selected {
-    background-color: rgba(80, 255, 25, 0.3);
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    color: black;
+  }
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    color: black;
   }
 `
 
@@ -89,7 +99,7 @@ export const MinusSign = styled.div`
   -o-background-size: contain;
   background-image: url(${signMinus});
   width: ${props => (props.width)};
-  height: 30px;
+  height: 20px;
   margin: auto;
 `
 
@@ -102,6 +112,6 @@ export const DropDown = styled.div`
   -o-background-size: contain;
   background-image: url(${iconDropdown});
   width: ${props => (props.width)};
-  height: 30px;
+  height: 20px;
   margin: auto;
 `
