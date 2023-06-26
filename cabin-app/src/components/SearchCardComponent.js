@@ -137,27 +137,11 @@ const SearchCardComponent = () => {
     )
   }
 
-  const Filter = (props) => {
-    return (
-      <CardBody marginTop={"10%"}>
-        <CardHeader width={"70%"} alignCenter={true} onClick={() => toggleSearchFilter(props.index, "isActive", true)}>
-          {props.index}
-        </CardHeader>
-      </CardBody >
-    )
-  }
-
   return (
     <SearchCardBody >
-
-
-      <Modal show={showModal} handleClose={() => setShowModal(false)}>
+      <Modal show={showModal} options={searchFilters} handleClose={() => setShowModal(false)} setActive={(index) => toggleSearchFilter(index, "isActive", true)}>
         <p>Modal</p>
       </Modal>
-      <button type="button" onClick={() => setShowModal(true)}>
-        Open
-      </button>
-
       <Container>
         Admin
         <br />
@@ -174,15 +158,8 @@ const SearchCardComponent = () => {
         </Container>
       </Container>
       <Container>
-        <AddButton type="button" value="+" onClick={() => setDropdown(!dropdown)} marginTop={"20%"} />
+        <AddButton type="button" value="+" onClick={() => setShowModal(true)} marginTop={"20%"} />
       </Container>
-      {dropdown &&
-        <Container>
-          <div style={{ width: "80%", margin: "auto", height: "50%", backgroundColor: "rgba(255, 255, 255, 0.1)" }}>
-            {Object.keys(searchParameters).map(key => <Filter key={key} index={key} />)}
-          </div>
-        </Container>
-      }
       <CardList>
         {Object.keys(searchFilters).map((filter, index) => <Card key={index} filter={filter} />)}
       </CardList>
