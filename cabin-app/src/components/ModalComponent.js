@@ -1,4 +1,4 @@
-import { ModalContent, ModalHeader } from "../styles/ModalStyle";
+import { ModalContent, ModalHeader, ModalCloseBtn, ModalLinkH4 } from "../styles/ModalStyle";
 
 const Modal = ({ handleClose, setActive, show, options }) => {
   const showHideClassName = show ? "show" : "hide";
@@ -7,9 +7,9 @@ const Modal = ({ handleClose, setActive, show, options }) => {
     return (
       <ModalHeader
         className={options[props.index].isActive ? "isActive" : ""}
-        width={"70%"}
-        marginBottom={"3%"}
-        marginTop={"3%"}
+        width={"80%"}
+        marginBottom={"5%"}
+        marginTop={"5%"}
         alignCenter={true}
         onClick={() => setActive(props.index)}
       >
@@ -19,11 +19,23 @@ const Modal = ({ handleClose, setActive, show, options }) => {
   }
 
   return (
-    <ModalContent className={showHideClassName}>
+    <ModalContent className={showHideClassName} >
+      <div style={{marginTop: "50px"}}>
       {Object.keys(options).map(key => <Filter key={key} index={key} />)}
-      <button type="button" onClick={handleClose}>
-        Close
-      </button>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        onClick={handleClose}
+      >
+        <ModalLinkH4 className="mt-2"
+        >
+          Close
+        </ModalLinkH4>
+      </div>
     </ModalContent>
   );
 };
