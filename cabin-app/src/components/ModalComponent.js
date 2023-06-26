@@ -1,16 +1,19 @@
 import { ModalBody, ModalContent } from "../styles/ModalStyle";
-import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, ListItem, MinusSign, DropDown } from "../styles/SearchCardStyle";
+import { CardHeader, CardBody } from "../styles/SearchCardStyle";
 
 const Modal = ({ handleClose, setActive, show, options }) => {
   const showHideClassName = show ? "show" : "hide";
 
   const Filter = (props) => {
     return (
-      <CardBody marginTop={"10%"}>
-        <CardHeader width={"70%"} alignCenter={true} onClick={() => setActive(props.index)}>
-          {props.index}
-        </CardHeader>
-      </CardBody >
+      <CardHeader
+        className={options[props.index].isActive ? "isActive" : ""}
+        width={"70%"}
+        alignCenter={true}
+        onClick={() => setActive(props.index)}
+      >
+        {props.index}
+      </CardHeader>
     )
   }
 

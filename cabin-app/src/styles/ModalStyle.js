@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 
-export const ModalBody =  styled.div`
+export const ModalBody = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100 %;
-  height: 100 %;
-  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
   &.show {
     display: block;
   }
@@ -18,7 +17,7 @@ export const ModalBody =  styled.div`
 export const ModalContent = styled.section`
   position:fixed;
   background: white;
-  width: 80%;
+  width: 20%;
   height: auto;
   top:50%;
   left:50%;

@@ -139,7 +139,7 @@ const SearchCardComponent = () => {
 
   return (
     <SearchCardBody >
-      <Modal show={showModal} options={searchFilters} handleClose={() => setShowModal(false)} setActive={(index) => toggleSearchFilter(index, "isActive", true)}>
+      <Modal show={showModal} options={searchFilters} handleClose={() => setShowModal(false)} setActive={(index) => toggleSearchFilter(index, "isActive", !searchFilters[index].isActive)}>
         <p>Modal</p>
       </Modal>
       <Container>

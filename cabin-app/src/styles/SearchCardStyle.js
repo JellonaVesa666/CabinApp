@@ -22,6 +22,9 @@ export const CardHeader = styled.p`
   margin: auto;
   padding-left: ${props => (props.paddingLeft)};
   width: ${props => (props.width)};
+  &.isActive {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
 `
 
 export const CardList = styled.ul`
