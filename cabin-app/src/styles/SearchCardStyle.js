@@ -49,45 +49,32 @@ export const CardBody = styled.li`
 
 export const ListItem = styled.li`
   width: 90%;
-  border-radius: 5px;
+  border-radius: 8px;
   color: black;
   margin: auto;
   padding: 0;
   padding-left: ${props => (props.paddingLeft)};
   margin-top: ${props => (props.marginTop)};
   margin-bottom: ${props => (props.marginBottom)};
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.3);
   &.selected {
-    background-color: rgba(0, 0, 0, 0.4);
-    color: white;
+    background-color: rgba(80, 255, 25, 0.3);
   }
 `
 
 export const AddButton = styled.input`
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.4);
   color: whitesmoke;
-  width: 80%;
-  height: 40px;
-  margin: auto;
-  padding: auto;
-  border-radius: 20px;
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  margin-top: ${props => (props.marginTop)};
-`
-
-export const PlusSign = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 75%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-image: url(${signPlus});
-  width: 10%;
-  height: 40px;
+  width: 100%;
+  height: 25px;
+  border-radius: 10px;
+  margin: 0;
   padding: 0;
+  margin-top: ${props => (props.marginTop)};
+  cursor: pointer;
+  border: none;
+  box-shadow: none;
 `
 
 export const MinusSign = styled.div`

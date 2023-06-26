@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, ListItem, PlusSign, MinusSign, DropDown } from "../styles/SearchCardStyle";
+import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, ListItem, MinusSign, DropDown } from "../styles/SearchCardStyle";
 export default function SearchCardComponent() {
 
   const countByStatus = {
@@ -52,7 +52,7 @@ export default function SearchCardComponent() {
         selected: false
       },
       2: {
-        value: "200 €",
+        value: "300 €",
         selected: false
       },
     }
@@ -87,7 +87,7 @@ export default function SearchCardComponent() {
                       key={index}
                       onClick={() => toggleSearchFilter(props.filter, "selected", entry[1].selected, index)}
                     >
-                      {entry[1].value} / {JSON.stringify(entry[1].selected)}
+                      {entry[1].value}
                     </ListItem >
                   )
                 }
@@ -163,8 +163,7 @@ export default function SearchCardComponent() {
         </Container>
       </Container>
       <Container>
-        <AddButton type="button" value="Add Filter" onClick={() => setDropdown(!dropdown)} marginTop={"20%"} />
-        <PlusSign />
+        <AddButton type="button" value="+" onClick={() => setDropdown(!dropdown)} marginTop={"20%"} />
       </Container>
       {dropdown &&
         <Container>
