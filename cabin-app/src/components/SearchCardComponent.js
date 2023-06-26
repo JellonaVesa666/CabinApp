@@ -63,6 +63,7 @@ const SearchCardComponent = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchFilters, setSearchFilters] = useState(searchParameters);
   const [statusFilters, setStatusFilters] = useState(countByStatus);
+  const [toggle, setToggle] = useState(false);
 
   function Card(props) {
     if (searchFilters[props.filter].isActive)
