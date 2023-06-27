@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "./ModalComponent"
-import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, SelectList, Option, ListItem, MinusSign, DropDown } from "../styles/SearchCardStyle";
+import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, SelectInput, DateInput, ListItem, MinusSign, DropDown } from "../styles/SearchCardStyle";
 const SearchCardComponent = () => {
 
   const countByStatus = {
@@ -64,6 +64,7 @@ const SearchCardComponent = () => {
       isActive: false,
       dropdown: true,
       selected: "test",
+      name: "nummero",
       0: {
         value: "test 1",
       },
@@ -73,7 +74,14 @@ const SearchCardComponent = () => {
       2: {
         value: "test 3",
       },
-    }
+    },
+    date: {
+      type: "date",
+      isActive: false,
+      dropdown: true,
+      arrivalDate: "",
+      departureDate: "",
+    },
   };
 
   const [showModal, setShowModal] = useState(false);
@@ -95,24 +103,36 @@ const SearchCardComponent = () => {
           {searchFilters[props.filter].dropdown &&
             <>
               {searchFilters[props.filter].type === "option" &&
-                <SelectList
-                  value={searchFilters[props.filter].selected}
-                  onChange={(event) => setFilters(event.target.value, "selected", props.filter)}
-                >
-                  {
-                    Object.keys(searchFilters[props.filter]).map(index => {
-                      if (typeof index === "string" && !isNaN(index))
-                        return (
-                          <option
-                            key={index}
-                            value={searchFilters[props.filter][index].value}
-                          >
-                            {searchFilters[props.filter][index].value}
-                          </option>
-                        )
-                    })
-                  }
-                </SelectList>
+                <>
+                  <CardHeader
+                    width={"90%"}
+                    margintop={"5%"}
+                    marginbottom={"1%"}
+                  >
+                    {searchFilters[props.filter].name}
+                  </CardHeader>
+                  <SelectInput
+                    value={searchFilters[props.filter].selected}
+                    onChange={(event) => setFilters(event.target.value, "selected", props.filter)}
+                    style={{
+                      marginBottom: "3%",
+                    }}
+                  >
+                    {
+                      Object.keys(searchFilters[props.filter]).map(index => {
+                        if (typeof index === "string" && !isNaN(index))
+                          return (
+                            <option
+                              key={index}
+                              value={searchFilters[props.filter][index].value}
+                            >
+                              {searchFilters[props.filter][index].value}
+                            </option>
+                          )
+                      })
+                    }
+                  </SelectInput>
+                </>
               }
               {searchFilters[props.filter].type === "multiSelect" &&
                 <ul style={{ width: "100%", listStyleType: "none", margin: "0", padding: "0" }}>
@@ -135,6 +155,39 @@ const SearchCardComponent = () => {
                     })}
                 </ul>
               }
+              {searchFilters[props.filter].type === "date" &&
+                <>
+                  <CardHeader
+                    width={"90%"}
+                    margintop={"5%"}
+                    marginbottom={"1%"}
+                  >
+                    Arrival Date
+                  </CardHeader>
+                  <DateInput
+                    style={{
+                      paddingLeft: "2%"
+                    }}
+                    defaultValue={new Date().toISOString().slice(0, -8)}
+                    type="datetime-local"
+                  />
+                  <CardHeader
+                    width={"90%"}
+                    margintop={"5%"}
+                    marginbottom={"1%"}
+                  >
+                    Departure Date
+                  </CardHeader>
+                  <DateInput
+                    style={{
+                      marginBottom: "3%",
+                      paddingLeft: "2%"
+                    }}
+                    defaultValue={new Date().toISOString().slice(0, -8)}
+                    type="datetime-local"
+                  />
+                </>
+              }
             </>
           }
         </CardBody >
@@ -142,7 +195,6 @@ const SearchCardComponent = () => {
   }
 
   const setFilters = (newValue, property, index1, index2) => {
-
     if (index2 === null || index2 === undefined)
       setSearchFilters({
         ...searchFilters,

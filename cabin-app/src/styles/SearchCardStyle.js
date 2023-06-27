@@ -18,6 +18,9 @@ export const Container = styled.div`
 
 export const CardHeader = styled.p`
   margin: auto;
+  padding: 0;
+  margin-top: ${props => (props.margintop)};
+  margin-bottom: ${props => (props.marginbottom)};
   padding-left: ${props => (props.paddingleft)};
   width: ${props => (props.width)};
   text-transform: capitalize;
@@ -73,13 +76,29 @@ export const ListItem = styled.li`
     color: black;
   }
 `
-export const SelectList = styled.select`
-  width: 80%;
+export const SelectInput = styled.select`
+  width: 90%;
   margin: auto;
   padding: 0;
   border-radius: 10px;
   border: 1.5px solid rgba(0, 0, 0, 0.2);
-  background-color: #8cbbea !important;
+  background-color: rgba(255, 255, 255, 0.75);
+  color: black;
+  outline: none !important;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    color: black;
+  }
+`
+
+export const DateInput = styled.input`
+  width: 90%;
+  margin: auto;
+  padding: 0;
+  border-radius: 10px;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.75);
   color: black;
   outline: none !important;
   &:hover {
