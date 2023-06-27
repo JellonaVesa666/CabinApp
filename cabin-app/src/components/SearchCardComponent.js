@@ -87,17 +87,17 @@ const SearchCardComponent = () => {
           className={searchFilters[props.filter].dropdown ? "dropdownActive" : ""}
           margintop={"10%"}
         >
-          <MinusSign width={"15%"} onClick={() => setFilters(false, props.filter, "isActive")} />
+          <MinusSign width={"15%"} onClick={() => setFilters(false, "isActive", props.filter)} />
           <CardHeader width={"70%"} paddingleft={"5%"}>
             {props.filter}
           </CardHeader>
-          <DropDown width={"15%"} onClick={() => setFilters(!searchFilters[props.filter].dropdown, props.filter, "dropdown")} />
+          <DropDown width={"15%"} onClick={() => setFilters(!searchFilters[props.filter].dropdown, "dropdown", props.filter)} />
           {searchFilters[props.filter].dropdown &&
             <>
               {searchFilters[props.filter].type === "option" &&
                 <SelectList
                   value={searchFilters[props.filter].selected}
-                  onChange={(event) => setFilters(event.target.value, props.filter, "selected")}
+                  onChange={(event) => setFilters(event.target.value, "selected", props.filter)}
                 >
                   {
                     Object.keys(searchFilters[props.filter]).map(index => {
@@ -126,7 +126,7 @@ const SearchCardComponent = () => {
                             margintop={"3%"}
                             marginbottom={"3%"}
                             paddingleft={"5%"}
-                            onClick={() => setFilters(entry[1].selected, props.filter, "selected", index)}
+                            onClick={() => setFilters(entry[1].selected, "selected", props.filter, index)}
                           >
                             {entry[1].value}
                           </ListItem >
@@ -141,8 +141,7 @@ const SearchCardComponent = () => {
       )
   }
 
-  // TODO: switch index2 and bool places from args
-  const setFilters = (newValue, index1, property, index2) => {
+  const setFilters = (newValue, property, index1, index2) => {
 
     if (index2 === null || index2 === undefined)
       setSearchFilters({
@@ -179,7 +178,7 @@ const SearchCardComponent = () => {
 
   return (
     <SearchCardBody >
-      <Modal show={showModal} options={searchFilters} handleClose={() => setShowModal(false)} setActive={(index) => setFilters(!searchFilters[index].isActive, index, "isActive")}>
+      <Modal show={showModal} options={searchFilters} handleClose={() => setShowModal(false)} setActive={(index) => setFilters(!searchFilters[index].isActive, "isActive", index)}>
         <p>Modal</p>
       </Modal>
       <Container>
