@@ -21,14 +21,14 @@ export const ModalContent = styled.section`
 `
 
 export const ModalHeader = styled.p`
-  text-align: ${props => (props.alignCenter ? "center" : "")};
+  text-align: center;
   margin: auto;
   padding: 0;
   padding-top: 1%;
   padding-bottom: 1%;
-  margin-top: ${props => (props.marginTop)};
-  margin-bottom: ${props => (props.marginBottom)};
-  padding-left: ${props => (props.paddingLeft)};
+  margin-top: ${props => (props.margintop)};
+  margin-bottom: ${props => (props.marginbottom)};
+  padding-left: ${props => (props.paddingleft)};
   width: ${props => (props.width)};
   border-radius: 20px;
   border: 1.5px solid rgba(0, 0, 0, 0.2);

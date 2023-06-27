@@ -85,10 +85,10 @@ const SearchCardComponent = () => {
       return (
         <CardBody
           className={searchFilters[props.filter].dropdown ? "dropdownActive" : ""}
-          marginTop={"10%"}
+          margintop={"10%"}
         >
           <MinusSign width={"15%"} onClick={() => setFilters(false, props.filter, "isActive")} />
-          <CardHeader width={"70%"} paddingLeft={"5%"}>
+          <CardHeader width={"70%"} paddingleft={"5%"}>
             {props.filter}
           </CardHeader>
           <DropDown width={"15%"} onClick={() => setFilters(!searchFilters[props.filter].dropdown, props.filter, "dropdown")} />
@@ -100,13 +100,14 @@ const SearchCardComponent = () => {
                   onChange={(event) => setFilters(event.target.value, props.filter, "selected")}
                 >
                   {
-                    Object.entries(searchFilters[props.filter]).map((entry, index) => {
-                      if (typeof entry[0] === "string" && !isNaN(entry[0]))
+                    Object.keys(searchFilters[props.filter]).map(index => {
+                      if (typeof index === "string" && !isNaN(index))
                         return (
                           <option
-                            value={entry[1].value}
+                            key={index}
+                            value={searchFilters[props.filter][index].value}
                           >
-                            {entry[1].value}
+                            {searchFilters[props.filter][index].value}
                           </option>
                         )
                     })
@@ -120,11 +121,11 @@ const SearchCardComponent = () => {
                       if (typeof entry[0] === "string" && !isNaN(entry[0])) {
                         return (
                           <ListItem
-                            className={entry[1].selected === true ? "selected" : ""}
-                            marginTop={"3%"}
-                            marginBottom={"3%"}
-                            paddingLeft={"5%"}
                             key={index}
+                            className={entry[1].selected === true ? "selected" : ""}
+                            margintop={"3%"}
+                            marginbottom={"3%"}
+                            paddingleft={"5%"}
                             onClick={() => setFilters(entry[1].selected, props.filter, "selected", index)}
                           >
                             {entry[1].value}
@@ -186,7 +187,7 @@ const SearchCardComponent = () => {
         <br />
         Keijo Kurpitsa
       </Container>
-      <Container marginTop="20%">
+      <Container margintop="20%">
         <CardHeader width="100%" style={{ margin: 0, padding: 0 }}>
           Varaukset
         </CardHeader>
@@ -197,7 +198,7 @@ const SearchCardComponent = () => {
         </Container>
       </Container>
       <Container>
-        <AddButton type="button" value="+" onClick={() => setShowModal(true)} marginTop={"20%"} />
+        <AddButton type="button" value="+" onClick={() => setShowModal(true)} margintop={"20%"} />
       </Container>
       <CardList>
         {Object.keys(searchFilters).map((filter, index) => <Card key={index} filter={filter} />)}

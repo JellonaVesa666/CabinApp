@@ -8,9 +8,8 @@ const Modal = ({ handleClose, setActive, show, options }) => {
       <ModalHeader
         className={options[props.index].isActive ? "isActive" : ""}
         width={"80%"}
-        marginBottom={"5%"}
-        marginTop={"5%"}
-        alignCenter={true}
+        marginbottom={"5%"}
+        margintop={"5%"}
         onClick={() => setActive(props.index)}
       >
         {props.index}

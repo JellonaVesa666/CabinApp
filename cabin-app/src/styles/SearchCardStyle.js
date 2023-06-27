@@ -12,14 +12,13 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: ${props => (props.marginTop)};
+  margin-top: ${props => (props.margintop)};
   margin-left: ${props => (props.marginLeft)};
 `
 
 export const CardHeader = styled.p`
-  text-align: ${props => (props.alignCenter ? "center" : "")};
   margin: auto;
-  padding-left: ${props => (props.paddingLeft)};
+  padding-left: ${props => (props.paddingleft)};
   width: ${props => (props.width)};
   text-transform: capitalize;
   &.isActive {
@@ -32,8 +31,8 @@ export const CardList = styled.ul`
   list-style-type: none;
   padding: 0;
   margin: 0;
-  padding-left: ${props => (props.paddingLeft)};
-  padding-right: ${props => (props.paddingRight)};
+  padding-left: ${props => (props.paddingleft)};
+  padding-right: ${props => (props.paddingright)};
 `
 
 export const CardBody = styled.li`
@@ -45,7 +44,7 @@ export const CardBody = styled.li`
   padding: 0;
   padding-top: 4px;
   padding-bottom: 4px;
-  margin-top: ${props => (props.marginTop)};
+  margin-top: ${props => (props.margintop)};
   &.dropdownActive {
     flex-flow: row wrap;
     height: 100%;
@@ -58,9 +57,9 @@ export const ListItem = styled.li`
   color: black;
   margin: auto;
   padding: 0;
-  padding-left: ${props => (props.paddingLeft)};
-  margin-top: ${props => (props.marginTop)};
-  margin-bottom: ${props => (props.marginBottom)};
+  padding-left: ${props => (props.paddingleft)};
+  margin-top: ${props => (props.margintop)};
+  margin-bottom: ${props => (props.marginbottom)};
   border: 1.5px solid rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.5);
   color: rgba(0, 0, 0, 0.4);
@@ -98,7 +97,7 @@ export const AddButton = styled.input`
   border-radius: 10px;
   margin: 0;
   padding: 0;
-  margin-top: ${props => (props.marginTop)};
+  margin-top: ${props => (props.margintop)};
   cursor: pointer;
   border: none;
   box-shadow: none;
