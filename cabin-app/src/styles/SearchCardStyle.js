@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import signPlus from "../images/sign_plus.png";
 import signMinus from "../images/sign_minus.png";
 import iconDropdown from "../images/icon_dropdown.png";
 
@@ -69,6 +68,21 @@ export const ListItem = styled.li`
     background-color: #8cbbea !important;
     color: black;
   }
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    color: black;
+  }
+`
+export const SelectList = styled.select`
+  width: 80%;
+  margin: auto;
+  padding: 0;
+  border-radius: 10px;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  background-color: #8cbbea !important;
+  color: black;
+  outline: none !important;
   &:hover {
     background-color: rgba(255, 255, 255, 0.75);
     cursor: pointer;

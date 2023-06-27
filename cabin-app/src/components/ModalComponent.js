@@ -1,4 +1,4 @@
-import { ModalContent, ModalHeader, ModalCloseBtn, ModalLinkH4 } from "../styles/ModalStyle";
+import { ModalContent, ModalHeader, ModalLinkH4 } from "../styles/ModalStyle";
 
 const Modal = ({ handleClose, setActive, show, options }) => {
   const showHideClassName = show ? "show" : "hide";
@@ -20,8 +20,8 @@ const Modal = ({ handleClose, setActive, show, options }) => {
 
   return (
     <ModalContent className={showHideClassName} >
-      <div style={{marginTop: "50px"}}>
-      {Object.keys(options).map(key => <Filter key={key} index={key} />)}
+      <div style={{ marginTop: "50px" }}>
+        {Object.keys(options).map(key => <Filter key={key} index={key} />)}
       </div>
       <div
         style={{

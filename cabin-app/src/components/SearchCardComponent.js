@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "./ModalComponent"
-import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, ListItem, MinusSign, DropDown } from "../styles/SearchCardStyle";
+import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, SelectList, Option, ListItem, MinusSign, DropDown } from "../styles/SearchCardStyle";
 const SearchCardComponent = () => {
 
   const countByStatus = {
@@ -63,26 +63,22 @@ const SearchCardComponent = () => {
       type: "option",
       isActive: false,
       dropdown: true,
+      selected: "test",
       0: {
         value: "test 1",
-        selected: false,
       },
       1: {
         value: "test 2",
-        selected: false,
       },
       2: {
         value: "test 3",
-        selected: false,
       },
     }
   };
 
-  const [dropdown, setDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [searchFilters, setSearchFilters] = useState(searchParameters);
   const [statusFilters, setStatusFilters] = useState(countByStatus);
-  const [toggle, setToggle] = useState(false);
 
   function Card(props) {
     if (searchFilters[props.filter].isActive)
@@ -91,24 +87,31 @@ const SearchCardComponent = () => {
           className={searchFilters[props.filter].dropdown ? "dropdownActive" : ""}
           marginTop={"10%"}
         >
-          <MinusSign width={"15%"} onClick={() => toggleSearchFilter(props.filter, "isActive", false)} />
+          <MinusSign width={"15%"} onClick={() => setFilters(false, props.filter, "isActive")} />
           <CardHeader width={"70%"} paddingLeft={"5%"}>
             {props.filter}
           </CardHeader>
-          <DropDown width={"15%"} onClick={() => toggleSearchFilter(props.filter, "dropdown", !searchFilters[props.filter].dropdown)} />
+          <DropDown width={"15%"} onClick={() => setFilters(!searchFilters[props.filter].dropdown, props.filter, "dropdown")} />
           {searchFilters[props.filter].dropdown &&
             <>
               {searchFilters[props.filter].type === "option" &&
-                <select name="cars" id="cars">
+                <SelectList
+                  value={searchFilters[props.filter].selected}
+                  onChange={(event) => setFilters(event.target.value, props.filter, "selected")}
+                >
                   {
                     Object.entries(searchFilters[props.filter]).map((entry, index) => {
                       if (typeof entry[0] === "string" && !isNaN(entry[0]))
                         return (
-                          <option value={entry[1].value}>{entry[1].value}</option>
+                          <option
+                            value={entry[1].value}
+                          >
+                            {entry[1].value}
+                          </option>
                         )
                     })
                   }
-                </select>
+                </SelectList>
               }
               {searchFilters[props.filter].type === "multiSelect" &&
                 <ul style={{ width: "100%", listStyleType: "none", margin: "0", padding: "0" }}>
@@ -122,7 +125,7 @@ const SearchCardComponent = () => {
                             marginBottom={"3%"}
                             paddingLeft={"5%"}
                             key={index}
-                            onClick={() => toggleSearchFilter(props.filter, "selected", entry[1].selected, index)}
+                            onClick={() => setFilters(entry[1].selected, props.filter, "selected", index)}
                           >
                             {entry[1].value}
                           </ListItem >
@@ -138,12 +141,12 @@ const SearchCardComponent = () => {
   }
 
   // TODO: switch index2 and bool places from args
-  const toggleSearchFilter = (index1, property, bool, index2) => {
+  const setFilters = (newValue, index1, property, index2) => {
 
     if (index2 === null || index2 === undefined)
       setSearchFilters({
         ...searchFilters,
-        [index1]: { ...searchFilters[index1], [property]: bool },
+        [index1]: { ...searchFilters[index1], [property]: newValue },
       });
     else
       setSearchFilters({
@@ -152,7 +155,7 @@ const SearchCardComponent = () => {
           ...searchFilters[index1],
           [index2]: {
             ...searchFilters[index1][index2],
-            [property]: !bool
+            [property]: !newValue
           },
         },
       });
@@ -175,7 +178,7 @@ const SearchCardComponent = () => {
 
   return (
     <SearchCardBody >
-      <Modal show={showModal} options={searchFilters} handleClose={() => setShowModal(false)} setActive={(index) => toggleSearchFilter(index, "isActive", !searchFilters[index].isActive)}>
+      <Modal show={showModal} options={searchFilters} handleClose={() => setShowModal(false)} setActive={(index) => setFilters(!searchFilters[index].isActive, index, "isActive")}>
         <p>Modal</p>
       </Modal>
       <Container>
