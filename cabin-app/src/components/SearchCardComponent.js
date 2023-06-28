@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "./ModalComponent"
-import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, SelectInput, DateInput, ListItem, MinusSign, DropDown } from "../styles/SearchCardStyle";
+import { RangeSlider, DatePicker, OptionSelect, MultiSelect } from "./InputComponents";
+import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, MinusSign, DropDown } from "../styles/SearchCardStyle";
 const SearchCardComponent = () => {
 
   const countByStatus = {
@@ -17,7 +18,7 @@ const SearchCardComponent = () => {
   };
 
   const searchParameters = {
-    koko: {
+    multiSelect: {
       type: "multiSelect",
       isActive: false,
       dropdown: true,
@@ -42,29 +43,12 @@ const SearchCardComponent = () => {
         selected: false,
       }
     },
-    hinta: {
-      type: "multiSelect",
-      isActive: false,
-      dropdown: true,
-      0: {
-        value: "100 €",
-        selected: false,
-      },
-      1: {
-        value: "200 €",
-        selected: false,
-      },
-      2: {
-        value: "300 €",
-        selected: false,
-      },
-    },
-    test: {
+    option: {
       type: "option",
       isActive: false,
       dropdown: true,
       selected: "test",
-      name: "nummero",
+      name: "numero",
       0: {
         value: "test 1",
       },
@@ -81,6 +65,14 @@ const SearchCardComponent = () => {
       dropdown: true,
       arrivalDate: "",
       departureDate: "",
+    },
+    slider: {
+      type: "slider",
+      isActive: false,
+      dropdown: true,
+      max: 10,
+      min: 0,
+      step: 1,
     },
   };
 
@@ -102,91 +94,29 @@ const SearchCardComponent = () => {
           <DropDown width={"15%"} onClick={() => setFilters(!searchFilters[props.filter].dropdown, "dropdown", props.filter)} />
           {searchFilters[props.filter].dropdown &&
             <>
-              {searchFilters[props.filter].type === "option" &&
-                <>
-                  <CardHeader
-                    width={"90%"}
-                    margintop={"5%"}
-                    marginbottom={"1%"}
-                  >
-                    {searchFilters[props.filter].name}
-                  </CardHeader>
-                  <SelectInput
-                    value={searchFilters[props.filter].selected}
-                    onChange={(event) => setFilters(event.target.value, "selected", props.filter)}
-                    style={{
-                      marginBottom: "3%",
-                    }}
-                  >
-                    {
-                      Object.keys(searchFilters[props.filter]).map(index => {
-                        if (typeof index === "string" && !isNaN(index))
-                          return (
-                            <option
-                              key={index}
-                              value={searchFilters[props.filter][index].value}
-                            >
-                              {searchFilters[props.filter][index].value}
-                            </option>
-                          )
-                      })
-                    }
-                  </SelectInput>
-                </>
-              }
               {searchFilters[props.filter].type === "multiSelect" &&
-                <ul style={{ width: "100%", listStyleType: "none", margin: "0", padding: "0" }}>
-                  {
-                    Object.entries(searchFilters[props.filter]).map((entry, index) => {
-                      if (typeof entry[0] === "string" && !isNaN(entry[0])) {
-                        return (
-                          <ListItem
-                            key={index}
-                            className={entry[1].selected === true ? "selected" : ""}
-                            margintop={"3%"}
-                            marginbottom={"3%"}
-                            paddingleft={"5%"}
-                            onClick={() => setFilters(entry[1].selected, "selected", props.filter, index)}
-                          >
-                            {entry[1].value}
-                          </ListItem >
-                        )
-                      }
-                    })}
-                </ul>
+                <MultiSelect
+                  filters={searchFilters}
+                  i={props.filter}
+                  setActive={(value, index) => setFilters(value, "selected", props.filter, index)}
+                />
+              }
+              {searchFilters[props.filter].type === "option" &&
+                <OptionSelect
+                  filters={searchFilters}
+                  i={props.filter}
+                  setActive={(event) => setFilters(event.target.value, "selected", props.filter)}
+                />
               }
               {searchFilters[props.filter].type === "date" &&
-                <>
-                  <CardHeader
-                    width={"90%"}
-                    margintop={"5%"}
-                    marginbottom={"1%"}
-                  >
-                    Arrival Date
-                  </CardHeader>
-                  <DateInput
-                    style={{
-                      paddingLeft: "2%"
-                    }}
-                    defaultValue={new Date().toISOString().slice(0, -8)}
-                    type="datetime-local"
-                  />
-                  <CardHeader
-                    width={"90%"}
-                    margintop={"5%"}
-                    marginbottom={"1%"}
-                  >
-                    Departure Date
-                  </CardHeader>
-                  <DateInput
-                    style={{
-                      marginBottom: "3%",
-                      paddingLeft: "2%"
-                    }}
-                    defaultValue={new Date().toISOString().slice(0, -8)}
-                    type="datetime-local"
-                  />
-                </>
+                <DatePicker />
+              }
+              {searchFilters[props.filter].type === "slider" &&
+                <RangeSlider
+                  min={searchFilters[props.filter].min}
+                  max={searchFilters[props.filter].max}
+                  step={searchFilters[props.filter].step}
+                />
               }
             </>
           }
@@ -254,7 +184,7 @@ const SearchCardComponent = () => {
       <CardList>
         {Object.keys(searchFilters).map((filter, index) => <Card key={index} filter={filter} />)}
       </CardList>
-    </SearchCardBody>
+    </SearchCardBody >
   )
 }
 

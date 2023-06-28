@@ -76,37 +76,6 @@ export const ListItem = styled.li`
     color: black;
   }
 `
-export const SelectInput = styled.select`
-  width: 90%;
-  margin: auto;
-  padding: 0;
-  border-radius: 10px;
-  border: 1.5px solid rgba(0, 0, 0, 0.2);
-  background-color: rgba(255, 255, 255, 0.75);
-  color: black;
-  outline: none !important;
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.75);
-    cursor: pointer;
-    color: black;
-  }
-`
-
-export const DateInput = styled.input`
-  width: 90%;
-  margin: auto;
-  padding: 0;
-  border-radius: 10px;
-  border: 1.5px solid rgba(0, 0, 0, 0.2);
-  background-color: rgba(255, 255, 255, 0.75);
-  color: black;
-  outline: none !important;
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.75);
-    cursor: pointer;
-    color: black;
-  }
-`
 
 export const AddButton = styled.input`
   background-color: rgba(0, 0, 0, 0.4);

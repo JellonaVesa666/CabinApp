@@ -8,35 +8,35 @@ import iconLogout from "../images/icon_logout.png";
 import iconUser from "../images/icon_user.png";
 
 export const NavigationBody = styled.div`
-display: flex;
-align-items: flex-start;
-height: 100vh;
-width: 18vw;
-margin: 0;
-padding: 0;
-overflow: hidden;
-@media (max-width: 1200px) {
-  width: 30vw;
-}
-@media (max-width: 600px) {
-  width: 50vw;
-}
+  display: flex;
+  align-items: flex-start;
+  height: 100vh;
+  width: 18vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  @media (max-width: 1200px) {
+    width: 30vw;
+  }
+  @media (max-width: 600px) {
+    width: 50vw;
+  }
 `
 
 export const Navigation = styled.div`
-z-index: 2;
-align-self: center;
-background-color: rgba(0, 0, 0, 0.1);
-height: 90%;
-width: 25%;
-margin-left: 5%;
-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-&.hide {
-  border-radius: 10px 10px 10px 10px;
-}
-&.show {
-  border-radius: 10px 0px 0px 10px;
-}
+  z-index: 2;
+  align-self: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 90%;
+  width: 25%;
+  margin-left: 5%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  &.hide {
+    border-radius: 10px 10px 10px 10px;
+  }
+  &.show {
+    border-radius: 10px 0px 0px 10px;
+  }
 `
 
 export const NavigationExtend = styled.div`
