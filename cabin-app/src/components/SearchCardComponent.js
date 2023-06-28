@@ -70,10 +70,10 @@ const SearchCardComponent = () => {
       type: "slider",
       isActive: false,
       dropdown: true,
-      max: 10,
-      min: 0,
-      maxValue: "10",
-      minValue: "0",
+      maxDefault: 10,
+      minDefault: 0,
+      maxValue: 10,
+      minValue: 0,
       step: 1,
     },
   };
@@ -90,7 +90,7 @@ const SearchCardComponent = () => {
           margintop={"10%"}
         >
           <MinusSign width={"15%"} onClick={() => setFilters(false, "isActive", props.filter)} />
-          <CardHeader width={"70%"} paddingleft={"5%"}>
+          <CardHeader width={"70%"}>
             {props.filter}
           </CardHeader>
           <DropDown width={"15%"} onClick={() => setFilters(!searchFilters[props.filter].dropdown, "dropdown", props.filter)} />
@@ -100,14 +100,14 @@ const SearchCardComponent = () => {
                 <MultiSelect
                   filters={searchFilters}
                   i={props.filter}
-                  setActive={(value, index) => setFilters(value, "selected", props.filter, index)}
+                  changeState={(value, index) => setFilters(value, "selected", props.filter, index)}
                 />
               }
               {searchFilters[props.filter].type === "option" &&
                 <OptionSelect
                   filters={searchFilters}
                   i={props.filter}
-                  setActive={(event) => setFilters(event.target.value, "selected", props.filter)}
+                  changeState={(event) => setFilters(event.target.value, "selected", props.filter)}
                 />
               }
               {searchFilters[props.filter].type === "date" &&
@@ -115,12 +115,12 @@ const SearchCardComponent = () => {
               }
               {searchFilters[props.filter].type === "slider" &&
                 <RangeSlider
-                  min={searchFilters[props.filter].min}
-                  max={searchFilters[props.filter].max}
+                  minDefault={searchFilters[props.filter].minDefault}
+                  maxDefault={searchFilters[props.filter].maxDefault}
                   maxValue={searchFilters[props.filter].maxValue}
                   minValue={searchFilters[props.filter].minValue}
                   step={searchFilters[props.filter].step}
-                  setValue={(value, property) => setFilters(value, property, props.filter)}
+                  changeState={(value, property) => setFilters(value, property, props.filter)}
                 />
               }
             </>
