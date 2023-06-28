@@ -42,7 +42,7 @@ export const Navigation = styled.div`
 export const NavigationExtend = styled.div`
   z-index: 1;
   align-self: center;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0);
   height: 90%;
   border-radius: 0px 10px 10px 0px;
   overflow: hidden;

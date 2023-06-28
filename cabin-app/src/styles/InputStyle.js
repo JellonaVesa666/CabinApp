@@ -83,11 +83,10 @@ export const MultiSelectInput = styled.li`
   margin-top: ${props => (props.margintop)};
   margin-bottom: ${props => (props.marginbottom)};
   border: 1.5px solid rgba(0, 0, 0, 0.2);
-  background-color: rgba(255, 255, 255, 0.75);
   color: rgba(0, 0, 0, 0.6);
   &.selected {
-    background-color: rgba(158, 255, 80, 0.3) !important;
-    color: black;
+    background-color: rgba(0, 0, 0, 0.75) !important;
+    color: white !important;
   }
   &:hover {
     cursor: pointer;

@@ -40,13 +40,13 @@ export const CardList = styled.ul`
 export const CardBody = styled.li`
   display: flex;
   border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.2);
   color: black;
   margin: 0;
   padding: 0;
   padding-top: 4px;
   padding-bottom: 4px;
-  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
   margin-top: ${props => (props.margintop)};
   &.dropdownActive {
     flex-flow: row wrap;

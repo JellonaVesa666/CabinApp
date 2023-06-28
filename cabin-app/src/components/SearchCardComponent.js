@@ -131,7 +131,7 @@ const SearchCardComponent = () => {
           className={searchFilters[props.filter].dropdown ? "dropdownActive" : ""}
           margintop={"10%"}
         >
-          <div style={{ backgroundColor: "rgba(0, 0, 0, 0.2)", color: "whitesmoke", boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)", width: "100%", height: "100%", margin: "10px", padding: 0, display: "flex" }}>
+          <div style={{ width: "100%", height: "100%", margin: "10px", padding: 0, display: "flex" }}>
             <MinusSign width={"15%"} onClick={() => setFilters(false, "isActive", props.filter)} />
             <CardHeader width={"70%"} fontweight={500} rem={0.95}>
               {props.filter}

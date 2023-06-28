@@ -11,7 +11,7 @@ export default function NavigationComponent() {
       <NavigationBody>
         <Navigation className={isActive ? "hide" : "show"}>
           <div style={{ height: "10%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-            <NavigationLink className="user" onClick={() => setIsActive("")} />
+            <NavigationLink className="user" onClick={() => setIsActive("")}/>
           </div>
           <div style={{ height: "80%", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
             <NavigationLink id="reservations" className={isActive === "reservations" ? "reservations selected" : "reservations"} onClick={(event) => setIsActive(event.target.id)} />
@@ -25,7 +25,7 @@ export default function NavigationComponent() {
           </div>
         </Navigation>
         <NavigationExtend className={isActive === "" ? "hide" : "show"}>
-          <SearchCardComponent />
+          <SearchCardComponent/>
         </NavigationExtend>
       </NavigationBody>
     </>
