@@ -9,9 +9,6 @@ export const SearchCardBody = styled.div`
 `
 
 export const Container = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
   margin-top: ${props => (props.margintop)};
   margin-left: ${props => (props.marginLeft)};
 `
@@ -24,6 +21,8 @@ export const CardHeader = styled.p`
   padding-left: ${props => (props.paddingleft)};
   width: ${props => (props.width)};
   text-transform: capitalize;
+  font-weight: ${props => (props.fontweight)};
+  font-size: ${props => (`${props.rem}rem`)};
   &.isActive {
     background-color: rgba(0, 0, 0, 0.25);
   }
@@ -47,6 +46,7 @@ export const CardBody = styled.li`
   padding: 0;
   padding-top: 4px;
   padding-bottom: 4px;
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
   margin-top: ${props => (props.margintop)};
   &.dropdownActive {
     flex-flow: row wrap;

@@ -28,7 +28,7 @@ export const Navigation = styled.div`
   align-self: center;
   background-color: rgba(0, 0, 0, 0.1);
   height: 90%;
-  width: 25%;
+  width: 20%;
   margin-left: 5%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   &.hide {
@@ -44,15 +44,34 @@ export const NavigationExtend = styled.div`
   align-self: center;
   background-color: rgba(0, 0, 0, 0.2);
   height: 90%;
-  margin-right: 5%;
   border-radius: 0px 10px 10px 0px;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  scrollbar-gutter: stable;
+  &:hover {
+    overflow-y: auto;
+  }
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 100px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #72b3d1;
+    border-radius: 100px;
+  }
   &.hide {
     width: 0%;
     transition: 0.1s ease-in-out;
   }
   &.show {
     transition: 0.1s ease-in-out;
-    width: 65%;
+    margin-right: 5%;
+    padding-left: 10px;
+    width: 70%;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
   }
 `

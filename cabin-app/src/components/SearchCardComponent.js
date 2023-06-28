@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "./ModalComponent"
-import { RangeSlider, DatePicker, OptionSelect, MultiSelect } from "./InputComponents";
+import { RangeSlider, DatePicker, OptionSelect, MultiSelect, CheckBox } from "./InputComponents";
 import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, MinusSign, DropDown } from "../styles/SearchCardStyle";
 const SearchCardComponent = () => {
 
@@ -76,6 +76,48 @@ const SearchCardComponent = () => {
       minValue: 0,
       step: 1,
     },
+    checkbox: {
+      type: "checkbox",
+      isActive: false,
+      dropdown: true,
+      0: {
+        value: "hirsi",
+        selected: false,
+      },
+      1: {
+        value: "hirsihuvila",
+        selected: false,
+      },
+      2: {
+        value: "huvila",
+        selected: false,
+      },
+      3: {
+        value: "mökki",
+        selected: false,
+      },
+    },
+    checkbox2: {
+      type: "checkbox",
+      isActive: false,
+      dropdown: true,
+      0: {
+        value: "hirsi",
+        selected: false,
+      },
+      1: {
+        value: "hirsihuvila",
+        selected: false,
+      },
+      2: {
+        value: "huvila",
+        selected: false,
+      },
+      3: {
+        value: "mökki",
+        selected: false,
+      },
+    },
   };
 
   const [showModal, setShowModal] = useState(false);
@@ -89,11 +131,13 @@ const SearchCardComponent = () => {
           className={searchFilters[props.filter].dropdown ? "dropdownActive" : ""}
           margintop={"10%"}
         >
-          <MinusSign width={"15%"} onClick={() => setFilters(false, "isActive", props.filter)} />
-          <CardHeader width={"70%"}>
-            {props.filter}
-          </CardHeader>
-          <DropDown width={"15%"} onClick={() => setFilters(!searchFilters[props.filter].dropdown, "dropdown", props.filter)} />
+          <div style={{ backgroundColor: "rgba(0, 0, 0, 0.2)", color: "whitesmoke", boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)", width: "100%", height: "100%", margin: "10px", padding: 0, display: "flex" }}>
+            <MinusSign width={"15%"} onClick={() => setFilters(false, "isActive", props.filter)} />
+            <CardHeader width={"70%"} fontweight={500} rem={0.95}>
+              {props.filter}
+            </CardHeader>
+            <DropDown width={"15%"} onClick={() => setFilters(!searchFilters[props.filter].dropdown, "dropdown", props.filter)} />
+          </div>
           {searchFilters[props.filter].dropdown &&
             <>
               {searchFilters[props.filter].type === "multiSelect" &&
@@ -121,6 +165,12 @@ const SearchCardComponent = () => {
                   minValue={searchFilters[props.filter].minValue}
                   step={searchFilters[props.filter].step}
                   changeState={(value, property) => setFilters(value, property, props.filter)}
+                />
+              }
+              {searchFilters[props.filter].type === "checkbox" &&
+                <CheckBox
+                  filters={searchFilters}
+                  i={props.filter}
                 />
               }
             </>

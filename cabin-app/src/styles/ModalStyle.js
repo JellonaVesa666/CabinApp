@@ -32,15 +32,14 @@ export const ModalHeader = styled.p`
   width: ${props => (props.width)};
   border-radius: 20px;
   border: 1.5px solid rgba(0, 0, 0, 0.2);
-  background-color: rgba(255, 255, 255, 0.5);
-  color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.75);
+  color: rgba(0, 0, 0, 0.6);
   text-transform: capitalize;
   &.isActive {
-    background-color: rgba(80, 255, 25, 0.3) !important;
+    background-color: rgba(158, 255, 80, 0.3) !important;
     color: black;
   }
   &:hover {
-    background-color: rgba(255, 255, 255, 0.75);
     cursor: pointer;
     color: black;
   }

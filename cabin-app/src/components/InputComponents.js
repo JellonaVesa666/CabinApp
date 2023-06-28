@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { CardHeader } from "../styles/SearchCardStyle";
 import { Slider, RangeInput, RangeValue, SliderBackground, DateInput, OptionItem, MultiSelectInput } from "../styles/InputStyle"
 
@@ -117,7 +117,6 @@ export const MultiSelect = ({ filters, i, changeState }) => {
     <ul style={{ width: "100%", listStyleType: "none", margin: "0", padding: "0" }}>
       {
         Object.keys(filters[i]).map(index => {
-          console.log(filters[i][index].selected)
           if (typeof index === "string" && !isNaN(index)) {
             return (
               <MultiSelectInput
@@ -134,5 +133,26 @@ export const MultiSelect = ({ filters, i, changeState }) => {
           }
         })}
     </ul>
+  )
+}
+
+export const CheckBox = ({ filters, i }) => {
+  return (
+    <div style={{ width: "90%", margin: "auto", display: "flex", flexDirection: "column", marginTop: "3%", marginBottom: "3%"}}>
+      {
+        Object.keys(filters[i]).map(index => {
+          if (typeof index === "string" && !isNaN(index)) {
+            return (
+              <div style={{ display: "flex", marginTop: "3%", marginBottom: "3%" }}>
+                <input
+                  style={{ width: "15px" }}
+                  type="checkbox"
+                />
+                <label style={{ paddingLeft: "10px" }}>{filters[i][index].value}</label>
+              </div>
+            )
+          }
+        })}
+    </div>
   )
 }
