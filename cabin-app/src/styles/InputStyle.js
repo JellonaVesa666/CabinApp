@@ -85,7 +85,7 @@ export const MultiSelectInput = styled.li`
   border: 1.5px solid rgba(0, 0, 0, 0.2);
   color: rgba(0, 0, 0, 0.6);
   &.selected {
-    background-color: rgba(0, 0, 0, 0.75) !important;
+    background-color: #1c9360 !important;
     color: white !important;
   }
   &:hover {

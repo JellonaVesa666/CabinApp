@@ -5,7 +5,7 @@ export const ModalContent = styled.section`
   top: 0;
   left: 0;
   border-radius: 50px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   border-radius: 20px;
   width: 12.5%;
   height: auto;
@@ -35,7 +35,7 @@ export const ModalHeader = styled.p`
   color: rgba(0, 0, 0, 0.6);
   text-transform: capitalize;
   &.isActive {
-    background-color: rgba(0, 0, 0, 0.75) !important;
+    background-color: #1c9360 !important;
     color: white !important;
   }
   &:hover {

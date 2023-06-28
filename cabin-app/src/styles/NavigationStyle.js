@@ -26,23 +26,22 @@ export const NavigationBody = styled.div`
 export const Navigation = styled.div`
   z-index: 2;
   align-self: center;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #1e1e1e;
   height: 90%;
   width: 20%;
   margin-left: 5%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   &.hide {
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 0px 0px 10px;
   }
   &.show {
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px 10px 10px 10px;
   }
 `
 
 export const NavigationExtend = styled.div`
   z-index: 1;
   align-self: center;
-  background-color: rgba(0, 0, 0, 0);
   height: 90%;
   border-radius: 0px 10px 10px 0px;
   overflow: hidden;
@@ -126,7 +125,7 @@ export const NavigationLink = styled.div`
     }
   }
   &.selected {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.6);
     border-radius: 10px;
     padding: 0px 35px 0px 35px;

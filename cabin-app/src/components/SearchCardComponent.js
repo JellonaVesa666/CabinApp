@@ -200,7 +200,7 @@ const SearchCardComponent = () => {
 
   const Status = (props) => {
     return (
-      <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
+      <ul style={{ listStyleType: "none", margin: "0", padding: "0"}}>
         <li>
           <span style={{ marginLeft: "10%" }}>
             {statusFilters[props.status].name}
