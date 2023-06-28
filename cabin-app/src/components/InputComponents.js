@@ -4,31 +4,38 @@ import { Slider, RangeInput, RangeValue, SliderBackground, DateInput, OptionItem
 
 
 export const RangeSlider = (props) => {
-  const [max, setMax] = useState(10);
-  const [min, setMin] = useState(0);
-
   return (
     <Slider>
       <RangeInput
         type="range"
         min={props.min}
         max={props.max}
-        value={min}
+        defaultValue={props.minValue}
         step={props.step}
-        onChange={(event) => setMin(Math.max(props.min, Math.min(event.target.value, max)))}
+        onMouseUp={(event) => props.setValue(Math.max(props.min, Math.min(event.target.value, props.maxValue)), "minValue")}
       />
       <RangeInput
         type="range"
         min={props.min}
         max={props.max}
-        value={max}
+        defaultValue={props.maxValue}
         step={props.step}
-        onChange={(event) => setMax(Math.max(min, Math.min(event.target.value, props.max)))}
+        onMouseUp={(event) => props.setValue(Math.max(props.minValue, Math.min(event.target.value, props.max)), "maxValue")}
       />
       <SliderBackground />
       <RangeValue>
-        <input type="number" value={min} style={{ width: "25%", marginRight: "25%", marginTop: "5%", borderRadius: "10px" }} />
-        <input type="number" value={max} style={{ width: "25%", marginLeft: "25%", marginTop: "5%", borderRadius: "10px" }} />
+        <input
+          type="number"
+          defaultValue={props.minValue}
+          style={{ width: "25%", marginRight: "25%", marginTop: "5%", borderRadius: "10px" }}
+          onChange={(event) => props.setValue(Math.max(props.min, Math.min(event.target.value, props.maxValue)), "minValue")}
+        />
+        <input
+          type="number"
+          defaultValue={props.maxValue}
+          style={{ width: "25%", marginLeft: "25%", marginTop: "5%", borderRadius: "10px" }}
+          onChange={(event) => props.setValue(Math.max(props.minValue, Math.min(event.target.value, props.max)), "maxValue")}
+        />
       </RangeValue>
     </Slider>
   );

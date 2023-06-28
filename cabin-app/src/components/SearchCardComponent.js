@@ -72,6 +72,8 @@ const SearchCardComponent = () => {
       dropdown: true,
       max: 10,
       min: 0,
+      maxValue: "10",
+      minValue: "0",
       step: 1,
     },
   };
@@ -115,7 +117,10 @@ const SearchCardComponent = () => {
                 <RangeSlider
                   min={searchFilters[props.filter].min}
                   max={searchFilters[props.filter].max}
+                  maxValue={searchFilters[props.filter].maxValue}
+                  minValue={searchFilters[props.filter].minValue}
                   step={searchFilters[props.filter].step}
+                  setValue={(value, property) => setFilters(value, property, props.filter)}
                 />
               }
             </>
