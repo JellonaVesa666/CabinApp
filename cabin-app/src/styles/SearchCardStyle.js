@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import signMinus from "../images/sign_minus.png";
 import iconDropdown from "../images/icon_dropdown.png";
+import { colors } from './Colors';
 
 export const SearchCardBody = styled.div`
   width: 85%;
@@ -78,7 +79,7 @@ export const ListItem = styled.li`
 `
 
 export const AddButton = styled.input`
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: ${colors.grey};
   color: whitesmoke;
   width: 100%;
   height: 25px;

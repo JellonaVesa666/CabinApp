@@ -1,6 +1,6 @@
 import { ModalContent, ModalHeader, ModalLinkH4 } from "../styles/ModalStyle";
 
-const Modal = ({ handleClose, setActive, show, options }) => {
+export const Modal = ({ handleClose, setActive, show, options }) => {
   const showHideClassName = show ? "show" : "hide";
 
   const Filter = (props) => {
@@ -38,5 +38,3 @@ const Modal = ({ handleClose, setActive, show, options }) => {
     </ModalContent>
   );
 };
-
-export default Modal;

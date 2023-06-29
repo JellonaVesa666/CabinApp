@@ -6,6 +6,7 @@ import iconSettings from "../images/icon_settings.png";
 import iconMap from "../images/icon_map.png";
 import iconLogout from "../images/icon_logout.png";
 import iconUser from "../images/icon_user.png";
+import {colors} from "./Colors";
 
 export const NavigationBody = styled.div`
   display: flex;
@@ -26,7 +27,7 @@ export const NavigationBody = styled.div`
 export const Navigation = styled.div`
   z-index: 2;
   align-self: center;
-  background-color: #1e1e1e;
+  background-color: ${colors.navy};
   height: 90%;
   width: 20%;
   margin-left: 5%;

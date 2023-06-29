@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {colors} from "./Colors";
 
 export const ModalContent = styled.section`
   position: fixed;
@@ -31,11 +32,12 @@ export const ModalHeader = styled.p`
   padding-left: ${props => (props.paddingleft)};
   width: ${props => (props.width)};
   border-radius: 20px;
-  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  border: 1.5px solid ${colors.lightGrey};
   color: rgba(0, 0, 0, 0.6);
   text-transform: capitalize;
   &.isActive {
-    background-color: #1c9360 !important;
+    background-color: ${colors.green} !important;
+    border: 1.5px solid ${colors.green};
     color: white !important;
   }
   &:hover {

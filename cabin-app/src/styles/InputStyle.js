@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {colors} from "./Colors";
 
 // RangeSlider
 export const Slider = styled.div`
@@ -85,7 +86,7 @@ export const MultiSelectInput = styled.li`
   border: 1.5px solid rgba(0, 0, 0, 0.2);
   color: rgba(0, 0, 0, 0.6);
   &.selected {
-    background-color: #1c9360 !important;
+    background-color: ${colors.green} !important;
     color: white !important;
   }
   &:hover {
