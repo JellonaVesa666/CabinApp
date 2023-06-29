@@ -136,17 +136,19 @@ export const MultiSelect = ({ filters, i, changeState }) => {
   )
 }
 
-export const CheckBox = ({ filters, i }) => {
+export const CheckBox = ({ filters, i, changeState, multi }) => {
   return (
-    <div style={{ width: "90%", margin: "auto", display: "flex", flexDirection: "column", marginTop: "3%", marginBottom: "3%"}}>
+    <div style={{ width: "90%", margin: "auto", display: "flex", flexDirection: "column", marginTop: "3%", marginBottom: "3%" }}>
       {
         Object.keys(filters[i]).map(index => {
           if (typeof index === "string" && !isNaN(index)) {
             return (
-              <div style={{ display: "flex", marginTop: "3%", marginBottom: "3%" }}>
+              <div key={index} style={{ display: "flex", marginTop: "3%", marginBottom: "3%" }}>
                 <input
                   style={{ width: "15px" }}
                   type="checkbox"
+                  defaultChecked={multi ? filters[i][index].selected : filters[i].selected === index}
+                  onClick={multi ?  () => changeState(filters[i][index].selected, index) : () => changeState(index)}
                 />
                 <label style={{ paddingLeft: "10px" }}>{filters[i][index].value}</label>
               </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
+import { ChangeState } from "../helpers/HelperFunctions";
 import { RangeSlider, DatePicker, OptionSelect, MultiSelect, CheckBox } from "./InputComponents";
 import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, MinusSign, DropDown } from "../styles/SearchCardStyle";
 const SearchCardComponent = () => {
@@ -76,8 +77,8 @@ const SearchCardComponent = () => {
       minValue: 0,
       step: 1,
     },
-    checkbox: {
-      type: "checkbox",
+    checkboxMulti: {
+      type: "checkboxMulti",
       isActive: false,
       dropdown: true,
       0: {
@@ -86,7 +87,7 @@ const SearchCardComponent = () => {
       },
       1: {
         value: "hirsihuvila",
-        selected: false,
+        selected: true,
       },
       2: {
         value: "huvila",
@@ -97,25 +98,22 @@ const SearchCardComponent = () => {
         selected: false,
       },
     },
-    checkbox2: {
+    checkboxSingle: {
       type: "checkbox",
       isActive: false,
       dropdown: true,
+      selected: false,
       0: {
         value: "hirsi",
-        selected: false,
       },
       1: {
         value: "hirsihuvila",
-        selected: false,
       },
       2: {
         value: "huvila",
-        selected: false,
       },
       3: {
         value: "mökki",
-        selected: false,
       },
     },
   };
@@ -132,11 +130,21 @@ const SearchCardComponent = () => {
           margintop={"10%"}
         >
           <div style={{ width: "100%", height: "100%", margin: "10px", padding: 0, display: "flex" }}>
-            <MinusSign width={"15%"} onClick={() => setFilters(false, "isActive", props.filter)} />
-            <CardHeader width={"70%"} fontweight={500} rem={0.95}>
+            <MinusSign
+              width={"15%"}
+              onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", props.filter)}
+            />
+            <CardHeader
+              width={"70%"}
+              weight={500}
+              size={0.95}
+            >
               {props.filter}
             </CardHeader>
-            <DropDown width={"15%"} onClick={() => setFilters(!searchFilters[props.filter].dropdown, "dropdown", props.filter)} />
+            <DropDown
+              width={"15%"}
+              onClick={() => ChangeState(setSearchFilters, searchFilters, !searchFilters[props.filter].dropdown, "dropdown", props.filter)}
+            />
           </div>
           {searchFilters[props.filter].dropdown &&
             <>
@@ -144,14 +152,14 @@ const SearchCardComponent = () => {
                 <MultiSelect
                   filters={searchFilters}
                   i={props.filter}
-                  changeState={(value, index) => setFilters(value, "selected", props.filter, index)}
+                  changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "selected", props.filter, index)}
                 />
               }
               {searchFilters[props.filter].type === "option" &&
                 <OptionSelect
                   filters={searchFilters}
                   i={props.filter}
-                  changeState={(event) => setFilters(event.target.value, "selected", props.filter)}
+                  changeState={(event) => ChangeState(setSearchFilters, searchFilters, event.target.value, "selected", props.filter)}
                 />
               }
               {searchFilters[props.filter].type === "date" &&
@@ -164,38 +172,36 @@ const SearchCardComponent = () => {
                   maxValue={searchFilters[props.filter].maxValue}
                   minValue={searchFilters[props.filter].minValue}
                   step={searchFilters[props.filter].step}
-                  changeState={(value, property) => setFilters(value, property, props.filter)}
+                  changeState={(value, property) => ChangeState(setSearchFilters, searchFilters, value, property, props.filter)}
                 />
               }
-              {searchFilters[props.filter].type === "checkbox" &&
-                <CheckBox
-                  filters={searchFilters}
-                  i={props.filter}
-                />
-              }
+
+              {(() => {
+                if (searchFilters[props.filter].type.split(/(?=[A-Z])/)[0] === "checkbox") {
+                  if (searchFilters[props.filter].type.split(/(?=[A-Z])/)[1] === "Multi") {
+                    return (
+                      <CheckBox
+                        filters={searchFilters}
+                        i={props.filter}
+                        multi={true}
+                        changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "selected", props.filter, index)}
+                      />
+                    )
+                  } else {
+                    return (
+                      <CheckBox
+                        filters={searchFilters}
+                        i={props.filter}
+                        changeState={(index) => ChangeState(setSearchFilters, searchFilters, index, "selected", props.filter)}
+                      />
+                    )
+                  }
+                }
+              })()}
             </>
           }
         </CardBody >
       )
-  }
-
-  const setFilters = (newValue, property, index1, index2) => {
-    if (index2 === null || index2 === undefined)
-      setSearchFilters({
-        ...searchFilters,
-        [index1]: { ...searchFilters[index1], [property]: newValue },
-      });
-    else
-      setSearchFilters({
-        ...searchFilters,
-        [index1]: {
-          ...searchFilters[index1],
-          [index2]: {
-            ...searchFilters[index1][index2],
-            [property]: !newValue
-          },
-        },
-      });
   }
 
   const Status = (props) => {
@@ -215,7 +221,7 @@ const SearchCardComponent = () => {
 
   return (
     <SearchCardBody >
-      <Modal show={showModal} options={searchFilters} handleClose={() => setShowModal(false)} setActive={(index) => setFilters(!searchFilters[index].isActive, "isActive", index)}>
+      <Modal show={showModal} options={searchFilters} handleClose={() => setShowModal(false)} setActive={(index) => ChangeState(setSearchFilters, searchFilters, !searchFilters[index].isActive, "isActive", index)}>
         <p>Modal</p>
       </Modal>
       <Container>

@@ -22,8 +22,8 @@ export const CardHeader = styled.p`
   padding-left: ${props => (props.paddingleft)};
   width: ${props => (props.width)};
   text-transform: capitalize;
-  font-weight: ${props => (props.fontweight)};
-  font-size: ${props => (`${props.rem}rem`)};
+  font-weight: ${props => (props.weight)};
+  font-size: ${props => (`${props.size}rem`)};
   &.isActive {
     background-color: rgba(0, 0, 0, 0.25);
   }
