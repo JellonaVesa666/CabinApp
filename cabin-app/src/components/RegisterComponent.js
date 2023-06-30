@@ -14,8 +14,10 @@ export default function RegisterComponent(props) {
   const [showPassword1, setHidePassword1] = useState(false);
   const [showPassword2, setHidePassword2] = useState(false);
 
+  // Initialize Form Data
   const [formData, setFormData] = useState(registerDO);
-  // Initialize refrences
+
+  // Initialize Refrences
   const ref = {};
   Object.keys(formData).map(key => {
     ref[key] = createRef();
@@ -56,62 +58,59 @@ export default function RegisterComponent(props) {
 
 
 
-/*   export const ChangeState = (State, initValues, newValue, property, index1, index2) => {
-    if (index2 === null || index2 === undefined)
-      State( formData => ({{
-        ...initValues,
-        [index1]: { ...initValues[index1], [property]: newValue },
-      });
-    else
-      State({
-        ...initValues,
-        [index1]: {
-          ...initValues[index1],
-          [index2]: {
-            ...initValues[index1][index2],
-            [property]: !newValue
+  /*   export const ChangeState = (State, initValues, newValue, property, index1, index2) => {
+      if (index2 === null || index2 === undefined)
+        State( formData => ({{
+          ...initValues,
+          [index1]: { ...initValues[index1], [property]: newValue },
+        });
+      else
+        State({
+          ...initValues,
+          [index1]: {
+            ...initValues[index1],
+            [index2]: {
+              ...initValues[index1][index2],
+              [property]: !newValue
+            },
           },
-        },
-      });
-    console.log(initValues);
-  }
- */
+        });
+      console.log(initValues);
+    }
+   */
 
 
   const validateForm = () => {
 
-
+    // Set Form Data values from refrences
     Object.keys(formData).map(key => {
-      //console.log(ref[key].current.value);
       ChangeState(setFormData, formData, ref[key].current.value, "value", key);
     });
-
-    console.log(ref);
 
     let isValid = true;
 
     // Reset errors before running check.
-    /*     Object.keys(formData).forEach(key => {
-          if ([key].errors !== "") {
-            setFormData(prevData => ({
-              ...prevData, [key]: { ...prevData[key], errors: "" }
-            }));
-          }
-        }); */
+    /* Object.keys(formData).forEach(key => {
+      if ([key].errors !== "") {
+        setFormData(prevData => ({
+          ...prevData, [key]: { ...prevData[key], errors: "" }
+        }));
+      }
+    }); */
 
     //Name
-    /*     if (formData.fullName.value.length === 0) {
-          SetErrors("fullName", "Cannot be empty");
-          isValid = false;
-        }
-        else {
-          const fullNameRegex = /^\w+\s\w+$/gm;
-    
-          if (!fullNameRegex.test(formData.fullName.value)) {
-            SetErrors("fullName", "Only letters are accepted");
-            isValid = false;
-          }
-        } */
+    if (formData.fullName.value.length === 0) {
+      SetErrors("fullName", "Cannot be empty");
+      isValid = false;
+    }
+    else {
+      const fullNameRegex = /^\w+\s\w+$/gm;
+
+      if (!fullNameRegex.test(formData.fullName.value)) {
+        SetErrors("fullName", "Wrong format ! make sure to type whole name,");
+        isValid = false;
+      }
+    }
     /* //Username
     if (formData.username.value.length === 0) {
       SetErrors("username", "Cannot be empty");
@@ -231,8 +230,6 @@ export default function RegisterComponent(props) {
         else
           return true; */
   }
-
-  console.log(formData);
 
   const Card = (props) => {
     var header = props.filter.split(/(?=[A-Z])(?=[A-Z])/);
