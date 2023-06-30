@@ -114,19 +114,6 @@ export const OptionItem = styled.select`
   }
 `
 
-/* export const Select = styled.select`
-  padding: 0px 20px 0px 20px;
-  height: 40px;
-  width: 100%;
-  border: 0.1rem solid rgba(0, 0, 0, 0.2);
-  border-radius: 40px;
-  background: rgba(255, 255, 255, 0.9);
-  &.invalid {
-    border: 0.1rem solid transparent !important;
-    outline: 0.15rem solid rgba(200, 20, 80, 0.4) !important;
-  }
-` */
-
 // Text Input
 export const TextInput = styled.input`
   width: ${props => (props.width)};

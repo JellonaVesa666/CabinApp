@@ -417,8 +417,6 @@ export default function RegisterComponent(props) {
     }
   }
 
-  console.log(formData)
-
   return (
     <RegisterBody show={props.show} className="col-12 col-md-8 col-lg-6 col-xl-5 shadow-lg">
       <div className="p-5" style={{ position: "relative" }}>
