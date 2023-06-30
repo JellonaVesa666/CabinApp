@@ -159,11 +159,12 @@ export const CheckBox = ({ filters, i, changeState, multi }) => {
   )
 }
 
-
-export const TextField = ({ filters, i, changeState }) => {
+export const TextField = ({ filters, i, width, height, changeState }) => {
   return (
     <>
       <TextInput
+        width={width}
+        height={height}
         className={filters[i].errors.length > 0 ? "invalid" : ""}
         type={filters[i].type}
         defaultValue={filters[i].value}

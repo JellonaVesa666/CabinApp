@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {colors} from "./Colors";
+import { colors } from "./Colors";
 
 // Range Slider
 export const Slider = styled.div`
@@ -129,13 +129,13 @@ export const OptionItem = styled.select`
 
 // Text Input
 export const TextInput = styled.input`
+  width: ${props => (props.width)};
+  height: ${props => (props.height)};
   padding: 0px 20px 0px 20px;
-  height: 40px; 
-  width: 100%;
   border: 0.1rem solid ${colors.lightGrey};
   border-radius: 40px;
   background: rgba(255, 255, 255, 0.9);
-  margin-bottom: 0.75rem;
+  margin-bottom: 12px;
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }

@@ -272,31 +272,73 @@ export default function RegisterComponent(props) {
 
 
   const Card = (props) => {
-    if (formData[props.filter].type === "text") {
-      var header = props.filter.split(/(?=[A-Z])(?=[A-Z])/);
-      return (
-        <>
-          <CardHeader
-            paddingleft={"2%"}
-            size={"0.95"}
-            weight={400}
-          >
-            {header[0]} {header[1]} {header[2]}
-          </CardHeader>
-          <TextField
-            filters={formData}
-            i={props.filter}
-            changeState={event => ChangeState(setFormData, formData, event.target.value, "value", props.filter)}
-          />
-        </>
-      )
+    var header = props.filter.split(/(?=[A-Z])(?=[A-Z])/);
+    if (formData[props.filter].type === "text" || formData[props.filter].type === "email") {
+      if (props.filter === "address") {
+        return (
+          <div style={{ width: "70%", display: "inline-block", padding: "4px", float: "left" }}>
+            <CardHeader
+              paddingleft={"2%"}
+              size={0.95}
+              weight={400}
+            >
+              {header[0]} {header[1]} {header[2]}
+            </CardHeader>
+            <TextField
+              width={"100%"}
+              height={"40px"}
+              filters={formData}
+              i={props.filter}
+            />
+          </div>
+        )
+      }
+      else if (props.filter === "postalCode") {
+        return (
+          <div style={{ width: "30%", display: "inline-block", padding: "4px", float: "left" }}>
+            <CardHeader
+              paddingleft={"2%"}
+              size={0.95}
+              weight={400}
+            >
+              {header[0]} {header[1]} {header[2]}
+            </CardHeader>
+            <TextField
+              width={"100%"}
+              height={"40px"}
+              filters={formData}
+              i={props.filter}
+            />
+          </div>
+        )
+      }
+      else {
+        return (
+          <>
+            <CardHeader
+              paddingleft={"2%"}
+              size={0.95}
+              weight={400}
+            >
+              {header[0]} {header[1]} {header[2]}
+            </CardHeader>
+            <TextField
+              width={"100%"}
+              height={"40px"}
+              filters={formData}
+              i={props.filter}
+              changeState={event => ChangeState(setFormData, formData, event.target.value, "value", props.filter)}
+            />
+          </>
+        )
+      }
     }
     if (formData[props.filter].type === "option") {
       return (
         <>
           <CardHeader
             paddingleft={"2%"}
-            size={"0.95"}
+            size={0.95}
             weight={400}
           >
             {formData[props.filter].name ? formData[props.filter].name : props.filter}
@@ -312,6 +354,66 @@ export default function RegisterComponent(props) {
           />
         </>
       )
+    }
+    if (formData[props.filter].type === "password") {
+      return (
+        <div style={{ width: "50%", display: "inline-block", padding: "4px", float: "left" }}>
+          <CardHeader
+            paddingleft={"2%"}
+            size={0.95}
+            weight={400}
+          >
+            {header[0]} {header[1]} {header[2]}
+          </CardHeader>
+          <TextField
+            width={"100%"}
+            height={"40px"}
+            filters={formData}
+            i={props.filter}
+          />
+        </div>
+      )
+    }
+    if (formData[props.filter].type === "tel") {
+      if (props.filter === "countryCode") {
+        return (
+          <div style={{ width: "20%", display: "inline-block", padding: "4px", float: "left" }}>
+            <CardHeader
+              paddingleft={"2%"}
+              size={0.95}
+              weight={400}
+            >
+              Phone
+            </CardHeader>
+            <TextField
+              width={"100%"}
+              height={"40px"}
+              filters={formData}
+              i={props.filter}
+            />
+          </div>
+        )
+      }
+      else if (props.filter === "phone") {
+        return (
+          <div style={{ width: "80%", display: "inline-block", padding: "4px", float: "left" }}>
+            <CardHeader
+              paddingleft={"2%"}
+              size={0.95}
+              weight={400}
+              style={{ opacity: 0 }}
+            >
+              {header[0]} {header[1]} {header[2]}
+            </CardHeader>
+            <TextField
+              width={"100%"}
+              height={"40px"}
+              filters={formData}
+              i={props.filter}
+            />
+          </div>
+        )
+      }
     }
   }
 

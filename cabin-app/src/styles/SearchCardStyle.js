@@ -15,6 +15,7 @@ export const Container = styled.div`
 `
 
 export const CardHeader = styled.p`
+  display: flex;
   margin: auto;
   padding: 0;
   margin-top: ${props => (props.margintop)};
