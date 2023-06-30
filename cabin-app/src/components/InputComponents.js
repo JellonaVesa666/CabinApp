@@ -171,7 +171,7 @@ export const CheckBox = forwardRef(function CheckBox(props, ref) {
 
 export const TextField = forwardRef(function TextField(props, ref) {
   const { ...otherProps } = props;
-  const [val, setVal] = useState();
+  const [val, setVal] = useState(props.data[props.i].value);
   return (
     <TextInput
       width={props.width}

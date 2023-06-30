@@ -1,51 +1,79 @@
 export const registerDO = {
-  address: {
+  fullName: {
+    type: "text",
     value: "",
     errors: "",
   },
-  countryCode: {
-    value: "+358",
+  username: {
+    type: "text",
+    value: "",
     errors: "",
   },
   email: {
+    type: "email",
     value: "",
     errors: "",
   },
   emailConfirm: {
-    value: "",
-    errors: "",
-  },
-  fullName: {
+    type: "email",
     value: "",
     errors: "",
   },
   password: {
+    type: "password",
     value: "",
     errors: "",
   },
   passwordConfirm: {
+    type: "password",
     value: "",
     errors: "",
   },
+  countryCode: {
+    type: "tel",
+    value: "+358",
+    errors: "",
+  },
   phone: {
+    type: "tel",
+    value: "",
+    errors: "",
+  },
+  address: {
+    type: "text",
     value: "",
     errors: "",
   },
   postalCode: {
+    type: "text",
     value: "",
     errors: "",
   },
   role: {
-    value: 0,
+    type: "option",
+    selected: "",
     errors: "",
+    0: {
+      value: "Admin",
+    },
+    1: {
+      value: "Manager",
+    },
+    2: {
+      value: "Supervisor",
+    },
+    3: {
+      value: "Worker",
+    },
   },
   termsOfService: {
-    value: false,
-    errors: "",
-  },
-  username: {
-    value: "",
-    errors: "",
+    type: "checkbox",
+    isActive: false,
+    dropdown: true,
+    selected: false,
+    0: {
+      value: "I agree to the terms and conditions of the Service",
+    },
   },
 };
 

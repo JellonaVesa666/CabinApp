@@ -11,92 +11,13 @@ import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 
 export default function RegisterComponent(props) {
 
-  const TestData = {
-    fullName: {
-      type: "text",
-      value: "",
-      errors: "",
-    },
-    username: {
-      type: "text",
-      value: "",
-      errors: "",
-    },
-    email: {
-      type: "email",
-      value: "",
-      errors: "",
-    },
-    emailConfirm: {
-      type: "email",
-      value: "",
-      errors: "",
-    },
-    password: {
-      type: "password",
-      value: "",
-      errors: "",
-    },
-    passwordConfirm: {
-      type: "password",
-      value: "",
-      errors: "",
-    },
-    countryCode: {
-      type: "tel",
-      value: "+358",
-      errors: "",
-    },
-    phone: {
-      type: "tel",
-      value: "",
-      errors: "",
-    },
-    address: {
-      type: "text",
-      value: "",
-      errors: "",
-    },
-    postalCode: {
-      type: "text",
-      value: "",
-      errors: "",
-    },
-    role: {
-      type: "option",
-      selected: "",
-      errors: "",
-      0: {
-        value: "Admin",
-      },
-      1: {
-        value: "Manager",
-      },
-      2: {
-        value: "Supervisor",
-      },
-      3: {
-        value: "Worker",
-      },
-    },
-    termsOfService: {
-      type: "checkbox",
-      isActive: false,
-      dropdown: true,
-      selected: false,
-      0: {
-        value: "I agree to the terms and conditions of the Service",
-      },
-    },
-  };
-
   const [showPassword1, setHidePassword1] = useState(false);
   const [showPassword2, setHidePassword2] = useState(false);
 
-  const [formData, setFormData] = useState(TestData/* registerDO */);
+  const [formData, setFormData] = useState(registerDO);
   // Initialize refrences
   const ref = {};
-  Object.keys(TestData).map(key => {
+  Object.keys(formData).map(key => {
     ref[key] = createRef();
   });
 
@@ -133,32 +54,65 @@ export default function RegisterComponent(props) {
     }));
   }
 
+
+
+/*   export const ChangeState = (State, initValues, newValue, property, index1, index2) => {
+    if (index2 === null || index2 === undefined)
+      State( formData => ({{
+        ...initValues,
+        [index1]: { ...initValues[index1], [property]: newValue },
+      });
+    else
+      State({
+        ...initValues,
+        [index1]: {
+          ...initValues[index1],
+          [index2]: {
+            ...initValues[index1][index2],
+            [property]: !newValue
+          },
+        },
+      });
+    console.log(initValues);
+  }
+ */
+
+
   const validateForm = () => {
+
+
+    Object.keys(formData).map(key => {
+      //console.log(ref[key].current.value);
+      ChangeState(setFormData, formData, ref[key].current.value, "value", key);
+    });
+
+    console.log(ref);
+
     let isValid = true;
 
     // Reset errors before running check.
-    Object.keys(formData).forEach(key => {
-      if ([key].errors !== "") {
-        setFormData(prevData => ({
-          ...prevData, [key]: { ...prevData[key], errors: "" }
-        }));
-      }
-    });
+    /*     Object.keys(formData).forEach(key => {
+          if ([key].errors !== "") {
+            setFormData(prevData => ({
+              ...prevData, [key]: { ...prevData[key], errors: "" }
+            }));
+          }
+        }); */
 
     //Name
-    if (formData.fullName.value.length === 0) {
-      SetErrors("fullName", "Cannot be empty");
-      isValid = false;
-    }
-    else {
-      const fullNameRegex = /^\w+\s\w+$/gm;
-
-      if (!fullNameRegex.test(formData.fullName.value)) {
-        SetErrors("fullName", "Only letters are accepted");
-        isValid = false;
-      }
-    }
-    //Username
+    /*     if (formData.fullName.value.length === 0) {
+          SetErrors("fullName", "Cannot be empty");
+          isValid = false;
+        }
+        else {
+          const fullNameRegex = /^\w+\s\w+$/gm;
+    
+          if (!fullNameRegex.test(formData.fullName.value)) {
+            SetErrors("fullName", "Only letters are accepted");
+            isValid = false;
+          }
+        } */
+    /* //Username
     if (formData.username.value.length === 0) {
       SetErrors("username", "Cannot be empty");
       isValid = false;
@@ -177,7 +131,7 @@ export default function RegisterComponent(props) {
     else {
       let lastAtPos = formData.email.value.lastIndexOf("@");
       let lastDotPos = formData.email.value.lastIndexOf(".");
-
+  
       if (!(lastAtPos < lastDotPos &&
         lastAtPos > 0 &&
         formData.email.value.indexOf("@@") === -1 &&
@@ -270,18 +224,15 @@ export default function RegisterComponent(props) {
     if (formData.termsOfService.value === false) {
       SetErrors("termsOfService", "Please agree the terms of Service");
       isValid = false;
-    }
-
-    if (!isValid)
-      return false;
-    else
-      return true;
+    } */
+    /* 
+        if (!isValid)
+          return false;
+        else
+          return true; */
   }
 
-
-  function handleClick() {
-    console.log(ref);
-  }
+  console.log(formData);
 
   const Card = (props) => {
     var header = props.filter.split(/(?=[A-Z])(?=[A-Z])/);
@@ -466,7 +417,7 @@ export default function RegisterComponent(props) {
         {Object.keys(formData).map((filter, index) => <Card key={index} filter={filter} />)}
         <div style={{ padding: "0px 20px 0px 20px" }}>
           <SubmitBtn
-            onClick={handleClick}
+            onClick={validateForm}
             className="form-control text-uppercase"
           >
             Submit
