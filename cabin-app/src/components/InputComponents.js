@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, forwardRef } from "react";
 import { CardHeader } from "../styles/SearchCardStyle";
 import { Slider, RangeInput, RangeValue, SliderBackground, DateInput, TextInput, OptionItem, MultiSelectInput } from "../styles/InputStyle"
 
@@ -152,17 +152,17 @@ export const CheckBox = ({ data, i, changeState, multi }) => {
   )
 }
 
-export const TextField = ({ data, i, width, height, changeState }) => {
+export const TextField = forwardRef(function TextField(props, ref) {
+  const { ...otherProps } = props;
+  const [val, setVal] = useState("");
   return (
-    <>
-      <TextInput
-        width={width}
-        height={height}
-        className={data[i].errors.length > 0 ? "invalid" : ""}
-        type={data[i].type}
-        defaultValue={data[i].value}
-        onBlur={(event) => changeState(event)}
-      />
-    </>
-  )
-}
+    <TextInput
+      width={props.width}
+      height={props.height}
+      className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
+      type={props.data[props.i].type}
+      value={val}
+      onChange={(event) => setVal(event.target.value)} {...otherProps} ref={ref}
+    />
+  );
+});

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, createRef } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { ChangeState } from "../helpers/HelperFunctions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { TextField, OptionSelect } from "./InputComponents";
+import { TextField, OptionSelect, MyInput } from "./InputComponents";
 import { CardHeader } from "../styles/SearchCardStyle";
 import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, InputTitle, Select, ErrorMessage, TermsContainer } from "../styles/RegisterStyle";
 import { registerDO, registerDTO } from "../DTO/RegisterDTO";
@@ -90,6 +90,11 @@ export default function RegisterComponent(props) {
   const [showPassword2, setHidePassword2] = useState(false);
 
   const [formData, setFormData] = useState(TestData/* registerDO */);
+  // Initialize refrences
+  const ref = {};
+  Object.keys(TestData).map(key => {
+    ref[key] = createRef();
+  });
 
   const register = async () => {
     let isValid = validateForm();
@@ -270,6 +275,9 @@ export default function RegisterComponent(props) {
   }
 
 
+  function handleClick() {
+    console.log(ref);
+  }
 
   const Card = (props) => {
     var header = props.filter.split(/(?=[A-Z])(?=[A-Z])/);
@@ -327,7 +335,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={props.filter}
-              changeState={event => ChangeState(setFormData, formData, event.target.value, "value", props.filter)}
+              ref={ref[props.filter]}
             />
           </>
         )
@@ -439,6 +447,9 @@ export default function RegisterComponent(props) {
         />
         {Object.keys(formData).map((filter, index) => <Card key={index} filter={filter} />)}
       </div>
+      <button type="button" onClick={handleClick}>
+        Edit
+      </button>
     </RegisterBody >
   )
 }

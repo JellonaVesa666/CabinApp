@@ -6,9 +6,9 @@ import NavigationComponent from "./components/NavigationComponent";
 function App() {
   return (
     <MainBody>
-      <NavigationComponent />
-      {/*       <LoginPage />
-      <Logo /> */}
+      {/* <NavigationComponent /> */}
+      <LoginPage />
+      <Logo />
     </MainBody>
   );
 }
