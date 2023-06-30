@@ -287,7 +287,7 @@ export default function RegisterComponent(props) {
             <TextField
               width={"100%"}
               height={"40px"}
-              filters={formData}
+              data={formData}
               i={props.filter}
             />
           </div>
@@ -306,7 +306,7 @@ export default function RegisterComponent(props) {
             <TextField
               width={"100%"}
               height={"40px"}
-              filters={formData}
+              data={formData}
               i={props.filter}
             />
           </div>
@@ -325,7 +325,7 @@ export default function RegisterComponent(props) {
             <TextField
               width={"100%"}
               height={"40px"}
-              filters={formData}
+              data={formData}
               i={props.filter}
               changeState={event => ChangeState(setFormData, formData, event.target.value, "value", props.filter)}
             />
@@ -348,7 +348,7 @@ export default function RegisterComponent(props) {
             height={"40px"}
             radius={"40px"}
             padding={"0px 20px 0px 20px"}
-            filters={formData}
+            data={formData}
             i={props.filter}
             changeState={event => ChangeState(setFormData, formData, event.target.value, "selected", props.filter)}
           />
@@ -368,7 +368,7 @@ export default function RegisterComponent(props) {
           <TextField
             width={"100%"}
             height={"40px"}
-            filters={formData}
+            data={formData}
             i={props.filter}
           />
         </div>
@@ -388,7 +388,7 @@ export default function RegisterComponent(props) {
             <TextField
               width={"100%"}
               height={"40px"}
-              filters={formData}
+              data={formData}
               i={props.filter}
             />
           </div>
@@ -408,7 +408,7 @@ export default function RegisterComponent(props) {
             <TextField
               width={"100%"}
               height={"40px"}
-              filters={formData}
+              data={formData}
               i={props.filter}
             />
           </div>
