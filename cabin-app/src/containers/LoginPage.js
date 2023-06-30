@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LoginComponent from "../components/LoginComponent"
-import RegisterModal from "../components/RegisterComponent"
+import RegisterComponent from "../components/RegisterComponent"
 
 export default function LoginPage() {
 
@@ -15,7 +15,7 @@ export default function LoginPage() {
     <div className="container h-100">
       <div className="row d-flex justify-content-center align-items-center h-100">
         <LoginComponent onRegisterShow={(childProps) => handleClick(childProps)} show={show}/>
-        <RegisterModal onRegisterHide={(childProps) => handleClick(childProps)} show={show}/>
+        <RegisterComponent onRegisterHide={(childProps) => handleClick(childProps)} show={show}/>
       </div>
     </div>
   )

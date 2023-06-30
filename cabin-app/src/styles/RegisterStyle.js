@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors } from './Colors';
 
 export const RegisterBody = styled.div`
   position: absolute;
@@ -48,11 +49,11 @@ export const ErrorMessage = styled.p`
   }
 `
 
-export const Input = styled.input`
+export const TextField = styled.input`
   padding: 0px 20px 0px 20px;
   height: 40px; 
   width: 100%;
-  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  border: 0.1rem solid ${colors.lightGrey};
   border-radius: 40px;
   background: rgba(255, 255, 255, 0.9);
   margin-bottom: 0.75rem;
@@ -61,11 +62,11 @@ export const Input = styled.input`
   }
   &.invalid {
     border: 0.1rem solid transparent !important;
-    outline: 0.15rem solid rgba(200, 20, 80, 0.4) !important;
+    outline: 0.15rem solid ${colors.lightRed} !important;
   }
   &:focus {
     border: 0.1rem solid transparent;
-    outline: 0.15rem solid rgba(0, 0, 0, 0.3);
+    outline: 0.15rem solid ${colors.grey};
   }
 `
 
@@ -95,7 +96,7 @@ export const TermsContainer = styled.div`
 export const SubmitBtn = styled.button`
   height: 50px; 
   color: white !important;
-  background-color: black !important;
+  background-color: ${colors.navy} !important;
   border-radius: 40px;
   border: none;
   &:hover {
@@ -118,7 +119,7 @@ export const CloseBtn = styled.div`
   align-items: center;
   top: 0;
   right: 0;
-  background-color: black;
+  background-color: ${colors.navy} !important;
   color: white;
   border-radius: 10px 16px 0px 10px;
   border: none;

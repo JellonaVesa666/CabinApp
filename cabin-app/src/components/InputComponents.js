@@ -2,7 +2,6 @@ import React from "react";
 import { CardHeader } from "../styles/SearchCardStyle";
 import { Slider, RangeInput, RangeValue, SliderBackground, DateInput, OptionItem, MultiSelectInput } from "../styles/InputStyle"
 
-
 export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, changeState }) => {
   return (
     <Slider>

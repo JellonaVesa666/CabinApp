@@ -129,12 +129,12 @@ export const NavigationLink = styled.div`
     background-color: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.6);
     border-radius: 10px;
-    padding: 0px 35px 0px 35px;
+    padding: 0px 35% 0px 35%;
   }
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.6);
     border-radius: 10px;
-    padding: 0px 35px 0px 35px;
+    padding: 0px 35% 0px 35%;
   }
 `

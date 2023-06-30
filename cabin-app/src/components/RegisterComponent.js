@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, Input, InputTitle, Select, ErrorMessage, TermsContainer } from "../styles/RegisterStyle";
+import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, TextField, InputTitle, Select, ErrorMessage, TermsContainer } from "../styles/RegisterStyle";
 import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 
 
@@ -221,7 +221,7 @@ export default function RegisterComponent(props) {
           }}
         />
         <InputTitle className="px-2">Full name</InputTitle>
-        <Input
+        <TextField
           className={data.fullName.errors.length > 0 ? "invalid" : ""}
           type="text"
           placeholder="Fullname"
@@ -230,7 +230,7 @@ export default function RegisterComponent(props) {
         />
         {/* <ErrorMessage className={data.fullName.errors.length > 0 ? "show1" : ""}>{data.fullName.errors}</ErrorMessage> */}
         <InputTitle className="px-2">Username</InputTitle>
-        <Input
+        <TextField
           className={data.username.errors.length > 0 ? "invalid" : ""}
           type="text"
           placeholder="Username"
@@ -239,7 +239,7 @@ export default function RegisterComponent(props) {
         />
         {/* <ErrorMessage className={data.username.errors.length > 0 ? "show1" : ""}>{data.username.errors}</ErrorMessage> */}
         <InputTitle className="px-2">Email</InputTitle>
-        <Input
+        <TextField
           className={data.email.errors.length > 0 ? "invalid" : ""}
           type="email"
           placeholder="Email"
@@ -248,7 +248,7 @@ export default function RegisterComponent(props) {
         />
         {/* <ErrorMessage className={data.email.errors.length > 0 ? "show1" : ""}>{data.email.errors}</ErrorMessage> */}
         <InputTitle className="px-2">Confirm email</InputTitle>
-        <Input
+        <TextField
           className={data.emailConfirm.errors.length > 0 ? "invalid" : ""}
           type="email"
           placeholder="Confirm email"
@@ -262,7 +262,7 @@ export default function RegisterComponent(props) {
         </div>
         <div className="row gx-3">
           <div className="col" style={{ position: "relative" }}>
-            <Input
+            <TextField
               className={data.password.errors.length > 0 ? "invalid" : ""}
               type={showPassword1 ? "text" : "password"}
               placeholder="Password"
@@ -275,7 +275,7 @@ export default function RegisterComponent(props) {
             {!showPassword2 && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword2(true)} style={{ position: "absolute", top: 12, left: 420 }} />}
           </div>
           <div className="col">
-            <Input
+            <TextField
               className={data.passwordConfirm.errors.length > 0 ? "invalid" : ""}
               type={showPassword2 ? "text" : "password"}
               placeholder="Confirm Password"
@@ -296,7 +296,7 @@ export default function RegisterComponent(props) {
         </div>
         <div className="row">
           <div className="col-3">
-            <Input
+            <TextField
               className={data.phone.errors.length > 0 ? "invalid" : ""}
               type="tel"
               defaultValue="+358"
@@ -305,7 +305,7 @@ export default function RegisterComponent(props) {
             />
           </div>
           <div className="col-9">
-            <Input
+            <TextField
               className={data.phone.errors.length > 0 ? "invalid" : ""}
               type="tel"
               placeholder=""
@@ -326,7 +326,7 @@ export default function RegisterComponent(props) {
         </div>
         <div className="row gx-3">
           <div className="col-8">
-            <Input
+            <TextField
               className={data.address.errors.length > 0 ? "invalid" : ""}
               type="text"
               placeholder="Address"
@@ -335,7 +335,7 @@ export default function RegisterComponent(props) {
             />
           </div>
           <div className="col-4">
-            <Input
+            <TextField
               className={data.postalCode.errors.length > 0 ? "invalid" : ""}
               type="text"
               placeholder="Postal Code"

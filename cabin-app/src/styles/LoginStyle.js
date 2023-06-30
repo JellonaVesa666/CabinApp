@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from './Colors'
 
 export const LoginBody = styled.div`
   position: absolute;
@@ -12,25 +13,25 @@ export const Input = styled.input`
   padding: 25px 20px 25px 20px;
   height: 50px;
   color: black !important;
-  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  border: 0.1rem solid ${colors.lightGrey};
   border-radius: 40px;
   background: rgba(255, 255, 255, 0.9) !important;
   box-shadow: none !important;
   &::placeholder {
-    color: rgba(0, 0, 0, 0.3);
+    color: ${colors.grey};
   }
   &:hover {
     cursor: pointer;
   }
   &:focus {
     border: 0.1rem solid transparent;
-    outline: 0.15rem solid rgba(0, 0, 0, 0.3);
+    outline: 0.15rem solid ${colors.grey};
   }
 `
 
 export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   background-color: rgba(255, 255, 255, 0.7);
-  border: 0.15rem solid rgba(0, 0, 0, 0.2);
+  border: 0.15rem solid ${colors.lightGrey};
   width: 20px;
   height: 20px;
   outline: none;
@@ -40,25 +41,24 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   -moz-box-shadow: none !important;
   box-shadow: none !important;
   &:hover {
-    border: 0.15rem solid rgba(0, 0, 0, 0.4);
+    border: 0.15rem solid ${colors.grey};
     cursor: pointer;
 
   }
   &:focus {
-    border: 0.15rem solid rgba(0, 0, 0, 0.4);
+    border: 0.15rem solid ${colors.grey};
     cursor: pointer;
-
   }
   &:checked {
     border: 0.15rem solid rgba(0, 0, 0, 0.4);
-    background-color: black;
+    background-color: ${colors.navy};
   }
 `
 
 export const SignInBtn = styled.button`
   height: 50px; 
   color: white !important;
-  background-color: black !important;
+  background-color: ${colors.navy} !important;
   border-radius: 40px;
   border: none;
   &:hover {
