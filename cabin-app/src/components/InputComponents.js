@@ -76,34 +76,35 @@ export const DatePicker = () => {
   )
 }
 
-export const OptionSelect = ({ data, i, width, height, radius, padding, changeState }) => {
+export const OptionSelect = forwardRef(function OptionSelect(props, ref) {
+  const { ...otherProps } = props;
+  const [val, setVal] = useState();
+
   return (
-    <>
-      <OptionItem
-        width={width}
-        height={height}
-        radius={radius}
-        padding={padding}
-        value={data[i].selected}
-        onChange={(event) => changeState(event)}
-      >
-        {
-          Object.keys(data[i]).map(index => {
-            if (typeof index === "string" && !isNaN(index))
-              return (
-                <option
-                  key={index}
-                  value={data[i][index].value}
-                >
-                  {data[i][index].value}
-                </option>
-              )
-          })
-        }
-      </OptionItem>
-    </>
+    <OptionItem
+      width={props.width}
+      height={props.height}
+      radius={props.radius}
+      padding={props.padding}
+      defaultValue={val}
+      onChange={(event) => setVal(event.target.value)} {...otherProps} ref={ref}
+    >
+      {
+        Object.keys(props.data[props.i]).map(index => {
+          if (typeof index === "string" && !isNaN(index))
+            return (
+              <option
+                key={index}
+                value={props.data[props.i][index].value}
+              >
+                {props.data[props.i][index].value}
+              </option>
+            )
+        })
+      }
+    </OptionItem>
   )
-}
+});
 
 export const MultiSelect = ({ data, i, changeState }) => {
   return (
@@ -129,39 +130,55 @@ export const MultiSelect = ({ data, i, changeState }) => {
   )
 }
 
-export const CheckBox = ({ data, i, changeState, multi }) => {
+export const CheckBox = forwardRef(function CheckBox(props, ref) {
+  const { ...otherProps } = props;
+  const [val, setVal] = useState();
   return (
-    <div style={{ width: "90%", margin: "auto", display: "flex", flexDirection: "column", marginTop: "3%", marginBottom: "3%" }}>
+    <div
+      style={{
+        width: "90%",
+        margin: "auto",
+        display: "flex",
+        flexDirection: "column",
+        marginTop: "3%",
+        marginBottom: "3%"
+      }}
+    >
       {
-        Object.keys(data[i]).map(index => {
+        Object.keys(props.data[props.i]).map(index => {
           if (typeof index === "string" && !isNaN(index)) {
             return (
               <div key={index} style={{ display: "flex", marginTop: "3%", marginBottom: "3%" }}>
                 <input
-                  style={{ width: "15px" }}
+                  style={{ width: "15px", height: "50px" }}
                   type="checkbox"
-                  defaultChecked={multi ? data[i][index].selected : data[i].selected === index}
-                  onClick={multi ? () => changeState(data[i][index].selected, index) : () => changeState(index)}
+                  defaultValue={val}
+                  defaultChecked={props.multi ? props.data[props.i][index].selected : props.data[props.i].selected === index}
+                  onChange={(event) => setVal(event.target.value)} {...otherProps} ref={ref}
                 />
-                <label style={{ paddingLeft: "10px" }}>{data[i][index].value}</label>
+                <label style={{
+                  paddingLeft: "10px", margin: "auto", color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: 15,
+                }}
+                >
+                  {props.data[props.i][index].value}</label>
               </div>
             )
           }
         })}
     </div>
   )
-}
+});
 
 export const TextField = forwardRef(function TextField(props, ref) {
   const { ...otherProps } = props;
-  const [val, setVal] = useState("");
+  const [val, setVal] = useState();
   return (
     <TextInput
       width={props.width}
       height={props.height}
       className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
       type={props.data[props.i].type}
-      value={val}
+      defaultValue={val}
       onChange={(event) => setVal(event.target.value)} {...otherProps} ref={ref}
     />
   );

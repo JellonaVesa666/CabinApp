@@ -3,9 +3,9 @@ import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { ChangeState } from "../helpers/HelperFunctions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { TextField, OptionSelect, MyInput } from "./InputComponents";
+import { TextField, OptionSelect, CheckBox } from "./InputComponents";
 import { CardHeader } from "../styles/SearchCardStyle";
-import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, InputTitle, Select, ErrorMessage, TermsContainer } from "../styles/RegisterStyle";
+import { RegisterBody, CloseBtn, SubmitBtn, LinkH4 } from "../styles/RegisterStyle";
 import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 
 
@@ -80,9 +80,13 @@ export default function RegisterComponent(props) {
       },
     },
     termsOfService: {
-      type: "text",
-      value: false,
-      errors: "",
+      type: "checkbox",
+      isActive: false,
+      dropdown: true,
+      selected: false,
+      0: {
+        value: "I agree to the terms and conditions of the Service",
+      },
     },
   };
 
@@ -297,6 +301,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={props.filter}
+              ref={ref[props.filter]}
             />
           </div>
         )
@@ -316,6 +321,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={props.filter}
+              ref={ref[props.filter]}
             />
           </div>
         )
@@ -358,7 +364,7 @@ export default function RegisterComponent(props) {
             padding={"0px 20px 0px 20px"}
             data={formData}
             i={props.filter}
-            changeState={event => ChangeState(setFormData, formData, event.target.value, "selected", props.filter)}
+            ref={ref[props.filter]}
           />
         </>
       )
@@ -378,6 +384,7 @@ export default function RegisterComponent(props) {
             height={"40px"}
             data={formData}
             i={props.filter}
+            ref={ref[props.filter]}
           />
         </div>
       )
@@ -398,6 +405,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={props.filter}
+              ref={ref[props.filter]}
             />
           </div>
         )
@@ -418,10 +426,20 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={props.filter}
+              ref={ref[props.filter]}
             />
           </div>
         )
       }
+    }
+    if (formData[props.filter].type === "checkbox") {
+      return (
+        <CheckBox
+          data={formData}
+          i={props.filter}
+          ref={ref[props.filter]}
+        />
+      )
     }
   }
 
@@ -446,10 +464,28 @@ export default function RegisterComponent(props) {
           }}
         />
         {Object.keys(formData).map((filter, index) => <Card key={index} filter={filter} />)}
+        <div style={{ padding: "0px 20px 0px 20px" }}>
+          <SubmitBtn
+            onClick={handleClick}
+            className="form-control text-uppercase"
+          >
+            Submit
+          </SubmitBtn>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+          onClick={() => props.onRegisterHide(0)}
+        >
+          <LinkH4 className="mt-4"
+          >
+            Cancel
+          </LinkH4>
+        </div>
       </div>
-      <button type="button" onClick={handleClick}>
-        Edit
-      </button>
     </RegisterBody >
   )
 }
