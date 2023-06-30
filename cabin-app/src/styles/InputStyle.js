@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {colors} from "./Colors";
 
-// RangeSlider
+// Range Slider
 export const Slider = styled.div`
   position: relative;
   width: 90%;
@@ -56,7 +56,7 @@ export const RangeValue = styled.div`
   align-items: center;
 `
 
-// DateInput
+// Date Input
 export const DateInput = styled.input`
   width: 90%;
   margin: auto;
@@ -73,7 +73,7 @@ export const DateInput = styled.input`
   }
 `
 
-// MultiSelect
+// Select
 export const MultiSelectInput = styled.li`
   width: 90%;
   border-radius: 8px;
@@ -95,12 +95,14 @@ export const MultiSelectInput = styled.li`
   }
 `
 
-// OptionSelect
+// Option Select
 export const OptionItem = styled.select`
-  width: 90%;
+  width: ${props => (props.width)};
+  height:  ${props => (props.height)};
   margin: auto;
-  padding: 0;
-  border-radius: 10px;
+  padding: ${props => (props.padding)};
+  margin-bottom: 3%;
+  border-radius:  ${props => (props.radius)};
   border: 1.5px solid rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.75);
   color: black;
@@ -109,5 +111,40 @@ export const OptionItem = styled.select`
     background-color: rgba(255, 255, 255, 0.75);
     cursor: pointer;
     color: black;
+  }
+`
+
+/* export const Select = styled.select`
+  padding: 0px 20px 0px 20px;
+  height: 40px;
+  width: 100%;
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  &.invalid {
+    border: 0.1rem solid transparent !important;
+    outline: 0.15rem solid rgba(200, 20, 80, 0.4) !important;
+  }
+` */
+
+// Text Input
+export const TextInput = styled.input`
+  padding: 0px 20px 0px 20px;
+  height: 40px; 
+  width: 100%;
+  border: 0.1rem solid ${colors.lightGrey};
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.75rem;
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+  }
+  &.invalid {
+    border: 0.1rem solid transparent !important;
+    outline: 0.15rem solid ${colors.lightRed} !important;
+  }
+  &:focus {
+    border: 0.1rem solid transparent;
+    outline: 0.15rem solid ${colors.grey};
   }
 `

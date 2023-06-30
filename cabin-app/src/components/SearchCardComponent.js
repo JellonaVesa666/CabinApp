@@ -11,7 +11,7 @@ const SearchCardComponent = () => {
   const [searchFilters, setSearchFilters] = useState(searchParameters);
   const [statusFilters, setStatusFilters] = useState(countByStatus);
 
-  function Card(props) {
+  const Card = (props) => {
     if (searchFilters[props.filter].isActive)
       return (
         <CardBody
@@ -45,11 +45,22 @@ const SearchCardComponent = () => {
                 />
               }
               {searchFilters[props.filter].type === "option" &&
-                <OptionSelect
-                  filters={searchFilters}
-                  i={props.filter}
-                  changeState={(event) => ChangeState(setSearchFilters, searchFilters, event.target.value, "selected", props.filter)}
-                />
+                <>
+                  <CardHeader
+                    width={"90%"}
+                    margintop={"5%"}
+                    marginbottom={"1%"}
+                  >
+                    {searchFilters[props.filter].name ? searchFilters[props.filter].name : props.filter}
+                  </CardHeader>
+                  <OptionSelect
+                    width={"90%"}
+                    radius={"10px"}
+                    filters={searchFilters}
+                    i={props.filter}
+                    changeState={(event) => ChangeState(setSearchFilters, searchFilters, event.target.value, "selected", props.filter)}
+                  />
+                </>
               }
               {searchFilters[props.filter].type === "date" &&
                 <DatePicker />
@@ -64,7 +75,6 @@ const SearchCardComponent = () => {
                   changeState={(value, property) => ChangeState(setSearchFilters, searchFilters, value, property, props.filter)}
                 />
               }
-
               {(() => {
                 if (searchFilters[props.filter].type.split(/(?=[A-Z])/)[0] === "checkbox") {
                   if (searchFilters[props.filter].type.split(/(?=[A-Z])/)[1] === "Multi") {

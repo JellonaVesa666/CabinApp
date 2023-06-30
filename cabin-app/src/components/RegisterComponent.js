@@ -1,33 +1,111 @@
 import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
+import { ChangeState } from "../helpers/HelperFunctions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, TextField, InputTitle, Select, ErrorMessage, TermsContainer } from "../styles/RegisterStyle";
+import { TextField, OptionSelect } from "./InputComponents";
+import { CardHeader } from "../styles/SearchCardStyle";
+import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, InputTitle, Select, ErrorMessage, TermsContainer } from "../styles/RegisterStyle";
 import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 
 
 export default function RegisterComponent(props) {
 
+  const TestData = {
+    fullName: {
+      type: "text",
+      value: "",
+      errors: "",
+    },
+    username: {
+      type: "text",
+      value: "",
+      errors: "",
+    },
+    email: {
+      type: "email",
+      value: "",
+      errors: "",
+    },
+    emailConfirm: {
+      type: "email",
+      value: "",
+      errors: "",
+    },
+    password: {
+      type: "password",
+      value: "",
+      errors: "",
+    },
+    passwordConfirm: {
+      type: "password",
+      value: "",
+      errors: "",
+    },
+    countryCode: {
+      type: "tel",
+      value: "+358",
+      errors: "",
+    },
+    phone: {
+      type: "tel",
+      value: "",
+      errors: "",
+    },
+    address: {
+      type: "text",
+      value: "",
+      errors: "",
+    },
+    postalCode: {
+      type: "text",
+      value: "",
+      errors: "",
+    },
+    role: {
+      type: "option",
+      selected: "",
+      errors: "",
+      0: {
+        value: "Admin",
+      },
+      1: {
+        value: "Manager",
+      },
+      2: {
+        value: "Supervisor",
+      },
+      3: {
+        value: "Worker",
+      },
+    },
+    termsOfService: {
+      type: "text",
+      value: false,
+      errors: "",
+    },
+  };
+
   const [showPassword1, setHidePassword1] = useState(false);
   const [showPassword2, setHidePassword2] = useState(false);
 
-  const [data, setFormData] = useState(registerDO);
+  const [formData, setFormData] = useState(TestData/* registerDO */);
 
   const register = async () => {
     let isValid = validateForm();
 
     if (isValid) {
-      // Create post data for request
-      registerDTO.fullName = data.fullName.value;
-      registerDTO.username = data.username.value;
-      registerDTO.email = data.email.value;
-      registerDTO.emailConfirm = data.emailConfirm.value;
-      registerDTO.password = data.password.value;
-      registerDTO.passwordConfirm = data.passwordConfirm.value;
-      registerDTO.phone = data.phone.value;
-      registerDTO.address = data.address.value;
-      registerDTO.postalCode = data.postalCode.value;
-      registerDTO.role = data.role.value;
+      // Create post formData for request
+      registerDTO.fullName = formData.fullName.value;
+      registerDTO.username = formData.username.value;
+      registerDTO.email = formData.email.value;
+      registerDTO.emailConfirm = formData.emailConfirm.value;
+      registerDTO.password = formData.password.value;
+      registerDTO.passwordConfirm = formData.passwordConfirm.value;
+      registerDTO.phone = formData.phone.value;
+      registerDTO.address = formData.address.value;
+      registerDTO.postalCode = formData.postalCode.value;
+      registerDTO.role = formData.role.value;
       registerDTO.createdDate = Date.now;
       registerDTO.modifiedDate = Date.now;
       registerDTO.isActive = 1;
@@ -40,15 +118,6 @@ export default function RegisterComponent(props) {
     }
   }
 
-  const formChange = (event) => {
-    const targetValue = event.target.value === "on" ? event.target.checked : event.target.value;
-
-    setFormData({
-      ...data,
-      [event.target.id]: { ...data[event.target.id], value: targetValue },
-    });
-  }
-
   const SetErrors = (property, errorMsg) => {
     setFormData(prevData => ({
       ...prevData, [property]: { ...prevData[property], errors: errorMsg }
@@ -59,110 +128,110 @@ export default function RegisterComponent(props) {
     let isValid = true;
 
     // Reset errors before running check.
-    Object.keys(data).forEach(key => {
+    Object.keys(formData).forEach(key => {
       if ([key].errors !== "") {
         setFormData(prevData => ({
           ...prevData, [key]: { ...prevData[key], errors: "" }
         }));
       }
     });
-    
+
     //Name
-    if (data.fullName.value.length === 0) {
+    if (formData.fullName.value.length === 0) {
       SetErrors("fullName", "Cannot be empty");
       isValid = false;
     }
     else {
       const fullNameRegex = /^\w+\s\w+$/gm;
 
-      if (!fullNameRegex.test(data.fullName.value)) {
+      if (!fullNameRegex.test(formData.fullName.value)) {
         SetErrors("fullName", "Only letters are accepted");
         isValid = false;
       }
     }
     //Username
-    if (data.username.value.length === 0) {
+    if (formData.username.value.length === 0) {
       SetErrors("username", "Cannot be empty");
       isValid = false;
     }
     else {
-      if (!data.username.value.match(/^[a-zA-Z]+$/)) {
+      if (!formData.username.value.match(/^[a-zA-Z]+$/)) {
         SetErrors("username", "Only letters are accepted");
         isValid = false;
       }
     }
     //Email
-    if (data.email.value.length === 0) {
+    if (formData.email.value.length === 0) {
       SetErrors("email", "Cannot be empty");
       isValid = false;
     }
     else {
-      let lastAtPos = data.email.value.lastIndexOf("@");
-      let lastDotPos = data.email.value.lastIndexOf(".");
+      let lastAtPos = formData.email.value.lastIndexOf("@");
+      let lastDotPos = formData.email.value.lastIndexOf(".");
 
       if (!(lastAtPos < lastDotPos &&
         lastAtPos > 0 &&
-        data.email.value.indexOf("@@") === -1 &&
+        formData.email.value.indexOf("@@") === -1 &&
         lastDotPos > 2 &&
-        data.email.value.length - lastDotPos > 2
+        formData.email.value.length - lastDotPos > 2
       )) {
         SetErrors("email", "Email is not valid");
         isValid = false;
       }
     }
-    if (data.emailConfirm.value.length === 0) {
+    if (formData.emailConfirm.value.length === 0) {
       SetErrors("emailConfirm", "Cannot be empty");
       isValid = false;
     }
     else {
-      if (data.email.value !== data.emailConfirm.value) {
+      if (formData.email.value !== formData.emailConfirm.value) {
         SetErrors("emailConfirm", "Emails do not match");
         isValid = false;
       }
     }
     // Phone
-    if (data.countryCode.value.length === 0 || data.phone.value.length === 0) {
+    if (formData.countryCode.value.length === 0 || formData.phone.value.length === 0) {
       SetErrors("phone", "Cannot be empty");
       isValid = false;
     }
     else {
       const phoneRegex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
-      if (!phoneRegex.test(data.countryCode.value + data.phone.value)) {
+      if (!phoneRegex.test(formData.countryCode.value + formData.phone.value)) {
         SetErrors("phone", "Invalid phone number");
         isValid = false;
       }
     }
     // Address
-    if (data.address.value.length === 0) {
+    if (formData.address.value.length === 0) {
       SetErrors("address", "Cannot be empty");
       isValid = false;
     }
     else {
       const adressRegex = /^\s*\S+(?:\s+\S+)/;
-      if (!adressRegex.test(data.address.value)) {
+      if (!adressRegex.test(formData.address.value)) {
         SetErrors("address", "Invalid Address");
         isValid = false;
       }
     }
     // Postal Code
-    if (data.postalCode.value.length === 0) {
+    if (formData.postalCode.value.length === 0) {
       SetErrors("postalCode", "Cannot be empty");
       isValid = false;
     }
     else {
       const postalRegex = /^\d{5}(?:[-\s]\d{4})?$/;
-      if (!postalRegex.test(data.postalCode.value)) {
+      if (!postalRegex.test(formData.postalCode.value)) {
         SetErrors("postalCode", "Invalid postal code");
         isValid = false;
       }
     }
     // Role
-    if (data.role.value === 0) {
+    if (formData.role.value === 0) {
       SetErrors("role", "Role is required");
       isValid = false;
     }
     // Password
-    if (data.password.value.length === 0) {
+    if (formData.password.value.length === 0) {
       SetErrors("password", "Cannot be empty");
       isValid = false;
     }
@@ -173,23 +242,23 @@ export default function RegisterComponent(props) {
       // At least one special character, (?=.*?[#?!@$%^&*-])
       // Minimum eight in length .{8,} (with the anchors)
       const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-      if (!passwordRegex.test(data.password.value)) {
+      if (!passwordRegex.test(formData.password.value)) {
         SetErrors("password", "Password do not meet requirements");
         isValid = false;
       }
     }
-    if (data.passwordConfirm.value.length === 0) {
+    if (formData.passwordConfirm.value.length === 0) {
       SetErrors("passwordConfirm", "Cannot be empty");
       isValid = false;
     }
     else {
-      if (data.password.value !== data.passwordConfirm.value) {
+      if (formData.password.value !== formData.passwordConfirm.value) {
         SetErrors("passwordConfirm", "Passwords do not match");
         isValid = false;
       }
     }
     // Terms of Service
-    if (data.termsOfService.value === false) {
+    if (formData.termsOfService.value === false) {
       SetErrors("termsOfService", "Please agree the terms of Service");
       isValid = false;
     }
@@ -199,6 +268,54 @@ export default function RegisterComponent(props) {
     else
       return true;
   }
+
+
+
+  const Card = (props) => {
+    if (formData[props.filter].type === "text") {
+      var header = props.filter.split(/(?=[A-Z])(?=[A-Z])/);
+      return (
+        <>
+          <CardHeader
+            paddingleft={"2%"}
+            size={"0.95"}
+            weight={400}
+          >
+            {header[0]} {header[1]} {header[2]}
+          </CardHeader>
+          <TextField
+            filters={formData}
+            i={props.filter}
+            changeState={event => ChangeState(setFormData, formData, event.target.value, "value", props.filter)}
+          />
+        </>
+      )
+    }
+    if (formData[props.filter].type === "option") {
+      return (
+        <>
+          <CardHeader
+            paddingleft={"2%"}
+            size={"0.95"}
+            weight={400}
+          >
+            {formData[props.filter].name ? formData[props.filter].name : props.filter}
+          </CardHeader>
+          <OptionSelect
+            width={"100%"}
+            height={"40px"}
+            radius={"40px"}
+            padding={"0px 20px 0px 20px"}
+            filters={formData}
+            i={props.filter}
+            changeState={event => ChangeState(setFormData, formData, event.target.value, "selected", props.filter)}
+          />
+        </>
+      )
+    }
+  }
+
+  console.log(formData)
 
   return (
     <RegisterBody show={props.show} className="col-12 col-md-8 col-lg-6 col-xl-5 shadow-lg">
@@ -220,191 +337,7 @@ export default function RegisterComponent(props) {
             background: "grey", height: "2px", width: "100%"
           }}
         />
-        <InputTitle className="px-2">Full name</InputTitle>
-        <TextField
-          className={data.fullName.errors.length > 0 ? "invalid" : ""}
-          type="text"
-          placeholder="Fullname"
-          id="fullName"
-          onChange={(event) => formChange(event)}
-        />
-        {/* <ErrorMessage className={data.fullName.errors.length > 0 ? "show1" : ""}>{data.fullName.errors}</ErrorMessage> */}
-        <InputTitle className="px-2">Username</InputTitle>
-        <TextField
-          className={data.username.errors.length > 0 ? "invalid" : ""}
-          type="text"
-          placeholder="Username"
-          id="username"
-          onChange={(event) => formChange(event)}
-        />
-        {/* <ErrorMessage className={data.username.errors.length > 0 ? "show1" : ""}>{data.username.errors}</ErrorMessage> */}
-        <InputTitle className="px-2">Email</InputTitle>
-        <TextField
-          className={data.email.errors.length > 0 ? "invalid" : ""}
-          type="email"
-          placeholder="Email"
-          id="email"
-          onChange={(event) => formChange(event)}
-        />
-        {/* <ErrorMessage className={data.email.errors.length > 0 ? "show1" : ""}>{data.email.errors}</ErrorMessage> */}
-        <InputTitle className="px-2">Confirm email</InputTitle>
-        <TextField
-          className={data.emailConfirm.errors.length > 0 ? "invalid" : ""}
-          type="email"
-          placeholder="Confirm email"
-          id="emailConfirm"
-          onChange={(event) => formChange(event)}
-        />
-        {/* <ErrorMessage className={data.emailConfirm.errors.length > 0 ? "show1" : ""}>{data.emailConfirm.errors}</ErrorMessage> */}
-        <div className="row gx-3">
-          <InputTitle className="col px-3">Password</InputTitle>
-          <InputTitle className="col">Confirm password</InputTitle>
-        </div>
-        <div className="row gx-3">
-          <div className="col" style={{ position: "relative" }}>
-            <TextField
-              className={data.password.errors.length > 0 ? "invalid" : ""}
-              type={showPassword1 ? "text" : "password"}
-              placeholder="Password"
-              id="password"
-              onChange={(event) => formChange(event)}
-            />
-            {showPassword1 && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword1(false)} style={{ position: "absolute", top: 12, left: 190 }} />}
-            {showPassword2 && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword2(false)} style={{ position: "absolute", top: 12, left: 420 }} />}
-            {!showPassword1 && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword1(true)} style={{ position: "absolute", top: 12, left: 190 }} />}
-            {!showPassword2 && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword2(true)} style={{ position: "absolute", top: 12, left: 420 }} />}
-          </div>
-          <div className="col">
-            <TextField
-              className={data.passwordConfirm.errors.length > 0 ? "invalid" : ""}
-              type={showPassword2 ? "text" : "password"}
-              placeholder="Confirm Password"
-              id="passwordConfirm"
-              onChange={(event) => formChange(event)}
-            />
-          </div>
-        </div>
-        <div className="row gx-3">
-          {/* <ErrorMessage className={data.password.errors.length > 0 ? "show1 col" : "col"}>{data.password.errors}</ErrorMessage> */}
-          {/* <ErrorMessage className={data.passwordConfirm.errors.length > 0 ? "show1 col" : "col"}>{data.passwordConfirm.errors}</ErrorMessage> */}
-        </div>
-        <div className="row">
-          <div className="col-3">
-            <InputTitle className="px-2">Phone</InputTitle>
-          </div>
-          <div className="col-9" />
-        </div>
-        <div className="row">
-          <div className="col-3">
-            <TextField
-              className={data.phone.errors.length > 0 ? "invalid" : ""}
-              type="tel"
-              defaultValue="+358"
-              id="countryCode"
-              onChange={(event) => formChange(event)}
-            />
-          </div>
-          <div className="col-9">
-            <TextField
-              className={data.phone.errors.length > 0 ? "invalid" : ""}
-              type="tel"
-              placeholder=""
-              id="phone"
-              onChange={(event) => formChange(event)}
-            />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-3" />
-          <div className="col-9">
-            {/* <ErrorMessage className={data.phone.errors.length > 0 ? "show1" : ""}>{data.phone.errors}</ErrorMessage> */}
-          </div>
-        </div>
-        <div className="row px-2">
-          <InputTitle className="col-8">Address</InputTitle>
-          <InputTitle className="col-4 ps-3">Postal Code</InputTitle>
-        </div>
-        <div className="row gx-3">
-          <div className="col-8">
-            <TextField
-              className={data.address.errors.length > 0 ? "invalid" : ""}
-              type="text"
-              placeholder="Address"
-              id="address"
-              onChange={(event) => formChange(event)}
-            />
-          </div>
-          <div className="col-4">
-            <TextField
-              className={data.postalCode.errors.length > 0 ? "invalid" : ""}
-              type="text"
-              placeholder="Postal Code"
-              id="postalCode"
-              pattern="[0-9]{5}"
-              onChange={(event) => formChange(event)}
-            />
-          </div>
-        </div>
-        <div className="row gx-3 ">
-          {/* <ErrorMessage className={data.address.errors.length > 0 ? "show1 col-8" : "col-8"}>{data.address.errors}</ErrorMessage> */}
-          {/* <ErrorMessage className={data.postalCode.errors.length > 0 ? "show2 col-4" : "col-4"}>{data.postalCode.errors}</ErrorMessage> */}
-        </div>
-
-        <InputTitle className="px-2">Role</InputTitle>
-        <Select
-          className={data.role.errors.length > 0 ? "invalid form-select" : " form-select"}
-          aria-label="Default select example"
-          id="role"
-          defaultValue="Role"
-          onChange={(event) => formChange(event)}
-        >
-          <option value="Role" disabled>Role</option>
-          <option value="1">Admin</option>
-          <option value="2">Manager</option>
-          <option value="3">Supervisor</option>
-          <option value="3">Worker</option>
-        </Select>
-        {/* <ErrorMessage className={data.role.errors.length > 0 ? "show1 col-4" : "col-4"}>{data.role.errors}</ErrorMessage> */}
-        <TermsContainer className={data.termsOfService.errors.length > 0 ? "invalid mb-2 mt-4" : "mb-2 mt-4"}>
-          <Checkbox
-            className="form-check-input my-auto"
-            id="termsOfService"
-            onChange={(event) => formChange(event)}
-          />
-          <label className="form-check-label my-auto" htmlFor="flexCheckDefault"
-            style={{
-              textAlign: "center",
-              color: "rgba(0, 0, 0, 0.5)",
-              fontWeight: "500",
-              paddingLeft: 15,
-            }}
-          >
-            I agree to the terms and conditions of the Service
-          </label>
-        </TermsContainer>
-        {/* <ErrorMessage className={data.termsOfService.errors.length > 0 ? "show1 col-4" : "col-4"}>{data.termsOfService.errors}</ErrorMessage> */}
-        <div className="mb-4 mt-4" style={{ padding: "0px 20px 0px 20px" }}>
-          <SubmitBtn
-            onClick={() => register()}
-            className="form-control text-uppercase"
-          >
-            Submit
-          </SubmitBtn>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-          onClick={() => props.onRegisterHide(0)}
-        >
-          <LinkH4 className="mt-2"
-          >
-            Cancel
-          </LinkH4>
-        </div>
-
+        {Object.keys(formData).map((filter, index) => <Card key={index} filter={filter} />)}
       </div>
     </RegisterBody >
   )

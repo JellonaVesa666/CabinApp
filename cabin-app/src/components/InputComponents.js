@@ -1,6 +1,6 @@
 import React from "react";
 import { CardHeader } from "../styles/SearchCardStyle";
-import { Slider, RangeInput, RangeValue, SliderBackground, DateInput, OptionItem, MultiSelectInput } from "../styles/InputStyle"
+import { Slider, RangeInput, RangeValue, SliderBackground, DateInput, TextInput, OptionItem, MultiSelectInput } from "../styles/InputStyle"
 
 export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, changeState }) => {
   return (
@@ -76,22 +76,23 @@ export const DatePicker = () => {
   )
 }
 
-export const OptionSelect = ({ filters, i, changeState }) => {
+export const OptionSelect = ({ filters, i, width, height, radius, padding, changeState }) => {
   return (
     <>
-      <CardHeader
+      {/*       <CardHeader
         width={"90%"}
         margintop={"5%"}
         marginbottom={"1%"}
       >
-        {filters[i].name}
-      </CardHeader>
+        {filters[i].name ? filters[i].name : i}
+      </CardHeader> */}
       <OptionItem
+        width={width}
+        height={height}
+        radius={radius}
+        padding={padding}
         value={filters[i].selected}
         onChange={(event) => changeState(event)}
-        style={{
-          marginBottom: "3%",
-        }}
       >
         {
           Object.keys(filters[i]).map(index => {
@@ -147,7 +148,7 @@ export const CheckBox = ({ filters, i, changeState, multi }) => {
                   style={{ width: "15px" }}
                   type="checkbox"
                   defaultChecked={multi ? filters[i][index].selected : filters[i].selected === index}
-                  onClick={multi ?  () => changeState(filters[i][index].selected, index) : () => changeState(index)}
+                  onClick={multi ? () => changeState(filters[i][index].selected, index) : () => changeState(index)}
                 />
                 <label style={{ paddingLeft: "10px" }}>{filters[i][index].value}</label>
               </div>
@@ -155,5 +156,19 @@ export const CheckBox = ({ filters, i, changeState, multi }) => {
           }
         })}
     </div>
+  )
+}
+
+
+export const TextField = ({ filters, i, changeState }) => {
+  return (
+    <>
+      <TextInput
+        className={filters[i].errors.length > 0 ? "invalid" : ""}
+        type={filters[i].type}
+        defaultValue={filters[i].value}
+        onBlur={(event) => changeState(event)}
+      />
+    </>
   )
 }
