@@ -1,4 +1,4 @@
-import React, { useState, createRef } from "react";
+import React, { useState, createRef, useEffect } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { ChangeState } from "../helpers/HelperFunctions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,12 +16,17 @@ export default function RegisterComponent(props) {
 
   // Initialize Form Data
   const [formData, setFormData] = useState(registerDO);
+  const [ref, setRefrences] = useState({});
 
-  // Initialize Refrences
-  const ref = {};
-  Object.keys(formData).map(key => {
-    ref[key] = createRef();
-  });
+  useEffect(() => {
+    // Initialize Refrences
+    Object.keys(formData).forEach(key => {
+      setRefrences(ref => ({
+        ...ref,
+        [key]: createRef(),
+      }))
+    });
+  }, [])
 
   const register = async () => {
     let isValid = validateForm();
@@ -81,9 +86,10 @@ export default function RegisterComponent(props) {
 
 
   const validateForm = () => {
-
+    
     // Set Form Data values from refrences
     Object.keys(formData).map(key => {
+      console.log(key);
       ChangeState(setFormData, formData, ref[key].current.value, "value", key);
     });
 
@@ -99,18 +105,18 @@ export default function RegisterComponent(props) {
     }); */
 
     //Name
-    if (formData.fullName.value.length === 0) {
-      SetErrors("fullName", "Cannot be empty");
-      isValid = false;
-    }
-    else {
-      const fullNameRegex = /^\w+\s\w+$/gm;
-
-      if (!fullNameRegex.test(formData.fullName.value)) {
-        SetErrors("fullName", "Wrong format ! make sure to type whole name,");
-        isValid = false;
-      }
-    }
+    /*     if (formData.fullName.value.length === 0) {
+          SetErrors("fullName", "Cannot be empty");
+          isValid = false;
+        }
+        else {
+          const fullNameRegex = /^\w+\s\w+$/gm;
+    
+          if (!fullNameRegex.test(formData.fullName.value)) {
+            SetErrors("fullName", "Wrong format ! make sure to type whole name,");
+            isValid = false;
+          }
+        } */
     /* //Username
     if (formData.username.value.length === 0) {
       SetErrors("username", "Cannot be empty");
