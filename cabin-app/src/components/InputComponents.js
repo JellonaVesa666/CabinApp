@@ -1,5 +1,7 @@
 import React, { useState, forwardRef } from "react";
 import { CardHeader } from "../styles/SearchCardStyle";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Slider, RangeInput, RangeValue, SliderBackground, DateInput, TextInput, OptionItem, MultiSelectInput, CheckInput } from "../styles/InputStyle"
 
 export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, changeState }) => {
@@ -166,14 +168,35 @@ export const CheckBox = (props) => {
 };
 
 export const TextField = (props) => {
+  const [showPassword, setHidePassword] = useState(false);
   return (
-    <TextInput
-      width={props.width}
-      height={props.height}
-      className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
-      type={props.data[props.i].type}
-      defaultValue={props.data[props.i].value}
-      onChange={(event) => props.changestate(event)}
-    />
-  );
+    <>
+      <TextInput
+        width={props.width}
+        height={props.height}
+        className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
+        type={props.data[props.i].type}
+        defaultValue={props.data[props.i].value}
+        onChange={(event) => props.changestate(event)}
+      />
+    </>
+  )
+};
+
+export const PasswordField = (props) => {
+  const [showPassword, setHidePassword] = useState(false);
+  return (
+    <>
+      <TextInput
+        width={props.width}
+        height={props.height}
+        className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
+        type={showPassword ? "text" : props.data[props.i].type}
+        defaultValue={props.data[props.i].value}
+        onChange={(event) => props.changestate(event)}
+      />
+      {showPassword && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword(false)} style={{ position: "absolute", top: 40, left: 185 }} />}
+      {!showPassword && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword(true)} style={{ position: "absolute", top: 40, left: 185 }} />}
+    </>
+  )
 };

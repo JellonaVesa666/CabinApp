@@ -3,17 +3,13 @@ import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { ChangeState } from "../helpers/HelperFunctions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { TextField, OptionSelect, CheckBox } from "./InputComponents";
+import { TextField, OptionSelect, CheckBox, PasswordField } from "./InputComponents";
 import { CardHeader } from "../styles/SearchCardStyle";
 import { RegisterBody, CloseBtn, SubmitBtn, LinkH4 } from "../styles/RegisterStyle";
 import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 
 
 export default function RegisterComponent(props) {
-
-  const [showPassword1, setHidePassword1] = useState(false);
-  const [showPassword2, setHidePassword2] = useState(false);
-
   // Initialize Form Data
   const [formData, setFormData] = useState(registerDO);
   const [ref, setRefrences] = useState({});
@@ -305,7 +301,7 @@ export default function RegisterComponent(props) {
       return (
         <div
           key={index}
-          style={{ width: "50%", display: "inline-block", padding: "4px", float: "left" }}
+          style={{position: "relative", width: "50%", display: "inline-block", padding: "4px", float: "left" }}
         >
           <CardHeader
             paddingleft={"2%"}
@@ -314,7 +310,7 @@ export default function RegisterComponent(props) {
           >
             {header[0]} {header[1]} {header[2]}
           </CardHeader>
-          <TextField
+          <PasswordField
             width={"100%"}
             height={"40px"}
             data={formData}
