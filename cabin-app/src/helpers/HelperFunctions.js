@@ -14,5 +14,4 @@ export const ChangeState = (State, initValues, newValue, property, index1, index
         },
       },
     });
-  console.log(initValues);
 }

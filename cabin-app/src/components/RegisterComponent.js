@@ -61,63 +61,33 @@ export default function RegisterComponent(props) {
     }));
   }
 
-
-
-  /*   export const ChangeState = (State, initValues, newValue, property, index1, index2) => {
-      if (index2 === null || index2 === undefined)
-        State( formData => ({{
-          ...initValues,
-          [index1]: { ...initValues[index1], [property]: newValue },
-        });
-      else
-        State({
-          ...initValues,
-          [index1]: {
-            ...initValues[index1],
-            [index2]: {
-              ...initValues[index1][index2],
-              [property]: !newValue
-            },
-          },
-        });
-      console.log(initValues);
-    }
-   */
-
-
   const validateForm = () => {
-    
-    // Set Form Data values from refrences
-    Object.keys(formData).map(key => {
-      console.log(key);
-      ChangeState(setFormData, formData, ref[key].current.value, "value", key);
-    });
-
+    console.log(formData);
     let isValid = true;
 
     // Reset errors before running check.
-    /* Object.keys(formData).forEach(key => {
+    Object.keys(formData).forEach(key => {
       if ([key].errors !== "") {
         setFormData(prevData => ({
           ...prevData, [key]: { ...prevData[key], errors: "" }
         }));
       }
-    }); */
+    });
 
     //Name
-    /*     if (formData.fullName.value.length === 0) {
-          SetErrors("fullName", "Cannot be empty");
-          isValid = false;
-        }
-        else {
-          const fullNameRegex = /^\w+\s\w+$/gm;
-    
-          if (!fullNameRegex.test(formData.fullName.value)) {
-            SetErrors("fullName", "Wrong format ! make sure to type whole name,");
-            isValid = false;
-          }
-        } */
-    /* //Username
+    if (formData.fullName.value.length === 0) {
+      SetErrors("fullName", "Cannot be empty");
+      isValid = false;
+    }
+    else {
+      const fullNameRegex = /^\w+\s\w+$/gm;
+
+      if (!fullNameRegex.test(formData.fullName.value)) {
+        SetErrors("fullName", "Wrong format ! make sure to type whole name,");
+        isValid = false;
+      }
+    }
+    //Username
     if (formData.username.value.length === 0) {
       SetErrors("username", "Cannot be empty");
       isValid = false;
@@ -136,7 +106,7 @@ export default function RegisterComponent(props) {
     else {
       let lastAtPos = formData.email.value.lastIndexOf("@");
       let lastDotPos = formData.email.value.lastIndexOf(".");
-  
+
       if (!(lastAtPos < lastDotPos &&
         lastAtPos > 0 &&
         formData.email.value.indexOf("@@") === -1 &&
@@ -229,20 +199,23 @@ export default function RegisterComponent(props) {
     if (formData.termsOfService.value === false) {
       SetErrors("termsOfService", "Please agree the terms of Service");
       isValid = false;
-    } */
-    /* 
-        if (!isValid)
-          return false;
-        else
-          return true; */
+    }
+
+    if (!isValid)
+      return false;
+    else
+      return true;
   }
 
-  const Card = (props) => {
-    var header = props.filter.split(/(?=[A-Z])(?=[A-Z])/);
-    if (formData[props.filter].type === "text" || formData[props.filter].type === "email") {
-      if (props.filter === "address") {
+  const listItems = Object.keys(formData).map((key, index) => {
+    var header = key.split(/(?=[A-Z])(?=[A-Z])/);
+    if (formData[key].type === "text" || formData[key].type === "email") {
+      if (key === "address") {
         return (
-          <div style={{ width: "70%", display: "inline-block", padding: "4px", float: "left" }}>
+          <div
+            key={index}
+            style={{ width: "70%", display: "inline-block", padding: "4px", float: "left" }}
+          >
             <CardHeader
               paddingleft={"2%"}
               size={0.95}
@@ -254,15 +227,18 @@ export default function RegisterComponent(props) {
               width={"100%"}
               height={"40px"}
               data={formData}
-              i={props.filter}
-              ref={ref[props.filter]}
+              i={key}
+              changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
             />
           </div>
         )
       }
-      else if (props.filter === "postalCode") {
+      else if (key === "postalCode") {
         return (
-          <div style={{ width: "30%", display: "inline-block", padding: "4px", float: "left" }}>
+          <div
+            key={index}
+            style={{ width: "30%", display: "inline-block", padding: "4px", float: "left" }}
+          >
             <CardHeader
               paddingleft={"2%"}
               size={0.95}
@@ -274,15 +250,17 @@ export default function RegisterComponent(props) {
               width={"100%"}
               height={"40px"}
               data={formData}
-              i={props.filter}
-              ref={ref[props.filter]}
+              i={key}
+              changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
             />
           </div>
         )
       }
       else {
         return (
-          <>
+          <div
+            key={index}
+          >
             <CardHeader
               paddingleft={"2%"}
               size={0.95}
@@ -294,22 +272,22 @@ export default function RegisterComponent(props) {
               width={"100%"}
               height={"40px"}
               data={formData}
-              i={props.filter}
-              ref={ref[props.filter]}
+              i={key}
+              changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
             />
-          </>
+          </div>
         )
       }
     }
-    if (formData[props.filter].type === "option") {
+    if (formData[key].type === "option") {
       return (
-        <>
+        <div key={index}>
           <CardHeader
             paddingleft={"2%"}
             size={0.95}
             weight={400}
           >
-            {formData[props.filter].name ? formData[props.filter].name : props.filter}
+            {formData[key].name ? formData[key].name : key}
           </CardHeader>
           <OptionSelect
             width={"100%"}
@@ -317,15 +295,18 @@ export default function RegisterComponent(props) {
             radius={"40px"}
             padding={"0px 20px 0px 20px"}
             data={formData}
-            i={props.filter}
-            ref={ref[props.filter]}
+            i={key}
+            changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
           />
-        </>
+        </div>
       )
     }
-    if (formData[props.filter].type === "password") {
+    if (formData[key].type === "password") {
       return (
-        <div style={{ width: "50%", display: "inline-block", padding: "4px", float: "left" }}>
+        <div
+          key={index}
+          style={{ width: "50%", display: "inline-block", padding: "4px", float: "left" }}
+        >
           <CardHeader
             paddingleft={"2%"}
             size={0.95}
@@ -337,16 +318,19 @@ export default function RegisterComponent(props) {
             width={"100%"}
             height={"40px"}
             data={formData}
-            i={props.filter}
-            ref={ref[props.filter]}
+            i={key}
+            changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
           />
         </div>
       )
     }
-    if (formData[props.filter].type === "tel") {
-      if (props.filter === "countryCode") {
+    if (formData[key].type === "tel") {
+      if (key === "countryCode") {
         return (
-          <div style={{ width: "20%", display: "inline-block", padding: "4px", float: "left" }}>
+          <div
+            key={index}
+            style={{ width: "20%", display: "inline-block", padding: "4px", float: "left" }}
+          >
             <CardHeader
               paddingleft={"2%"}
               size={0.95}
@@ -358,15 +342,18 @@ export default function RegisterComponent(props) {
               width={"100%"}
               height={"40px"}
               data={formData}
-              i={props.filter}
-              ref={ref[props.filter]}
+              i={key}
+              changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
             />
           </div>
         )
       }
-      else if (props.filter === "phone") {
+      else if (key === "phone") {
         return (
-          <div style={{ width: "80%", display: "inline-block", padding: "4px", float: "left" }}>
+          <div
+            key={index}
+            style={{ width: "80%", display: "inline-block", padding: "4px", float: "left" }}
+          >
             <CardHeader
               paddingleft={"2%"}
               size={0.95}
@@ -379,23 +366,24 @@ export default function RegisterComponent(props) {
               width={"100%"}
               height={"40px"}
               data={formData}
-              i={props.filter}
-              ref={ref[props.filter]}
+              i={key}
+              changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
             />
           </div>
         )
       }
     }
-    if (formData[props.filter].type === "checkbox") {
+    if (formData[key].type === "checkbox") {
       return (
         <CheckBox
+          key={index}
           data={formData}
-          i={props.filter}
-          ref={ref[props.filter]}
+          i={key}
+          changestate={(event) => ChangeState(setFormData, formData, event.target.checked, "value", key)}
         />
       )
     }
-  }
+  });
 
   return (
     <RegisterBody show={props.show} className="col-12 col-md-8 col-lg-6 col-xl-5 shadow-lg">
@@ -417,10 +405,10 @@ export default function RegisterComponent(props) {
             background: "grey", height: "2px", width: "100%"
           }}
         />
-        {Object.keys(formData).map((filter, index) => <Card key={index} filter={filter} />)}
+        {listItems}
         <div style={{ padding: "0px 20px 0px 20px" }}>
           <SubmitBtn
-            onClick={validateForm}
+            onClick={register}
             className="form-control text-uppercase"
           >
             Submit

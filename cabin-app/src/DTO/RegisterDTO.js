@@ -51,18 +51,21 @@ export const registerDO = {
   },
   role: {
     type: "option",
-    selected: "",
+    value: 0,
     errors: "",
     0: {
-      value: "Admin",
+      value: "Role",
     },
     1: {
-      value: "Manager",
+      value: "Admin",
     },
     2: {
-      value: "Supervisor",
+      value: "Manager",
     },
     3: {
+      value: "Supervisor",
+    },
+    4: {
       value: "Worker",
     },
   },
@@ -70,7 +73,7 @@ export const registerDO = {
     type: "checkbox",
     isActive: false,
     dropdown: true,
-    selected: false,
+    value: false,
     0: {
       value: "I agree to the terms and conditions of the Service",
     },

@@ -1,6 +1,6 @@
 import React, { useState, forwardRef } from "react";
 import { CardHeader } from "../styles/SearchCardStyle";
-import { Slider, RangeInput, RangeValue, SliderBackground, DateInput, TextInput, OptionItem, MultiSelectInput } from "../styles/InputStyle"
+import { Slider, RangeInput, RangeValue, SliderBackground, DateInput, TextInput, OptionItem, MultiSelectInput, CheckInput } from "../styles/InputStyle"
 
 export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, changeState }) => {
   return (
@@ -76,18 +76,16 @@ export const DatePicker = () => {
   )
 }
 
-export const OptionSelect = forwardRef(function OptionSelect(props, ref) {
-  const { ...otherProps } = props;
-  const [val, setVal] = useState();
-
+export const OptionSelect = (props) => {
   return (
     <OptionItem
+      className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
       width={props.width}
       height={props.height}
       radius={props.radius}
       padding={props.padding}
-      defaultValue={val}
-      onChange={(event) => setVal(event.target.value)} {...otherProps} ref={ref}
+      defaultValue={props.data[props.i].value}
+      onChange={(event) => props.changestate(event)}
     >
       {
         Object.keys(props.data[props.i]).map(index => {
@@ -95,7 +93,7 @@ export const OptionSelect = forwardRef(function OptionSelect(props, ref) {
             return (
               <option
                 key={index}
-                value={props.data[props.i][index].value}
+                value={index}
               >
                 {props.data[props.i][index].value}
               </option>
@@ -104,7 +102,7 @@ export const OptionSelect = forwardRef(function OptionSelect(props, ref) {
       }
     </OptionItem>
   )
-});
+};
 
 export const MultiSelect = ({ data, i, changeState }) => {
   return (
@@ -130,9 +128,7 @@ export const MultiSelect = ({ data, i, changeState }) => {
   )
 }
 
-export const CheckBox = forwardRef(function CheckBox(props, ref) {
-  const { ...otherProps } = props;
-  const [val, setVal] = useState();
+export const CheckBox = (props) => {
   return (
     <div
       style={{
@@ -148,13 +144,13 @@ export const CheckBox = forwardRef(function CheckBox(props, ref) {
         Object.keys(props.data[props.i]).map(index => {
           if (typeof index === "string" && !isNaN(index)) {
             return (
-              <div key={index} style={{ display: "flex", marginTop: "3%", marginBottom: "3%" }}>
-                <input
-                  style={{ width: "15px", height: "50px" }}
+              <div key={index}>
+                <CheckInput
+                  className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
                   type="checkbox"
-                  defaultValue={val}
+                  defaultValue={props.data[props.i].value}
                   defaultChecked={props.multi ? props.data[props.i][index].selected : props.data[props.i].selected === index}
-                  onChange={(event) => setVal(event.target.value)} {...otherProps} ref={ref}
+                  onChange={(event) => props.changestate(event)}
                 />
                 <label style={{
                   paddingLeft: "10px", margin: "auto", color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: 15,
@@ -167,19 +163,17 @@ export const CheckBox = forwardRef(function CheckBox(props, ref) {
         })}
     </div>
   )
-});
+};
 
-export const TextField = forwardRef(function TextField(props, ref) {
-  const { ...otherProps } = props;
-  const [val, setVal] = useState(props.data[props.i].value);
+export const TextField = (props) => {
   return (
     <TextInput
       width={props.width}
       height={props.height}
       className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
       type={props.data[props.i].type}
-      defaultValue={val}
-      onChange={(event) => setVal(event.target.value)} {...otherProps} ref={ref}
+      defaultValue={props.data[props.i].value}
+      onChange={(event) => props.changestate(event)}
     />
   );
-});
+};

@@ -112,6 +112,10 @@ export const OptionItem = styled.select`
     cursor: pointer;
     color: black;
   }
+    &.invalid {
+    border: 0.1rem solid transparent !important;
+    outline: 0.15rem solid ${colors.lightRed} !important;
+  }
 `
 
 // Text Input
@@ -133,5 +137,40 @@ export const TextInput = styled.input`
   &:focus {
     border: 0.1rem solid transparent;
     outline: 0.15rem solid ${colors.grey};
+  }
+`
+
+// Text Input
+export const CheckInput = styled.input`
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 0.15rem solid ${colors.lightGrey};
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  outline: none;
+  outline: 0px !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  &:hover {
+    border: 0.15rem solid ${colors.grey};
+    cursor: pointer;
+    accent-color: ${colors.white}
+    color:white;
+  }
+  &:focus {
+    border: 0.15rem solid ${colors.grey};
+    cursor: pointer;
+  }
+  &:checked {
+    accent-color: ${colors.navy};
+    border: 0.15rem solid rgba(0, 0, 0, 0.4);
+  }
+  &:not(:checked) {
+    -webkit-appearance: none;
+  }
+  &.invalid {
+    border: 0.1rem solid transparent !important;
+    outline: 0.15rem solid ${colors.lightRed} !important;
   }
 `
