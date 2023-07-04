@@ -81,13 +81,13 @@ export const DatePicker = () => {
 export const OptionSelect = (props) => {
   return (
     <OptionItem
-      className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
+      className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
       width={props.width}
       height={props.height}
       radius={props.radius}
       padding={props.padding}
       defaultValue={props.data[props.i].value}
-      onChange={(event) => props.changestate(event)}
+      onChange={(event) => props.changeState(event)}
     >
       {
         Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(index => {
@@ -105,22 +105,22 @@ export const OptionSelect = (props) => {
   )
 };
 
-export const MultiSelect = ({ data, i, changeState }) => {
+export const MultiSelect = (props) => {
   return (
     <ul style={{ width: "100%", listStyleType: "none", margin: "0", padding: "0" }}>
       {
-        Object.keys(data[i]).forEach(index => {
+        Object.keys(props.data[props.i]).map(index => {
           if (typeof index === "string" && !isNaN(index)) {
             return (
               <MultiSelectInput
                 key={index}
-                className={data[i][index].selected === true ? "selected" : ""}
+                className={props.data[props.i][index].selected === true ? "selected" : ""}
                 margintop={"3%"}
                 marginbottom={"3%"}
                 paddingleft={"5%"}
-                onClick={() => changeState(data[i][index].selected, index)}
+                onClick={() => props.changeState(props.data[props.i][index].selected, index)}
               >
-                {data[i][index].value}
+                {props.data[props.i][index].value}
               </MultiSelectInput>
             )
           }
@@ -153,7 +153,7 @@ export const CheckBox = (props) => {
                 type="checkbox"
                 defaultValue={props.data[props.i].value}
                 defaultChecked={props.multi ? props.data[props.i][index].selected : props.data[props.i].selected === index}
-                onChange={(event) => props.changestate(event)}
+                onChange={(event) => props.changeState(event)}
               />
               <label style={{
                 margin: "auto", color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px",
@@ -177,7 +177,7 @@ export const TextField = (props) => {
         className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
         type={props.data[props.i].type}
         defaultValue={props.data[props.i].value}
-        onChange={(event) => props.changestate(event)}
+        onChange={(event) => props.changeState(event)}
       />
     </>
   )
@@ -193,7 +193,7 @@ export const PasswordField = (props) => {
         className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
         type={showPassword ? "text" : props.data[props.i].type}
         defaultValue={props.data[props.i].value}
-        onChange={(event) => props.changestate(event)}
+        onChange={(event) => props.changeState(event)}
       />
       {showPassword && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword(false)} style={{ position: "absolute", top: 40, left: 185 }} />}
       {!showPassword && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword(true)} style={{ position: "absolute", top: 40, left: 185 }} />}

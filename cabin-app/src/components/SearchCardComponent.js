@@ -11,87 +11,88 @@ const SearchCardComponent = () => {
   const [searchFilters, setSearchFilters] = useState(searchParameters);
   const [statusFilters, setStatusFilters] = useState(countByStatus);
 
-  const Card = (props) => {
-    if (searchFilters[props.filter].isActive)
+  const listItems = Object.keys(searchFilters).map((key, index) => {
+    if (searchFilters[key].isActive)
       return (
         <CardBody
-          className={searchFilters[props.filter].dropdown ? "dropdownActive" : ""}
+          key={key}
+          className={searchFilters[key].dropdown ? "dropdownActive" : ""}
           margintop={"10%"}
         >
           <div style={{ width: "100%", height: "100%", margin: "10px", padding: 0, display: "flex" }}>
             <MinusSign
               width={"15%"}
-              onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", props.filter)}
+              onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", key)}
             />
             <CardHeader
               width={"70%"}
               weight={500}
               size={0.95}
             >
-              {props.filter}
+              {key}
             </CardHeader>
             <DropDown
               width={"15%"}
-              onClick={() => ChangeState(setSearchFilters, searchFilters, !searchFilters[props.filter].dropdown, "dropdown", props.filter)}
+              onClick={() => ChangeState(setSearchFilters, searchFilters, !searchFilters[key].dropdown, "dropdown", key)}
             />
           </div>
-          {searchFilters[props.filter].dropdown &&
+          {searchFilters[key].dropdown &&
             <>
-              {searchFilters[props.filter].type === "multiSelect" &&
+              {searchFilters[key].type === "multiSelect" &&
                 <MultiSelect
                   data={searchFilters}
-                  i={props.filter}
-                  changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "selected", props.filter, index)}
+                  i={key}
+                  changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "selected", key, index)}
                 />
               }
-              {searchFilters[props.filter].type === "option" &&
+              {searchFilters[key].type === "option" &&
                 <>
                   <CardHeader
                     width={"90%"}
                     margintop={"5%"}
                     marginbottom={"1%"}
                   >
-                    {searchFilters[props.filter].name ? searchFilters[props.filter].name : props.filter}
+                    {searchFilters[key].name ? searchFilters[key].name : key}
                   </CardHeader>
                   <OptionSelect
                     width={"90%"}
                     radius={"10px"}
                     data={searchFilters}
-                    i={props.filter}
-                    changeState={(event) => ChangeState(setSearchFilters, searchFilters, event.target.value, "selected", props.filter)}
+                    i={key}
+                    changeState={(event) => ChangeState(setSearchFilters, searchFilters, event.target.value, "selected", key)}
                   />
                 </>
               }
-              {searchFilters[props.filter].type === "date" &&
+              {searchFilters[key].type === "date" &&
                 <DatePicker />
               }
-              {searchFilters[props.filter].type === "slider" &&
+              {searchFilters[key].type === "slider" &&
                 <RangeSlider
-                  minDefault={searchFilters[props.filter].minDefault}
-                  maxDefault={searchFilters[props.filter].maxDefault}
-                  maxValue={searchFilters[props.filter].maxValue}
-                  minValue={searchFilters[props.filter].minValue}
-                  step={searchFilters[props.filter].step}
-                  changeState={(value, property) => ChangeState(setSearchFilters, searchFilters, value, property, props.filter)}
+                  minDefault={searchFilters[key].minDefault}
+                  maxDefault={searchFilters[key].maxDefault}
+                  maxValue={searchFilters[key].maxValue}
+                  minValue={searchFilters[key].minValue}
+                  step={searchFilters[key].step}
+                  changeState={(value, property) => ChangeState(setSearchFilters, searchFilters, value, property, key)}
                 />
               }
               {(() => {
-                if (searchFilters[props.filter].type.split(/(?=[A-Z])/)[0] === "checkbox") {
-                  if (searchFilters[props.filter].type.split(/(?=[A-Z])/)[1] === "Multi") {
+                if (searchFilters[key].type.split(/(?=[A-Z])/)[0] === "checkbox") {
+                  if (searchFilters[key].type.split(/(?=[A-Z])/)[1] === "Multi") {
                     return (
                       <CheckBox
                         data={searchFilters}
-                        i={props.filter}
+                        i={key}
                         multi={true}
-                        changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "selected", props.filter, index)}
+                        changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "selected", key, index)}
                       />
                     )
                   } else {
                     return (
                       <CheckBox
                         data={searchFilters}
-                        i={props.filter}
-                        changeState={(index) => ChangeState(setSearchFilters, searchFilters, index, "selected", props.filter)}
+                        i={key}
+                        changeState={(index) => ChangeState(setSearchFilters, searchFilters, index, "selected", key)}
                       />
                     )
                   }
@@ -101,8 +102,10 @@ const SearchCardComponent = () => {
           }
         </CardBody >
       )
-  }
+  })
 
+
+  /* 
   const Status = (props) => {
     return (
       <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
@@ -116,7 +119,7 @@ const SearchCardComponent = () => {
         </li>
       </ul >
     )
-  }
+  } */
 
   return (
     <SearchCardBody >
@@ -132,17 +135,17 @@ const SearchCardComponent = () => {
         <CardHeader width="100%" style={{ margin: 0, padding: 0 }}>
           Varaukset
         </CardHeader>
-        <Container style={{ padding: 0, margin: 0 }}>
+        {/*         <Container style={{ padding: 0, margin: 0 }}>
           {Object.keys(statusFilters).map((status, index) => (
             <Status status={status} key={index} />
           ))}
-        </Container>
+        </Container> */}
       </Container>
       <Container>
         <AddButton type="button" value="+" onClick={() => setShowModal(true)} margintop={"20%"} />
       </Container>
       <CardList>
-        {Object.keys(searchFilters).map((filter, index) => <Card key={index} filter={filter} />)}
+        {listItems}
       </CardList>
     </SearchCardBody >
   )

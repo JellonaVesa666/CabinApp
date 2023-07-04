@@ -211,7 +211,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={key}
-              changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
             />
           </div>
         )
@@ -234,7 +234,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={key}
-              changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
             />
           </div>
         )
@@ -256,7 +256,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={key}
-              changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
             />
           </div>
         )
@@ -279,7 +279,7 @@ export default function RegisterComponent(props) {
             padding={"0px 20px 0px 20px"}
             data={formData}
             i={key}
-            changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+            changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
           />
         </div>
       )
@@ -302,7 +302,7 @@ export default function RegisterComponent(props) {
             height={"40px"}
             data={formData}
             i={key}
-            changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+            changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
           />
         </div>
       )
@@ -326,7 +326,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={key}
-              changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
             />
           </div>
         )
@@ -350,7 +350,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={key}
-              changestate={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
             />
           </div>
         )
@@ -362,7 +362,7 @@ export default function RegisterComponent(props) {
           key={index}
           data={formData}
           i={key}
-          changestate={(event) => ChangeState(setFormData, formData, event.target.checked, "value", key)}
+          changeState={(event) => ChangeState(setFormData, formData, event.target.checked, "value", key)}
         />
       )
     }
