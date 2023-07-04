@@ -17,40 +17,40 @@ export const searchParameters = {
     isActive: false,
     dropdown: true,
     0: {
-      value: "> 10m",
-      selected: false,
+      name: "> 10m",
+      value: false,
     },
     1: {
-      value: "> 20m",
-      selected: false,
+      name: "> 20m",
+      value: false,
     },
     2: {
-      value: "> 30m",
-      selected: false,
+      name: "> 30m",
+      value: false,
     },
     3: {
-      value: "> 40m",
-      selected: false,
+      name: "> 40m",
+      value: false,
     },
     4: {
-      value: "> 50m",
-      selected: false,
+      name: "> 50m",
+      value: false,
     }
   },
   option: {
     type: "option",
     isActive: false,
     dropdown: true,
-    selected: "test",
+    value: "test",
     name: "numero",
     0: {
-      value: "test 1",
+      name: "test 1",
     },
     1: {
-      value: "test 2",
+      name: "test 2",
     },
     2: {
-      value: "test 3",
+      name: "test 3",
     },
   },
   date: {
@@ -75,38 +75,38 @@ export const searchParameters = {
     isActive: false,
     dropdown: true,
     0: {
-      value: "hirsi",
-      selected: false,
+      name: "hirsi",
+      value: false,
     },
     1: {
-      value: "hirsihuvila",
-      selected: true,
+      name: "hirsihuvila",
+      value: true,
     },
     2: {
-      value: "huvila",
-      selected: false,
+      name: "huvila",
+      value: false,
     },
     3: {
-      value: "mökki",
-      selected: false,
+      name: "mökki",
+      value: false,
     },
   },
   checkboxSingle: {
     type: "checkbox",
     isActive: false,
     dropdown: true,
-    selected: false,
+    value: false,
     0: {
-      value: "hirsi",
+      name: "hirsi",
     },
     1: {
-      value: "hirsihuvila",
+      name: "hirsihuvila",
     },
     2: {
-      value: "huvila",
+      name: "huvila",
     },
     3: {
-      value: "mökki",
+      name: "mökki",
     },
   },
 };

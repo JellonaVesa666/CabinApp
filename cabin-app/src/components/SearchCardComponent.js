@@ -42,7 +42,7 @@ const SearchCardComponent = () => {
                 <MultiSelect
                   data={searchFilters}
                   i={key}
-                  changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "selected", key, index)}
+                  changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", key, index)}
                 />
               }
               {searchFilters[key].type === "option" &&
@@ -59,7 +59,7 @@ const SearchCardComponent = () => {
                     radius={"10px"}
                     data={searchFilters}
                     i={key}
-                    changeState={(event) => ChangeState(setSearchFilters, searchFilters, event.target.value, "selected", key)}
+                    changeState={(event) => ChangeState(setSearchFilters, searchFilters, event.target.value, "value", key)}
                   />
                 </>
               }
@@ -84,7 +84,7 @@ const SearchCardComponent = () => {
                         data={searchFilters}
                         i={key}
                         multi={true}
-                        changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "selected", key, index)}
+                        changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", key, index)}
                       />
                     )
                   } else {
@@ -92,7 +92,7 @@ const SearchCardComponent = () => {
                       <CheckBox
                         data={searchFilters}
                         i={key}
-                        changeState={(index) => ChangeState(setSearchFilters, searchFilters, index, "selected", key)}
+                        changeState={(index) => ChangeState(setSearchFilters, searchFilters, index, "value", key)}
                       />
                     )
                   }

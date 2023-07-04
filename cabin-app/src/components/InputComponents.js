@@ -96,7 +96,7 @@ export const OptionSelect = (props) => {
               key={index}
               value={index}
             >
-              {props.data[props.i][index].value}
+              {props.data[props.i][index].name}
             </option>
           )
         })
@@ -114,13 +114,13 @@ export const MultiSelect = (props) => {
             return (
               <MultiSelectInput
                 key={index}
-                className={props.data[props.i][index].selected === true ? "selected" : ""}
+                className={props.data[props.i][index].value === true ? "selected" : ""}
                 margintop={"3%"}
                 marginbottom={"3%"}
                 paddingleft={"5%"}
-                onClick={() => props.changeState(props.data[props.i][index].selected, index)}
+                onClick={() => props.changeState(props.data[props.i][index].value, index)}
               >
-                {props.data[props.i][index].value}
+                {props.data[props.i][index].name}
               </MultiSelectInput>
             )
           }
@@ -151,15 +151,14 @@ export const CheckBox = (props) => {
               <CheckInput
                 className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
                 type="checkbox"
-                defaultValue={props.data[props.i].value}
-                defaultChecked={props.multi ? props.data[props.i][index].selected : props.data[props.i].selected === index}
-                onChange={(event) => props.changeState(event)}
+                checked={props.multi ? props.data[props.i][index].value : props.data[props.i].value === index}
+                onChange={props.multi ? () => props.changeState(props.data[props.i][index].value, index) : () => props.changeState(index)}
               />
               <label style={{
                 margin: "auto", color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px",
               }}
               >
-                {props.data[props.i][index].value}</label>
+                {props.data[props.i][index].name}</label>
             </div>
           )
         })
