@@ -113,22 +113,21 @@ export const MultiSelect = (props) => {
       }}
     >
       {
-        Object.keys(props.data[props.i]).map(index => {
-          if (typeof index === "string" && !isNaN(index)) {
-            return (
-              <MultiSelectInput
-                key={index}
-                className={props.data[props.i][index].value === true ? "selected" : ""}
-                margintop={"3%"}
-                marginbottom={"3%"}
-                paddingleft={"5%"}
-                onClick={() => props.changeState(props.data[props.i][index].value, index)}
-              >
-                {props.data[props.i][index].name}
-              </MultiSelectInput>
-            )
-          }
-        })}
+        Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(index => {
+          return (
+            <MultiSelectInput
+              key={index}
+              className={props.data[props.i][index].value === true ? "selected" : ""}
+              margintop={"3%"}
+              marginbottom={"3%"}
+              paddingleft={"5%"}
+              onClick={() => props.changeState(props.data[props.i][index].value, index)}
+            >
+              {props.data[props.i][index].name}
+            </MultiSelectInput>
+          )
+        })
+      }
     </ul>
   )
 }
@@ -146,7 +145,10 @@ export const CheckBox = (props) => {
             <div
               key={index}
               style={{
-                display: "flex"
+                display: "flex",
+                justifyContent: "start",
+                alignItems: "center"
+
               }}
             >
               <CheckInput
@@ -156,7 +158,7 @@ export const CheckBox = (props) => {
                 checked={props.multi ? props.data[props.i][index].value : props.single ? props.data[props.i].value === index : props.data[props.i].value}
                 onChange={props.multi ? () => props.changeState(props.data[props.i][index].value, index) : () => props.changeState(index)}
               />
-              <label style={{ margin: "auto", color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px" }}>
+              <label style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px" }}>
                 {props.data[props.i][index].name}
               </label>
             </div>
