@@ -147,6 +147,8 @@ export const CheckInput = styled.input`
   border-radius: 4px;
   width: 20px;
   height: 20px;
+  margin: auto;
+  padding: 0;
   outline: none;
   outline: 0px !important;
   -webkit-box-shadow: none !important;

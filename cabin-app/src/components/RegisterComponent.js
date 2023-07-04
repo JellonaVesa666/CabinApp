@@ -1,8 +1,6 @@
-import React, { useState, createRef, useEffect } from "react";
+import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { ChangeState } from "../helpers/HelperFunctions";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { TextField, OptionSelect, CheckBox, PasswordField } from "./InputComponents";
 import { CardHeader } from "../styles/SearchCardStyle";
 import { RegisterBody, CloseBtn, SubmitBtn, LinkH4 } from "../styles/RegisterStyle";
@@ -12,17 +10,6 @@ import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 export default function RegisterComponent(props) {
   // Initialize Form Data
   const [formData, setFormData] = useState(registerDO);
-  const [ref, setRefrences] = useState({});
-
-  useEffect(() => {
-    // Initialize Refrences
-    Object.keys(formData).forEach(key => {
-      setRefrences(ref => ({
-        ...ref,
-        [key]: createRef(),
-      }))
-    });
-  }, [])
 
   const register = async () => {
     let isValid = validateForm();
@@ -160,7 +147,7 @@ export default function RegisterComponent(props) {
       }
     }
     // Role
-    if (formData.role.value === 0) {
+    if (formData.role.value === "0") {
       SetErrors("role", "Role is required");
       isValid = false;
     }

@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState } from "react";
 import { CardHeader } from "../styles/SearchCardStyle";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -90,16 +90,15 @@ export const OptionSelect = (props) => {
       onChange={(event) => props.changestate(event)}
     >
       {
-        Object.keys(props.data[props.i]).map(index => {
-          if (typeof index === "string" && !isNaN(index))
-            return (
-              <option
-                key={index}
-                value={index}
-              >
-                {props.data[props.i][index].value}
-              </option>
-            )
+        Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(index => {
+          return (
+            <option
+              key={index}
+              value={index}
+            >
+              {props.data[props.i][index].value}
+            </option>
+          )
         })
       }
     </OptionItem>
@@ -110,7 +109,7 @@ export const MultiSelect = ({ data, i, changeState }) => {
   return (
     <ul style={{ width: "100%", listStyleType: "none", margin: "0", padding: "0" }}>
       {
-        Object.keys(data[i]).map(index => {
+        Object.keys(data[i]).forEach(index => {
           if (typeof index === "string" && !isNaN(index)) {
             return (
               <MultiSelectInput
@@ -143,32 +142,33 @@ export const CheckBox = (props) => {
       }}
     >
       {
-        Object.keys(props.data[props.i]).map(index => {
-          if (typeof index === "string" && !isNaN(index)) {
-            return (
-              <div key={index}>
-                <CheckInput
-                  className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
-                  type="checkbox"
-                  defaultValue={props.data[props.i].value}
-                  defaultChecked={props.multi ? props.data[props.i][index].selected : props.data[props.i].selected === index}
-                  onChange={(event) => props.changestate(event)}
-                />
-                <label style={{
-                  paddingLeft: "10px", margin: "auto", color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: 15,
-                }}
-                >
-                  {props.data[props.i][index].value}</label>
-              </div>
-            )
-          }
-        })}
+        Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(index => {
+          return (
+            <div
+              key={index}
+              style={{ display: "flex" }}
+            >
+              <CheckInput
+                className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
+                type="checkbox"
+                defaultValue={props.data[props.i].value}
+                defaultChecked={props.multi ? props.data[props.i][index].selected : props.data[props.i].selected === index}
+                onChange={(event) => props.changestate(event)}
+              />
+              <label style={{
+                margin: "auto", color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px",
+              }}
+              >
+                {props.data[props.i][index].value}</label>
+            </div>
+          )
+        })
+      }
     </div>
   )
 };
 
 export const TextField = (props) => {
-  const [showPassword, setHidePassword] = useState(false);
   return (
     <>
       <TextInput

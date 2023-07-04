@@ -51,7 +51,7 @@ export const registerDO = {
   },
   role: {
     type: "option",
-    value: 0,
+    value: "0",
     errors: "",
     0: {
       value: "Role",
