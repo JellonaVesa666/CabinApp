@@ -92,7 +92,7 @@ export const searchParameters = {
     },
   },
   checkboxSingle: {
-    type: "checkbox",
+    type: "checkboxSingle",
     isActive: false,
     dropdown: true,
     value: false,

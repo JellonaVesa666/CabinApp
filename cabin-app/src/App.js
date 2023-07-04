@@ -7,7 +7,7 @@ function App() {
   return (
     <MainBody>
       <NavigationComponent />
-      {/*       <LoginPage />
+{/*       <LoginPage />
       <Logo /> */}
     </MainBody>
   );

@@ -87,11 +87,12 @@ const SearchCardComponent = () => {
                         changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", key, index)}
                       />
                     )
-                  } else {
+                  } else if (searchFilters[key].type.split(/(?=[A-Z])/)[1] === "Single") {
                     return (
                       <CheckBox
                         data={searchFilters}
                         i={key}
+                        single={true}
                         changeState={(index) => ChangeState(setSearchFilters, searchFilters, index, "value", key)}
                       />
                     )

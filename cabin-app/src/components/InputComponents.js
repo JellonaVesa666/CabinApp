@@ -152,7 +152,8 @@ export const CheckBox = (props) => {
               <CheckInput
                 className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
                 type="checkbox"
-                checked={props.multi ? props.data[props.i][index].value : props.data[props.i].value === index || props.data[props.i].value}
+                //       (condition) ? (true block) : ((condition2) ? (true block2) : (else block2))
+                checked={props.multi ? props.data[props.i][index].value : props.single ? props.data[props.i].value === index : props.data[props.i].value}
                 onChange={props.multi ? () => props.changeState(props.data[props.i][index].value, index) : () => props.changeState(index)}
               />
               <label style={{ margin: "auto", color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px" }}>
@@ -165,6 +166,7 @@ export const CheckBox = (props) => {
     </div>
   )
 };
+
 
 export const TextField = (props) => {
   return (
