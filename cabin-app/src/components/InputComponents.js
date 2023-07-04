@@ -11,29 +11,29 @@ export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, 
         type="range"
         min={minDefault}
         max={maxDefault}
-        defaultValue={minValue}
+        value={minValue}
         step={step}
-        onMouseUp={(event) => changeState(Math.max(minDefault, Math.min(event.target.value, maxValue)), "minValue")}
+        onChange={(event) => changeState(Math.max(minDefault, Math.min(event.target.value, maxValue)), "minValue")}
       />
       <RangeInput
         type="range"
         min={minDefault}
         max={maxDefault}
-        defaultValue={maxValue}
+        value={maxValue}
         step={step}
-        onMouseUp={(event) => changeState(Math.max(minValue, Math.min(event.target.value, maxDefault)), "maxValue")}
+        onChange={(event) => changeState(Math.max(minValue, Math.min(event.target.value, maxDefault)), "maxValue")}
       />
       <SliderBackground />
       <RangeValue>
         <input
           type="number"
-          defaultValue={minValue}
+          value={minValue}
           style={{ width: "25%", marginRight: "25%", marginTop: "5%", borderRadius: "10px" }}
           onChange={(event) => changeState(Math.max(minDefault, Math.min(event.target.value, maxValue)), "minValue")}
         />
         <input
           type="number"
-          defaultValue={maxValue}
+          value={maxValue}
           style={{ width: "25%", marginLeft: "25%", marginTop: "5%", borderRadius: "10px" }}
           onChange={(event) => changeState(Math.max(minValue, Math.min(event.target.value, maxDefault)), "maxValue")}
         />
@@ -86,7 +86,7 @@ export const OptionSelect = (props) => {
       height={props.height}
       radius={props.radius}
       padding={props.padding}
-      defaultValue={props.data[props.i].value}
+      value={props.data[props.i].value}
       onChange={(event) => props.changeState(event)}
     >
       {
@@ -178,7 +178,7 @@ export const TextField = (props) => {
         height={props.height}
         className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
         type={props.data[props.i].type}
-        defaultValue={props.data[props.i].value}
+        value={props.data[props.i].value}
         onChange={(event) => props.changeState(event)}
       />
     </>
@@ -194,7 +194,7 @@ export const PasswordField = (props) => {
         height={props.height}
         className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
         type={showPassword ? "text" : props.data[props.i].type}
-        defaultValue={props.data[props.i].value}
+        value={props.data[props.i].value}
         onChange={(event) => props.changeState(event)}
       />
       {showPassword && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword(false)} style={{ position: "absolute", top: 40, left: 185 }} />}

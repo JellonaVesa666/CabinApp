@@ -54,19 +54,19 @@ export const registerDO = {
     value: "0",
     errors: "",
     0: {
-      value: "Role",
+      name: "Role",
     },
     1: {
-      value: "Admin",
+      name: "Admin",
     },
     2: {
-      value: "Manager",
+      name: "Manager",
     },
     3: {
-      value: "Supervisor",
+      name: "Supervisor",
     },
     4: {
-      value: "Worker",
+      name: "Worker",
     },
   },
   termsOfService: {
