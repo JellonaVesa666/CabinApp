@@ -22,7 +22,7 @@ export default function RegisterComponent(props) {
       registerDTO.emailConfirm = formData.emailConfirm.value;
       registerDTO.password = formData.password.value;
       registerDTO.passwordConfirm = formData.passwordConfirm.value;
-      registerDTO.phone = formData.phone.value;
+      registerDTO.phone = formData.countryCode.value + formData.phone.value;
       registerDTO.address = formData.address.value;
       registerDTO.postalCode = formData.postalCode.value;
       registerDTO.role = formData.role.value;
@@ -45,7 +45,7 @@ export default function RegisterComponent(props) {
   }
 
   const validateForm = () => {
-    console.log(formData);
+    //console.log(formData);
     let isValid = true;
 
     // Reset errors before running check.
