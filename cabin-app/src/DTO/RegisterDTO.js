@@ -72,10 +72,9 @@ export const registerDO = {
   termsOfService: {
     type: "checkbox",
     isActive: false,
-    dropdown: true,
     value: false,
     0: {
-      value: "I agree to the terms and conditions of the Service",
+      name: "I agree to the terms and conditions of the Service",
     },
   },
 };

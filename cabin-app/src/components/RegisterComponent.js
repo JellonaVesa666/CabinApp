@@ -288,7 +288,7 @@ export default function RegisterComponent(props) {
       return (
         <div
           key={index}
-          style={{position: "relative", width: "50%", display: "inline-block", padding: "4px", float: "left" }}
+          style={{ position: "relative", width: "50%", display: "inline-block", padding: "4px", float: "left" }}
         >
           <CardHeader
             paddingleft={"2%"}
@@ -362,7 +362,7 @@ export default function RegisterComponent(props) {
           key={index}
           data={formData}
           i={key}
-          changeState={(event) => ChangeState(setFormData, formData, event.target.checked, "value", key)}
+          changeState={() => ChangeState(setFormData, formData, !formData[key].value, "value", key)}
         />
       )
     }

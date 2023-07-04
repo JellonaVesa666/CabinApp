@@ -151,7 +151,7 @@ export const CheckBox = (props) => {
               <CheckInput
                 className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
                 type="checkbox"
-                checked={props.multi ? props.data[props.i][index].value : props.data[props.i].value === index}
+                checked={props.multi ? props.data[props.i][index].value : props.data[props.i].value === index || props.data[props.i].value}
                 onChange={props.multi ? () => props.changeState(props.data[props.i][index].value, index) : () => props.changeState(index)}
               />
               <label style={{
