@@ -107,7 +107,11 @@ export const OptionSelect = (props) => {
 
 export const MultiSelect = (props) => {
   return (
-    <ul style={{ width: "100%", listStyleType: "none", margin: "0", padding: "0" }}>
+    <ul
+      style={{
+        width: "100%", listStyleType: "none", margin: "0", padding: "0"
+      }}
+    >
       {
         Object.keys(props.data[props.i]).map(index => {
           if (typeof index === "string" && !isNaN(index)) {
@@ -133,12 +137,7 @@ export const CheckBox = (props) => {
   return (
     <div
       style={{
-        width: "90%",
-        margin: "auto",
-        display: "flex",
-        flexDirection: "column",
-        marginTop: "3%",
-        marginBottom: "3%"
+        width: "90%", margin: "auto", display: "flex", flexDirection: "column", marginTop: "3%", marginBottom: "3%"
       }}
     >
       {
@@ -146,7 +145,9 @@ export const CheckBox = (props) => {
           return (
             <div
               key={index}
-              style={{ display: "flex" }}
+              style={{
+                display: "flex"
+              }}
             >
               <CheckInput
                 className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
@@ -154,11 +155,9 @@ export const CheckBox = (props) => {
                 checked={props.multi ? props.data[props.i][index].value : props.data[props.i].value === index || props.data[props.i].value}
                 onChange={props.multi ? () => props.changeState(props.data[props.i][index].value, index) : () => props.changeState(index)}
               />
-              <label style={{
-                margin: "auto", color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px",
-              }}
-              >
-                {props.data[props.i][index].name}</label>
+              <label style={{ margin: "auto", color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px" }}>
+                {props.data[props.i][index].name}
+              </label>
             </div>
           )
         })
