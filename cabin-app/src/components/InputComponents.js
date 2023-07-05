@@ -23,21 +23,20 @@ export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, 
         step={step}
         onChange={(event) => changeState(Math.max(minValue, Math.min(event.target.value, maxDefault)), "maxValue")}
       />
+      <SliderBackground left={minValue / maxDefault * 100} right={maxValue / maxDefault * 100} className="center" />
       <SliderBackground />
-      <RangeValue>
-        <input
+        <RangeValue
           type="number"
           value={minValue}
-          style={{ width: "25%", marginRight: "25%", marginTop: "5%", borderRadius: "10px" }}
+          marginright={"20%"}
           onChange={(event) => changeState(Math.max(minDefault, Math.min(event.target.value, maxValue)), "minValue")}
         />
-        <input
+        <RangeValue
           type="number"
           value={maxValue}
-          style={{ width: "25%", marginLeft: "25%", marginTop: "5%", borderRadius: "10px" }}
+          marginleft={"20%"}
           onChange={(event) => changeState(Math.max(minValue, Math.min(event.target.value, maxDefault)), "maxValue")}
         />
-      </RangeValue>
     </Slider>
   );
 };
