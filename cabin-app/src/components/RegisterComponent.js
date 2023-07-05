@@ -39,12 +39,6 @@ export default function RegisterComponent(props) {
     }
   }
 
-  const SetErrors = (property, errorMsg) => {
-    setFormData(prevData => ({
-      ...prevData, [property]: { ...prevData[property], errors: errorMsg }
-    }));
-  }
-
   const validateForm = () => {
     //console.log(formData);
     let isValid = true;
@@ -60,31 +54,31 @@ export default function RegisterComponent(props) {
 
     //Name
     if (formData.fullName.value.length === 0) {
-      SetErrors("fullName", "Cannot be empty");
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "fullName");
       isValid = false;
     }
     else {
       const fullNameRegex = /^\w+\s\w+$/gm;
 
       if (!fullNameRegex.test(formData.fullName.value)) {
-        SetErrors("fullName", "Wrong format ! make sure to type whole name,");
+        ChangeState(setFormData, formData, "Wrong format ! make sure to type whole name", "errors", "fullName");
         isValid = false;
       }
     }
     //Username
     if (formData.username.value.length === 0) {
-      SetErrors("username", "Cannot be empty");
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "username");
       isValid = false;
     }
     else {
       if (!formData.username.value.match(/^[a-zA-Z]+$/)) {
-        SetErrors("username", "Only letters are accepted");
+        ChangeState(setFormData, formData, "Only letters are accepted", "errors", "username");
         isValid = false;
       }
     }
     //Email
     if (formData.email.value.length === 0) {
-      SetErrors("email", "Cannot be empty");
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "email");
       isValid = false;
     }
     else {
@@ -97,64 +91,64 @@ export default function RegisterComponent(props) {
         lastDotPos > 2 &&
         formData.email.value.length - lastDotPos > 2
       )) {
-        SetErrors("email", "Email is not valid");
+        ChangeState(setFormData, formData, "Email is not valid", "errors", "email");
         isValid = false;
       }
     }
     if (formData.emailConfirm.value.length === 0) {
-      SetErrors("emailConfirm", "Cannot be empty");
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "emailConfirm");
       isValid = false;
     }
     else {
       if (formData.email.value !== formData.emailConfirm.value) {
-        SetErrors("emailConfirm", "Emails do not match");
+        ChangeState(setFormData, formData, "Emails do not match", "errors", "emailConfirm");
         isValid = false;
       }
     }
     // Phone
     if (formData.countryCode.value.length === 0 || formData.phone.value.length === 0) {
-      SetErrors("phone", "Cannot be empty");
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "phone");
       isValid = false;
     }
     else {
       const phoneRegex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
       if (!phoneRegex.test(formData.countryCode.value + formData.phone.value)) {
-        SetErrors("phone", "Invalid phone number");
+        ChangeState(setFormData, formData, "Invalid phone number", "errors", "phone");
         isValid = false;
       }
     }
     // Address
     if (formData.address.value.length === 0) {
-      SetErrors("address", "Cannot be empty");
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "address");
       isValid = false;
     }
     else {
       const adressRegex = /^\s*\S+(?:\s+\S+)/;
       if (!adressRegex.test(formData.address.value)) {
-        SetErrors("address", "Invalid Address");
+        ChangeState(setFormData, formData, "Invalid Address", "errors", "address");
         isValid = false;
       }
     }
     // Postal Code
     if (formData.postalCode.value.length === 0) {
-      SetErrors("postalCode", "Cannot be empty");
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "postalCode");
       isValid = false;
     }
     else {
       const postalRegex = /^\d{5}(?:[-\s]\d{4})?$/;
       if (!postalRegex.test(formData.postalCode.value)) {
-        SetErrors("postalCode", "Invalid postal code");
+        ChangeState(setFormData, formData, "Invalid postal code", "errors", "postalCode");
         isValid = false;
       }
     }
     // Role
     if (formData.role.value === "0") {
-      SetErrors("role", "Role is required");
+      ChangeState(setFormData, formData, "Role is required", "errors", "role");
       isValid = false;
     }
     // Password
     if (formData.password.value.length === 0) {
-      SetErrors("password", "Cannot be empty");
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "password");
       isValid = false;
     }
     else {
@@ -165,23 +159,23 @@ export default function RegisterComponent(props) {
       // Minimum eight in length .{8,} (with the anchors)
       const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
       if (!passwordRegex.test(formData.password.value)) {
-        SetErrors("password", "Password do not meet requirements");
+        ChangeState(setFormData, formData, "Password does not meet requirements", "errors", "password");
         isValid = false;
       }
     }
     if (formData.passwordConfirm.value.length === 0) {
-      SetErrors("passwordConfirm", "Cannot be empty");
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "passwordConfirm")
       isValid = false;
     }
     else {
       if (formData.password.value !== formData.passwordConfirm.value) {
-        SetErrors("passwordConfirm", "Passwords do not match");
+        ChangeState(setFormData, formData, "Passwords do not match", "errors", "passwordConfirm");
         isValid = false;
       }
     }
     // Terms of Service
     if (formData.termsOfService.value === false) {
-      SetErrors("termsOfService", "Please agree the terms of Service");
+      ChangeState(setFormData, formData, "Please agree the terms of Service", "errors", "termsOfService");
       isValid = false;
     }
 
