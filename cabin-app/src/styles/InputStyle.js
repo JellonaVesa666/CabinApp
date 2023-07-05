@@ -49,7 +49,7 @@ export const SliderBackground = styled.div`
   position: absolute;
   width: 100%;
   height: 30%;
-  background-color: ${colors.lightGrey};
+  background-color: ${colors.grey};
   border-radius: 20px;
   &.center {
     z-index: 1;
@@ -68,6 +68,7 @@ export const RangeValue = styled.input`
   margin-top: 35px;
   border-radius: 10px;
   border: none;
+  padding-left: 5%;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin-left: ${props => props.marginleft};
   margin-right: ${props => props.marginright};
