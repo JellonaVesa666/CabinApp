@@ -191,13 +191,13 @@ export default function RegisterComponent(props) {
       return true;
   }
 
-  const listItems = Object.keys(formData).map((key, index) => {
-    var header = key.split(/(?=[A-Z])(?=[A-Z])/);
-    if (formData[key].type === "text" || formData[key].type === "email") {
-      if (key === "address") {
+  const listItems = Object.keys(formData).map(item => {
+    var header = item.split(/(?=[A-Z])(?=[A-Z])/);
+    if (formData[item].type === "text" || formData[item].type === "email") {
+      if (item === "address") {
         return (
           <div
-            key={index}
+            key={Object.keys(formData).indexOf(item)}
             style={{ width: "70%", display: "inline-block", padding: "4px", float: "left" }}
           >
             <CardHeader
@@ -211,16 +211,16 @@ export default function RegisterComponent(props) {
               width={"100%"}
               height={"40px"}
               data={formData}
-              i={key}
-              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+              i={item}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
             />
           </div>
         )
       }
-      else if (key === "postalCode") {
+      else if (item === "postalCode") {
         return (
           <div
-            key={index}
+            key={Object.keys(formData).indexOf(item)}
             style={{ width: "30%", display: "inline-block", padding: "4px", float: "left" }}
           >
             <CardHeader
@@ -234,8 +234,8 @@ export default function RegisterComponent(props) {
               width={"100%"}
               height={"40px"}
               data={formData}
-              i={key}
-              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+              i={item}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
             />
           </div>
         )
@@ -243,7 +243,7 @@ export default function RegisterComponent(props) {
       else {
         return (
           <div
-            key={index}
+            key={Object.keys(formData).indexOf(item)}
           >
             <CardHeader
               paddingleft={"2%"}
@@ -256,22 +256,24 @@ export default function RegisterComponent(props) {
               width={"100%"}
               height={"40px"}
               data={formData}
-              i={key}
-              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+              i={item}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
             />
           </div>
         )
       }
     }
-    if (formData[key].type === "option") {
+    if (formData[item].type === "option") {
       return (
-        <div key={index}>
+        <div
+          key={Object.keys(formData).indexOf(item)}
+        >
           <CardHeader
             paddingleft={"2%"}
             size={0.95}
             weight={400}
           >
-            {formData[key].name ? formData[key].name : key}
+            {formData[item].name ? formData[item].name : item}
           </CardHeader>
           <OptionSelect
             width={"100%"}
@@ -279,16 +281,16 @@ export default function RegisterComponent(props) {
             radius={"40px"}
             padding={"0px 20px 0px 20px"}
             data={formData}
-            i={key}
-            changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+            i={item}
+            changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
           />
         </div>
       )
     }
-    if (formData[key].type === "password") {
+    if (formData[item].type === "password") {
       return (
         <div
-          key={index}
+          key={Object.keys(formData).indexOf(item)}
           style={{ position: "relative", width: "50%", display: "inline-block", padding: "4px", float: "left" }}
         >
           <CardHeader
@@ -302,17 +304,17 @@ export default function RegisterComponent(props) {
             width={"100%"}
             height={"40px"}
             data={formData}
-            i={key}
-            changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+            i={item}
+            changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
           />
         </div>
       )
     }
-    if (formData[key].type === "tel") {
-      if (key === "countryCode") {
+    if (formData[item].type === "tel") {
+      if (item === "countryCode") {
         return (
           <div
-            key={index}
+            key={Object.keys(formData).indexOf(item)}
             style={{ width: "20%", display: "inline-block", padding: "4px", float: "left" }}
           >
             <CardHeader
@@ -326,16 +328,16 @@ export default function RegisterComponent(props) {
               width={"100%"}
               height={"40px"}
               data={formData}
-              i={key}
-              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+              i={item}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
             />
           </div>
         )
       }
-      else if (key === "phone") {
+      else if (item === "phone") {
         return (
           <div
-            key={index}
+            key={Object.keys(formData).indexOf(item)}
             style={{ width: "80%", display: "inline-block", padding: "4px", float: "left" }}
           >
             <CardHeader
@@ -350,25 +352,25 @@ export default function RegisterComponent(props) {
               width={"100%"}
               height={"40px"}
               data={formData}
-              i={key}
-              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", key)}
+              i={item}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
             />
           </div>
         )
       }
     }
-    if (formData[key].type === "checkbox") {
+    if (formData[item].type === "checkbox") {
       return (
         <CheckBox
-          key={index}
+          key={Object.keys(formData).indexOf(item)}
           data={formData}
-          i={key}
+          i={item}
           color={colors.navy}
-          changeState={() => ChangeState(setFormData, formData, !formData[key].value, "value", key)}
+          changeState={() => ChangeState(setFormData, formData, !formData[item].value, "value", item)}
         />
       )
     }
-  });
+  })
 
   return (
     <RegisterBody show={props.show} className="col-12 col-md-8 col-lg-6 col-xl-5 shadow-lg">
