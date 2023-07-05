@@ -106,7 +106,7 @@ const SearchCardComponent = () => {
   })
 
 
-  /* 
+
   const Status = (props) => {
     return (
       <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
@@ -120,7 +120,7 @@ const SearchCardComponent = () => {
         </li>
       </ul >
     )
-  } */
+  }
 
   return (
     <SearchCardBody >
@@ -136,11 +136,11 @@ const SearchCardComponent = () => {
         <CardHeader width="100%" style={{ margin: 0, padding: 0 }}>
           Varaukset
         </CardHeader>
-        {/*         <Container style={{ padding: 0, margin: 0 }}>
+        <Container style={{ padding: 0, margin: 0 }}>
           {Object.keys(statusFilters).map((status, index) => (
             <Status status={status} key={index} />
           ))}
-        </Container> */}
+        </Container>
       </Container>
       <Container>
         <AddButton type="button" value="+" onClick={() => setShowModal(true)} margintop={"20%"} />
