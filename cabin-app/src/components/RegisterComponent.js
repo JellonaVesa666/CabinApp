@@ -5,6 +5,7 @@ import { TextField, OptionSelect, CheckBox, PasswordField } from "./InputCompone
 import { CardHeader } from "../styles/SearchCardStyle";
 import { RegisterBody, CloseBtn, SubmitBtn, LinkH4 } from "../styles/RegisterStyle";
 import { registerDO, registerDTO } from "../DTO/RegisterDTO";
+import { colors } from "../styles/Colors";
 
 
 export default function RegisterComponent(props) {
@@ -362,6 +363,7 @@ export default function RegisterComponent(props) {
           key={index}
           data={formData}
           i={key}
+          color={colors.navy}
           changeState={() => ChangeState(setFormData, formData, !formData[key].value, "value", key)}
         />
       )

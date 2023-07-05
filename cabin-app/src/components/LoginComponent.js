@@ -73,7 +73,7 @@ export default function LoginComponent(props) {
 
         <div className=" row form-group d-md-flex" style={{ padding: "0px 20px 0px 20px" }}>
           <div className="w-50">
-            <Checkbox className="form-check-input" value="" id="flexCheckDefault" />
+            <Checkbox className="form-check-input" id="flexCheckDefault" />
             <label className="form-check-label ps-2" htmlFor="flexCheckDefault" style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "500" }}>
               Remember Me
             </label>

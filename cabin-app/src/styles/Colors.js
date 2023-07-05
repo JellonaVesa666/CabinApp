@@ -8,3 +8,7 @@ export const colors = {
   darkWhite: "#cacaca",
   lightRed: "#D48CA0",
 };
+
+/* {
+  color: #1b8d5c
+} */

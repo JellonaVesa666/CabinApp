@@ -169,21 +169,24 @@ export const TextInput = styled.input`
   }
 `
 
+
 // Check Input
-export const CheckInput = styled.input`
+export const CheckInput = styled.input.attrs(props => ({
+    className: "form-check-input",
+  }))`
   background-color: rgba(255, 255, 255, 0.7);
   border: 0.15rem solid ${colors.lightGrey};
-  border-radius: 4px;
   width: 20px;
   height: 20px;
   outline: none;
+  outline: 0px !important;
+  -webkit-appearance:none !important;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
   &:hover {
     border: 0.15rem solid ${colors.grey};
     cursor: pointer;
-    accent-color: ${colors.white}
     color:white;
   }
   &:focus {
@@ -191,14 +194,8 @@ export const CheckInput = styled.input`
     cursor: pointer;
   }
   &:checked {
-    accent-color: ${colors.green};
-    width: 20px;
-    height: 20px;
-  }
-  &:not(:checked) {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    -o-appearance: none;
+    border: 0.15rem solid transparent;
+    background-color: ${props => (props.color)};
   }
   &.invalid {
     border: 0.1rem solid transparent !important;

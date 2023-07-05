@@ -4,6 +4,7 @@ import { ChangeState } from "../helpers/HelperFunctions";
 import { RangeSlider, DatePicker, OptionSelect, MultiSelect, CheckBox } from "./InputComponents";
 import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, MinusSign, DropDown } from "../styles/SearchCardStyle";
 import { countByStatus, searchParameters } from "../mockup/searchFilterData";
+import { colors } from "../styles/Colors";
 
 const SearchCardComponent = () => {
 
@@ -84,6 +85,7 @@ const SearchCardComponent = () => {
                         data={searchFilters}
                         i={key}
                         multi={true}
+                        color={colors.green}
                         changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", key, index)}
                       />
                     )
@@ -93,6 +95,7 @@ const SearchCardComponent = () => {
                         data={searchFilters}
                         i={key}
                         single={true}
+                        color={colors.green}
                         changeState={(index) => ChangeState(setSearchFilters, searchFilters, index, "value", key)}
                       />
                     )
