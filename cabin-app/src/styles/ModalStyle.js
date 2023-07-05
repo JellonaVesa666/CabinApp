@@ -37,10 +37,11 @@ export const ModalHeader = styled.p`
   text-transform: capitalize;
   &.isActive {
     background-color: ${colors.green} !important;
-    border: 1.5px solid ${colors.green};
+    border: 1.5px solid transparent !important;
     color: white !important;
   }
   &:hover {
+    border: 1.5px solid rgba(0, 0, 0, 0.6);
     cursor: pointer;
     color: black;
   }
