@@ -44,6 +44,11 @@ export const RangeInput = styled.input`
     pointer-events: auto;
     -webkit-appearance: none;
   }
+  &:hover::-webkit-slider-thumb {
+    outline: 2px solid rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    color: black;
+  }
 `
 export const SliderBackground = styled.div`
   position: absolute;
@@ -65,13 +70,17 @@ export const SliderBackground = styled.div`
 `
 export const RangeValue = styled.input`
   width: 30%;
-  margin-top: 35px;
+  margin-top: 30px;
   border-radius: 10px;
-  border: none;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
   padding-left: 5%;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin-left: ${props => props.marginleft};
   margin-right: ${props => props.marginright};
+  background-color: rgba(255, 255, 255, 0.7);
+  &:hover {
+    border: 1.5px solid rgba(0, 0, 0, 0.6);
+  }
 `
 
 // Date Input
@@ -81,11 +90,11 @@ export const DateInput = styled.input`
   padding: 0;
   border-radius: 10px;
   border: 1.5px solid rgba(0, 0, 0, 0.2);
-  background-color: rgba(255, 255, 255, 0.75);
-  color: black;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.6);
   outline: none !important;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.75);
+    border: 1.5px solid rgba(0, 0, 0, 0.6);
     cursor: pointer;
     color: black;
   }
@@ -104,10 +113,12 @@ export const MultiSelectInput = styled.li`
   border: 1.5px solid rgba(0, 0, 0, 0.2);
   color: rgba(0, 0, 0, 0.6);
   &.selected {
+    border: 1.5px solid ${colors.green} !important;
     background-color: ${colors.green} !important;
     color: white !important;
   }
   &:hover {
+    border: 1.5px solid rgba(0, 0, 0, 0.6);
     cursor: pointer;
     color: black;
   }
@@ -122,11 +133,11 @@ export const OptionItem = styled.select`
   margin-bottom: 3%;
   border-radius:  ${props => (props.radius)};
   border: 1.5px solid rgba(0, 0, 0, 0.2);
-  background-color: rgba(255, 255, 255, 0.75);
-  color: black;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.6);
   outline: none !important;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.75);
+    border: 1.5px solid rgba(0, 0, 0, 0.6);
     cursor: pointer;
     color: black;
   }
@@ -158,7 +169,7 @@ export const TextInput = styled.input`
   }
 `
 
-// Text Input
+// Check Input
 export const CheckInput = styled.input`
   background-color: rgba(255, 255, 255, 0.7);
   border: 0.15rem solid ${colors.lightGrey};

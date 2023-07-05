@@ -73,6 +73,7 @@ export const NavigationExtend = styled.div`
     padding-left: 10px;
     width: 70%;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+    background-color: ${colors.darkWhite};
   }
 `
 
