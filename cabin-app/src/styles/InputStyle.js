@@ -165,7 +165,6 @@ export const CheckInput = styled.input`
   width: 20px;
   height: 20px;
   outline: none;
-  outline: 0px !important;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
@@ -180,11 +179,14 @@ export const CheckInput = styled.input`
     cursor: pointer;
   }
   &:checked {
-    accent-color: ${colors.navy};
-    border: 0.15rem solid rgba(0, 0, 0, 0.4);
+    accent-color: ${colors.green};
+    width: 20px;
+    height: 20px;
   }
   &:not(:checked) {
+    -moz-appearance: none;
     -webkit-appearance: none;
+    -o-appearance: none;
   }
   &.invalid {
     border: 0.1rem solid transparent !important;
