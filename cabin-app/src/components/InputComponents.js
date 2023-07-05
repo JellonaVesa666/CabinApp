@@ -25,18 +25,18 @@ export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, 
       />
       <SliderBackground left={minValue / maxDefault * 100} right={maxValue / maxDefault * 100} className="center" />
       <SliderBackground />
-        <RangeValue
-          type="number"
-          value={minValue}
-          marginright={"20%"}
-          onChange={(event) => changeState(Math.max(minDefault, Math.min(event.target.value, maxValue)), "minValue")}
-        />
-        <RangeValue
-          type="number"
-          value={maxValue}
-          marginleft={"20%"}
-          onChange={(event) => changeState(Math.max(minValue, Math.min(event.target.value, maxDefault)), "maxValue")}
-        />
+      <RangeValue
+        type="number"
+        value={minValue}
+        marginright={"20%"}
+        onChange={(event) => changeState(Math.max(minDefault, Math.min(event.target.value, maxValue)), "minValue")}
+      />
+      <RangeValue
+        type="number"
+        value={maxValue}
+        marginleft={"20%"}
+        onChange={(event) => changeState(Math.max(minValue, Math.min(event.target.value, maxDefault)), "maxValue")}
+      />
     </Slider>
   );
 };
@@ -89,13 +89,13 @@ export const OptionSelect = (props) => {
       onChange={(event) => props.changeState(event)}
     >
       {
-        Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(index => {
+        Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(item => {
           return (
             <option
-              key={index}
-              value={index}
+              key={Object.keys(props.data[props.i]).indexOf(item)}
+              value={item}
             >
-              {props.data[props.i][index].name}
+              {props.data[props.i][item].name}
             </option>
           )
         })
@@ -112,17 +112,17 @@ export const MultiSelect = (props) => {
       }}
     >
       {
-        Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(index => {
+        Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(item => {
           return (
             <MultiSelectInput
-              key={index}
-              className={props.data[props.i][index].value === true ? "selected" : ""}
+              key={Object.keys(props.data[props.i]).indexOf(item)}
+              className={props.data[props.i][item].value === true ? "selected" : ""}
               margintop={"3%"}
               marginbottom={"3%"}
               paddingleft={"5%"}
-              onClick={() => props.changeState(props.data[props.i][index].value, index)}
+              onClick={() => props.changeState(props.data[props.i][item].value, item)}
             >
-              {props.data[props.i][index].name}
+              {props.data[props.i][item].name}
             </MultiSelectInput>
           )
         })
@@ -139,10 +139,10 @@ export const CheckBox = (props) => {
       }}
     >
       {
-        Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(index => {
+        Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(item => {
           return (
             <div
-              key={index}
+              key={Object.keys(props.data[props.i]).indexOf(item)}
               style={{
                 display: "flex",
                 justifyContent: "start",
@@ -155,11 +155,11 @@ export const CheckBox = (props) => {
                 type="checkbox"
                 color={props.color}
                 //       (condition) ? (true block) : ((condition2) ? (true block2) : (else block2))
-                checked={props.multi ? props.data[props.i][index].value : props.single ? props.data[props.i].value === index : props.data[props.i].value}
-                onChange={props.multi ? () => props.changeState(props.data[props.i][index].value, index) : () => props.changeState(index)}
+                checked={props.multi ? props.data[props.i][item].value : props.single ? props.data[props.i].value === item : props.data[props.i].value}
+                onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
               />
               <label style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px" }}>
-                {props.data[props.i][index].name}
+                {props.data[props.i][item].name}
               </label>
             </div>
           )
