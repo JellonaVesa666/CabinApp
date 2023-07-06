@@ -194,8 +194,8 @@ export default function RegisterComponent(props) {
         >
           Phone
         </div>
-        <div class="row gx-3">
-          <div class="col-3">
+        <div className="row gx-3">
+          <div className="col-3">
             <Input
               type="tel"
               placeholder="+358"
@@ -204,7 +204,7 @@ export default function RegisterComponent(props) {
               className="form-control form-control-d"
             />
           </div>
-          <div class="col-9">
+          <div className="col-9">
             <Input
               type="tel"
               placeholder=""
@@ -215,7 +215,7 @@ export default function RegisterComponent(props) {
           </div>
         </div>
 
-        <div class="row gx-3 mt-3 px-2">
+        <div className="row gx-3 mt-3 px-2">
           <div
             className="col-8"
             style={{
@@ -247,7 +247,7 @@ export default function RegisterComponent(props) {
               onChange={(event) => formChange(event)}
             />
           </div>
-          <div class="col-4">
+          <div className="col-4">
             <Input
               type="text"
               placeholder="Postal Code"
@@ -270,7 +270,7 @@ export default function RegisterComponent(props) {
           Role
         </div>
         <Select
-          class="form-select"
+          className="form-select"
           aria-label="Default select example"
           id="role"
           onChange={(event) => formChange(event)}
@@ -282,7 +282,7 @@ export default function RegisterComponent(props) {
           <option value="3">Maid</option>
         </Select>
 
-        <div class="row gx-3 mt-3 mb-2">
+        <div className="row gx-3 mt-3 mb-2">
           <div
             className="col px-3"
             style={{ color: "black" }}>
@@ -294,12 +294,12 @@ export default function RegisterComponent(props) {
             Confirm password
           </div>
         </div>
-        <div class="row gx-3 mb-5">
-          <div class="col" style={{ position: "relative" }}>
+        <div className="row gx-3 mb-5">
+          <div className="col" style={{ position: "relative" }}>
             <Input
               type={showPassword1 ? "text" : "password"}
               placeholder="Password"
-              id="typeEmailX"
+              // id="typeEmailX"
               id="password"
               className="form-control form-control-d"
               onChange={(event) => formChange(event)}
@@ -309,7 +309,7 @@ export default function RegisterComponent(props) {
             {!showPassword1 && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword1(true)} style={{ position: "absolute", top: 12, left: 190 }} />}
             {!showPassword2 && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword2(true)} style={{ position: "absolute", top: 12, left: 420 }} />}
           </div>
-          <div class="col">
+          <div className="col">
             <Input
               type={showPassword2 ? "text" : "password"}
               placeholder="Confirm Password"
