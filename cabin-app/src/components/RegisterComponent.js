@@ -1,360 +1,400 @@
 import React, { useState } from "react";
-import { RegisterBody, LinkH4, SubmitBtn, CloseBtn, Checkbox, Input, Select } from "../styles/RegisterStyle";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { ENDPOINTS, createAPIEndpoint } from "../api";
+import { ChangeState } from "../helpers/HelperFunctions";
+import { TextField, OptionSelect, CheckBox, PasswordField } from "./InputComponents";
+import { CardHeader } from "../styles/SearchCardStyle";
+import { RegisterBody, CloseBtn, SubmitBtn, LinkH4 } from "../styles/RegisterStyle";
+import { registerDO, registerDTO } from "../DTO/RegisterDTO";
+import { colors } from "../styles/Colors";
 
 
 export default function RegisterComponent(props) {
+  // Initialize Form Data
+  const [formData, setFormData] = useState(registerDO);
 
-  const [showPassword1, setHidePassword1] = useState(false);
-  const [showPassword2, setHidePassword2] = useState(false);
+  const register = async () => {
+    let isValid = validateForm();
 
-  const [data, setFormData] = useState();
+    if (isValid) {
+      // Create post formData for request
+      registerDTO.fullName = formData.fullName.value;
+      registerDTO.username = formData.username.value;
+      registerDTO.email = formData.email.value;
+      registerDTO.emailConfirm = formData.emailConfirm.value;
+      registerDTO.password = formData.password.value;
+      registerDTO.passwordConfirm = formData.passwordConfirm.value;
+      registerDTO.phone = formData.countryCode.value + formData.phone.value;
+      registerDTO.address = formData.address.value;
+      registerDTO.postalCode = formData.postalCode.value;
+      registerDTO.role = formData.role.value;
+      registerDTO.createdDate = Date.now;
+      registerDTO.modifiedDate = Date.now;
+      registerDTO.isActive = 1;
 
-  const formChange = (event) => {
-    setFormData({ ...data, [event.target.id]: event.target.value });
-  };
+
+      createAPIEndpoint(ENDPOINTS.register)
+        .post(registerDTO)
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
+    }
+  }
 
   const validateForm = () => {
-    console.log(data);
+    //console.log(formData);
+    let isValid = true;
+
+    // Reset errors before running check.
+    Object.keys(formData).forEach(key => {
+      if ([key].errors !== "") {
+        setFormData(prevData => ({
+          ...prevData, [key]: { ...prevData[key], errors: "" }
+        }));
+      }
+    });
 
     //Name
-    /*     if (!fields["registerFullname"]) {
-          formIsValid = false;
-          errors["name"] = "Cannot be empty";
-        } */
+    if (formData.fullName.value.length === 0) {
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "fullName");
+      isValid = false;
+    }
+    else {
+      const fullNameRegex = /^\w+\s\w+$/gm;
 
-    /*     if (typeof fields["name"] !== "undefined") {
-          if (!fields["name"].match(/^[a-zA-Z]+$/)) {
-            formIsValid = false;
-            errors["name"] = "Only letters";
-          }
-        }
-    
-        //Email
-        if (!fields["email"]) {
-          formIsValid = false;
-          errors["email"] = "Cannot be empty";
-        }
-    
-        if (typeof fields["email"] !== "undefined") {
-          let lastAtPos = fields["email"].lastIndexOf("@");
-          let lastDotPos = fields["email"].lastIndexOf(".");
-    
-          if (
-            !(
-              lastAtPos < lastDotPos &&
-              lastAtPos > 0 &&
-              fields["email"].indexOf("@@") == -1 &&
-              lastDotPos > 2 &&
-              fields["email"].length - lastDotPos > 2
-            )
-          ) {
-            formIsValid = false;
-            errors["email"] = "Email is not valid";
-          }
-        }
-    
-        this.setState({ errors: errors });
-        return formIsValid; */
+      if (!fullNameRegex.test(formData.fullName.value)) {
+        ChangeState(setFormData, formData, "Wrong format ! make sure to type whole name", "errors", "fullName");
+        isValid = false;
+      }
+    }
+    //Username
+    if (formData.username.value.length === 0) {
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "username");
+      isValid = false;
+    }
+    else {
+      if (!formData.username.value.match(/^[a-zA-Z]+$/)) {
+        ChangeState(setFormData, formData, "Only letters are accepted", "errors", "username");
+        isValid = false;
+      }
+    }
+    //Email
+    if (formData.email.value.length === 0) {
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "email");
+      isValid = false;
+    }
+    else {
+      let lastAtPos = formData.email.value.lastIndexOf("@");
+      let lastDotPos = formData.email.value.lastIndexOf(".");
+
+      if (!(lastAtPos < lastDotPos &&
+        lastAtPos > 0 &&
+        formData.email.value.indexOf("@@") === -1 &&
+        lastDotPos > 2 &&
+        formData.email.value.length - lastDotPos > 2
+      )) {
+        ChangeState(setFormData, formData, "Email is not valid", "errors", "email");
+        isValid = false;
+      }
+    }
+    if (formData.emailConfirm.value.length === 0) {
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "emailConfirm");
+      isValid = false;
+    }
+    else {
+      if (formData.email.value !== formData.emailConfirm.value) {
+        ChangeState(setFormData, formData, "Emails do not match", "errors", "emailConfirm");
+        isValid = false;
+      }
+    }
+    // Phone
+    if (formData.countryCode.value.length === 0 || formData.phone.value.length === 0) {
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "phone");
+      isValid = false;
+    }
+    else {
+      const phoneRegex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
+      if (!phoneRegex.test(formData.countryCode.value + formData.phone.value)) {
+        ChangeState(setFormData, formData, "Invalid phone number", "errors", "phone");
+        isValid = false;
+      }
+    }
+    // Address
+    if (formData.address.value.length === 0) {
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "address");
+      isValid = false;
+    }
+    else {
+      const adressRegex = /^\s*\S+(?:\s+\S+)/;
+      if (!adressRegex.test(formData.address.value)) {
+        ChangeState(setFormData, formData, "Invalid Address", "errors", "address");
+        isValid = false;
+      }
+    }
+    // Postal Code
+    if (formData.postalCode.value.length === 0) {
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "postalCode");
+      isValid = false;
+    }
+    else {
+      const postalRegex = /^\d{5}(?:[-\s]\d{4})?$/;
+      if (!postalRegex.test(formData.postalCode.value)) {
+        ChangeState(setFormData, formData, "Invalid postal code", "errors", "postalCode");
+        isValid = false;
+      }
+    }
+    // Role
+    if (formData.role.value === "0") {
+      ChangeState(setFormData, formData, "Role is required", "errors", "role");
+      isValid = false;
+    }
+    // Password
+    if (formData.password.value.length === 0) {
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "password");
+      isValid = false;
+    }
+    else {
+      // At least one upper case English letter, (?=.*?[A-Z])
+      // At least one lower case English letter, (?=.*?[a-z])
+      // At least one digit, (?=.*?[0-9])
+      // At least one special character, (?=.*?[#?!@$%^&*-])
+      // Minimum eight in length .{8,} (with the anchors)
+      const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+      if (!passwordRegex.test(formData.password.value)) {
+        ChangeState(setFormData, formData, "Password does not meet requirements", "errors", "password");
+        isValid = false;
+      }
+    }
+    if (formData.passwordConfirm.value.length === 0) {
+      ChangeState(setFormData, formData, "Cannot be empty", "errors", "passwordConfirm")
+      isValid = false;
+    }
+    else {
+      if (formData.password.value !== formData.passwordConfirm.value) {
+        ChangeState(setFormData, formData, "Passwords do not match", "errors", "passwordConfirm");
+        isValid = false;
+      }
+    }
+    // Terms of Service
+    if (formData.termsOfService.value === false) {
+      ChangeState(setFormData, formData, "Please agree the terms of Service", "errors", "termsOfService");
+      isValid = false;
+    }
+
+    if (!isValid)
+      return false;
+    else
+      return true;
   }
+
+  const listItems = Object.keys(formData).map(item => {
+    var header = item.split(/(?=[A-Z])(?=[A-Z])/);
+    if (formData[item].type === "text" || formData[item].type === "email") {
+      if (item === "address") {
+        return (
+          <div
+            key={Object.keys(formData).indexOf(item)}
+            style={{ width: "70%", display: "inline-block", padding: "4px", float: "left" }}
+          >
+            <CardHeader
+              paddingleft={"2%"}
+              size={0.95}
+              weight={400}
+            >
+              {header[0]} {header[1]} {header[2]}
+            </CardHeader>
+            <TextField
+              width={"100%"}
+              height={"40px"}
+              data={formData}
+              i={item}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+            />
+          </div>
+        )
+      }
+      else if (item === "postalCode") {
+        return (
+          <div
+            key={Object.keys(formData).indexOf(item)}
+            style={{ width: "30%", display: "inline-block", padding: "4px", float: "left" }}
+          >
+            <CardHeader
+              paddingleft={"2%"}
+              size={0.95}
+              weight={400}
+            >
+              {header[0]} {header[1]} {header[2]}
+            </CardHeader>
+            <TextField
+              width={"100%"}
+              height={"40px"}
+              data={formData}
+              i={item}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+            />
+          </div>
+        )
+      }
+      else {
+        return (
+          <div
+            key={Object.keys(formData).indexOf(item)}
+          >
+            <CardHeader
+              paddingleft={"2%"}
+              size={0.95}
+              weight={400}
+            >
+              {header[0]} {header[1]} {header[2]}
+            </CardHeader>
+            <TextField
+              width={"100%"}
+              height={"40px"}
+              data={formData}
+              i={item}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+            />
+          </div>
+        )
+      }
+    }
+    if (formData[item].type === "option") {
+      return (
+        <div
+          key={Object.keys(formData).indexOf(item)}
+        >
+          <CardHeader
+            paddingleft={"2%"}
+            size={0.95}
+            weight={400}
+          >
+            {formData[item].name ? formData[item].name : item}
+          </CardHeader>
+          <OptionSelect
+            width={"100%"}
+            height={"40px"}
+            radius={"40px"}
+            padding={"0px 20px 0px 20px"}
+            data={formData}
+            i={item}
+            changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+          />
+        </div>
+      )
+    }
+    if (formData[item].type === "password") {
+      return (
+        <div
+          key={Object.keys(formData).indexOf(item)}
+          style={{ position: "relative", width: "50%", display: "inline-block", padding: "4px", float: "left" }}
+        >
+          <CardHeader
+            paddingleft={"2%"}
+            size={0.95}
+            weight={400}
+          >
+            {header[0]} {header[1]} {header[2]}
+          </CardHeader>
+          <PasswordField
+            width={"100%"}
+            height={"40px"}
+            data={formData}
+            i={item}
+            changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+          />
+        </div>
+      )
+    }
+    if (formData[item].type === "tel") {
+      if (item === "countryCode") {
+        return (
+          <div
+            key={Object.keys(formData).indexOf(item)}
+            style={{ width: "20%", display: "inline-block", padding: "4px", float: "left" }}
+          >
+            <CardHeader
+              paddingleft={"2%"}
+              size={0.95}
+              weight={400}
+            >
+              Phone
+            </CardHeader>
+            <TextField
+              width={"100%"}
+              height={"40px"}
+              data={formData}
+              i={item}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+            />
+          </div>
+        )
+      }
+      else if (item === "phone") {
+        return (
+          <div
+            key={Object.keys(formData).indexOf(item)}
+            style={{ width: "80%", display: "inline-block", padding: "4px", float: "left" }}
+          >
+            <CardHeader
+              paddingleft={"2%"}
+              size={0.95}
+              weight={400}
+              style={{ opacity: 0 }}
+            >
+              {header[0]} {header[1]} {header[2]}
+            </CardHeader>
+            <TextField
+              width={"100%"}
+              height={"40px"}
+              data={formData}
+              i={item}
+              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+            />
+          </div>
+        )
+      }
+    }
+    if (formData[item].type === "checkbox") {
+      return (
+        <CheckBox
+          key={Object.keys(formData).indexOf(item)}
+          data={formData}
+          i={item}
+          color={colors.navy}
+          changeState={() => ChangeState(setFormData, formData, !formData[item].value, "value", item)}
+        />
+      )
+    }
+  })
 
   return (
     <RegisterBody show={props.show} className="col-12 col-md-8 col-lg-6 col-xl-5 shadow-lg">
       <div className="p-5" style={{ position: "relative" }}>
-        <CloseBtn
-          onClick={() => props.onRegisterHide(0)}
-        >
-          <p className="text-center" style=
-            {{
-              marginTop: 8,
-              textTransform: "uppercase"
-            }}
-          >
+        <CloseBtn onClick={() => props.onRegisterHide(0)}>
+          <p className="m-auto p-auto" style={{ textTransform: "uppercase" }}>
             close
           </p>
         </CloseBtn>
         <h4 className="mb-4 mt-2 text-center"
-          style=
-          {{
+          style={{
             fontWeight: "300",
           }}
         >
           Register
         </h4>
-
-        <div
-          className="mb-4"
+        <div className="mb-4"
           style={{
             background: "grey", height: "2px", width: "100%"
           }}
         />
-
-        <div
-          className="px-2"
-          style=
-          {{
-            color: "black",
-            fontWeight: "400",
-            fontSize: "0.95rem"
-          }}
-        >
-          Full name
-        </div>
-        <div
-          className="mb-2"
-        >
-          <Input
-            type="text"
-            placeholder="Fullname"
-            id="fullName"
-            onChange={(event) => formChange(event)}
-            className="form-control form-control-d"
-          />
-        </div>
-
-        <div
-          className="mt-3 px-2"
-          style=
-          {{
-            color: "black",
-            fontWeight: "400",
-            fontSize: "0.95rem"
-          }}
-        >
-          Username
-        </div>
-        <div
-          className="mb-2"
-
-        >
-          <Input
-            type="text"
-            placeholder="Username"
-            id="username"
-            onChange={(event) => formChange(event)}
-            className="form-control form-control-d"
-          />
-        </div>
-
-        <div
-          className="mt-3 px-2"
-          style=
-          {{
-            color: "black",
-            fontWeight: "400",
-            fontSize: "0.95rem"
-          }}
-        >
-          Email
-        </div>
-        <div
-          className="mb-2"
-        >
-          <Input
-            type="email"
-            placeholder="Email"
-            id="email"
-            onChange={(event) => formChange(event)}
-            className="form-control form-control-d"
-          />
-        </div>
-
-        <div
-          className="mt-3 px-2"
-          style=
-          {{
-            color: "black",
-            fontWeight: "400",
-            fontSize: "0.95rem"
-          }}
-        >
-          Confirm Email
-        </div>
-        <div
-          className="mb-2"
-        >
-          <Input
-            type="email"
-            placeholder="Confirm email"
-            id="emailConfirm"
-            onChange={(event) => formChange(event)}
-            className="form-control form-control-d"
-          />
-        </div>
-
-        <div
-          className="mt-3 px-2"
-          style=
-          {{
-            color: "black",
-            fontWeight: "400",
-            fontSize: "0.95rem"
-          }}
-        >
-          Phone
-        </div>
-        <div className="row gx-3">
-          <div className="col-3">
-            <Input
-              type="tel"
-              placeholder="+358"
-              id="countryCode"
-              onChange={(event) => formChange(event)}
-              className="form-control form-control-d"
-            />
-          </div>
-          <div className="col-9">
-            <Input
-              type="tel"
-              placeholder=""
-              id="phone"
-              onChange={(event) => formChange(event)}
-              className="form-control form-control-d"
-            />
-          </div>
-        </div>
-
-        <div className="row gx-3 mt-3 px-2">
-          <div
-            className="col-8"
-            style={{
-              color: "black",
-              fontWeight: "400",
-              fontSize: "0.95rem"
-            }}
-          >
-            Address
-          </div>
-          <div
-            className="col-4 ps-3"
-            style={{
-              color: "black",
-              fontWeight: "400",
-              fontSize: "0.95rem"
-            }}
-          >
-            Postal Code
-          </div>
-        </div>
-        <div class="row gx-3">
-          <div class="col-8">
-            <Input
-              type="text"
-              placeholder="Address"
-              id="address"
-              className="form-control form-control-d"
-              onChange={(event) => formChange(event)}
-            />
-          </div>
-          <div className="col-4">
-            <Input
-              type="text"
-              placeholder="Postal Code"
-              id="postalCode"
-              pattern="[0-9]{5}"
-              className="form-control form-control-d"
-              onChange={(event) => formChange(event)}
-            />
-          </div>
-        </div>
-
-        <div
-          className="mt-3 px-2"
-          style={{
-            color: "black",
-            fontWeight: "400",
-            fontSize: "0.95rem"
-          }}
-        >
-          Role
-        </div>
-        <Select
-          className="form-select"
-          aria-label="Default select example"
-          id="role"
-          onChange={(event) => formChange(event)}
-        >
-          <option selected>Role</option>
-          <option value="1">Admin</option>
-          <option value="2">Manager</option>
-          <option value="3">Supervisor</option>
-          <option value="3">Maid</option>
-        </Select>
-
-        <div className="row gx-3 mt-3 mb-2">
-          <div
-            className="col px-3"
-            style={{ color: "black" }}>
-            Password
-          </div>
-          <div
-            className="col"
-            style={{ color: "black" }}>
-            Confirm password
-          </div>
-        </div>
-        <div className="row gx-3 mb-5">
-          <div className="col" style={{ position: "relative" }}>
-            <Input
-              type={showPassword1 ? "text" : "password"}
-              placeholder="Password"
-              // id="typeEmailX"
-              id="password"
-              className="form-control form-control-d"
-              onChange={(event) => formChange(event)}
-            />
-            {showPassword1 && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword1(false)} style={{ position: "absolute", top: 12, left: 190 }} />}
-            {showPassword2 && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword2(false)} style={{ position: "absolute", top: 12, left: 420 }} />}
-            {!showPassword1 && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword1(true)} style={{ position: "absolute", top: 12, left: 190 }} />}
-            {!showPassword2 && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword2(true)} style={{ position: "absolute", top: 12, left: 420 }} />}
-          </div>
-          <div className="col">
-            <Input
-              type={showPassword2 ? "text" : "password"}
-              placeholder="Confirm Password"
-              id="passwordConfirm"
-              className="form-control form-control-d"
-              onChange={(event) => formChange(event)}
-            />
-          </div>
-        </div>
-
-
-        <div class="mb-2"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-        >
-          <Checkbox
-            className="form-check-input"
-            defaultValuevalue="false"
-            id="termsOfService"
-            onChange={(event) => formChange(event)}
-          />
-          <label className="form-check-label" htmlFor="flexCheckDefault"
-            style={{
-              color: "rgba(0, 0, 0, 0.5)",
-              fontWeight: "500",
-              paddingLeft: 15,
-            }}
-          >
-            I agree to the terms and conditions of the Service
-          </label>
-        </div>
-
-
-        <div className="mb-4 mt-4" style={{ padding: "0px 20px 0px 20px" }}>
+        {listItems}
+        <div style={{ padding: "0px 20px 0px 20px" }}>
           <SubmitBtn
-            onClick={() => validateForm()}
+            onClick={register}
             className="form-control text-uppercase"
           >
             Submit
           </SubmitBtn>
         </div>
-
         <div
           style={{
             display: "flex",
@@ -363,13 +403,12 @@ export default function RegisterComponent(props) {
           }}
           onClick={() => props.onRegisterHide(0)}
         >
-          <LinkH4 className="mt-2"
+          <LinkH4 className="mt-4"
           >
             Cancel
           </LinkH4>
         </div>
-
       </div>
-    </RegisterBody>
+    </RegisterBody >
   )
 }

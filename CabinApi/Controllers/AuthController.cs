@@ -30,10 +30,17 @@ namespace CabinApi.Controllers
 
             var user = new User
             {
-                Role = dto.Role,
-                Name = dto.Name,
+                FullName = dto.FullName,
+                Username = dto.Username,
                 Email = dto.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                Phone = dto.Phone,
+                Address = dto.Address,
+                PostalCode = dto.PostalCode,
+                Role = dto.Role,
+                CreatedDate = dto.CreatedDate,
+                ModifiedDate = dto.ModifiedDate,
+                IsActive = dto.IsActive,
             };
 
             // Add User
@@ -49,8 +56,8 @@ namespace CabinApi.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<IEnumerable<User>>> Login(LoginDTO dto)
         {
-            // Find user by email
-            User? user = await _context.Users.FirstOrDefaultAsync(user => user.Email == dto.Email);
+            // Find user by email or username
+            User? user = await _context.Users.FirstOrDefaultAsync(user => user.Email == dto.Email || user.Username == dto.Username);
 
             // Check email
             if (user == null)
@@ -75,7 +82,7 @@ namespace CabinApi.Controllers
             byte[] utf8bytesJson = JsonSerializer.SerializeToUtf8Bytes(user);
             string strJson = System.Text.Encoding.UTF8.GetString(utf8bytesJson);
 
-            return Ok(new {message = $"Logged in successfully\n{strJson}" });
+            return Ok(new {message = $"Logged in successfully{strJson}" });
         }
 
         // GET: api/user

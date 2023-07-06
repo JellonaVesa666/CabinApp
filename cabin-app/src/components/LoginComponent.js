@@ -1,15 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
-import { LoginBody, Input, Checkbox, Link } from "../styles/LoginStyle";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { LoginBody, Input, Checkbox, Link, SignInBtn } from "../styles/LoginStyle";
+import { LoginDO, LoginDTO } from "../DTO/LoginDTO";
 
 export default function LoginComponent(props) {
 
+  const [showPassword, setHidePassword] = useState(false);
+  const [data, setFormData] = useState(LoginDO);
+
   const login = () => {
-    console.log("press");
-    createAPIEndpoint(ENDPOINTS.users)
-      .get()
+    // Create post data for request
+    LoginDTO.username = data.loginEmail.value;
+    LoginDTO.email = data.loginEmail.value;
+    LoginDTO.password = data.loginPassword.value;
+
+    createAPIEndpoint(ENDPOINTS.login)
+      .post(LoginDTO)
       .then(response => console.log(response))
       .catch(error => console.log(error));
+  }
+
+  const formChange = (event) => {
+    const targetValue = event.target.value === "on" ? event.target.checked : event.target.value
+
+    setFormData({
+      ...data,
+      [event.target.id]: { ...data[event.target.id], value: targetValue },
+    });
+    console.log(data);
   }
 
   return (
@@ -20,31 +40,40 @@ export default function LoginComponent(props) {
         <h3 className="text-black-50 text-center" style={{ fontWeight: "300", marginBottom: "40px" }}>Have an account?</h3>
 
         <div className="mb-4" style={{ padding: "0px 20px 0px 20px" }}>
-          <Input type="email" placeholder="Username/Email" id="typeEmailX" className="form-control form-control-md" />
+          <Input
+            type="email"
+            placeholder="Username/Email"
+            id="loginEmail"
+            className="form-control form-control-md"
+            onChange={(event) => formChange(event)}
+          />
+        </div>
+
+        <div className="mb-4" style={{ position: "relative", padding: "0px 20px 0px 20px" }}>
+          <Input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            id="loginPassword"
+            className="form-control form-control-md"
+            onChange={(event) => formChange(event)}
+          />
+          {showPassword && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword(false)} style={{ position: "absolute", top: 18, left: 380 }} />}
+          {!showPassword && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword(true)} style={{ position: "absolute", top: 18, left: 380 }} />}
         </div>
 
         <div className="mb-4" style={{ padding: "0px 20px 0px 20px" }}>
-          <Input type="password" placeholder="Password" id="typePasswordX" className="form-control form-control-md" />
-        </div>
-
-        <div className="mb-4" style={{ padding: "0px 20px 0px 20px" }}>
-          <button
+          <SignInBtn
             type="submit"
             className="form-control text-uppercase"
             onClick={login}
-            style={{
-              height: "50px", color: "rgba(255, 255, 255, 1)",
-              borderRadius: "40px",
-              background: "black"
-            }}
           >
             Sign In
-          </button>
+          </SignInBtn>
         </div>
 
         <div className=" row form-group d-md-flex" style={{ padding: "0px 20px 0px 20px" }}>
           <div className="w-50">
-            <Checkbox className="form-check-input" value="" id="flexCheckDefault" />
+            <Checkbox className="form-check-input" id="flexCheckDefault" />
             <label className="form-check-label ps-2" htmlFor="flexCheckDefault" style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "500" }}>
               Remember Me
             </label>
