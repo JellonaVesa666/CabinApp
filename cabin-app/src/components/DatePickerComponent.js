@@ -59,43 +59,38 @@ export const DatePicker = () => {
     const startDay = dayNames.indexOf((new Date(currentYear, currentMonth, 1)).toString().split(' ')[0]);
     const endDay = dayNames.indexOf((new Date(currentYear, currentMonth + 1, 0)).toString().split(' ')[0]);
 
-    // Month start overlap
+    // Month start
     if (startDay > 0) {
       const lastMonthDays = GetNumberOfDaysInMonth(currentYear, currentMonth - 1);
-      var startOverlap = [];
+      var monthStart = [];
       for (var i = lastMonthDays - startDay + 1; i <= lastMonthDays; i++) {
-        startOverlap.push(i);
+        monthStart.push(i);
       }
-      //console.log(startOverlap);
+      //console.log(monthStart);
     }
 
-    // Month end overlap
+    // Month end
     if (endDay < 6) {
-      var endOverlap = [];
+      var monthEnd = [];
       for (var i = endDay; i < 6; i++) {
-        endOverlap.push(i - endDay + 1);
+        monthEnd.push(i - endDay + 1);
       }
-      //console.log(endOverlap);
+      //console.log(monthEnd);
     }
 
-
+    // Month middle
     const lenght = Math.abs((end - start) / 1);
-    var array = [...Array(lenght).keys()];
-
-    const { result } = array.reduce(
-      ({ result, current }) => ({
-        result: [...result, current],
-        current: current + 1,
-      }),
-      { result: [], current: start }
-    );
+    var monthMiddle = [];
+    for (var i = 1; i <= lenght; i++) {
+      monthMiddle.push(i);
+    }
+    //console.log(monthMiddle);
 
     var monthDays = [];
-    if (endOverlap)
-      monthDays = result.concat(endOverlap)
-    if (startOverlap)
-      monthDays = startOverlap.concat(endOverlap ? monthDays : result);
-
+    if (monthEnd)
+      monthDays = monthMiddle.concat(monthEnd)
+    if (monthStart)
+      monthDays = monthStart.concat(monthEnd ? monthDays : monthMiddle);
 
     // Extra week
     if (Object.keys(monthDays).length == 35) {
