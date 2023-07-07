@@ -100,6 +100,55 @@ export const DateInput = styled.input`
   }
 `
 
+export const Calendar = styled.div`
+  width: 20%;
+  height: 25%;
+  border: 2px solid red;
+  background-color: black;
+  margin: 0;
+  padding: 0;
+`
+export const MonthPanel = styled.div`
+  height: 20%;
+  padding-left: 3%;
+  padding-right: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+export const WeekGrid = styled.div`
+  height: 10%;
+  display: flex;
+  padding: 6px;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+`
+export const DayGrid = styled.div`
+  height: 70%;
+  padding: 6px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  color: white;
+`
+export const Days = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: gray;
+  margin: 0;
+  padding: 0;
+  &.this {
+    cursor: pointer;
+    color: white;
+  }
+  &.true {
+    border: 2px solid green;
+  } 
+`
+
 // Select
 export const MultiSelectInput = styled.li`
   width: 90%;
@@ -172,8 +221,8 @@ export const TextInput = styled.input`
 
 // Check Input
 export const CheckInput = styled.input.attrs(props => ({
-    className: "form-check-input",
-  }))`
+  className: "form-check-input",
+}))`
   background-color: rgba(255, 255, 255, 0.7);
   border: 0.15rem solid ${colors.lightGrey};
   width: 20px;

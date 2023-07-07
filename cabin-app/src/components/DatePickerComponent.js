@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { Calendar, MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputStyle";
 
 export const DatePicker = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-
 
   const nextMonth = () => {
     if (currentMonth < 11) {
@@ -50,7 +50,6 @@ export const DatePicker = () => {
     "Sun"
   ]
 
-
   const GetNumberOfDaysInMonth = (year, month) => {
     return new Date(year, month + 1, 0).getDate();
   }
@@ -59,78 +58,97 @@ export const DatePicker = () => {
     const startDay = dayNames.indexOf((new Date(currentYear, currentMonth, 1)).toString().split(' ')[0]);
     const endDay = dayNames.indexOf((new Date(currentYear, currentMonth + 1, 0)).toString().split(' ')[0]);
 
-    // Month start
-    if (startDay > 0) {
-      const lastMonthDays = GetNumberOfDaysInMonth(currentYear, currentMonth - 1);
-      var monthStart = [];
-      for (var i = lastMonthDays - startDay + 1; i <= lastMonthDays; i++) {
-        monthStart.push(i);
-      }
-      //console.log(monthStart);
+    // Previous Month
+    const lastMonthDays = GetNumberOfDaysInMonth(currentYear, currentMonth - 1);
+    var prevMonth = [];
+    for (var s = lastMonthDays - startDay + 1; s <= lastMonthDays; s++) {
+      let item = { "day": s, "month": "false", "value": "false" }
+      prevMonth.push(item);
     }
+    //console.log(prevMonth);
 
-    // Month end
+    // Next Month
     if (endDay < 6) {
-      var monthEnd = [];
-      for (var i = endDay; i < 6; i++) {
-        monthEnd.push(i - endDay + 1);
+      var nextMonth = [];
+      for (var e = endDay; e < 6; e++) {
+        let item = { "day": e - endDay + 1, "month": "false", "value": "false" }
+        nextMonth.push(item);
       }
-      //console.log(monthEnd);
+      //console.log(nextMonth);
     }
 
-    // Month middle
+    // This Month
     const lenght = Math.abs((end - start) / 1);
-    var monthMiddle = [];
-    for (var i = 1; i <= lenght; i++) {
-      monthMiddle.push(i);
+    var thisMonth = [];
+    let currentDay = new Date().toLocaleString("fi-FI", { day: '2-digit' });
+    currentDay = currentDay.replace(/^0+/, '');
+    for (var m = 1; m <= lenght; m++) {
+      let item = { "day": m, "month": "this", "value": `${m.toString() === currentDay ? "true" : "false"}` }
+      thisMonth.push(item);
     }
-    //console.log(monthMiddle);
+    //console.log(thisMonth);
 
     var monthDays = [];
-    if (monthEnd)
-      monthDays = monthMiddle.concat(monthEnd)
-    if (monthStart)
-      monthDays = monthStart.concat(monthEnd ? monthDays : monthMiddle);
+    if (nextMonth)
+      monthDays = thisMonth.concat(nextMonth)
+    if (prevMonth)
+      monthDays = prevMonth.concat(nextMonth ? monthDays : thisMonth);
 
     // Extra week
-    if (Object.keys(monthDays).length == 35) {
+    if (Object.keys(monthDays).length === 35 ||
+      Object.keys(monthDays).length === 28) {
+
+      var endVal = Object.keys(monthDays).length > 28 ? 7 : 14;
+      var offset = Object.keys(monthDays).length > 28 ? 1 : 8;
       var extraOverlap = [];
-      for (var i = 1; i <= 7; i++) {
-        extraOverlap.push(6 - endDay + i);
+      for (var i = 1; i <= endVal; i++) {
+        let item = { "day": (endVal - offset) - endDay + i, "month": "false", "value": "false" }
+        extraOverlap.push(item);
       }
       monthDays = monthDays.concat(extraOverlap);
     }
+
+    console.log(monthDays);
 
     return monthDays;
   };
 
   return (
-    <div style={{ width: "20%", height: "25%", border: "2px solid red", backgroundColor: "black", margin: 0, padding: 0 }}>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+    <Calendar>
+      <MonthPanel>
         <p
           style={{ fontSize: "30px", color: "white", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
           onClick={() => prevMonth()}
         >
           &#9664;
         </p>
-        <p style={{ fontSize: "30px", color: "white", margin: "auto" }}>{monthNames[currentMonth + 1]}</p>
+        <p style={{ fontSize: "30px", color: "white", margin: "auto" }}>{monthNames[currentMonth + 1]} / {currentYear}</p>
         <p
           style={{ fontSize: "30px", color: "white", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
           onClick={() => nextMonth()}
         >
           &#9654;
         </p>
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)" }}>
-        {dayNames.map(day =>
-          <p style={{ color: "white" }}>{day}</p>
+      </MonthPanel>
+      <WeekGrid>
+        {dayNames.map((item, index) =>
+          <p style={{ color: "white" }} key={index}>{item}</p>
         )}
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", color: "white" }}>
-        {range(1, GetNumberOfDaysInMonth(currentYear, currentMonth) + 1).map((day) =>
-          <p style={{ color: "white" }}>{day}</p>
+      </WeekGrid>
+      <DayGrid>
+        {range(1, GetNumberOfDaysInMonth(currentYear, currentMonth) + 1).map((item, index) => {
+          return (
+            <Days
+              key={index}
+              className={`${item.month} ${item.value}`}
+              onClick={() => console.log(item.day)}
+            >
+              {item.day}
+            </Days>
+          )
+        }
         )}
-      </div>
-    </div>
+      </DayGrid>
+    </Calendar >
   )
 }
