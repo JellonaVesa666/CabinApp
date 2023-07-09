@@ -134,6 +134,7 @@ export const DatePicker = () => {
       let item = { "day": p, "month": "false", "value": "false" }
       prevMonth.push(item);
 
+      // Set Date Selected
       let month = monthNames[currentMonth];
       let index = p - (lastMonthDays - startDay + 1);
       if (reservations[currentYear] && reservations[currentYear][month]) {
@@ -153,6 +154,7 @@ export const DatePicker = () => {
         let item = { "day": n - endDay + 1, "month": "false", "value": "false" }
         nextMonth.push(item);
 
+        // Set Date Selected
         let month = monthNames[currentMonth + 2];
         let index = n - endDay + 1 - 1;
         if (reservations[currentYear] && reservations[currentYear][month]) {
@@ -175,6 +177,7 @@ export const DatePicker = () => {
       let item = { "day": t, "month": "this", "value": "false" }
       thisMonth.push(item);
 
+      // Set Date Selected
       let month = monthNames[currentMonth + 1];
       let index = t - 1;
       if (reservations[currentYear] && reservations[currentYear][month]) {
@@ -203,6 +206,7 @@ export const DatePicker = () => {
         let item = { "day": (endVal - offset) - endDay + e, "month": "false", "value": "false" }
         extraWeeks.push(item);
 
+        // Set Date Selected
         let month = monthNames[currentMonth + 2];
         let index = e - 1;
         if (reservations[currentYear] && reservations[currentYear][month]) {
