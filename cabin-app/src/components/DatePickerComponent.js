@@ -52,70 +52,60 @@ export const DatePicker = () => {
 
   const reservations = {
     2023: {
-      april: [
-        20,
-        21,
-      ],
-      may: [
-        1,
-        2,
-        3,
-        4,
-        5,
-      ],
-      june: [
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        26,
-        27,
-        28,
-      ],
-      july: [
-        12,
-        13,
-        14,
-        15,
-        22,
-        23,
-        24,
-      ],
-      august: [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-      ],
-      september: [
-        1,
-        2,
-        3,
-        7,
-        8,
-      ]
+      april: {
+        0: {
+          arrivalDate: 8,
+          departureDate: 15,
+          name: ""
+        }
+      },
+      may: {
+        0: {
+          arrivalDate: 8,
+          departureDate: 15,
+          name: ""
+        }
+      },
+      june: {
+        0: {
+          arrivalDate: 1,
+          departureDate: 3,
+          name: ""
+        },
+        1: {
+          arrivalDate: 6,
+          departureDate: 8,
+          name: ""
+        }
+      },
+      july: {
+        0: {
+          arrivalDate: 8,
+          departureDate: 15,
+          name: ""
+        }
+      },
+      august: {
+        0: {
+          arrivalDate: 8,
+          departureDate: 15,
+          name: ""
+        }
+      },
+      september: {
+        0: {
+          arrivalDate: 8,
+          departureDate: 15,
+          name: ""
+        }
+      }
     },
     2022: {
-      july: [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-      ]
+      0: {
+        arrivalDate: 8,
+        departureDate: 15,
+        name: ""
+      }
     }
   }
 
@@ -138,8 +128,9 @@ export const DatePicker = () => {
       let month = monthNames[currentMonth];
       let index = p - (lastMonthDays - startDay + 1);
       if (reservations[currentYear] && reservations[currentYear][month]) {
-        reservations[currentYear][month].forEach(element => {
-          if (element === prevMonth[index].day) {
+        Object.keys(reservations[currentYear][month]).forEach((element) => {
+          if (prevMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
+            prevMonth[index].day <= reservations[currentYear][month][element].departureDate) {
             prevMonth[index].value = "true"
           }
         });
@@ -158,8 +149,9 @@ export const DatePicker = () => {
         let month = monthNames[currentMonth + 2];
         let index = n - endDay + 1 - 1;
         if (reservations[currentYear] && reservations[currentYear][month]) {
-          reservations[currentYear][month].forEach(element => {
-            if (element === nextMonth[index].day) {
+          Object.keys(reservations[currentYear][month]).forEach((element) => {
+            if (nextMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
+              nextMonth[index].day <= reservations[currentYear][month][element].departureDate) {
               nextMonth[index].value = "true"
             }
           });
@@ -181,8 +173,10 @@ export const DatePicker = () => {
       let month = monthNames[currentMonth + 1];
       let index = t - 1;
       if (reservations[currentYear] && reservations[currentYear][month]) {
-        reservations[currentYear][month].forEach(element => {
-          if (element === thisMonth[index].day) {
+        Object.keys(reservations[currentYear][month]).forEach((element) => {
+          console.log(thisMonth[index].day);
+          if (thisMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
+            thisMonth[index].day <= reservations[currentYear][month][element].departureDate) {
             thisMonth[index].value = "true"
           }
         });
@@ -210,8 +204,9 @@ export const DatePicker = () => {
         let month = monthNames[currentMonth + 2];
         let index = e - 1;
         if (reservations[currentYear] && reservations[currentYear][month]) {
-          reservations[currentYear][month].forEach(element => {
-            if (element === extraWeeks[index].day) {
+          Object.keys(reservations[currentYear][month]).forEach((element) => {
+            if (extraWeeks[index].day >= reservations[currentYear][month][element].arrivalDate &&
+              extraWeeks[index].day <= reservations[currentYear][month][element].departureDate) {
               extraWeeks[index].value = "true"
             }
           });
@@ -220,7 +215,6 @@ export const DatePicker = () => {
       monthDays = monthDays.concat(extraWeeks);
     }
     //console.log(extraWeeks);
-
 
     //console.log(monthDays);
     return monthDays;
