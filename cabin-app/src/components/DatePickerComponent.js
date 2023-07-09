@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Calendar, MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputStyle";
 
 export const DatePicker = () => {
-  const [currentDays, setCurrentDays] = useState();
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-
-  useEffect(() => {
-    Range(1, GetNumberOfDaysInMonth(currentYear, currentMonth) + 1);
-  }, []);
 
   const nextMonth = () => {
     if (currentMonth < 11) {
@@ -18,7 +13,6 @@ export const DatePicker = () => {
       setCurrentMonth(0);
       setCurrentYear((prev) => prev + 1);
     }
-    Range(1, GetNumberOfDaysInMonth(currentYear, currentMonth) + 1);
   }
 
   const prevMonth = () => {
@@ -29,7 +23,6 @@ export const DatePicker = () => {
       setCurrentMonth(11);
       setCurrentYear((prev) => prev - 1);
     }
-    Range(1, GetNumberOfDaysInMonth(currentYear, currentMonth) + 1);
   }
 
   const monthNames = {
@@ -59,7 +52,38 @@ export const DatePicker = () => {
 
   const reservations = {
     2023: {
+      april: [
+        20,
+        21,
+      ],
+      may: [
+        1,
+        2,
+        3,
+        4,
+        5,
+      ],
+      june: [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        26,
+        27,
+        28,
+      ],
       july: [
+        12,
+        13,
+        14,
+        15,
+        22,
+        23,
+        24,
+      ],
+      august: [
         1,
         2,
         3,
@@ -70,6 +94,13 @@ export const DatePicker = () => {
         8,
         9,
         10,
+      ],
+      september: [
+        1,
+        2,
+        3,
+        7,
+        8,
       ]
     },
     2022: {
@@ -92,29 +123,26 @@ export const DatePicker = () => {
     return new Date(year, month + 1, 0).getDate();
   }
 
-  const Test = (day, month) => {
-    currentDays.forEach((item, index) => {
-      if (item.day === day && item.month === month) {
-        const newIngredients = [...currentDays];
-        newIngredients[index] = {
-          ...newIngredients[index],
-          value: 'true'
-        };
-        setCurrentDays(newIngredients);
-      }
-    });
-  }
-
-  const Range = (start, end) => {
+  const range = (start, end) => {
     const startDay = dayNames.indexOf((new Date(currentYear, currentMonth, 1)).toString().toLowerCase().split(' ')[0]);
     const endDay = dayNames.indexOf((new Date(currentYear, currentMonth + 1, 0)).toString().toLowerCase().split(' ')[0]);
 
     // Previous Month
-    const prevMontLastDay = GetNumberOfDaysInMonth(currentYear, currentMonth - 1);
+    const lastMonthDays = GetNumberOfDaysInMonth(currentYear, currentMonth - 1);
     var prevMonth = [];
-    for (var p = prevMontLastDay - startDay + 1; p <= prevMontLastDay; p++) {
-      let item = { "day": p, "month": "previous", "value": "false" }
+    for (var p = lastMonthDays - startDay + 1; p <= lastMonthDays; p++) {
+      let item = { "day": p, "month": "false", "value": "false" }
       prevMonth.push(item);
+
+      let month = monthNames[currentMonth];
+      let index = p - (lastMonthDays - startDay + 1);
+      if (reservations[currentYear] && reservations[currentYear][month]) {
+        reservations[currentYear][month].forEach(element => {
+          if (element === prevMonth[index].day) {
+            prevMonth[index].value = "true"
+          }
+        });
+      }
     }
     //console.log(prevMonth);
 
@@ -122,28 +150,42 @@ export const DatePicker = () => {
     if (endDay < 6) {
       var nextMonth = [];
       for (var n = endDay; n < 6; n++) {
-        let item = { "day": n - endDay + 1, "month": "next", "value": "false" }
+        let item = { "day": n - endDay + 1, "month": "false", "value": "false" }
         nextMonth.push(item);
+
+        let month = monthNames[currentMonth + 2];
+        let index = n - endDay + 1 - 1;
+        if (reservations[currentYear] && reservations[currentYear][month]) {
+          reservations[currentYear][month].forEach(element => {
+            if (element === nextMonth[index].day) {
+              nextMonth[index].value = "true"
+            }
+          });
+        }
       }
-      //console.log(nextMonth);
     }
+    //console.log(nextMonth);
 
     // This Month
     const lenght = Math.abs((end - start) / 1);
     var thisMonth = [];
-    let currentDay = new Date().toLocaleString("fi-FI", { day: '2-digit' });
-    currentDay = currentDay.replace(/^0+/, '');
+    //let currentDay = new Date().toLocaleString("fi-FI", { day: '2-digit' });
+    //currentDay = currentDay.replace(/^0+/, '');
     for (var t = 1; t <= lenght; t++) {
       let item = { "day": t, "month": "this", "value": "false" }
       thisMonth.push(item);
 
       let month = monthNames[currentMonth + 1];
-      reservations[currentYear][month].forEach(element => {
-        if (element === thisMonth[t - 1].day) {
-          thisMonth[t - 1].value = "true"
-        }
-      });
+      let index = t - 1;
+      if (reservations[currentYear] && reservations[currentYear][month]) {
+        reservations[currentYear][month].forEach(element => {
+          if (element === thisMonth[index].day) {
+            thisMonth[index].value = "true"
+          }
+        });
+      }
     }
+    //console.log(thisMonth);
 
     var monthDays = [];
     if (nextMonth)
@@ -151,38 +193,34 @@ export const DatePicker = () => {
     if (prevMonth)
       monthDays = prevMonth.concat(nextMonth ? monthDays : thisMonth);
 
-    // Extra week
+    // Extra weeks
     if (Object.keys(monthDays).length === 35 ||
       Object.keys(monthDays).length === 28) {
       var endVal = Object.keys(monthDays).length > 28 ? 7 : 14;
       var offset = Object.keys(monthDays).length > 28 ? 1 : 8;
-      var extraOverlap = [];
+      var extraWeeks = [];
       for (var e = 1; e <= endVal; e++) {
-        let item = { "day": (endVal - offset) - endDay + e, "month": "next", "value": "false" }
-        extraOverlap.push(item);
+        let item = { "day": (endVal - offset) - endDay + e, "month": "false", "value": "false" }
+        extraWeeks.push(item);
+
+        let month = monthNames[currentMonth + 2];
+        let index = e - 1;
+        if (reservations[currentYear] && reservations[currentYear][month]) {
+          reservations[currentYear][month].forEach(element => {
+            if (element === extraWeeks[index].day) {
+              extraWeeks[index].value = "true"
+            }
+          });
+        }
       }
-      monthDays = monthDays.concat(extraOverlap);
+      monthDays = monthDays.concat(extraWeeks);
     }
-
-    setCurrentDays(monthDays);
-    //MarkDates(monthDays);
-  };
+    //console.log(extraWeeks);
 
 
-/*   const MarkDates = (monthDays) => {
     //console.log(monthDays);
-    let derp = [];
-    Object.keys(reservations).forEach(year => {
-      if (year === currentYear.toString()) {
-        let test = monthNames[currentMonth + 1];
-        reservations[year][test].forEach(day => {
-          let item = { "day": day, "month": "this", "value": "false" }
-          derp.push(item);
-        })
-      }
-    });
-    console.log(derp);
-  } */
+    return monthDays;
+  };
 
   return (
     <Calendar>
@@ -207,12 +245,12 @@ export const DatePicker = () => {
         )}
       </WeekGrid>
       <DayGrid>
-        {currentDays !== undefined && currentDays.map((item, index) => {
+        {range(1, GetNumberOfDaysInMonth(currentYear, currentMonth) + 1).map((item, index) => {
           return (
             <Days
               key={index}
               className={`${item.month} ${item.value}`}
-              onClick={() => Test(item.day, item.month)}
+              onClick={() => console.log(item.day)}
             >
               {item.day}
             </Days>
