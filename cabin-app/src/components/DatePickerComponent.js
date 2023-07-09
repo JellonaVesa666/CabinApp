@@ -35,29 +35,46 @@ export const DatePicker = () => {
   }
 
   const monthNames = {
-    1: "January",
-    2: "February",
-    3: "March",
-    4: "April",
-    5: "May",
-    6: "June",
-    7: "July",
-    8: "August",
-    9: "September",
-    10: "October",
-    11: "November",
-    12: "December"
+    1: "january",
+    2: "february",
+    3: "march",
+    4: "april",
+    5: "may",
+    6: "june",
+    7: "july",
+    8: "august",
+    9: "september",
+    10: "october",
+    11: "november",
+    12: "december"
   }
 
   const dayNames = [
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-    "Sun"
+    "mon",
+    "tue",
+    "wed",
+    "thu",
+    "fri",
+    "sat",
+    "sun"
   ]
+
+  const reservations = {
+    2023: {
+      july: [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+      ]
+    },
+  }
 
   const GetNumberOfDaysInMonth = (year, month) => {
     return new Date(year, month + 1, 0).getDate();
@@ -80,13 +97,13 @@ export const DatePicker = () => {
   console.log(days);
 
   const Range = (start, end) => {
-    const startDay = dayNames.indexOf((new Date(year, month, 1)).toString().split(' ')[0]);
-    const endDay = dayNames.indexOf((new Date(year, month + 1, 0)).toString().split(' ')[0]);
+    const startDay = dayNames.indexOf((new Date(year, month, 1)).toString().toLowerCase().split(' ')[0]);
+    const endDay = dayNames.indexOf((new Date(year, month + 1, 0)).toString().toLowerCase().split(' ')[0]);
 
     // Previous Month
-    const lastMonthDays = GetNumberOfDaysInMonth(year, month - 1);
+    const prevMontLastDay = GetNumberOfDaysInMonth(year, month - 1);
     var prevMonth = [];
-    for (var s = lastMonthDays - startDay + 1; s <= lastMonthDays; s++) {
+    for (var s = prevMontLastDay - startDay + 1; s <= prevMontLastDay; s++) {
       let item = { "day": s, "month": "previous", "value": "false" }
       prevMonth.push(item);
     }
@@ -122,7 +139,6 @@ export const DatePicker = () => {
     // Extra week
     if (Object.keys(monthDays).length === 35 ||
       Object.keys(monthDays).length === 28) {
-
       var endVal = Object.keys(monthDays).length > 28 ? 7 : 14;
       var offset = Object.keys(monthDays).length > 28 ? 1 : 8;
       var extraOverlap = [];
