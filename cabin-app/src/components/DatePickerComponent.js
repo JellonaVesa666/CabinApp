@@ -106,10 +106,12 @@ export const DatePicker = () => {
       }
     },
     2022: {
-      0: {
-        arrivalDate: 8,
-        departureDate: 15,
-        name: ""
+      september: {
+        0: {
+          arrivalDate: 8,
+          departureDate: 15,
+          name: ""
+        }
       }
     }
   }
@@ -123,7 +125,7 @@ export const DatePicker = () => {
     var prevMonth = [];
     const previousMonthLenght = new Date(currentYear, currentMonth, 0).getDate();
     for (var p = previousMonthLenght - startDay + 1; p <= previousMonthLenght; p++) {
-      let item = { "day": p, "month": "false", "value": "false" }
+      let item = { "day": p, "month": "false", "reserved": "false" }
       prevMonth.push(item);
 
       // Set Date Selected
@@ -133,7 +135,7 @@ export const DatePicker = () => {
         Object.keys(reservations[currentYear][month]).forEach((element) => {
           if (prevMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
             prevMonth[index].day <= reservations[currentYear][month][element].departureDate) {
-            prevMonth[index].value = "true"
+            prevMonth[index].reserved = "true"
           }
         });
       }
@@ -144,7 +146,7 @@ export const DatePicker = () => {
     if (endDay < 6) {
       var nextMonth = [];
       for (var n = endDay; n < 6; n++) {
-        let item = { "day": n - endDay + 1, "month": "false", "value": "false" }
+        let item = { "day": n - endDay + 1, "month": "false", "reserved": "false" }
         nextMonth.push(item);
 
         // Set Date Selected
@@ -154,7 +156,7 @@ export const DatePicker = () => {
           Object.keys(reservations[currentYear][month]).forEach((element) => {
             if (nextMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
               nextMonth[index].day <= reservations[currentYear][month][element].departureDate) {
-              nextMonth[index].value = "true"
+              nextMonth[index].reserved = "true"
             }
           });
         }
@@ -166,7 +168,7 @@ export const DatePicker = () => {
     const thisMonthLenght = new Date(currentYear, currentMonth + 1, 0).getDate();
     var thisMonth = [];
     for (var t = 1; t <= thisMonthLenght; t++) {
-      let item = { "day": t, "month": "this", "value": "false" }
+      let item = { "day": t, "month": "this", "reserved": "false" }
       thisMonth.push(item);
 
       // Set Date Selected
@@ -176,7 +178,7 @@ export const DatePicker = () => {
         Object.keys(reservations[currentYear][month]).forEach((element) => {
           if (thisMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
             thisMonth[index].day <= reservations[currentYear][month][element].departureDate) {
-            thisMonth[index].value = "true"
+            thisMonth[index].reserved = "true"
           }
         });
       }
@@ -196,7 +198,7 @@ export const DatePicker = () => {
       var offset = Object.keys(monthDays).length > 28 ? 1 : 8;
       var extraWeeks = [];
       for (var e = 1; e <= endVal; e++) {
-        let item = { "day": (endVal - offset) - endDay + e, "month": "false", "value": "false" }
+        let item = { "day": (endVal - offset) - endDay + e, "month": "false", "reserved": "false" }
         extraWeeks.push(item);
 
         // Set Date Selected
@@ -206,7 +208,7 @@ export const DatePicker = () => {
           Object.keys(reservations[currentYear][month]).forEach((element) => {
             if (extraWeeks[index].day >= reservations[currentYear][month][element].arrivalDate &&
               extraWeeks[index].day <= reservations[currentYear][month][element].departureDate) {
-              extraWeeks[index].value = "true"
+              extraWeeks[index].reserved = "true"
             }
           });
         }
@@ -218,8 +220,6 @@ export const DatePicker = () => {
     return monthDays;
   };
 
-  console.log(currentDays);
-
   const Test = (day, month) => {
     console.log(day + "    " + month);
     currentDays.forEach((item, index) => {
@@ -229,7 +229,7 @@ export const DatePicker = () => {
         /*         const newIngredients = [...currentDays];
                 newIngredients[index] = {
                   ...newIngredients[index],
-                  value: 'true'
+                  reserved: 'true'
                 };
                 setCurrentDays(newIngredients); */
       }
@@ -263,7 +263,7 @@ export const DatePicker = () => {
           return (
             <Days
               key={index}
-              className={`${item.month} ${item.value}`}
+              className={`${item.month} ${item.reserved}`}
               onClick={() => Test(item.day, item.month)}
             >
               {item.day}
