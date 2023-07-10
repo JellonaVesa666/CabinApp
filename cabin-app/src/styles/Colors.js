@@ -7,8 +7,9 @@ export const colors = {
   white: "#F2F2F2",
   darkWhite: "#cacaca",
   lightRed: "#D48CA0",
+  darkRed: "#783037",
 };
 
 /* {
-  color: #1b8d5c
+  color: #783037
 } */

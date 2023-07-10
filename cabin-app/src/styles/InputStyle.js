@@ -103,8 +103,9 @@ export const DateInput = styled.input`
 export const Calendar = styled.div`
   width: 20%;
   height: 25%;
-  border: 2px solid red;
-  background-color: black;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  border-radius: 10px;
+  background-color: ${colors.white};
   margin: 0;
   padding: 0;
 `
@@ -137,16 +138,25 @@ export const Days = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: gray;
+  color: ${colors.darkWhite};
   margin: 0;
   padding: 0;
   &.this {
     cursor: pointer;
-    color: white;
+    color: ${colors.grey};
+    &.reserved {
+      background-color: ${colors.lightRed};
+      color: black;
+    }
   }
-  &.true {
-    border: 2px solid green;
-  } 
+  &.reserved {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: black;
+  }
+  &.active {
+    background-color: rgba(160, 200, 50, 0.5);
+    color: black;
+  }
 `
 
 // Select

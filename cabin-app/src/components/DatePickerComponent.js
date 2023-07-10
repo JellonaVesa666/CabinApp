@@ -40,16 +40,16 @@ export const DatePicker = () => {
       prevMonth[p - (previousMonthLenght - startDay + 1)] = item;
 
       // Set Date Selected
-      /*       let month = monthNames[currentMonth];
-            let index = p - (previousMonthLenght - startDay + 1);
-            if (reservations[currentYear] && reservations[currentYear][month]) {
-              Object.keys(reservations[currentYear][month]).forEach((element) => {
-                if (prevMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
-                  prevMonth[index].day <= reservations[currentYear][month][element].departureDate) {
-                  prevMonth[index].reserved = "true"
-                }
-              });
-            } */
+      let month = monthNames[currentMonth];
+      let index = p - (previousMonthLenght - startDay + 1);
+      if (reservations[currentYear] && reservations[currentYear][month]) {
+        Object.keys(reservations[currentYear][month]).forEach((element) => {
+          if (prevMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
+            prevMonth[index].day <= reservations[currentYear][month][element].departureDate) {
+            prevMonth[index].reserved = "true";
+          }
+        });
+      }
     }
     //console.log(prevMonth);
 
@@ -82,16 +82,16 @@ export const DatePicker = () => {
       nextMonth[n + 1] = item;
 
       // Set Date Selected
-      /*         let month = monthNames[currentMonth + 2];
-              let index = n - endDay + 1 - 1;
-              if (reservations[currentYear] && reservations[currentYear][month]) {
-                Object.keys(reservations[currentYear][month]).forEach((element) => {
-                  if (nextMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
-                    nextMonth[index].day <= reservations[currentYear][month][element].departureDate) {
-                    nextMonth[index].reserved = "true"
-                  }
-                });
-              } */
+      let month = monthNames[currentMonth + 2];
+      let index = n + 1;
+      if (reservations[currentYear] && reservations[currentYear][month]) {
+        Object.keys(reservations[currentYear][month]).forEach((element) => {
+          if (nextMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
+            nextMonth[index].day <= reservations[currentYear][month][element].departureDate) {
+            nextMonth[index].reserved = "true";
+          }
+        });
+      }
     }
     //console.log(nextMonth);
 
