@@ -5,8 +5,6 @@ import { ChangeState } from "../helpers/HelperFunctions";
 
 export const DatePicker = () => {
   const [currentDays, setCurrentDays] = useState();
-  const [value, setValue] = useState({ current: "", min: "", max: "" });
-  const [toggle, setToggle] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
@@ -109,38 +107,11 @@ export const DatePicker = () => {
   }, [range]);
 
   const Test = (day, month) => {
-
-    if (value.max === "") {
-      ChangeState(setValue, value, day, "max");
-    }
-    else {
-      if (value.max < day) {
-        ChangeState(setValue, value, value.max, "min");
-        ChangeState(setValue, value, day, "max");
-      }
-      else if (day < value.max) {
-        ChangeState(setValue, value, day, "min");
-      }
-    }
-
-    console.log(value);
-
     Object.keys(currentDays).forEach((index) => {
       if (currentDays[index].month === month) {
         if (currentDays[index].reserved === "false") {
-          if (value.min == "") {
-            if (currentDays[index].day <= value.max) {
-              ChangeState(setCurrentDays, currentDays, true, "active", index);
-            }
-          }
-          else {
-            if (currentDays[index].day <= value.max && currentDays[index].day >= value.min) {
-              ChangeState(setCurrentDays, currentDays, true, "active", index);
-            }
-            else {
-
-              ChangeState(setCurrentDays, currentDays, false, "active", index);
-            }
+          if (currentDays[index].day === day) {
+            ChangeState(setCurrentDays, currentDays, !currentDays[index].active, "active", index);
           }
         }
       }
@@ -174,7 +145,11 @@ export const DatePicker = () => {
           return (
             <Days
               key={index}
-              className={`${currentDays[item].month === monthNames[currentMonth + 1] ? "this" : ""} ${currentDays[item].reserved === "true" ? "reserved" : ""} ${currentDays[item].active ? "active" : ""}`}
+              className={`
+                  ${currentDays[item].month === monthNames[currentMonth + 1] ? "this" : ""} 
+                  ${currentDays[item].reserved === "true" ? "reserved" : ""} 
+                  ${currentDays[item].active ? "active" : ""}
+                `}
               onClick={() => Test(currentDays[item].day, currentDays[item].month)}
             >
               {currentDays[item].day}
