@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar, MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputStyle";
 
 export const DatePicker = () => {
+  const [currentDays, setCurrentDays] = useState();
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
@@ -24,6 +25,10 @@ export const DatePicker = () => {
       setCurrentYear((prev) => prev - 1);
     }
   }
+
+  useEffect(() => {
+    setCurrentDays(Range());
+  }, [currentMonth]);
 
   const monthNames = {
     1: "january",
@@ -54,8 +59,8 @@ export const DatePicker = () => {
     2023: {
       april: {
         0: {
-          arrivalDate: 8,
-          departureDate: 15,
+          arrivalDate: 1,
+          departureDate: 8,
           name: ""
         }
       },
@@ -109,24 +114,21 @@ export const DatePicker = () => {
     }
   }
 
-  const GetNumberOfDaysInMonth = (year, month) => {
-    return new Date(year, month + 1, 0).getDate();
-  }
 
-  const range = (start, end) => {
+  const Range = () => {
     const startDay = dayNames.indexOf((new Date(currentYear, currentMonth, 1)).toString().toLowerCase().split(' ')[0]);
     const endDay = dayNames.indexOf((new Date(currentYear, currentMonth + 1, 0)).toString().toLowerCase().split(' ')[0]);
 
     // Previous Month
-    const lastMonthDays = GetNumberOfDaysInMonth(currentYear, currentMonth - 1);
     var prevMonth = [];
-    for (var p = lastMonthDays - startDay + 1; p <= lastMonthDays; p++) {
+    const previousMonthLenght = new Date(currentYear, currentMonth, 0).getDate();
+    for (var p = previousMonthLenght - startDay + 1; p <= previousMonthLenght; p++) {
       let item = { "day": p, "month": "false", "value": "false" }
       prevMonth.push(item);
 
       // Set Date Selected
       let month = monthNames[currentMonth];
-      let index = p - (lastMonthDays - startDay + 1);
+      let index = p - (previousMonthLenght - startDay + 1);
       if (reservations[currentYear] && reservations[currentYear][month]) {
         Object.keys(reservations[currentYear][month]).forEach((element) => {
           if (prevMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
@@ -161,11 +163,9 @@ export const DatePicker = () => {
     //console.log(nextMonth);
 
     // This Month
-    const lenght = Math.abs((end - start) / 1);
+    const thisMonthLenght = new Date(currentYear, currentMonth + 1, 0).getDate();
     var thisMonth = [];
-    //let currentDay = new Date().toLocaleString("fi-FI", { day: '2-digit' });
-    //currentDay = currentDay.replace(/^0+/, '');
-    for (var t = 1; t <= lenght; t++) {
+    for (var t = 1; t <= thisMonthLenght; t++) {
       let item = { "day": t, "month": "this", "value": "false" }
       thisMonth.push(item);
 
@@ -174,7 +174,6 @@ export const DatePicker = () => {
       let index = t - 1;
       if (reservations[currentYear] && reservations[currentYear][month]) {
         Object.keys(reservations[currentYear][month]).forEach((element) => {
-          console.log(thisMonth[index].day);
           if (thisMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
             thisMonth[index].day <= reservations[currentYear][month][element].departureDate) {
             thisMonth[index].value = "true"
@@ -216,9 +215,26 @@ export const DatePicker = () => {
     }
     //console.log(extraWeeks);
 
-    //console.log(monthDays);
     return monthDays;
   };
+
+  console.log(currentDays);
+
+  const Test = (day, month) => {
+    console.log(day + "    " + month);
+    currentDays.forEach((item, index) => {
+
+      if (item.day === day && item.month === month) {
+        console.log(currentDays[index]);
+        /*         const newIngredients = [...currentDays];
+                newIngredients[index] = {
+                  ...newIngredients[index],
+                  value: 'true'
+                };
+                setCurrentDays(newIngredients); */
+      }
+    });
+  }
 
   return (
     <Calendar>
@@ -243,12 +259,12 @@ export const DatePicker = () => {
         )}
       </WeekGrid>
       <DayGrid>
-        {range(1, GetNumberOfDaysInMonth(currentYear, currentMonth) + 1).map((item, index) => {
+        {currentDays && currentDays.map((item, index) => {
           return (
             <Days
               key={index}
               className={`${item.month} ${item.value}`}
-              onClick={() => console.log(item.day)}
+              onClick={() => Test(item.day, item.month)}
             >
               {item.day}
             </Days>
