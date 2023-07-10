@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Calendar, MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputStyle";
 import { dayNames, monthNames, reservations } from "../mockup/calendarData";
+import { ChangeState } from "../helpers/HelperFunctions";
 
 export const DatePicker = () => {
   const [currentDays, setCurrentDays] = useState();
+  const [value, setValue] = useState({ current: "", min: "", max: "" });
+  const [toggle, setToggle] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
@@ -29,19 +32,19 @@ export const DatePicker = () => {
 
   const range = useCallback(() => {
     const startDay = dayNames.indexOf((new Date(currentYear, currentMonth, 1)).toString().toLowerCase().split(' ')[0]);
-    const endDay = dayNames.indexOf((new Date(currentYear, currentMonth + 1, 0)).toString().toLowerCase().split(' ')[0]);
+    //const endDay = dayNames.indexOf((new Date(currentYear, currentMonth + 1, 0)).toString().toLowerCase().split(' ')[0]);
 
     // Previous Month
-    var prevMonth = [];
+    var prevMonth = {};
     const previousMonthLenght = new Date(currentYear, currentMonth, 0).getDate();
     for (var p = previousMonthLenght - startDay + 1; p <= previousMonthLenght; p++) {
-      let item = { "day": p, "month": "false", "reserved": "false", "active": false }
-      prevMonth.push(item);
+      let item = { "day": p, "month": monthNames[currentMonth], "reserved": "false", "active": false }
+      prevMonth[p - (previousMonthLenght - startDay + 1)] = item;
 
       // Set Date Selected
-      let month = monthNames[currentMonth];
-      let index = p - (previousMonthLenght - startDay + 1);
-      /*       if (reservations[currentYear] && reservations[currentYear][month]) {
+      /*       let month = monthNames[currentMonth];
+            let index = p - (previousMonthLenght - startDay + 1);
+            if (reservations[currentYear] && reservations[currentYear][month]) {
               Object.keys(reservations[currentYear][month]).forEach((element) => {
                 if (prevMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
                   prevMonth[index].day <= reservations[currentYear][month][element].departureDate) {
@@ -52,82 +55,53 @@ export const DatePicker = () => {
     }
     //console.log(prevMonth);
 
-    // Next Month
-    if (endDay < 6) {
-      var nextMonth = [];
-      for (var n = endDay; n < 6; n++) {
-        let item = { "day": n - endDay + 1, "month": "false", "reserved": "false", "active": false }
-        nextMonth.push(item);
-
-        // Set Date Selected
-        let month = monthNames[currentMonth + 2];
-        let index = n - endDay + 1 - 1;
-        /*         if (reservations[currentYear] && reservations[currentYear][month]) {
-                  Object.keys(reservations[currentYear][month]).forEach((element) => {
-                    if (nextMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
-                      nextMonth[index].day <= reservations[currentYear][month][element].departureDate) {
-                      nextMonth[index].reserved = "true"
-                    }
-                  });
-                } */
-      }
-    }
-    //console.log(nextMonth);
-
     // This Month
     const thisMonthLenght = new Date(currentYear, currentMonth + 1, 0).getDate();
-    var thisMonth = [];
+    var thisMonth = {};
     for (var t = 1; t <= thisMonthLenght; t++) {
-      let item = { "day": t, "month": "this", "reserved": "false", "active": false }
-      thisMonth.push(item);
+      let item = { "day": t, "month": monthNames[currentMonth + 1], "reserved": "false", "active": false }
+      thisMonth[t + Object.keys(prevMonth).length] = item;
 
       // Set Date Selected
       let month = monthNames[currentMonth + 1];
-      let index = t - 1;
+      let index = t + Object.keys(prevMonth).length;
       if (reservations[currentYear] && reservations[currentYear][month]) {
         Object.keys(reservations[currentYear][month]).forEach((element) => {
           if (thisMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
             thisMonth[index].day <= reservations[currentYear][month][element].departureDate) {
-            thisMonth[index].reserved = "true"
+            thisMonth[index].reserved = "true";
           }
         });
       }
     }
     //console.log(thisMonth);
 
-    var monthDays = [];
-    if (nextMonth)
-      monthDays = thisMonth.concat(nextMonth)
-    if (prevMonth)
-      monthDays = prevMonth.concat(nextMonth ? monthDays : thisMonth);
+    // Next Month
+    var start = 42 - Object.keys(prevMonth).length - Object.keys(thisMonth).length;
+    var nextMonth = {};
+    for (var n = 42 - start; n < 42; n++) {
+      let item = { "day": start - (42 - n) + 1, "month": monthNames[currentMonth + 2], "reserved": "false", "active": false }
+      nextMonth[n + 1] = item;
 
-    // Extra weeks
-    if (Object.keys(monthDays).length === 35 ||
-      Object.keys(monthDays).length === 28) {
-      var endVal = Object.keys(monthDays).length > 28 ? 7 : 14;
-      var offset = Object.keys(monthDays).length > 28 ? 1 : 8;
-      var extraWeeks = [];
-      for (var e = 1; e <= endVal; e++) {
-        let item = { "day": (endVal - offset) - endDay + e, "month": "false", "reserved": "false", "active": false }
-        extraWeeks.push(item);
-
-        // Set Date Selected
-        /*         let month = monthNames[currentMonth + 2];
-                let index = e - 1;
-                if (reservations[currentYear] && reservations[currentYear][month]) {
-                  Object.keys(reservations[currentYear][month]).forEach((element) => {
-                    if (extraWeeks[index].day >= reservations[currentYear][month][element].arrivalDate &&
-                      extraWeeks[index].day <= reservations[currentYear][month][element].departureDate) {
-                      extraWeeks[index].reserved = "true"
-                    }
-                  });
-                } */
-      }
-      monthDays = monthDays.concat(extraWeeks);
+      // Set Date Selected
+      /*         let month = monthNames[currentMonth + 2];
+              let index = n - endDay + 1 - 1;
+              if (reservations[currentYear] && reservations[currentYear][month]) {
+                Object.keys(reservations[currentYear][month]).forEach((element) => {
+                  if (nextMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
+                    nextMonth[index].day <= reservations[currentYear][month][element].departureDate) {
+                    nextMonth[index].reserved = "true"
+                  }
+                });
+              } */
     }
-    //console.log(extraWeeks);
+    //console.log(nextMonth);
 
-    return monthDays;
+    let merged = { ...prevMonth, ...thisMonth, ...nextMonth };
+    //console.log(merged);
+
+    return merged;
+
   }, [currentMonth, currentYear]);
 
   useEffect(() => {
@@ -135,16 +109,39 @@ export const DatePicker = () => {
   }, [range]);
 
   const Test = (day, month) => {
-    currentDays.forEach((item, index) => {
-      if (item.day === day && item.month === month) {
+
+    if (value.max === "") {
+      ChangeState(setValue, value, day, "max");
+    }
+    else {
+      if (value.max < day) {
+        ChangeState(setValue, value, value.max, "min");
+        ChangeState(setValue, value, day, "max");
+      }
+      else if (day < value.max) {
+        ChangeState(setValue, value, day, "min");
+      }
+    }
+
+    console.log(value);
+
+    Object.keys(currentDays).forEach((index) => {
+      if (currentDays[index].month === month) {
         if (currentDays[index].reserved === "false") {
-          console.log(currentDays[index]);
-          const newIngredients = [...currentDays];
-          newIngredients[index] = {
-            ...newIngredients[index],
-            active: !newIngredients[index].active
-          };
-          setCurrentDays(newIngredients);
+          if (value.min == "") {
+            if (currentDays[index].day <= value.max) {
+              ChangeState(setCurrentDays, currentDays, true, "active", index);
+            }
+          }
+          else {
+            if (currentDays[index].day <= value.max && currentDays[index].day >= value.min) {
+              ChangeState(setCurrentDays, currentDays, true, "active", index);
+            }
+            else {
+
+              ChangeState(setCurrentDays, currentDays, false, "active", index);
+            }
+          }
         }
       }
     });
@@ -173,14 +170,14 @@ export const DatePicker = () => {
         )}
       </WeekGrid>
       <DayGrid>
-        {currentDays && currentDays.map((item, index) => {
+        {currentDays && Object.keys(currentDays).map((item, index) => {
           return (
             <Days
               key={index}
-              className={`${item.month} ${item.reserved ? "reserved" : ""} ${item.active ? "active" : ""}`}
-              onClick={() => Test(item.day, item.month)}
+              className={`${currentDays[item].month === monthNames[currentMonth + 1] ? "this" : ""} ${currentDays[item].reserved === "true" ? "reserved" : ""} ${currentDays[item].active ? "active" : ""}`}
+              onClick={() => Test(currentDays[item].day, currentDays[item].month)}
             >
-              {item.day}
+              {currentDays[item].day}
             </Days>
           )
         }
