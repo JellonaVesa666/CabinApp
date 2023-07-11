@@ -1,6 +1,6 @@
 import { MainBody, Logo } from "./styles/BaseStyle"
 import './App.css';
-import LoginPage from "./containers/LoginPage";
+import LoginPage from "./pages/LoginPage";
 import NavigationComponent from "./components/NavigationComponent";
 
 function App() {
