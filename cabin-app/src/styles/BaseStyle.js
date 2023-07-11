@@ -3,7 +3,7 @@ import backgroundGray from "../images/background_Gray.png";
 import campingLogo from "../images/camping_Logo.png";
 
 export const MainBody = styled.div`
-  background: url(${backgroundGray}) no-repeat center center fixed; 
+  background: url(${backgroundGray}) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -13,6 +13,7 @@ export const MainBody = styled.div`
   overflow-x:hidden;
   margin: 0;
   padding: 0;
+  box-shadow:inset 0px 0px 80vw #333;
   position: relative;
 `
 

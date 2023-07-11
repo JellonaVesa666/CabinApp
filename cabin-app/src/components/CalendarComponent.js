@@ -3,7 +3,7 @@ import { Calendar, MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputSt
 import { dayNames, monthNames, reservations } from "../mockup/calendarData";
 import { ChangeState } from "../helpers/HelperFunctions";
 
-export const DatePicker = () => {
+export const CalendarComponent = () => {
   const [currentDays, setCurrentDays] = useState();
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
