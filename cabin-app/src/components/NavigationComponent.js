@@ -17,19 +17,20 @@ export default function NavigationComponent() {
   }, [navData.language]);
 
   return (
-    <>
-      <NavigationBody>
-        {/* <Navigation className={isActive ? "hide" : "show"}> */}
+    <NavigationBody>
+      <NavigationContainer>
         <NavigationLogo >
-          adad
-          {/* <NavigationLink className="user" onClick={() => setIsActive("")} /> */}
+          Navbar
         </NavigationLogo >
-        <NavigationContainer>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse flex-grow-1 text-right" id="navbarSupportedContent">
           {
             Object.keys(navData).reverse().map((type) => {
               if (type === "language") {
                 return (
-                  <NavigationList key={type}>
+                  <NavigationList key={type} className="ms-0">
                     {
                       Object.keys(navData[type]).map((item) => {
                         if (item === language)
@@ -45,28 +46,24 @@ export default function NavigationComponent() {
               }
               if (type === "button") {
                 return (
-                  <div key={type} style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center", height: "100%" }}>
-                    {
-                      Object.keys(navData[type]).map((item) => {
-                        return (
-                          Object.keys(navData[type][item]).map((child) => {
-                            if (child === language) {
-                              return (
-                                <ButtonInput key={item}>
-                                  {navData[type][item][child].name.toUpperCase()}
-                                </ButtonInput>
-                              )
-                            }
-                          })
-                        )
+                  Object.keys(navData[type]).map((item) => {
+                    return (
+                      Object.keys(navData[type][item]).map((child) => {
+                        if (child === language) {
+                          return (
+                            <ButtonInput key={item}>
+                              {navData[type][item][child].name.toUpperCase()}
+                            </ButtonInput>
+                          )
+                        }
                       })
-                    }
-                  </div>
+                    )
+                  })
                 )
               }
               if (type === "link") {
                 return (
-                  <NavigationList key={type} marginleft={"auto"}>
+                  <NavigationList key={type} className="ms-auto">
                     {
                       Object.keys(navData[type]).map((item) => {
                         return (
@@ -74,7 +71,7 @@ export default function NavigationComponent() {
                             if (child === language) {
                               if (item !== 0) {
                                 return (
-                                  <NavigationLink key={item} style={{ display: "inline", padding: "20px 20px" }}>
+                                  <NavigationLink key={item}>
                                     <NavigationAnchor href="">{navData[type][item][child].name.toUpperCase()}</NavigationAnchor>
                                   </NavigationLink >
                                 )
@@ -89,8 +86,8 @@ export default function NavigationComponent() {
               }
             })
           }
-        </NavigationContainer>
-      </NavigationBody >
-    </>
+        </div>
+      </NavigationContainer>
+    </NavigationBody >
   )
 }

@@ -268,16 +268,17 @@ export const CheckInput = styled.input.attrs(props => ({
   }
 `
 
-export const ButtonInput = styled.button`
+export const ButtonInput = styled.a.attrs({
+  className: "btn btn-outline-success",
+  })`
   height: 60%;
   width: 110px;
   font-size: 12px;
   font-weight: 500;
-  color: white !important;
+  color: ${colors.white} !important;
   background-color: ${colors.navy} !important;
-  border-radius: 40px;
-  border: none;
-  margin: 10px 10px;
+  border-radius: 20px;
+  margin: 0px 10px;
   @media (max-width:992px){
     width: 70px;
   }

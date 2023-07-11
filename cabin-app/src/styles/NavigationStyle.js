@@ -1,58 +1,42 @@
 import styled from 'styled-components'
 import { colors } from "./Colors";
 
-export const NavigationBody = styled.div.attrs({
-  className: 'd-flex col-12',
-  })`
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  height: 4.5vh;
-  margin: 0;
-  padding: 0;
+export const NavigationBody = styled.nav.attrs({
+  className: "navbar navbar-expand-lg",
+})`
   overflow: hidden;
   background-color: ${colors.white};
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 `
 
 export const NavigationContainer = styled.div.attrs({
-  className: 'd-flex col-10',
-  })`
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  className: "container-fluid",
+})`
 `
 
-export const NavigationLogo = styled.div.attrs({
-  className: 'd-flex col-2',
-  })`
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+export const NavigationLogo = styled.a.attrs({
+  className: "navbar-brand",
+})`
   background-color: ${colors.lightGrey}
 `
 
-export const NavigationList = styled.ul`
-  display: flex;
-  justify-content: space-between;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  margin-left: ${props => (props.marginleft)};
+export const NavigationList = styled.ul.attrs({
+  className: "navbar-nav flex-nowrap",
+})`
 `
 
-export const NavigationLink = styled.li`
-  display: inline; 
-  padding: 10px 10px;
+export const NavigationLink = styled.li.attrs({
+  className: "nav-item",
+})`
 `
 
-export const NavigationAnchor = styled.a`
+export const NavigationAnchor = styled.a.attrs({
+  className: "nav-link my-2 mx-4 menu-item",
+})`
   color: #fff;
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 0.15em;
-  display: inline-block;
-  padding: 6px 20px;
   position: relative;
   color: black;
   &:after {    
