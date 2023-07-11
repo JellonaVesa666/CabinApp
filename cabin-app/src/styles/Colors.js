@@ -11,5 +11,5 @@ export const colors = {
 };
 
 /* {
-  color: #783037
+  color: #f0f0f0
 } */

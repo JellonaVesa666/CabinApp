@@ -267,3 +267,29 @@ export const CheckInput = styled.input.attrs(props => ({
     outline: 0.15rem solid ${colors.lightRed} !important;
   }
 `
+
+export const ButtonInput = styled.button`
+  height: 60%;
+  width: 110px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white !important;
+  background-color: ${colors.navy} !important;
+  border-radius: 40px;
+  border: none;
+  margin: 10px 10px;
+  @media (max-width:992px){
+    width: 70px;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+  }
+  &:active {
+    border: 0.1rem solid rgba(255, 255, 255, 0.1);
+  }
+`
