@@ -141,21 +141,27 @@ export const Days = styled.p`
   color: ${colors.darkWhite};
   margin: 0;
   padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
+  color: ${colors.grey};
   &.this {
+    background-color: ${colors.white};
     cursor: pointer;
-    color: ${colors.grey};
+    color: ${colors.black};
     &.reserved {
       background-color: ${colors.lightRed};
-      color: black;
+      color: ${colors.black};
     }
   }
   &.reserved {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: black;
+    background-color: ${colors.lightRed};
+    color: ${colors.grey};
   }
   &.active {
     background-color: rgba(160, 200, 50, 0.5);
-    color: black;
+    color: ${colors.black};
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
   }
 `
 
