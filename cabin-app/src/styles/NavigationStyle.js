@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { colors } from "./Colors";
+import logoDark from "../images/logo_Dark.png";
 
 export const NavigationBody = styled.nav.attrs({
   className: "navbar navbar-expand-lg",
@@ -17,7 +18,16 @@ export const NavigationContainer = styled.div.attrs({
 export const NavigationLogo = styled.a.attrs({
   className: "navbar-brand",
 })`
-  background-color: ${colors.lightGrey}
+> img {
+  background: url(${logoDark}) no-repeat;
+  position:absolute;
+  width: 360px;
+  height: 220px;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+} 
 `
 
 export const NavigationList = styled.ul.attrs({
