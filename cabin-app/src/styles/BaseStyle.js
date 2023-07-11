@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import backgroundGray from "../images/background_Gray.png";
-import campingLogo from "../images/camping_Logo.png";
+import logoLight from "../images/logo_Light.png";
 
 export const MainBody = styled.div`
   background: url(${backgroundGray}) no-repeat center center fixed;
@@ -18,7 +18,7 @@ export const MainBody = styled.div`
 `
 
 export const Logo = styled.div`
-  background: url(${campingLogo}) no-repeat;
+  background: url(${logoLight}) no-repeat;
   position:absolute;
   width: 360px;
   height: 220px;
