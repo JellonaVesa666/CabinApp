@@ -18,9 +18,9 @@ export const ChangeState = (State, initValues, newValue, property, index1, index
     });
 }
 
-export const LabelCheck = (label) => {
-  if (label === undefined)
-    return "ERROR ! missing element";
+export const ValidateElement = (element, type) => {
+  if (element === undefined)
+    return `ERROR ! missing ${type.toString()}`;
 
-  return label.toUpperCase();
+  return element.toUpperCase();
 }

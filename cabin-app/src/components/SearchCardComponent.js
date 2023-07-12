@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
-import { ChangeState, LabelCheck } from "../helpers/HelperFunctions";
+import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
 import { RangeSlider, DatePicker, OptionSelect, MultiSelect, CheckBox } from "./InputComponents";
 import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, MinusSign, DropDown } from "../styles/SearchCardStyle";
 import { countByStatus, searchParameters } from "../mockup/searchFilterData";
@@ -24,7 +24,7 @@ const SearchCardComponent = () => {
         >
           <div className="row h-100 w-100 px-3 justify-content-center">
             <div className="d-flex col-5 py-3" style={{ fontWeight: "500", fontSize: "12px" }}>
-              {LabelCheck(searchFilters[item]?.name?.[language]?.name)}
+              {ValidateElement(searchFilters[item]?.info?.[language]?.name, "label")}
             </div>
             <div className="d-flex col-5 py-3 justify-content-end"
               onClick={() => ChangeState(setSearchFilters, searchFilters, !searchFilters[item].dropdown, "dropdown", item)}

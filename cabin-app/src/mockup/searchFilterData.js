@@ -72,7 +72,7 @@ export const searchParameters = {
   },
   checkboxMultiRow: {
     type: "checkboxMulti",
-    name: {
+    info: {
       fi: {
         name: "mökki tyyppi",
       },
@@ -141,7 +141,7 @@ export const searchParameters = {
   },
   checkboxMulti: {
     type: "checkboxMulti",
-    name: {
+    info: {
       fi: {
         name: "mökki tyyppi",
       },
@@ -210,7 +210,7 @@ export const searchParameters = {
   },
   checkboxSingle: {
     type: "checkboxSingle",
-    name: {
+    info: {
       fi: {
         name: "autopaikka",
       },
