@@ -41,11 +41,17 @@ export const CardList = styled.ul`
 `
 
 export const CardBody = styled.li`
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
-  //margin-top: ${props => (props.margintop)};
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+  background-color: ${colors.whiteDark};
   &.dropdownActive {
     flex-flow: row wrap;
     height: 100%;
+  }
+  &:first-child {
+    margin-top: ${props => (props.margintop)};
+  }
+  &:nth-child(2) {
+    background-color: ${colors.whiteLight};
   }
 `
 

@@ -241,8 +241,8 @@ export const CheckInput = styled.input.attrs(props => ({
 }))`
   background-color: rgba(255, 255, 255, 0.7);
   border: 0.15rem solid ${colors.lightGrey};
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   outline: none;
   outline: 0px !important;
   -webkit-appearance:none !important;

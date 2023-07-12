@@ -18,84 +18,84 @@ const SearchCardComponent = () => {
         <CardBody
           key={Object.keys(searchFilters).indexOf(item)}
           className={searchFilters[item].dropdown ? "dropdownActive" : ""}
-          margintop={"10%"}
+          margintop={"16%"}
         >
-          <div className="row h-100 w-100 m-0 p-0">
-            <div className="d-flex col-5 h-100 m-0 p-0 justify-content-center">-</div>
-            <div className="d-flex col-5 m-0 p-0 justify-content-center">&#x25BC;</div>
-          </div>
-          <div className="row h-100 w-100 m-0 p-0">
-            <div className="d-flex col-4 h-100 m-0 p-0 justify-content-center">{item}</div>
-            <div className="d-flex col-8 m-0 p-0 justify-content-center">
-              {searchFilters[item].dropdown &&
-                <>
-                  {searchFilters[item].type === "multiSelect" &&
-                    <MultiSelect
-                      data={searchFilters}
-                      i={item}
-                      changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", item, index)}
-                    />
-                  }
-                  {searchFilters[item].type === "option" &&
-                    <>
-                      <CardHeader
-                        width={"90%"}
-                        margintop={"5%"}
-                        marginbottom={"1%"}
-                      >
-                        {searchFilters[item].name ? searchFilters[item].name : item}
-                      </CardHeader>
-                      <OptionSelect
-                        width={"90%"}
-                        radius={"10px"}
-                        data={searchFilters}
-                        i={item}
-                        changeState={(event) => ChangeState(setSearchFilters, searchFilters, event.target.value, "value", item)}
-                      />
-                    </>
-                  }
-                  {searchFilters[item].type === "date" &&
-                    <DatePicker />
-                  }
-                  {searchFilters[item].type === "slider" &&
-                    <RangeSlider
-                      minDefault={searchFilters[item].minDefault}
-                      maxDefault={searchFilters[item].maxDefault}
-                      maxValue={searchFilters[item].maxValue}
-                      minValue={searchFilters[item].minValue}
-                      step={searchFilters[item].step}
-                      changeState={(value, property) => ChangeState(setSearchFilters, searchFilters, value, property, item)}
-                    />
-                  }
-                  {(() => {
-                    if (searchFilters[item].type.split(/(?=[A-Z])/)[0] === "checkbox") {
-                      if (searchFilters[item].type.split(/(?=[A-Z])/)[1] === "Multi") {
-                        return (
-                          <CheckBox
-                            data={searchFilters}
-                            i={item}
-                            multi={true}
-                            color={colors.green}
-                            changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", item, index)}
-                          />
-                        )
-                      } else if (searchFilters[item].type.split(/(?=[A-Z])/)[1] === "Single") {
-                        return (
-                          <CheckBox
-                            data={searchFilters}
-                            i={item}
-                            single={true}
-                            color={colors.green}
-                            changeState={(index) => ChangeState(setSearchFilters, searchFilters, index, "value", item)}
-                          />
-                        )
-                      }
-                    }
-                  })()}
-                </>
-              }
+          <div className="row h-100 w-100 justify-content-center">
+            <div className="d-flex col-5 h-100 my-3" style={{ fontWeight: "500", fontSize: "12px" }}>
+              {item.toUpperCase()}
+            </div>
+            <div className="d-flex col-5 my-3 justify-content-end">
+              &#x25BC;
             </div>
           </div>
+          {searchFilters[item].dropdown &&
+            <>
+              {searchFilters[item].type === "multiSelect" &&
+                <MultiSelect
+                  data={searchFilters}
+                  i={item}
+                  changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", item, index)}
+                />
+              }
+              {searchFilters[item].type === "option" &&
+                <>
+                  <CardHeader
+                    width={"90%"}
+                    margintop={"5%"}
+                    marginbottom={"1%"}
+                  >
+                    {searchFilters[item].name ? searchFilters[item].name : item}
+                  </CardHeader>
+                  <OptionSelect
+                    width={"90%"}
+                    radius={"10px"}
+                    data={searchFilters}
+                    i={item}
+                    changeState={(event) => ChangeState(setSearchFilters, searchFilters, event.target.value, "value", item)}
+                  />
+                </>
+              }
+              {searchFilters[item].type === "date" &&
+                <DatePicker />
+              }
+              {searchFilters[item].type === "slider" &&
+                <RangeSlider
+                  minDefault={searchFilters[item].minDefault}
+                  maxDefault={searchFilters[item].maxDefault}
+                  maxValue={searchFilters[item].maxValue}
+                  minValue={searchFilters[item].minValue}
+                  step={searchFilters[item].step}
+                  changeState={(value, property) => ChangeState(setSearchFilters, searchFilters, value, property, item)}
+                />
+              }
+              {(() => {
+                if (searchFilters[item].type.split(/(?=[A-Z])/)[0] === "checkbox") {
+                  if (searchFilters[item].type.split(/(?=[A-Z])/)[1] === "Multi") {
+                    return (
+                      <CheckBox
+                        data={searchFilters}
+                        i={item}
+                        multi={true}
+                        color={colors.green}
+                        m={"my-1"}
+                        changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", item, index)}
+                      />
+                    )
+                  } else if (searchFilters[item].type.split(/(?=[A-Z])/)[1] === "Single") {
+                    return (
+                      <CheckBox
+                        data={searchFilters}
+                        i={item}
+                        single={true}
+                        color={colors.green}
+                        changeState={(index) => ChangeState(setSearchFilters, searchFilters, index, "value", item)}
+                      />
+                    )
+                  }
+                }
+              })()}
+            </>
+          }
         </CardBody >
       )
   })

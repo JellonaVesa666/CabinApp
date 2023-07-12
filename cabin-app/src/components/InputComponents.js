@@ -173,13 +173,13 @@ export const CheckBox = (props) => {
   }
   else {
     return (
-      <div className="row h-100 w-100 m-0 p-0">
+      <div className="row h-100 w-100 m-0 px-5 py-3 justify-content-center">
         {
           Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(item => {
             return (
               <div
                 key={Object.keys(props.data[props.i]).indexOf(item)}
-                className="d-flex col-5 m-0 p-0 justify-content-start"
+                className={`d-flex col-${12 / props.data[props.i].rows} justify-content-start ${props.m}`}
               >
                 <CheckInput
                   className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
@@ -189,8 +189,8 @@ export const CheckBox = (props) => {
                   checked={props.multi ? props.data[props.i][item].value : props.single ? props.data[props.i].value === item : props.data[props.i].value}
                   onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
                 />
-                <label style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px" }}>
-                  {props.data[props.i][item][language].name}
+                <label style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "700", fontSize: "12px", paddingLeft: "15px" }}>
+                  {props.data[props.i][item][language].name.toUpperCase()}
                 </label>
               </div>
             )
