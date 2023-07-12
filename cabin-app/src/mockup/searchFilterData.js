@@ -72,6 +72,15 @@ export const searchParameters = {
   },
   checkboxMultiRow: {
     type: "checkboxMulti",
+    name: {
+      fi: {
+        name: "mökki tyyppi",
+      },
+      en: {
+        name: "cabin type",
+      },
+      value: false,
+    },
     isActive: false,
     dropdown: true,
     rows: 2,

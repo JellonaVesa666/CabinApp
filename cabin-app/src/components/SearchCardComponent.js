@@ -26,7 +26,9 @@ const SearchCardComponent = () => {
             <div className="d-flex col-5 py-3" style={{ fontWeight: "500", fontSize: "12px" }}>
               {searchFilters[item]?.name?.[language]?.name !== undefined ? searchFilters[item].name[language].name.toUpperCase() : "ERROR"}
             </div>
-            <div className="d-flex col-5 py-3 justify-content-end">
+            <div className="d-flex col-5 py-3 justify-content-end"
+              onClick={() => ChangeState(setSearchFilters, searchFilters, !searchFilters[item].dropdown, "dropdown", item)}
+            >
               &#x25BC;
             </div>
           </div>
