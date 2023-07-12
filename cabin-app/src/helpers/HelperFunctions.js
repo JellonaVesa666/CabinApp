@@ -17,3 +17,10 @@ export const ChangeState = (State, initValues, newValue, property, index1, index
       },
     });
 }
+
+export const LabelCheck = (label) => {
+  if (label === undefined)
+    return "ERROR ! missing element";
+
+  return label.toUpperCase();
+}

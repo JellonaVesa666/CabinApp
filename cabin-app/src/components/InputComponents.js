@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Slider, RangeInput, RangeValue, SliderBackground, DateInput, TextInput, OptionItem, MultiSelectInput, CheckInput } from "../styles/InputStyle"
 import { useSelector } from "react-redux";
+import { LabelCheck } from "../helpers/HelperFunctions";
 
 export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, changeState }) => {
   return (
@@ -185,7 +186,7 @@ export const CheckBox = (props) => {
                   onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
                 />
                 <label style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "700", fontSize: "12px", paddingLeft: "15px" }}>
-                  {props.data[props.i][item]?.[language]?.name !== undefined ? props.data[props.i][item][language].name.toUpperCase() : "ERROR"}
+                  {LabelCheck(props.data[props.i][item]?.[language]?.name)}
                 </label>
               </div>
             )
