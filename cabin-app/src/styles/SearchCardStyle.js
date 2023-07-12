@@ -4,9 +4,10 @@ import iconDropdown from "../images/icon_dropdown.png";
 import { colors } from './Colors';
 
 export const SearchCardBody = styled.div`
-  width: 85%;
+  width: 100%;
   height: 100%;
-  margin: auto;
+  margin: 0;
+  padding: 0;
 `
 
 export const Container = styled.div`
@@ -40,16 +41,8 @@ export const CardList = styled.ul`
 `
 
 export const CardBody = styled.li`
-  display: flex;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: black;
-  margin: 0;
-  padding: 0;
-  padding-top: 4px;
-  padding-bottom: 4px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
-  margin-top: ${props => (props.margintop)};
+  //margin-top: ${props => (props.margintop)};
   &.dropdownActive {
     flex-flow: row wrap;
     height: 100%;

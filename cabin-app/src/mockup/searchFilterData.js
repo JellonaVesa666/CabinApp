@@ -75,19 +75,57 @@ export const searchParameters = {
     isActive: false,
     dropdown: true,
     0: {
-      name: "hirsi",
+      fi: {
+        name: "Mökki",
+      },
+      en: {
+        name: "Cabin",
+      },
       value: false,
     },
     1: {
-      name: "hirsihuvila",
+      fi: {
+        name: "Rantamökki",
+      },
+      en: {
+        name: "Cottage",
+      },
       value: true,
     },
     2: {
-      name: "huvila",
+      fi: {
+        name: "Erämökki",
+      },
+      en: {
+        name: "Hut",
+      },
       value: false,
     },
     3: {
-      name: "mökki",
+      fi: {
+        name: "Huvila",
+      },
+      en: {
+        name: "Villa",
+      },
+      value: false,
+    },
+    5: {
+      fi: {
+        name: "Mökkikylä",
+      },
+      en: {
+        name: "Resort",
+      },
+      value: false,
+    },
+    6: {
+      fi: {
+        name: "Hirsimökki",
+      },
+      en: {
+        name: "Log House",
+      },
       value: false,
     },
   },

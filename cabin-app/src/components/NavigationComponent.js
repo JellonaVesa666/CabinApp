@@ -10,7 +10,7 @@ export default function NavigationComponent() {
 
   useEffect(() => {
     Object.keys(navData.language).forEach(item => {
-      if (navData.language[item].isActive === "true") {
+      if (navData.language[item].value === "true") {
         setLanguage(item);
       }
     })

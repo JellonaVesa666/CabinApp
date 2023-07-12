@@ -1,10 +1,10 @@
 export const navigationData = {
   language: {
     en: {
-      isActive: "false",
+      value: "true",
     },
     fi: {
-      isActive: "true",
+      value: "false",
     }
   },
   button: {
