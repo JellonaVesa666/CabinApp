@@ -5,8 +5,10 @@ import { RangeSlider, DatePicker, OptionSelect, MultiSelect, CheckBox } from "./
 import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, MinusSign, DropDown } from "../styles/SearchCardStyle";
 import { countByStatus, searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
+import { useSelector } from "react-redux";
 
 const SearchCardComponent = () => {
+  const language = useSelector(state => state.session.language);
 
   const [showModal, setShowModal] = useState(false);
   const [searchFilters, setSearchFilters] = useState(searchParameters);
@@ -20,11 +22,11 @@ const SearchCardComponent = () => {
           className={searchFilters[item].dropdown ? "dropdownActive" : ""}
           margintop={"16%"}
         >
-          <div className="row h-100 w-100 justify-content-center">
-            <div className="d-flex col-5 h-100 my-3" style={{ fontWeight: "500", fontSize: "12px" }}>
-              {item.toUpperCase()}
+          <div className="row h-100 w-100 px-3 justify-content-center">
+            <div className="d-flex col-5 py-3" style={{ fontWeight: "500", fontSize: "12px" }}>
+              {searchFilters[item]?.name?.[language]?.name !== undefined ? searchFilters[item].name[language].name.toUpperCase() : "ERROR"}
             </div>
-            <div className="d-flex col-5 my-3 justify-content-end">
+            <div className="d-flex col-5 py-3 justify-content-end">
               &#x25BC;
             </div>
           </div>
@@ -88,6 +90,7 @@ const SearchCardComponent = () => {
                         i={item}
                         single={true}
                         color={colors.green}
+                        m={"my-1"}
                         changeState={(index) => ChangeState(setSearchFilters, searchFilters, index, "value", item)}
                       />
                     )

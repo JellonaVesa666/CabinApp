@@ -132,6 +132,15 @@ export const searchParameters = {
   },
   checkboxMulti: {
     type: "checkboxMulti",
+    name: {
+      fi: {
+        name: "mökki tyyppi",
+      },
+      en: {
+        name: "cabin type",
+      },
+      value: false,
+    },
     isActive: false,
     dropdown: true,
     rows: 0,
@@ -192,6 +201,15 @@ export const searchParameters = {
   },
   checkboxSingle: {
     type: "checkboxSingle",
+    name: {
+      fi: {
+        name: "autopaikka",
+      },
+      en: {
+        name: "parking space",
+      },
+      value: false,
+    },
     isActive: false,
     dropdown: true,
     0: {
@@ -218,15 +236,6 @@ export const searchParameters = {
       },
       en: {
         name: "maybe",
-      },
-      value: true,
-    },
-    3: {
-      fi: {
-        name: "ehkä",
-      },
-      en: {
-        name: "perhaps",
       },
       value: true,
     },

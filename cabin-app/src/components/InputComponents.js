@@ -156,8 +156,8 @@ export const CheckBox = (props) => {
                   checked={props.multi ? props.data[props.i][item].value : props.single ? props.data[props.i].value === item : props.data[props.i].value}
                   onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
                 />
-                <label style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px" }}>
-                  {props.data[props.i][item][language].name}
+                <label style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "700", fontSize: "12px", paddingLeft: "15px" }}>
+                  {props.data[props.i][item]?.[language]?.name !== undefined ? props.data[props.i][item][language].name.toUpperCase() : "ERROR"}
                 </label>
               </div>
             )
@@ -185,7 +185,7 @@ export const CheckBox = (props) => {
                   onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
                 />
                 <label style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "700", fontSize: "12px", paddingLeft: "15px" }}>
-                  {props.data[props.i][item][language].name.toUpperCase()}
+                  {props.data[props.i][item]?.[language]?.name !== undefined ? props.data[props.i][item][language].name.toUpperCase() : "ERROR"}
                 </label>
               </div>
             )
