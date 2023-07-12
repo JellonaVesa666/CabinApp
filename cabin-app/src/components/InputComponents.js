@@ -30,17 +30,17 @@ export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, 
       <RangeValue
         type="number"
         value={minValue}
-        marginright={"20%"}
+        marginright={"35%"}
         onChange={(event) => changeState(Math.max(minDefault, Math.min(event.target.value, maxValue)), "minValue")}
       />
       <RangeValue
         type="number"
         value={maxValue}
-        marginleft={"20%"}
+        marginleft={"35%"}
         onChange={(event) => changeState(Math.max(minValue, Math.min(event.target.value, maxDefault)), "maxValue")}
       />
     </Slider>
-  );
+  )
 };
 
 export const DatePicker = () => {

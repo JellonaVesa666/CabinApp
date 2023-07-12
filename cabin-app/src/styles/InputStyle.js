@@ -3,18 +3,18 @@ import { colors } from "./Colors";
 
 // Range Slider
 export const Slider  = styled.div.attrs({
-  className: "d-flex w-75 align-items-center flex-wrap justify-content-center m-auto p-0",
+  className: "d-flex w-75 align-items-center justify-content-center m-auto p-0",
 })`
   position: relative;
-  height: 15px;
 `
 export const RangeInput = styled.input`
   z-index: 2;
-  width: 100%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 15px;
+  margin-top: 20px;
   background: none;
   pointer-events: none;
   -webkit-appearance: none;
@@ -44,28 +44,32 @@ export const RangeInput = styled.input`
 `
 export const SliderBackground = styled.div`
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 30%;
+  height: 15px;
+  margin-top: 20px;
   background-color: ${colors.grey};
   border-radius: 20px;
   &.center {
     z-index: 1;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+    margin-top: 20px;
     background-color: ${colors.green};
-    border-radius: 0;
     width: ${props => `${props.right - props.left}%`};
     margin-left: ${props => `${props.left}%`};
   }
 `
 export const RangeValue = styled.input`
-  width: 30%;
-  margin-top: 30px;
+  display: flex;
+  justify-content: flex-start;
+  width: 15%;
+  margin-top: 60px;
+  margin-bottom: 40px;
   border-radius: 10px;
   border: 1.5px solid rgba(0, 0, 0, 0.2);
   padding-left: 5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin-left: ${props => props.marginleft};
   margin-right: ${props => props.marginright};
