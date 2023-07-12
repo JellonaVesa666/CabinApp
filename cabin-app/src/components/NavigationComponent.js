@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavigationBody, NavigationContainer, NavigationLink, NavigationList, NavigationAnchor, NavigationLogo, NavigationDropdownItem, NavigationDropdown } from "../styles/NavigationStyle";
 import { navigationData } from "../mockup/navigationData";
 import { ButtonInput } from "../styles/InputStyle";
 import { useDispatch, useSelector } from "react-redux";
-import {changeLanguage} from "../reducers/sessionReducer";
+import { changeLanguage } from "../reducers/sessionReducer";
 
 export default function NavigationComponent() {
-  
+
+  // TODO: Implement reducer usage through App.js
   const session = useSelector(state => state.session);
   const dispatch = useDispatch();
 
   const [navData, setNavData] = useState(navigationData);
-
-  console.log(session.language);
 
   return (
     <NavigationBody>
@@ -20,16 +19,16 @@ export default function NavigationComponent() {
         <NavigationLogo>
           <img />
         </NavigationLogo>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse flex-grow-1 text-right" id="navbarSupportedContent">
+        <div className="collapse navbar-collapse flex-grow-1 text-right" id="navbarSupportedContent">
           {
             Object.keys(navData).reverse().map((type) => {
               if (type === "language") {
                 return (
-                  <div class="dropdown">
-                    <button class="btn dropdown-toggle border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div className="dropdown">
+                    <button className="btn dropdown-toggle border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       {session.language.toUpperCase()}
                     </button>
                     <NavigationDropdown key={type}>

@@ -3,6 +3,7 @@ import { CardHeader } from "../styles/SearchCardStyle";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Slider, RangeInput, RangeValue, SliderBackground, DateInput, TextInput, OptionItem, MultiSelectInput, CheckInput } from "../styles/InputStyle"
+import { useSelector } from "react-redux";
 
 export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, changeState }) => {
   return (
@@ -132,41 +133,72 @@ export const MultiSelect = (props) => {
 }
 
 export const CheckBox = (props) => {
-  return (
-    <div
-      style={{
-        width: "90%", margin: "auto", display: "flex", flexDirection: "column", marginTop: "3%", marginBottom: "3%"
-      }}
-    >
-      {
-        Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(item => {
-          return (
-            <div
-              key={Object.keys(props.data[props.i]).indexOf(item)}
-              style={{
-                display: "flex",
-                justifyContent: "start",
-                alignItems: "center"
+  const language = useSelector(state => state.session.language);
+  if (props.data[props.i].rows === undefined || props.data[props.i].rows < 1) {
+    return (
+      <div
+        style={{
+          width: "90%", margin: "auto", display: "flex", flexDirection: "column", marginTop: "3%", marginBottom: "3%"
+        }}
+      >
+        {
+          Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(item => {
+            return (
+              <div
+                key={Object.keys(props.data[props.i]).indexOf(item)}
+                style={{
+                  display: "flex",
+                  justifyContent: "start",
+                  alignItems: "center"
 
-              }}
-            >
-              <CheckInput
-                className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
-                type="checkbox"
-                color={props.color}
-                //       (condition) ? (true block) : ((condition2) ? (true block2) : (else block2))
-                checked={props.multi ? props.data[props.i][item].value : props.single ? props.data[props.i].value === item : props.data[props.i].value}
-                onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
-              />
-              <label style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px" }}>
-                {props.data[props.i][item].name}
-              </label>
-            </div>
-          )
-        })
-      }
-    </div>
-  )
+                }}
+              >
+                <CheckInput
+                  className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
+                  type="checkbox"
+                  color={props.color}
+                  //       (condition) ? (true block) : ((condition2) ? (true block2) : (else block2))
+                  checked={props.multi ? props.data[props.i][item].value : props.single ? props.data[props.i].value === item : props.data[props.i].value}
+                  onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
+                />
+                <label style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px" }}>
+                  {props.data[props.i][item][language].name}
+                </label>
+              </div>
+            )
+          })
+        }
+      </div>
+    )
+  }
+  else {
+    return (
+      <div className="row h-100 w-100 m-0 p-0">
+        {
+          Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(item => {
+            return (
+              <div
+                key={Object.keys(props.data[props.i]).indexOf(item)}
+                className="d-flex col-5 m-0 p-0 justify-content-start"
+              >
+                <CheckInput
+                  className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
+                  type="checkbox"
+                  color={props.color}
+                  //       (condition) ? (true block) : ((condition2) ? (true block2) : (else block2))
+                  checked={props.multi ? props.data[props.i][item].value : props.single ? props.data[props.i].value === item : props.data[props.i].value}
+                  onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
+                />
+                <label style={{ color: "rgba(0, 0, 0, 0.5)", fontWeight: "500", paddingLeft: "15px" }}>
+                  {props.data[props.i][item][language].name}
+                </label>
+              </div>
+            )
+          })
+        }
+      </div>
+    )
+  }
 };
 
 

@@ -20,13 +20,13 @@ const SearchCardComponent = () => {
           className={searchFilters[item].dropdown ? "dropdownActive" : ""}
           margintop={"10%"}
         >
-          <div class="row h-100 w-100 m-0 p-0">
-            <div class="d-flex col-5 h-100 m-0 p-0 justify-content-center">-</div>
-            <div class="d-flex col-5 m-0 p-0 justify-content-center">&#x25BC;</div>
+          <div className="row h-100 w-100 m-0 p-0">
+            <div className="d-flex col-5 h-100 m-0 p-0 justify-content-center">-</div>
+            <div className="d-flex col-5 m-0 p-0 justify-content-center">&#x25BC;</div>
           </div>
-          <div class="row h-100 w-100 m-0 p-0">
-            <div class="d-flex col-4 h-100 m-0 p-0 justify-content-center">{item}</div>
-            <div class="d-flex col-8 m-0 p-0 justify-content-center">
+          <div className="row h-100 w-100 m-0 p-0">
+            <div className="d-flex col-4 h-100 m-0 p-0 justify-content-center">{item}</div>
+            <div className="d-flex col-8 m-0 p-0 justify-content-center">
               {searchFilters[item].dropdown &&
                 <>
                   {searchFilters[item].type === "multiSelect" &&

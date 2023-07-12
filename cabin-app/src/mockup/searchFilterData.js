@@ -70,10 +70,71 @@ export const searchParameters = {
     minValue: 0,
     step: 1,
   },
+  checkboxMultiRow: {
+    type: "checkboxMulti",
+    isActive: false,
+    dropdown: true,
+    rows: 2,
+    0: {
+      fi: {
+        name: "Mökki",
+      },
+      en: {
+        name: "Cabin",
+      },
+      value: false,
+    },
+    1: {
+      fi: {
+        name: "Rantamökki",
+      },
+      en: {
+        name: "Cottage",
+      },
+      value: true,
+    },
+    2: {
+      fi: {
+        name: "Erämökki",
+      },
+      en: {
+        name: "Hut",
+      },
+      value: false,
+    },
+    3: {
+      fi: {
+        name: "Huvila",
+      },
+      en: {
+        name: "Villa",
+      },
+      value: false,
+    },
+    5: {
+      fi: {
+        name: "Mökkikylä",
+      },
+      en: {
+        name: "Resort",
+      },
+      value: false,
+    },
+    6: {
+      fi: {
+        name: "Hirsimökki",
+      },
+      en: {
+        name: "Log House",
+      },
+      value: false,
+    },
+  },
   checkboxMulti: {
     type: "checkboxMulti",
     isActive: false,
     dropdown: true,
+    rows: 0,
     0: {
       fi: {
         name: "Mökki",

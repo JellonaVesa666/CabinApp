@@ -1,11 +1,7 @@
 export const navigationData = {
   language: {
-    en: {
-      value: "true",
-    },
-    fi: {
-      value: "false",
-    }
+    en: {},
+    fi: {},
   },
   button: {
     0: {
