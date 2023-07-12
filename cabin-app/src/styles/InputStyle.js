@@ -2,19 +2,11 @@ import styled from 'styled-components'
 import { colors } from "./Colors";
 
 // Range Slider
-export const Slider = styled.div`
+export const Slider  = styled.div.attrs({
+  className: "d-flex w-75 align-items-center flex-wrap justify-content-center m-auto p-0",
+})`
   position: relative;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 90%;
   height: 15px;
-  margin: auto;
-  padding: 0;
-  margin-top: 25px;
-  margin-bottom: 50px;
 `
 export const RangeInput = styled.input`
   z-index: 2;
