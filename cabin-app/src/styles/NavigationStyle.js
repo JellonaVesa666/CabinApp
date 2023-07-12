@@ -5,7 +5,6 @@ import logoDark from "../images/logo_Dark.png";
 export const NavigationBody = styled.nav.attrs({
   className: "navbar navbar-expand-lg",
 })`
-  overflow: hidden;
   background-color: ${colors.white};
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 `
@@ -38,6 +37,29 @@ export const NavigationList = styled.ul.attrs({
 export const NavigationLink = styled.li.attrs({
   className: "nav-item",
 })`
+`
+
+export const NavigationDropdown = styled.ul.attrs({
+  className: "dropdown-menu",
+})`
+  min-width: 100% !important;
+  text-align: center;
+  border-radius: 0px 0px 10px 10px;
+  border: none;
+  &.show {
+    display: flex;
+    justify-content: center;
+  }
+`
+
+export const NavigationDropdownItem = styled.a.attrs({
+  className: "dropdown-item",
+})`
+  border: 2px solid transparent;
+  border-radius: 10px;
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 export const NavigationAnchor = styled.a.attrs({
