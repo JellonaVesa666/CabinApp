@@ -50,7 +50,7 @@ export const CardBody = styled.li`
   &:first-child {
     margin-top: ${props => (props.margintop)};
   }
-  &:nth-child(2) {
+  &:nth-child(2n) {
     background-color: ${colors.whiteLight};
   }
 `
