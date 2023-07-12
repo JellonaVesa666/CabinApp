@@ -106,6 +106,8 @@ export const OptionSelect = (props) => {
 };
 
 export const MultiSelect = (props) => {
+  // Filter out string keys
+  const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   return (
     <ul
       style={{
@@ -113,7 +115,7 @@ export const MultiSelect = (props) => {
       }}
     >
       {
-        Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(item => {
+        result.map(item => {
           return (
             <MultiSelectInput
               key={Object.keys(props.data[props.i]).indexOf(item)}
@@ -134,24 +136,17 @@ export const MultiSelect = (props) => {
 
 export const CheckBox = (props) => {
   const language = useSelector(state => state.session.language);
+  // Filter out string keys
+  const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   if (props.data[props.i].rows === undefined || props.data[props.i].rows < 1) {
     return (
-      <div
-        style={{
-          width: "90%", margin: "auto", display: "flex", flexDirection: "column", marginTop: "3%", marginBottom: "3%"
-        }}
-      >
+      <div className="row h-100 w-100 m-0 px-5 py-3 justify-content-center">
         {
-          Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(item => {
+          result.map(item => {
             return (
               <div
                 key={Object.keys(props.data[props.i]).indexOf(item)}
-                style={{
-                  display: "flex",
-                  justifyContent: "start",
-                  alignItems: "center"
-
-                }}
+                className={`d-flex col-${result.length <= 3 ? (12 / result.length) : 12} justify-content-start ${props.m}`}
               >
                 <CheckInput
                   className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
@@ -175,7 +170,7 @@ export const CheckBox = (props) => {
     return (
       <div className="row h-100 w-100 m-0 px-5 py-3 justify-content-center">
         {
-          Object.keys(props.data[props.i]).filter(i => typeof i === "string" && !isNaN(i)).map(item => {
+          result.map(item => {
             return (
               <div
                 key={Object.keys(props.data[props.i]).indexOf(item)}

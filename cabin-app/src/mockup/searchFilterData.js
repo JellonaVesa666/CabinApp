@@ -194,60 +194,41 @@ export const searchParameters = {
     type: "checkboxSingle",
     isActive: false,
     dropdown: true,
-    rows: 0,
     0: {
       fi: {
-        name: "Mökki",
+        name: "kyllä",
       },
       en: {
-        name: "Cabin",
+        name: "yes",
       },
       value: false,
     },
     1: {
       fi: {
-        name: "Rantamökki",
+        name: "ei",
       },
       en: {
-        name: "Cottage",
+        name: "no",
       },
       value: true,
     },
     2: {
       fi: {
-        name: "Erämökki",
+        name: "ehkä",
       },
       en: {
-        name: "Hut",
+        name: "maybe",
       },
-      value: false,
+      value: true,
     },
     3: {
       fi: {
-        name: "Huvila",
+        name: "ehkä",
       },
       en: {
-        name: "Villa",
+        name: "perhaps",
       },
-      value: false,
-    },
-    5: {
-      fi: {
-        name: "Mökkikylä",
-      },
-      en: {
-        name: "Resort",
-      },
-      value: false,
-    },
-    6: {
-      fi: {
-        name: "Hirsimökki",
-      },
-      en: {
-        name: "Log House",
-      },
-      value: false,
+      value: true,
     },
   },
 };
