@@ -2,13 +2,6 @@ import styled from 'styled-components'
 import { colors } from "./Colors";
 import logoDark from "../images/logo_Dark.png";
 
-export const NavigationBody = styled.nav.attrs({
-  className: "navbar navbar-expand-lg",
-})`
-  background-color: ${colors.white};
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
-`
-
 export const NavigationContainer = styled.div.attrs({
   className: "container-fluid",
 })`

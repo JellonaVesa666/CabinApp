@@ -2,20 +2,16 @@ import styled from 'styled-components'
 import backgroundGray from "../images/background_Gray.png";
 import logoLight from "../images/logo_Light.png";
 
-export const MainBody = styled.div`
-  display: flex;
-  flex-direction: column;
+export const MainBody = styled.div.attrs({
+    className: "container-fluid vh-100 d-flex flex-column",
+  })`
   position: relative;
   background: url(${backgroundGray}) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  width: 100vw;
-  height: 100vh;
-  overflow-x:hidden;
-  margin: 0;
-  padding: 0;
+  //overflow-x:hidden;
   box-shadow:inset 0px 0px 80vw #333;
 `
 

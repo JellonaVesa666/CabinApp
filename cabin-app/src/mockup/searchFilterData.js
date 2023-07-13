@@ -14,7 +14,7 @@ export const countByStatus = {
 export const searchParameters = {
   multiSelect: {
     type: "multiSelect",
-    isActive: false,
+    isActive: true,
     dropdown: true,
     0: {
       name: "> 10m",
@@ -39,7 +39,7 @@ export const searchParameters = {
   },
   option: {
     type: "option",
-    isActive: false,
+    isActive: true,
     dropdown: true,
     value: "test",
     name: "numero",
@@ -55,7 +55,7 @@ export const searchParameters = {
   },
   counter: {
     type: "counter",
-    isActive: false,
+    isActive: true,
     dropdown: true,
     info: {
       fi: {
@@ -86,7 +86,7 @@ export const searchParameters = {
   },
   slider: {
     type: "slider",
-    isActive: false,
+    isActive: true,
     dropdown: true,
     maxDefault: 10,
     minDefault: 0,
@@ -104,7 +104,7 @@ export const searchParameters = {
         name: "cabin type",
       },
     },
-    isActive: false,
+    isActive: true,
     dropdown: true,
     rows: 2,
     0: {
@@ -172,7 +172,7 @@ export const searchParameters = {
         name: "cabin type",
       },
     },
-    isActive: false,
+    isActive: true,
     dropdown: true,
     rows: 0,
     0: {
@@ -240,7 +240,7 @@ export const searchParameters = {
         name: "parking space",
       },
     },
-    isActive: false,
+    isActive: true,
     dropdown: true,
     0: {
       fi: {

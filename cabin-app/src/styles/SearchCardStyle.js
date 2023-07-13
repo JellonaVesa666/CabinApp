@@ -97,9 +97,6 @@ export const ListItem = styled.li`
 `
 
 export const AddButton = styled.input`
-  position: absolute;
-  right: 0;
-  bottom: 0;
   color: ${colors.black};
   width: 80px;
   height: 30px;

@@ -120,7 +120,7 @@ const SidebarComponent = () => {
   }
 
   return (
-    <div class="container-fluid h-100">
+    <>
       <Modal show={showModal} options={searchFilters} handleClose={() => setShowModal(false)} setActive={(index) => ChangeState(setSearchFilters, searchFilters, !searchFilters[index].isActive, "isActive", index)}>
         <p>Modal</p>
       </Modal>
@@ -141,15 +141,12 @@ const SidebarComponent = () => {
           </div>
         </div>
       </div>
-      <div class="row" style={{ height: "80%", overflow: "scroll" }}>
-        <div class="col-10">left</div>
-        <div class="col-2 m-0 p-0">
-          <CardList>
-            {listItems}
-          </CardList>
-        </div>
+      <div class="col-2 m-0 p-0" style={{ position: "absolute", height: "100%", right: 0, top: "0%", overflowY: "scroll", backgroundColor: "rgba(0, 0, 0, 0.05)" }}>
+        <CardList>
+          {listItems}
+        </CardList>
       </div>
-    </div>
+    </>
   )
 }
 
