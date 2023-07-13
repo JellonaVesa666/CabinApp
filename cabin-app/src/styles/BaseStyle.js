@@ -6,6 +6,12 @@ export const MainBody = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   background: url(${backgroundGray}) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;

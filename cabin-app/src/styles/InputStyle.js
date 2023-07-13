@@ -2,9 +2,10 @@ import styled from 'styled-components'
 import { colors } from "./Colors";
 
 // Range Slider
-export const Slider  = styled.div.attrs({
-  className: "d-flex w-75 align-items-center justify-content-center m-auto p-0",
+export const Slider = styled.div.attrs({
+  className: "d-flex align-items-center justify-content-center m-auto p-0"
 })`
+  width: 75%;
   position: relative;
 `
 export const RangeInput = styled.input`
@@ -53,29 +54,34 @@ export const SliderBackground = styled.div`
   border-radius: 20px;
   &.center {
     z-index: 1;
-    margin-top: 20px;
     background-color: ${colors.green};
     width: ${props => `${props.right - props.left}%`};
     margin-left: ${props => `${props.left}%`};
   }
 `
-export const RangeValue = styled.input`
-  display: flex;
-  justify-content: flex-start;
-  width: 15%;
-  margin-top: 60px;
-  margin-bottom: 40px;
+export const RangeValue = styled.input.attrs({
+  className: "d-flex align-items-center justify-content-start mt-5 mb-3 py-1",
+})`
+  text-align: center;
+  width: ${props => props.width};
   border-radius: 10px;
   border: 1.5px solid rgba(0, 0, 0, 0.2);
-  padding-left: 5%;
-  padding-top: 1%;
-  padding-bottom: 1%;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   margin-left: ${props => props.marginleft};
   margin-right: ${props => props.marginright};
   background-color: rgba(255, 255, 255, 0.7);
   &:hover {
     border: 1.5px solid rgba(0, 0, 0, 0.6);
+  }
+  &::-webkit-inner-spin-button{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  &::-webkit-outer-spin-button{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
   }
 `
 
@@ -96,6 +102,7 @@ export const DateInput = styled.input`
   }
 `
 
+// Calendar
 export const Calendar = styled.div`
   width: 20%;
   height: 25%;
@@ -162,15 +169,12 @@ export const Days = styled.p`
 `
 
 // Select
-export const MultiSelectInput = styled.li`
-  width: 90%;
-  border-radius: 8px;
+export const MultiSelectInput = styled.li.attrs({
+  className: "m-auto py-1 mt-2 px-2",
+})`
+  width: ${props => (props.width)};
+  border-radius: ${props => (props.radius)};
   color: black;
-  margin: auto;
-  padding: 0;
-  padding-left: ${props => (props.paddingleft)};
-  margin-top: ${props => (props.margintop)};
-  margin-bottom: ${props => (props.marginbottom)};
   border: 1.5px solid rgba(0, 0, 0, 0.2);
   color: rgba(0, 0, 0, 0.6);
   &.selected {
@@ -186,13 +190,11 @@ export const MultiSelectInput = styled.li`
 `
 
 // Option Select
-export const OptionItem = styled.select`
+export const OptionItem = styled.select.attrs({
+  className: "mb-3 mt-3 py-1 px-2",
+})`
   width: ${props => (props.width)};
-  height:  ${props => (props.height)};
-  margin: auto;
-  padding: ${props => (props.padding)};
-  margin-bottom: 3%;
-  border-radius:  ${props => (props.radius)};
+  border-radius: ${props => (props.radius)};
   border: 1.5px solid rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.7);
   color: rgba(0, 0, 0, 0.6);
@@ -230,15 +232,12 @@ export const TextInput = styled.input`
   }
 `
 
-
 // Check Input
-export const CheckInput = styled.input.attrs(props => ({
+export const CheckInput = styled.input.attrs({
   className: "form-check-input",
-}))`
+})`
   background-color: rgba(255, 255, 255, 0.7);
-  border: 0.15rem solid ${colors.lightGrey};
-  width: 16px;
-  height: 16px;
+  border: 0.1rem solid ${colors.lightGrey};
   outline: none;
   outline: 0px !important;
   -webkit-appearance:none !important;
@@ -266,7 +265,7 @@ export const CheckInput = styled.input.attrs(props => ({
 
 export const ButtonInput = styled.a.attrs({
   className: "btn btn-outline-success",
-  })`
+})`
   height: 60%;
   width: 110px;
   font-size: 12px;

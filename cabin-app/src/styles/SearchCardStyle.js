@@ -13,6 +13,12 @@ export const SearchCardBody = styled.div`
 export const Container = styled.div`
   margin-top: ${props => (props.margintop)};
   margin-left: ${props => (props.marginLeft)};
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 export const CardHeader = styled.p`
@@ -30,7 +36,6 @@ export const CardHeader = styled.p`
     background-color: rgba(0, 0, 0, 0.25);
   }
 `
-
 export const CardList = styled.ul`
   width: 100%;
   list-style-type: none;
@@ -39,20 +44,31 @@ export const CardList = styled.ul`
   padding-left: ${props => (props.paddingleft)};
   padding-right: ${props => (props.paddingright)};
 `
-
 export const CardBody = styled.li`
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
   background-color: ${colors.whiteDark};
   &.dropdownActive {
     flex-flow: row wrap;
     height: 100%;
   }
-  &:first-child {
-    margin-top: ${props => (props.margintop)};
-  }
   &:nth-child(2n) {
     background-color: ${colors.whiteLight};
   }
+`
+export const CardContent = styled.div.attrs({
+  className: "row  w-100 px-3 m-0 justify-content-center",
+})`
+  width: 100%;
+  height: 100%;
+`
+export const CardLabel = styled.div.attrs({
+  className: "d-flex col-6 justify-content-start",
+})`
+  font-weight: 400;
+  font-size: 16px;
+`
+export const CardDropdown = styled.div.attrs({
+  className: "d-flex col-6 justify-content-end",
+})`
 `
 
 export const ListItem = styled.li`
@@ -79,17 +95,14 @@ export const ListItem = styled.li`
 `
 
 export const AddButton = styled.input`
-  background-color: ${colors.grey};
-  color: whitesmoke;
-  width: 100%;
-  height: 25px;
-  border-radius: 10px;
-  margin: 0;
-  padding: 0;
-  margin-top: ${props => (props.margintop)};
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: ${colors.black};
+  width: 80px;
+  height: 30px;
+  font-size: 14px;
   cursor: pointer;
-  border: none;
-  box-shadow: none;
 `
 
 export const MinusSign = styled.div`
