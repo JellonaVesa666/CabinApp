@@ -85,23 +85,6 @@ export const RangeValue = styled.input.attrs({
   }
 `
 
-// Date Input
-export const DateInput = styled.input`
-  width: 90%;
-  margin: auto;
-  padding: 0;
-  border-radius: 10px;
-  border: 1.5px solid rgba(0, 0, 0, 0.2);
-  background-color: rgba(255, 255, 255, 0.7);
-  color: rgba(0, 0, 0, 0.6);
-  outline: none !important;
-  &:hover {
-    border: 1.5px solid rgba(0, 0, 0, 0.6);
-    cursor: pointer;
-    color: black;
-  }
-`
-
 // Calendar
 export const Calendar = styled.div`
   width: 20%;

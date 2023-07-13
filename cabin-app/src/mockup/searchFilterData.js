@@ -53,12 +53,36 @@ export const searchParameters = {
       name: "test 3",
     },
   },
-  date: {
-    type: "date",
+  counter: {
+    type: "counter",
     isActive: false,
     dropdown: true,
-    arrivalDate: "",
-    departureDate: "",
+    info: {
+      fi: {
+        name: "huoneet",
+      },
+      en: {
+        name: "rooms",
+      },
+    },
+    0: {
+      fi: {
+        name: "makuuhuoneet",
+      },
+      en: {
+        name: "bedrooms",
+      },
+      value: 2,
+    },
+    1: {
+      fi: {
+        name: "kylpyhuoneet",
+      },
+      en: {
+        name: "bathrooms",
+      },
+      value: 1,
+    },
   },
   slider: {
     type: "slider",
@@ -79,7 +103,6 @@ export const searchParameters = {
       en: {
         name: "cabin type",
       },
-      value: false,
     },
     isActive: false,
     dropdown: true,
@@ -148,7 +171,6 @@ export const searchParameters = {
       en: {
         name: "cabin type",
       },
-      value: false,
     },
     isActive: false,
     dropdown: true,
@@ -217,7 +239,6 @@ export const searchParameters = {
       en: {
         name: "parking space",
       },
-      value: false,
     },
     isActive: false,
     dropdown: true,

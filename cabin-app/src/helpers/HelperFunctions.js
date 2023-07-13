@@ -2,9 +2,9 @@ export const ChangeState = (State, initValues, newValue, property, index1, index
   if (!index1 && !index2)
     State({ ...initValues, [property]: newValue })
   else if (index2 === null || index2 === undefined)
-    State(initValues => ({
+    State({
       ...initValues, [index1]: { ...initValues[index1], [property]: newValue },
-    }));
+    });
   else
     State({
       ...initValues,
@@ -12,7 +12,7 @@ export const ChangeState = (State, initValues, newValue, property, index1, index
         ...initValues[index1],
         [index2]: {
           ...initValues[index1][index2],
-          [property]: !newValue
+          [property]: newValue
         },
       },
     });

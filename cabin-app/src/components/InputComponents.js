@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { CardHeader } from "../styles/SearchCardStyle";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { Slider, RangeInput, RangeValue, SliderBackground, DateInput, TextInput, OptionItem, MultiSelectInput, CheckInput } from "../styles/InputStyle"
+import { Slider, RangeInput, RangeValue, SliderBackground, TextInput, OptionItem, MultiSelectInput, CheckInput } from "../styles/InputStyle"
 import { useSelector } from "react-redux";
 import { ValidateElement } from "../helpers/HelperFunctions";
 
@@ -45,41 +44,59 @@ export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, 
   )
 };
 
-export const DatePicker = () => {
+export const Counter = (props) => {
+  const language = useSelector(state => state.session.language);
+  const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   return (
-    <>
-      <CardHeader
-        width={"90%"}
-        margintop={"5%"}
-        marginbottom={"1%"}
-      >
-        Arrival Date
-      </CardHeader>
-      <DateInput
-        style={{
-          paddingLeft: "2%"
-        }}
-        defaultValue={new Date().toISOString().slice(0, -8)}
-        type="datetime-local"
-      />
-      <CardHeader
-        width={"90%"}
-        margintop={"5%"}
-        marginbottom={"1%"}
-      >
-        Departure Date
-      </CardHeader>
-      <DateInput
-        style={{
-          marginBottom: "3%",
-          paddingLeft: "2%"
-        }}
-        defaultValue={new Date().toISOString().slice(0, -8)}
-        type="datetime-local"
-      />
-    </>
+    <div className="row px-5 py-3 m-0">
+      {
+        result.map(item => {
+          return (
+            <div
+              className="d-flex justify-content-center align-items-center py-2 m-0"
+            >
+              <div
+                className="col-6 d-flex justify-content-start align-items-center m-0 p-0"
+                style={{ color: "black", fontSize: "14px", fontWeight: 400 }}
+              >
+                {ValidateElement(props.data[props.i][item]?.[language]?.name, "text")}
+              </div>
+              <div
+                className="col-6 d-flex justify-content-start align-items-center m-0 p-0"
+                style={{ color: "black", fontSize: "14px" }}
+              >
+                <input
+                  type="button"
+                  value="-"
+                  className="col-4 d-flex justify-content-center align-items-center m-0 p-0"
+                  style={{ borderRadius: "20px", backgroundColor: "green", outline: 0, border: 0, width: "32px", height: "32px", color: "white", fontSize: "16px" }}
+                  onClick={() => props.changeState(Number(props.data[props.i][item].value) > 0 ? Number(props.data[props.i][item].value) - 1 : 0, item)}
+                />
+                <div
+                  className="col-4 d-flex justify-content-center align-items-center m-0 p-0"
+                  style={{ color: "black", fontSize: "14px" }}
+                >
+                  {props.data[props.i][item]?.value}
+                </div>
+                <input
+                  type="button"
+                  value="+"
+                  className="col-4 d-flex justify-content-center align-items-center m-0 p-0"
+                  style={{ borderRadius: "20px", backgroundColor: "green", outline: 0, border: 0, width: "32px", height: "32px", color: "white", fontSize: "16px" }}
+                  onClick={() => props.changeState(Number(props.data[props.i][item].value) + 1, item)}
+                />
+              </div>
+
+            </div>
+          )
+        })
+      }
+    </div>
   )
 }
+
+//props.changeState(props.data[props.i][item].value + 1, item)
+
 
 export const OptionSelect = (props) => {
   return (
@@ -139,7 +156,7 @@ export const CheckBox = (props) => {
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   if (props.data[props.i].rows === undefined || props.data[props.i].rows < 1) {
     return (
-      <div className="row px-5 py-3">
+      <div className="row px-5 py-3 m-0">
         {
           result.map(item => {
             return (
@@ -167,7 +184,7 @@ export const CheckBox = (props) => {
   }
   else {
     return (
-      <div className="row px-5 py-3">
+      <div className="row px-5 py-3 m-0">
         {
           result.map(item => {
             return (

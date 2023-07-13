@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
 import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
-import { RangeSlider, DatePicker, OptionSelect, MultiSelect, CheckBox } from "./InputComponents";
-import { SearchCardBody, CardHeader, AddButton, CardList, Container, CardBody, CardContent, CardDropdown, CardLabel } from "../styles/SearchCardStyle";
+import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter } from "./InputComponents";
+import { SearchCardBody, AddButton, CardList, Container, CardBody, CardContent, CardDropdown, CardLabel } from "../styles/SearchCardStyle";
 import { countByStatus, searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
@@ -41,7 +41,7 @@ const SearchCardComponent = () => {
                     radius={"6px"}
                     data={searchFilters}
                     i={item}
-                    changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", item, index)}
+                    changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, !value, "value", item, index)}
                   />
                 }
                 {searchFilters[item].type === "option" &&
@@ -55,8 +55,12 @@ const SearchCardComponent = () => {
                     />
                   </>
                 }
-                {searchFilters[item].type === "date" &&
-                  <DatePicker />
+                {searchFilters[item].type === "counter" &&
+                  <Counter
+                    data={searchFilters}
+                    i={item}
+                    changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", item, index)}
+                  />
                 }
                 {searchFilters[item].type === "slider" &&
                   <RangeSlider
@@ -77,7 +81,7 @@ const SearchCardComponent = () => {
                           i={item}
                           multi={true}
                           color={colors.green}
-                          changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", item, index)}
+                          changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, !value, "value", item, index)}
                         />
                       )
                     } else if (searchFilters[item].type.split(/(?=[A-Z])/)[1] === "Single") {
@@ -99,8 +103,6 @@ const SearchCardComponent = () => {
         </CardBody >
       )
   })
-
-
 
   const Status = (props) => {
     return (
