@@ -1,27 +1,18 @@
 import './App.css';
 import { MainBody, Logo } from "./styles/BaseStyle"
 import LoginPage from "./pages/LoginPage";
-import NavigationComponent from "./components/NavigationComponent";
+import NavigationModule from "./components/NavigationModule";
 import SidebarComponent from "./components/SidebarComponent";
 
 function App() {
   return (
-
-
-    <MainBody>
-      <div class="row">
-        <div class="col m-0 p-0">
-          <NavigationComponent />
-        </div>
-      </div>
-      <div class="row flex-grow-1">
-        <div class="col-12 border position-relative">
+    <MainBody className="container-fluid vh-100 d-flex flex-column m-0 p-0">
+      <NavigationModule />
+      <div class="row h-100 m-0 p-0">
+        <div class="col-12 position-relative">
           <SidebarComponent />
-          
         </div>
       </div>
-      {/*       <LoginPage />
-      <Logo /> */}
     </MainBody>
   );
 }
