@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import signMinus from "../images/sign_minus.png";
-import iconDropdown from "../images/icon_dropdown.png";
 import { colors } from './Colors';
 
 export const SearchCardBody = styled.div`
@@ -103,30 +101,4 @@ export const AddButton = styled.input`
   height: 30px;
   font-size: 14px;
   cursor: pointer;
-`
-
-export const MinusSign = styled.div`
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-image: url(${signMinus});
-  width: ${props => (props.width)};
-  height: 20px;
-  margin: auto;
-`
-
-export const DropDown = styled.div`
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-image: url(${iconDropdown});
-  width: ${props => (props.width)};
-  height: 20px;
-  margin: auto;
 `
