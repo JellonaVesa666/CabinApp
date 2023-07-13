@@ -6,12 +6,6 @@ export const MainBody = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow-y: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
   background: url(${backgroundGray}) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -24,6 +18,13 @@ export const MainBody = styled.div`
   padding: 0;
   box-shadow:inset 0px 0px 80vw #333;
 `
+
+/* overflow-y: auto;
+-ms-overflow-style: none;
+scrollbar-width: none;
+&::-webkit-scrollbar {
+  display: none;
+} */
 
 export const Logo = styled.div`
   background: url(${logoLight}) no-repeat;

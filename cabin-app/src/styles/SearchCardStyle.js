@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { colors } from './Colors';
 
 export const SearchCardBody = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -11,13 +14,14 @@ export const SearchCardBody = styled.div`
 export const Container = styled.div`
   margin-top: ${props => (props.margintop)};
   margin-left: ${props => (props.marginLeft)};
-  overflow-y: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `
+
+/* overflow-y: auto;
+-ms-overflow-style: none;
+scrollbar-width: none;
+&::-webkit-scrollbar {
+  display: none;
+} */
 
 export const CardHeader = styled.p`
   display: flex;

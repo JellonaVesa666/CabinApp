@@ -2,14 +2,13 @@ import './App.css';
 import { MainBody, Logo } from "./styles/BaseStyle"
 import LoginPage from "./pages/LoginPage";
 import NavigationComponent from "./components/NavigationComponent";
-import { SidebarComponent } from "./components/SidebarComponent";
-import { BodyComponent } from "./components/BodyComponent";
+import SidebarComponent from "./components/SidebarComponent";
 
 function App() {
   return (
     <MainBody>
       <NavigationComponent />
-      <BodyComponent />
+      <SidebarComponent/>
       {/*       <LoginPage />
       <Logo /> */}
     </MainBody>
