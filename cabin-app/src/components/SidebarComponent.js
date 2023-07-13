@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
 import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter } from "./InputComponents";
-import { SearchCardBody, AddButton, CardList, Container, CardBody, CardContent, CardDropdown, CardLabel } from "../styles/SearchCardStyle";
+import { AddButton, CardList, CardBody, CardContent, CardDropdown, CardLabel } from "../styles/SearchCardStyle";
 import { countByStatus, searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
@@ -142,9 +142,9 @@ const SidebarComponent = () => {
         </div>
       </div>
       <div class="col-2 m-0 p-0" style={{ position: "absolute", height: "100%", right: 0, top: "0%", overflowY: "scroll", backgroundColor: "rgba(0, 0, 0, 0.05)" }}>
-        <CardList>
+{/*         <CardList>
           {listItems}
-        </CardList>
+        </CardList> */}
       </div>
     </>
   )

@@ -11,11 +11,6 @@ export const SearchCardBody = styled.div`
   padding: 0;
 `
 
-export const Container = styled.div`
-  margin-top: ${props => (props.margintop)};
-  margin-left: ${props => (props.marginLeft)};
-`
-
 /* overflow-y: auto;
 -ms-overflow-style: none;
 scrollbar-width: none;
