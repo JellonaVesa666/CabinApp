@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
 import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter } from "./InputComponents";
-import { AddButton, CardList, CardBody, CardContent, CardDropdown, CardLabel, BodyTopContainer } from "../styles/SearchCardStyle";
+import { AddButton, CardList, CardBody, CardContent, CardDropdown, CardLabel, BodyTopContainer, Sidebar } from "../styles/SearchCardStyle";
 import { countByStatus, searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
@@ -100,6 +100,7 @@ const SidebarComponent = () => {
               </>
             }
           </CardContent>
+          <div style={{ height: "2px", color: "grey", backgroundColor: "rgba(0, 0, 0, 0.1)" }} />
         </CardBody >
       )
   })
@@ -141,13 +142,16 @@ const SidebarComponent = () => {
           </div>
         </div>
       </BodyTopContainer>
-      <div class="col-2 m-0 p-0" style={{ position: "absolute", height: "100%", right: 0, top: "0%", overflowY: "scroll", backgroundColor: "rgba(0, 0, 0, 0.05)" }}>
-        <div style={{ height: "5%", backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
+      <Sidebar>
+        <div style={{ height: "5%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)", position: "absolute", right: 0, top: 0 }} />
+        <div style={{ height: "100%", width: "100%", position: "absolute", right: 0, top: 0, overflowY: "scroll" }} >
+          <CardList>
+            {listItems}
+          </CardList>
+          <div style={{ height: "2%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)"}} />
         </div>
-        <CardList>
-          {listItems}
-        </CardList>
-      </div>
+        {/* <div style={{ height: "5%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)", position: "absolute", right: 0, bottom: 0 }} /> */}
+      </Sidebar>
       <div className="row justify-content-center" style={{ height: "70%", backgroundColor: "rgba(255, 255, 255, 0.3)" }}>
         <div class="col-8 d-flex flex-wrap" >
           <div class="col d-flex justify-content-end align-items-center col-lg-6 px-4" style={{ height: "50%" }}>

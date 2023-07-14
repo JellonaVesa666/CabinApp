@@ -11,13 +11,6 @@ export const SearchCardBody = styled.div`
   padding: 0;
 `
 
-/* overflow-y: auto;
--ms-overflow-style: none;
-scrollbar-width: none;
-&::-webkit-scrollbar {
-  display: none;
-} */
-
 export const CardHeader = styled.p`
   display: flex;
   margin: auto;
@@ -38,8 +31,10 @@ export const CardList = styled.ul`
   list-style-type: none;
   padding: 0;
   margin: 0;
+  margin-top: 15%;
   padding-left: ${props => (props.paddingleft)};
   padding-right: ${props => (props.paddingright)};
+  border: 1px #d8d8d8 dashed;
 `
 export const CardBody = styled.li`
   background-color: ${colors.whiteDark};
@@ -111,4 +106,13 @@ export const BodyTopContainer = styled.div.attrs({
 })`
   height: 30%;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) -50%, rgba(0, 0, 0, 0) 100%);
+`
+
+export const Sidebar = styled.div.attrs({
+  className: "col-2 m-0 p-0",
+})`
+  position: absolute;
+  height: 100%;
+  right: 0;
+  top: 0;
 `
