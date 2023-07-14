@@ -4,7 +4,7 @@ import { colors } from './Colors';
 
 export const NavbarBody = styled.div`
   background-color: ${colors.white};
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;   
 `
 
 export const NavbarLogo = styled.a`

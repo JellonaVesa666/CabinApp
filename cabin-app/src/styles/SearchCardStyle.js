@@ -91,10 +91,27 @@ export const ListItem = styled.li`
   }
 `
 
-export const AddButton = styled.input`
-  color: ${colors.black};
-  width: 80px;
-  height: 30px;
-  font-size: 14px;
+export const AddButton = styled.div`
+  color: ${colors.whiteDark};
+  background-color: ${colors.black};
+  border-radius: 0px 10px 10px 0px;
+  border: 2px solid ${colors.grey};
+  border-left-style: none;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
+  > p {
+    font-size: 10px;
+    margin: auto;
+  }
+`
+
+export const BodyTopContainer = styled.div.attrs({
+  className: "row",
+})`
+  height: 20%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) -50%, rgba(0, 0, 0, 0) 100%);
 `

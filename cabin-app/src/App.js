@@ -10,7 +10,7 @@ function App() {
       <NavigationModule />
       <div class="row h-100 m-0 p-0">
         <div class="col-12 position-relative">
-          {/* <SidebarComponent /> */}
+          <SidebarComponent />
         </div>
       </div>
     </MainBody>

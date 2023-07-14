@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
 import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter } from "./InputComponents";
-import { AddButton, CardList, CardBody, CardContent, CardDropdown, CardLabel } from "../styles/SearchCardStyle";
+import { AddButton, CardList, CardBody, CardContent, CardDropdown, CardLabel, BodyTopContainer } from "../styles/SearchCardStyle";
 import { countByStatus, searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
@@ -124,28 +124,32 @@ const SidebarComponent = () => {
       <Modal show={showModal} options={searchFilters} handleClose={() => setShowModal(false)} setActive={(index) => ChangeState(setSearchFilters, searchFilters, !searchFilters[index].isActive, "isActive", index)}>
         <p>Modal</p>
       </Modal>
-      <div class="row" style={{ height: "20%", borderTop: "2px solid rgba(0, 0, 0, 0.06)", borderBottom: "2px solid rgba(0, 0, 0, 0.06)", }}>
+      <BodyTopContainer>
         <div class="col-12">
-          <div class="row justify-content-center" style={{ height: "50%" }}>
+          <div class="row justify-content-center" style={{ height: "70%" }}>
             <div class="col-12 d-flex justify-content-center align-items-center mt-5" >
-              <input className="text-center p-2" style={{ borderRadius: "6px 2px 2px 6px", border: "1px solid rgba(0, 0, 0, 0.5)", }} type="text" />
-              <input className="text-center p-2" style={{ borderRadius: "2px", border: "1px solid rgba(0, 0, 0, 0.5)", }} type="datetime-local" />
-              <input className="text-center p-2" style={{ borderRadius: "2px 6px 6px 2px", border: "1px solid rgba(0, 0, 0, 0.5)", }} type="datetime-local" />
+              <input className="text-center p-2 shadow-sm" style={{height:"50px", borderRadius: "6px 2px 2px 6px", border: "1px solid rgba(0, 0, 0, 0.2)", }} type="text" />
+              <input className="text-center p-2 shadow-sm" style={{height:"50px", borderRadius: "2px", border: "1px solid rgba(0, 0, 0, 0.2)", }} type="datetime-local" />
+              <input className="text-center p-2 shadow-sm" style={{height:"50px", borderRadius: "2px 6px 6px 2px", border: "1px solid rgba(0, 0, 0, 0.2)", }} type="datetime-local" />
             </div>
           </div>
-          <div class="row justify-content-center" style={{ height: "50%", position: "relative" }}>
+          <div class="row justify-content-center" style={{ height: "30%", position: "relative" }}>
             <div class="col-12 d-flex justify-content-center align-items-center" >
-              <input value="SEARCH" className="text-center p-2" style={{ borderRadius: "8px", color: "white", outline: "0", backgroundColor: "rgba(0, 0, 0, 0.7)", width: "10%" }} type="button" />
+              <div style={{ borderRadius: "6px 10px 10px 6px", textAlign: "center", color: "white", outline: "0", border: "2px solid grey", backgroundColor: "rgba(0, 0, 0, 0.7)", width: "200px", height: "40px", position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }} >
+                <p style={{margin: "auto"}}>SEARCH</p>
+                <AddButton onClick={() => setShowModal(true)} style={{ display: "flex", justifyContent: "center", alignItems: "center" }} >
+                  <p>FILTERS</p>
+                </AddButton >
+              </div>
             </div>
-            <AddButton type="button" value="FILTERS" onClick={() => setShowModal(true)} />
           </div>
         </div>
-      </div>
-      <div class="col-2 m-0 p-0" style={{ position: "absolute", height: "100%", right: 0, top: "0%", overflowY: "scroll", backgroundColor: "rgba(0, 0, 0, 0.05)" }}>
-{/*         <CardList>
+      </BodyTopContainer>
+      {/*       <div class="col-2 m-0 p-0" style={{ position: "absolute", height: "100%", right: 0, top: "0%", overflowY: "scroll", backgroundColor: "rgba(0, 0, 0, 0.05)" }}> */}
+      {/*         <CardList>
           {listItems}
         </CardList> */}
-      </div>
+      {/*   </div> */}
     </>
   )
 }
