@@ -24,13 +24,11 @@ const SidebarComponent = () => {
           margintop={"16%"}
         >
           <CardContent>
-            <div className="row m-0 px-0 py-3" style={{display: "flex", justifyContent: "center", alignItems: "center",}}>
-              <div className="col-1" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
-                <div onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)} style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "20px", width: "20px", borderRadius: "20px", margin: 0, padding: 0, backgroundColor: "black", color: "white" }}>
-                  -
-                </div>
+            <div className="row m-0 p-0 py-3" style={{ display: "flex", justifyContent: "center", alignItems: "center", }}>
+              <div onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)} className="col-1" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", height: "1%", color: "black" }}>
+                -
               </div>
-              <CardLabel className="px-3">
+              <CardLabel className="">
                 {ValidateElement(searchFilters[item]?.info?.[language]?.name, "label")}
               </CardLabel>
               <CardDropdown
