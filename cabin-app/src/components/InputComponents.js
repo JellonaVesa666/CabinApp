@@ -29,15 +29,15 @@ export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, 
       <RangeValue
         type="number"
         value={minValue}
-        marginright={"42%"}
-        width={"8%"}
+        marginright={"38%"}
+        width={"12%"}
         onChange={(event) => changeState(Math.max(minDefault, Math.min(event.target.value, maxValue)), "minValue")}
       />
       <RangeValue
         type="number"
         value={maxValue}
-        marginleft={"42%"}
-        width={"8%"}
+        marginleft={"38%"}
+        width={"12%"}
         onChange={(event) => changeState(Math.max(minValue, Math.min(event.target.value, maxDefault)), "maxValue")}
       />
     </Slider>
@@ -62,7 +62,7 @@ export const Counter = (props) => {
                 {ValidateElement(props.data[props.i][item]?.[language]?.name, "text")}
               </div>
               <div
-                className="col-6 d-flex justify-content-start align-items-center m-0 p-0"
+                className="col-6 d-flex justify-content-end align-items-center m-0 p-0"
                 style={{ color: "black", fontSize: "14px" }}
               >
                 <input
@@ -94,9 +94,6 @@ export const Counter = (props) => {
     </div>
   )
 }
-
-//props.changeState(props.data[props.i][item].value + 1, item)
-
 
 export const OptionSelect = (props) => {
   return (

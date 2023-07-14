@@ -34,7 +34,6 @@ export const CardList = styled.ul`
   margin-top: 15%;
   padding-left: ${props => (props.paddingleft)};
   padding-right: ${props => (props.paddingright)};
-  border: 1px #d8d8d8 dashed;
 `
 export const CardBody = styled.li`
   background-color: ${colors.whiteDark};
@@ -109,10 +108,13 @@ export const BodyTopContainer = styled.div.attrs({
 `
 
 export const Sidebar = styled.div.attrs({
-  className: "col-2 m-0 p-0",
+  className: "m-0 p-0",
 })`
   position: absolute;
+  width: ${props => (props.width)};
   height: 100%;
   right: 0;
   top: 0;
+  transition: all 0.5s;
+  -webkit-transition: all 0.25s;
 `

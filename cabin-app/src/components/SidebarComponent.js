@@ -12,6 +12,7 @@ const SidebarComponent = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [searchFilters, setSearchFilters] = useState(searchParameters);
+  const [sidebarActive, setSidebarActive] = useState(false);
   const [statusFilters, setStatusFilters] = useState(countByStatus);
 
   const listItems = Object.keys(searchFilters).map(item => {
@@ -135,22 +136,21 @@ const SidebarComponent = () => {
               <div style={{ borderRadius: "0px 4px 4px 0px", textAlign: "center", color: "white", outline: "0", border: "2px solid grey", backgroundColor: "rgba(0, 0, 0, 0.6)", width: "200px", height: "60px", position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }} >
                 <p style={{ margin: "auto", color: "white" }}>SEARCH</p>
               </div>
-              <AddButton onClick={() => setShowModal(true)} style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "200px", height: "60px" }} >
+              <AddButton onClick={() => setSidebarActive(!sidebarActive)} /* onClick={() => setShowModal(true)}  */ style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "200px", height: "60px" }} >
                 <p>FILTERS</p>
               </AddButton >
             </div>
           </div>
         </div>
       </BodyTopContainer>
-      <Sidebar>
+      <Sidebar width={sidebarActive ? "16.66666667%" : "0%"}>
         <div style={{ height: "5%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)", position: "absolute", right: 0, top: 0 }} />
         <div style={{ height: "100%", width: "100%", position: "absolute", right: 0, top: 0, overflowY: "scroll" }} >
           <CardList>
             {listItems}
           </CardList>
-          <div style={{ height: "2%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)"}} />
+          <div style={{ height: "2%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)" }} />
         </div>
-        {/* <div style={{ height: "5%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)", position: "absolute", right: 0, bottom: 0 }} /> */}
       </Sidebar>
       <div className="row justify-content-center" style={{ height: "70%", backgroundColor: "rgba(255, 255, 255, 0.3)" }}>
         <div class="col-8 d-flex flex-wrap" >
