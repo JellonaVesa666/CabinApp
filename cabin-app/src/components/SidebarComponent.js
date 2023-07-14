@@ -24,8 +24,13 @@ const SidebarComponent = () => {
           margintop={"16%"}
         >
           <CardContent>
-            <div className="row m-0 px-5 py-3">
-              <CardLabel>
+            <div className="row m-0 px-0 py-3" style={{display: "flex", justifyContent: "center", alignItems: "center",}}>
+              <div className="col-1" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
+                <div onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)} style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "20px", width: "20px", borderRadius: "20px", margin: 0, padding: 0, backgroundColor: "black", color: "white" }}>
+                  -
+                </div>
+              </div>
+              <CardLabel className="px-3">
                 {ValidateElement(searchFilters[item]?.info?.[language]?.name, "label")}
               </CardLabel>
               <CardDropdown
@@ -143,15 +148,21 @@ const SidebarComponent = () => {
           </div>
         </div>
       </BodyTopContainer>
-      <Sidebar width={sidebarActive ? "16.66666667%" : "0%"}>
-        <div style={{ height: "5%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)", position: "absolute", right: 0, top: 0 }} />
-        <div style={{ height: "100%", width: "100%", position: "absolute", right: 0, top: 0, overflowY: "scroll" }} >
-          <CardList>
-            {listItems}
-          </CardList>
-          <div style={{ height: "2%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)" }} />
-        </div>
-      </Sidebar>
+      {sidebarActive &&
+        <Sidebar>
+          <div style={{ height: "100%", width: "100%", position: "absolute", right: 0, top: 0, overflowY: "scroll" }} >
+            <div className="px-3" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", height: "5%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)", position: "absolute", top: 0, right: 0 }}>
+              <div onClick={() => setShowModal(!showModal)} style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "35px", width: "35px", borderRadius: "20px", margin: 0, padding: 0, backgroundColor: "rgba(255, 255, 255, 0.2)", color: "white" }}>
+                +
+              </div>
+            </div>
+            <CardList>
+              {listItems}
+            </CardList>
+            <div style={{ height: "2%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)" }} />
+          </div>
+        </Sidebar>
+      }
       <div className="row justify-content-center" style={{ height: "70%", backgroundColor: "rgba(255, 255, 255, 0.3)" }}>
         <div class="col-8 d-flex flex-wrap" >
           <div class="col d-flex justify-content-end align-items-center col-lg-6 px-4" style={{ height: "50%" }}>

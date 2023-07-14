@@ -58,7 +58,7 @@ export const CardLabel = styled.div.attrs({
   font-size: 16px;
 `
 export const CardDropdown = styled.div.attrs({
-  className: "d-flex col-6 justify-content-end",
+  className: "d-flex col-5 justify-content-end",
 })`
 `
 
@@ -108,13 +108,15 @@ export const BodyTopContainer = styled.div.attrs({
 `
 
 export const Sidebar = styled.div.attrs({
-  className: "m-0 p-0",
+  className: "col-2 m-0 p-0",
 })`
   position: absolute;
   width: ${props => (props.width)};
   height: 100%;
   right: 0;
   top: 0;
+  margin: 0;
+  padding: 0;
   transition: all 0.5s;
   -webkit-transition: all 0.25s;
 `
