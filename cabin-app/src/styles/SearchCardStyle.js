@@ -97,9 +97,6 @@ export const AddButton = styled.div`
   border-radius: 0px 10px 10px 0px;
   border: 2px solid ${colors.grey};
   border-left-style: none;
-  position: absolute;
-  top: -2px;
-  right: -2px;
   width: 40px;
   height: 40px;
   cursor: pointer;
@@ -112,6 +109,6 @@ export const AddButton = styled.div`
 export const BodyTopContainer = styled.div.attrs({
   className: "row",
 })`
-  height: 20%;
+  height: 30%;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) -50%, rgba(0, 0, 0, 0) 100%);
 `

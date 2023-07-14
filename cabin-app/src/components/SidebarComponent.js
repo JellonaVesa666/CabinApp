@@ -126,30 +126,52 @@ const SidebarComponent = () => {
       </Modal>
       <BodyTopContainer>
         <div class="col-12">
-          <div class="row justify-content-center" style={{ height: "70%" }}>
+          <div class="row justify-content-center" style={{ height: "100%" }}>
             <div class="col-12 d-flex justify-content-center align-items-center mt-5" >
-              <input className="text-center p-2 shadow-sm" style={{height:"50px", borderRadius: "6px 2px 2px 6px", border: "1px solid rgba(0, 0, 0, 0.2)", }} type="text" />
-              <input className="text-center p-2 shadow-sm" style={{height:"50px", borderRadius: "2px", border: "1px solid rgba(0, 0, 0, 0.2)", }} type="datetime-local" />
-              <input className="text-center p-2 shadow-sm" style={{height:"50px", borderRadius: "2px 6px 6px 2px", border: "1px solid rgba(0, 0, 0, 0.2)", }} type="datetime-local" />
-            </div>
-          </div>
-          <div class="row justify-content-center" style={{ height: "30%", position: "relative" }}>
-            <div class="col-12 d-flex justify-content-center align-items-center" >
-              <div style={{ borderRadius: "6px 10px 10px 6px", textAlign: "center", color: "white", outline: "0", border: "2px solid grey", backgroundColor: "rgba(0, 0, 0, 0.7)", width: "200px", height: "40px", position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }} >
-                <p style={{margin: "auto"}}>SEARCH</p>
-                <AddButton onClick={() => setShowModal(true)} style={{ display: "flex", justifyContent: "center", alignItems: "center" }} >
-                  <p>FILTERS</p>
-                </AddButton >
+              <input className="text-center p-2 shadow-sm" style={{ height: "50px", width: "280px", borderRadius: "4px 2px 2px 4px", border: "1px solid rgba(0, 0, 0, 0.2)", height: "60px" }} type="text" />
+              <input className="text-center p-2 shadow-sm" style={{ height: "50px", width: "280px", borderRadius: "2px", border: "1px solid rgba(0, 0, 0, 0.2)", height: "60px" }} type="datetime-local" />
+              <input className="text-center p-2 shadow-sm" style={{ height: "50px", width: "280px", borderRadius: "2px 4px 4px 2px", border: "1px solid rgba(0, 0, 0, 0.2)", height: "60px" }} type="datetime-local" />
+              <div style={{ borderRadius: "0px 4px 4px 0px", textAlign: "center", color: "white", outline: "0", border: "2px solid grey", backgroundColor: "rgba(0, 0, 0, 0.6)", width: "200px", height: "60px", position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }} >
+                <p style={{ margin: "auto", color: "white" }}>SEARCH</p>
               </div>
+              <AddButton onClick={() => setShowModal(true)} style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "200px", height: "60px" }} >
+                <p>FILTERS</p>
+              </AddButton >
             </div>
           </div>
         </div>
       </BodyTopContainer>
-      {/*       <div class="col-2 m-0 p-0" style={{ position: "absolute", height: "100%", right: 0, top: "0%", overflowY: "scroll", backgroundColor: "rgba(0, 0, 0, 0.05)" }}> */}
-      {/*         <CardList>
+      <div class="col-2 m-0 p-0" style={{ position: "absolute", height: "100%", right: 0, top: "0%", overflowY: "scroll", backgroundColor: "rgba(0, 0, 0, 0.05)" }}>
+        <div style={{ height: "5%", backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
+        </div>
+        <CardList>
           {listItems}
-        </CardList> */}
-      {/*   </div> */}
+        </CardList>
+      </div>
+      <div className="row justify-content-center" style={{ height: "70%", backgroundColor: "rgba(255, 255, 255, 0.3)" }}>
+        <div class="col-8 d-flex flex-wrap" >
+          <div class="col d-flex justify-content-end align-items-center col-lg-6 px-4" style={{ height: "50%" }}>
+            <div class="d-flex justify-content-center align-items-center" style={{ height: "85%", width: "75%", border: "2px solid black" }}>
+              dada
+            </div>
+          </div>
+          <div class="col d-flex justify-content-start align-items-center col-lg-6 px-4" style={{ height: "50%" }}>
+            <div class="d-flex justify-content-center align-items-center" style={{ height: "85%", width: "75%", border: "2px solid black" }}>
+              dada
+            </div>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center col-lg-6 px-4" style={{ height: "50%" }}>
+            <div class="d-flex justify-content-center align-items-center" style={{ height: "85%", width: "75%", border: "2px solid black" }}>
+              dada
+            </div>
+          </div>
+          <div class="col d-flex justify-content-start align-items-center col-lg-6 px-4" style={{ height: "50%" }}>
+            <div class="d-flex justify-content-center align-items-center" style={{ height: "85%", width: "75%", border: "2px solid black" }}>
+              dada
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
