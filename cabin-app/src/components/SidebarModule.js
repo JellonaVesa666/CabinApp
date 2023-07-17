@@ -7,12 +7,11 @@ import { countByStatus, searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
 
-export default function SidebarModule() {
+export const SidebarModule = ({ isActive }) => {
   const language = useSelector(state => state.session.language);
 
   const [showModal, setShowModal] = useState(false);
   const [searchFilters, setSearchFilters] = useState(searchParameters);
-  const [sidebarActive, setSidebarActive] = useState(false);
 
   const listItems = Object.keys(searchFilters).map(item => {
     if (searchFilters[item].isActive)
@@ -108,7 +107,7 @@ export default function SidebarModule() {
 
   return (
     <>
-      {sidebarActive &&
+      {isActive &&
         <Sidebar className="overflow-y-scroll m-0 p-0 h-100">
           <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px", backgroundColor: "rgba(0, 0, 0, 1)" }}>
             <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(255, 255, 255, 0.2)", color: "white" }}>

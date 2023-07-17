@@ -12,13 +12,6 @@ export const MainBody = styled.div`
   box-shadow:inset 0px 0px 80vw #333;
 `
 
-/* overflow-y: auto;
--ms-overflow-style: none;
-scrollbar-width: none;
-&::-webkit-scrollbar {
-  display: none;
-} */
-
 export const Logo = styled.div`
   background: url(${logoLight}) no-repeat;
   position:absolute;

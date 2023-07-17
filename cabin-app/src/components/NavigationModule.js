@@ -15,11 +15,6 @@ export default function NavigationModule() {
   const [navData, setNavData] = useState(navigationData);
   const navigate = useNavigate();
 
-  const test = () => {
-    console.log("test");
-    navigate("/search")
-  }
-
   return (
     <NavbarBody
       className="navbar navbar-expand-lg"

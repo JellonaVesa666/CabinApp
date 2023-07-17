@@ -77,24 +77,20 @@ export const AddButton = styled.div`
 `
 
 export const BodyTopContainer = styled.div`
-  position: relative;
   height: 30%;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) -50%, rgba(0, 0, 0, 0) 100%);
 `
 
 export const Sidebar = styled.div`
   position: absolute;
-  height: 100%;
+  bottom: 0;
   right: 0;
 
-
   @media only screen and (min-width: 1400px) and (max-width: 1600px) {
-    top: 0;
     width: 23%;
   }
 
   @media only screen and (min-width: 1600px) and (max-width: 3000px) {
-    top: 0;
     width: 20%;
   }
 `
@@ -105,12 +101,10 @@ export const SearchBar = styled.div`
   align-items: center;
 
   @media only screen and (min-width: 1400px) and (max-width: 1600px) {
-    top: 0;
     width: 23%;
   }
 
   @media only screen and (min-width: 1600px) and (max-width: 3000px) {
-    top: 0;
     width: 40%;
   }
 `
