@@ -22,7 +22,7 @@ const SidebarComponent = () => {
           key={Object.keys(searchFilters).indexOf(item)}
           className={searchFilters[item].dropdown ? "dropdownActive h-auto col-12 row m-0 p-0 d-flex justify-content-center flex-wrap" : "h-auto col-12 col-12 row m-0 p-0 d-flex justify-content-center flex-wrap"}
         >
-          <div className="col-10 row m-0 p-0 d-flex justify-content-center flex-wrap">
+          <div className="col-12 row m-0 p-0 d-flex justify-content-center flex-wrap">
             <div className="col-1 bg-warning" /* onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)} className="col-1" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", height: "1%", color: "black" }} */>
               -
             </div>
