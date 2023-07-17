@@ -26,17 +26,10 @@ export const CardHeader = styled.p`
     background-color: rgba(0, 0, 0, 0.25);
   }
 `
-export const CardList = styled.ul`
-  width: 100%;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  margin-top: 15%;
-  padding-left: ${props => (props.paddingleft)};
-  padding-right: ${props => (props.paddingright)};
-`
 export const CardBody = styled.li`
   background-color: ${colors.whiteDark};
+  margin: 0;
+  padding: 0;
   &.dropdownActive {
     flex-flow: row wrap;
     height: 100%;
@@ -45,21 +38,15 @@ export const CardBody = styled.li`
     background-color: ${colors.whiteLight};
   }
 `
-export const CardContent = styled.div.attrs({
-  className: "row  w-100 px-3 m-0 justify-content-center",
-})`
+export const CardContent = styled.div`
   width: 100%;
   height: 100%;
 `
-export const CardLabel = styled.div.attrs({
-  className: "d-flex col-6 justify-content-start",
-})`
+export const CardLabel = styled.div`
   font-weight: 400;
   font-size: 16px;
 `
-export const CardDropdown = styled.div.attrs({
-  className: "d-flex col-5 justify-content-end",
-})`
+export const CardDropdown = styled.div`
 `
 
 export const ListItem = styled.li`
@@ -91,8 +78,6 @@ export const AddButton = styled.div`
   border-radius: 0px 10px 10px 0px;
   border: 2px solid ${colors.grey};
   border-left-style: none;
-  width: 40px;
-  height: 40px;
   cursor: pointer;
   > p {
     font-size: 10px;
@@ -100,23 +85,38 @@ export const AddButton = styled.div`
   }
 `
 
-export const BodyTopContainer = styled.div.attrs({
-  className: "row",
-})`
+export const BodyTopContainer = styled.div`
   height: 30%;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) -50%, rgba(0, 0, 0, 0) 100%);
 `
 
-export const Sidebar = styled.div.attrs({
-  className: "col-2 m-0 p-0",
-})`
-  position: absolute;
-  width: ${props => (props.width)};
-  height: 100%;
-  right: 0;
+export const Sidebar = styled.div`
+  position: -webkit-sticky; 
+  position: sticky; 
+  left: 0; 
   top: 0;
-  margin: 0;
-  padding: 0;
-  transition: all 0.5s;
-  -webkit-transition: all 0.25s;
+
+  @media only screen and (max-width: 600px) {
+
+  }
+
+  @media only screen and (min-width: 600px) {
+
+  }
+
+  @media only screen and (min-width: 768px) {
+
+  }
+
+  @media only screen and (min-width: 992px) {
+    width: 50%;
+  }
+
+  @media only screen and (min-width: 1600px) {
+    width: 22%;
+  }
+
+  @media only screen and (min-width: 1920px) {
+    width: 17%;
+  }
 `

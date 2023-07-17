@@ -23,21 +23,20 @@ const SidebarComponent = () => {
           className={searchFilters[item].dropdown ? "dropdownActive" : ""}
           margintop={"16%"}
         >
-          <CardContent>
-            <div className="row m-0 p-0 py-3" style={{ display: "flex", justifyContent: "center", alignItems: "center", }}>
-              <div onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)} className="col-1" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", height: "1%", color: "black" }}>
-                -
-              </div>
-              <CardLabel className="">
-                {ValidateElement(searchFilters[item]?.info?.[language]?.name, "label")}
-              </CardLabel>
-              <CardDropdown
-                onClick={() => ChangeState(setSearchFilters, searchFilters, !searchFilters[item].dropdown, "dropdown", item)}
-              >
-                {searchFilters[item].dropdown ? <>&#9650;</> : <>&#x25BC;</>}
-              </CardDropdown>
+          <CardContent className="row w-100 px-3 m-0 justify-content-center flex-wrap">
+            <div className="col-1 bg-warning" /* onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)} className="col-1" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", height: "1%", color: "black" }} */>
+              -
             </div>
-            {searchFilters[item].dropdown &&
+            <CardLabel className="d-flex col-6 justify-content-start bg-info">
+              {ValidateElement(searchFilters[item]?.info?.[language]?.name, "label")}
+            </CardLabel>
+            <CardDropdown
+              className="d-flex col-5 justify-content-end bg-danger"
+              onClick={() => ChangeState(setSearchFilters, searchFilters, !searchFilters[item].dropdown, "dropdown", item)}
+            >
+              {searchFilters[item].dropdown ? <>&#9650;</> : <>&#x25BC;</>}
+            </CardDropdown>
+            {/*             {searchFilters[item].dropdown &&
               <>
                 {searchFilters[item].type === "multiSelect" &&
                   <MultiSelect
@@ -102,7 +101,7 @@ const SidebarComponent = () => {
                   }
                 })()}
               </>
-            }
+            } */}
           </CardContent>
           <div style={{ height: "2px", color: "grey", backgroundColor: "rgba(0, 0, 0, 0.1)" }} />
         </CardBody >
@@ -130,38 +129,37 @@ const SidebarComponent = () => {
         <p>Modal</p>
       </Modal>
       <BodyTopContainer>
-        <div class="col-12">
-          <div class="row justify-content-center" style={{ height: "100%" }}>
-            <div class="col-12 d-flex justify-content-center align-items-center mt-5" >
-              <input className="text-center p-2 shadow-sm" style={{ height: "50px", width: "280px", borderRadius: "4px 2px 2px 4px", border: "1px solid rgba(0, 0, 0, 0.2)", height: "60px" }} type="text" />
-              <input className="text-center p-2 shadow-sm" style={{ height: "50px", width: "280px", borderRadius: "2px", border: "1px solid rgba(0, 0, 0, 0.2)", height: "60px" }} type="datetime-local" />
-              <input className="text-center p-2 shadow-sm" style={{ height: "50px", width: "280px", borderRadius: "2px 4px 4px 2px", border: "1px solid rgba(0, 0, 0, 0.2)", height: "60px" }} type="datetime-local" />
-              <div style={{ borderRadius: "0px 4px 4px 0px", textAlign: "center", color: "white", outline: "0", border: "2px solid grey", backgroundColor: "rgba(0, 0, 0, 0.6)", width: "200px", height: "60px", position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }} >
-                <p style={{ margin: "auto", color: "white" }}>SEARCH</p>
-              </div>
-              <AddButton onClick={() => setSidebarActive(!sidebarActive)} /* onClick={() => setShowModal(true)}  */ style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "200px", height: "60px" }} >
+        <div class="h-100 mt-5 d-flex justify-content-center">
+          <div class="col-xs-4 col-sm-4 col-md-12 col-lg-6 d-flex justify-content-center align-items-center">
+            <div className="input-group justify-content-center bg-dark" style={{ height: "18%" }}>
+              <input className=" col-xs-4 col-sm-4 col-md-3 col-lg-3 text-center p-2 shadow-sm rounded" type="text" />
+              <input className=" col-xs-4 col-sm-4 col-md-3 col-lg-3 text-center p-2 shadow-sm rounded" type="datetime-local" />
+              <input className=" col-xs-4 col-sm-4 col-md-3 col-lg-3 text-center p-2 shadow-sm rounded" type="datetime-local" />
+              <AddButton className="d-flex justify-content-center align-items-center col-xs-4 col-sm-4 col-md-1 col-lg-1 text-center p-2 shadow-sm rounded" onClick={() => setSidebarActive(!sidebarActive)}>
                 <p>FILTERS</p>
               </AddButton >
+              <input className=" col-xs-4 col-sm-4 col-md-1 col-lg-2 text-center p-2 shadow-sm rounded" type="input" />
             </div>
           </div>
         </div>
-      </BodyTopContainer>
-      {sidebarActive &&
-        <Sidebar>
-          <div style={{ height: "100%", width: "100%", position: "absolute", right: 0, top: 0, overflowY: "scroll" }} >
-            <div className="px-3" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", height: "5%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)", position: "absolute", top: 0, right: 0 }}>
-              <div onClick={() => setShowModal(!showModal)} style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "35px", width: "35px", borderRadius: "20px", margin: 0, padding: 0, backgroundColor: "rgba(255, 255, 255, 0.2)", color: "white" }}>
+
+        {/* style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "200px", height: "60px" }}  */}
+
+        {sidebarActive &&
+          <Sidebar className="bg-info m-0 p-0">
+            <div className="col-12 px-3 d-flex justify-content-start align-items-center" style={{ height: "60px", backgroundColor: "rgba(0, 0, 0, 1)" }}>
+              <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(255, 255, 255, 0.2)", color: "white" }}>
                 +
               </div>
             </div>
-            <CardList>
+            <ul className="m-t p-0" style={{ listStyleType: "none" }}>
               {listItems}
-            </CardList>
+            </ul>
             <div style={{ height: "2%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)" }} />
-          </div>
-        </Sidebar>
-      }
-      <div className="row justify-content-center" style={{ height: "70%", backgroundColor: "rgba(255, 255, 255, 0.3)" }}>
+          </Sidebar>
+        }
+      </BodyTopContainer>
+      <div className="row justify-content-center m-0 p-0" style={{ height: "70%", backgroundColor: "rgba(255, 255, 255, 0.3)" }}>
         <div class="col-8 d-flex flex-wrap" >
           <div class="col d-flex justify-content-end align-items-center col-lg-6 px-4" style={{ height: "50%" }}>
             <div class="d-flex justify-content-center align-items-center" style={{ height: "85%", width: "75%", border: "2px solid black" }}>
