@@ -36,7 +36,12 @@ const SidebarComponent = () => {
             >
               {searchFilters[item].dropdown ? <>&#9650;</> : <>&#x25BC;</>}
             </CardDropdown>
-            {/*             {searchFilters[item].dropdown &&
+
+            {
+
+
+
+              searchFilters[item].dropdown &&
               <>
                 {searchFilters[item].type === "multiSelect" &&
                   <MultiSelect
@@ -101,7 +106,10 @@ const SidebarComponent = () => {
                   }
                 })()}
               </>
-            } */}
+
+
+
+            }
           </CardContent>
           <div style={{ height: "2px", color: "grey", backgroundColor: "rgba(0, 0, 0, 0.1)" }} />
         </CardBody >
