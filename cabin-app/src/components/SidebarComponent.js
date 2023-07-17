@@ -23,7 +23,7 @@ const SidebarComponent = () => {
           className={searchFilters[item].dropdown ? "dropdownActive col-12 row m-0 p-0 d-flex justify-content-center flex-wrap" : "col-12 row m-0 p-0 d-flex justify-content-center flex-wrap"}
         >
           <div className="col-10 row m-0 p-0 d-flex justify-content-center flex-wrap">
-            <div className="col-1 bg-warning" /* onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)} className="col-1" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", height: "1%", color: "black" }} */>
+            <div className="col-1 bg-warning" onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)} >
               -
             </div>
             <CardLabel className="d-flex col-6 justify-content-start bg-info">
@@ -123,7 +123,7 @@ const SidebarComponent = () => {
   }
 
   return (
-    <>
+    <div className="row h-100 m-0 p-0 position-relative">
       <Modal show={showModal} options={searchFilters} handleClose={() => setShowModal(false)} setActive={(index) => ChangeState(setSearchFilters, searchFilters, !searchFilters[index].isActive, "isActive", index)}>
         <p>Modal</p>
       </Modal>
@@ -141,17 +141,19 @@ const SidebarComponent = () => {
             </div>
           </div>
         </div>
-        {sidebarActive &&
-          <Sidebar className="col-12 col-xl-3 m-0 p-0 bg-info">
+      </BodyTopContainer >
+      {sidebarActive &&
+        <div className="overflow-y-scroll m-0 p-0 h-100 position-absolute top-0 end-0">
+          <div className="col-12 col-xl-3 g-danger float-end">
             <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px", backgroundColor: "rgba(0, 0, 0, 1)" }}>
               <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(255, 255, 255, 0.2)", color: "white" }}>
                 +
               </div>
             </div>
             {listItems}
-          </Sidebar>
-        }
-      </BodyTopContainer >
+          </div>
+        </div>
+      }
       <div className="row justify-content-center m-0 p-0" style={{ height: "70%", backgroundColor: "rgba(255, 255, 255, 0.3)" }}>
         <div class="col-8 d-flex flex-wrap" >
           <div class="col d-flex justify-content-end align-items-center col-lg-6 px-4" style={{ height: "50%" }}>
@@ -176,7 +178,7 @@ const SidebarComponent = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

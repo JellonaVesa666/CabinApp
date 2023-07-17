@@ -83,28 +83,3 @@ export const BodyTopContainer = styled.div`
   height: 30%;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) -50%, rgba(0, 0, 0, 0) 100%);
 `
-
-export const Sidebar = styled.div`
-  position: absolute;
-  right: 0;
-
-  @media only screen and (max-width: 576px) {
-    top: 100%;
-  }
-
-  @media only screen and (min-width: 576px) {
-    top: 100%;
-  }
-
-  @media only screen and (min-width: 768px) {
-    top: 100%;
-  }
-
-  @media only screen and (min-width: 992px) {
-    top: 100%;
-  }
-
-  @media only screen and (min-width: 1200px) {
-    top: 0;
-  }
-`
