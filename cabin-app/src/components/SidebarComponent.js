@@ -142,15 +142,13 @@ const SidebarComponent = () => {
           </div>
         </div>
         {sidebarActive &&
-          <Sidebar className="col-12 col-xl-3 d-flex justify-content-end align-items-center m-0 p-0 bg-info">
-            <div className="col-12 col-xl-10">
-              <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px", backgroundColor: "rgba(0, 0, 0, 1)" }}>
-                <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(255, 255, 255, 0.2)", color: "white" }}>
-                  +
-                </div>
+          <Sidebar className="col-12 col-xl-3 m-0 p-0 bg-info">
+            <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px", backgroundColor: "rgba(0, 0, 0, 1)" }}>
+              <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(255, 255, 255, 0.2)", color: "white" }}>
+                +
               </div>
-              {listItems}
             </div>
+            {listItems}
           </Sidebar>
         }
       </BodyTopContainer >
