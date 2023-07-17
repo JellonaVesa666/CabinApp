@@ -20,10 +20,9 @@ const SidebarComponent = () => {
       return (
         <CardBody
           key={Object.keys(searchFilters).indexOf(item)}
-          className={searchFilters[item].dropdown ? "dropdownActive" : ""}
-          margintop={"16%"}
+          className={searchFilters[item].dropdown ? "dropdownActive col-12 row m-0 p-0 d-flex justify-content-center flex-wrap" : "col-12 row m-0 p-0 d-flex justify-content-center flex-wrap"}
         >
-          <CardContent className="row w-100 px-3 m-0 justify-content-center flex-wrap">
+          <div className="col-10 row m-0 p-0 d-flex justify-content-center flex-wrap">
             <div className="col-1 bg-warning" /* onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)} className="col-1" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", height: "1%", color: "black" }} */>
               -
             </div>
@@ -36,11 +35,7 @@ const SidebarComponent = () => {
             >
               {searchFilters[item].dropdown ? <>&#9650;</> : <>&#x25BC;</>}
             </CardDropdown>
-
             {
-
-
-
               searchFilters[item].dropdown &&
               <>
                 {searchFilters[item].type === "multiSelect" &&
@@ -106,12 +101,8 @@ const SidebarComponent = () => {
                   }
                 })()}
               </>
-
-
-
             }
-          </CardContent>
-          <div style={{ height: "2px", color: "grey", backgroundColor: "rgba(0, 0, 0, 0.1)" }} />
+          </div>
         </CardBody >
       )
   })
@@ -150,9 +141,6 @@ const SidebarComponent = () => {
             </div>
           </div>
         </div>
-
-        {/* style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "200px", height: "60px" }}  */}
-
         {sidebarActive &&
           <Sidebar className="col-12 col-xl-3 d-flex justify-content-end align-items-center m-0 p-0 bg-info">
             <div className="col-12 col-xl-10">
@@ -161,10 +149,7 @@ const SidebarComponent = () => {
                   +
                 </div>
               </div>
-              <ul className="m-t p-0" style={{ listStyleType: "none" }}>
-                {listItems}
-              </ul>
-              <div style={{ height: "2%", width: "100%", backgroundColor: "rgba(0, 0, 0, 1)" }} />
+              {listItems}
             </div>
           </Sidebar>
         }

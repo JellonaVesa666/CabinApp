@@ -28,19 +28,12 @@ export const CardHeader = styled.p`
 `
 export const CardBody = styled.li`
   background-color: ${colors.whiteDark};
-  margin: 0;
-  padding: 0;
   &.dropdownActive {
-    flex-flow: row wrap;
     height: 100%;
   }
   &:nth-child(2n) {
     background-color: ${colors.whiteLight};
   }
-`
-export const CardContent = styled.div`
-  width: 100%;
-  height: 100%;
 `
 export const CardLabel = styled.div`
   font-weight: 400;

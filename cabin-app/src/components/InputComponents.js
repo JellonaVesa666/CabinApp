@@ -153,7 +153,7 @@ export const CheckBox = (props) => {
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   if (props.data[props.i].rows === undefined || props.data[props.i].rows < 1) {
     return (
-      <div className="row px-5 py-3 m-0">
+      <div className="row w-100 px-5 py-3 m-0">
         {
           result.map(item => {
             return (

@@ -152,7 +152,7 @@ export const Days = styled.p`
 `
 
 // Select
-export const MultiSelectInput = styled.li.attrs({
+export const MultiSelectInput = styled.div.attrs({
   className: "m-auto py-1 mt-2 px-2",
 })`
   width: ${props => (props.width)};
