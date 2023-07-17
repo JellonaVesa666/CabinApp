@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
 import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter } from "./InputComponents";
-import { AddButton, CardBody, CardLabel, BodyTopContainer, Sidebar } from "../styles/SearchCardStyle";
+import { AddButton, CardBody, CardLabel, BodyTopContainer, Sidebar, SearchBar } from "../styles/SidebarStyle";
 import { countByStatus, searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
@@ -129,17 +129,17 @@ const SidebarComponent = () => {
       </Modal>
       <BodyTopContainer>
         <div class="h-100 mt-5 d-flex justify-content-center">
-          <div class="col-xs-4 col-sm-4 col-md-12 col-lg-6 d-flex justify-content-center align-items-center">
+          <SearchBar>
             <div className="input-group justify-content-center bg-dark" style={{ height: "18%" }}>
               <input className=" col-xs-4 col-sm-4 col-md-3 col-lg-3 text-center p-2 shadow-sm rounded" type="text" />
               <input className=" col-xs-4 col-sm-4 col-md-3 col-lg-3 text-center p-2 shadow-sm rounded" type="datetime-local" />
               <input className=" col-xs-4 col-sm-4 col-md-3 col-lg-3 text-center p-2 shadow-sm rounded" type="datetime-local" />
+              <input className=" col-xs-4 col-sm-4 col-md-2 col-lg-2 text-center p-2 shadow-sm rounded" type="input" />
               <AddButton className="d-flex justify-content-center align-items-center col-xs-4 col-sm-4 col-md-1 col-lg-1 text-center p-2 shadow-sm rounded" onClick={() => setSidebarActive(!sidebarActive)}>
                 <p>FILTERS</p>
               </AddButton >
-              <input className=" col-xs-4 col-sm-4 col-md-2 col-lg-2 text-center p-2 shadow-sm rounded" type="input" />
             </div>
-          </div>
+          </SearchBar>
         </div>
       </BodyTopContainer >
       {sidebarActive &&

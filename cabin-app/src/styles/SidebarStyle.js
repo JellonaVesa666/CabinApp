@@ -98,3 +98,19 @@ export const Sidebar = styled.div`
     width: 20%;
   }
 `
+
+export const SearchBar = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (min-width: 1400px) and (max-width: 1600px) {
+    top: 0;
+    width: 23%;
+  }
+
+  @media only screen and (min-width: 1600px) and (max-width: 3000px) {
+    top: 0;
+    width: 40%;
+  }
+`

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { ChangeState } from "../helpers/HelperFunctions";
 import { TextField, OptionSelect, CheckBox, PasswordField } from "./InputComponents";
-import { CardHeader } from "../styles/SearchCardStyle";
+import { CardHeader } from "../styles/SidebarStyle";
 import { RegisterBody, CloseBtn, SubmitBtn, LinkH4 } from "../styles/RegisterStyle";
 import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 import { colors } from "../styles/Colors";
