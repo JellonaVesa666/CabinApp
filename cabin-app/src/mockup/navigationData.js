@@ -5,6 +5,7 @@ export const navigationData = {
   },
   button: {
     0: {
+      route: "/login",
       en: {
         name: "login",
       },
@@ -13,6 +14,7 @@ export const navigationData = {
       }
     },
     1: {
+      route: "/login",
       en: {
         name: "register",
       },
@@ -23,6 +25,7 @@ export const navigationData = {
   },
   link: {
     1: {
+      route: "/search",
       en: {
         name: "search",
       },
@@ -31,6 +34,7 @@ export const navigationData = {
       }
     },
     2: {
+      route: "/cabins",
       en: {
         name: "cabins",
       },
@@ -39,6 +43,7 @@ export const navigationData = {
       }
     },
     3: {
+      route: "/map",
       en: {
         name: "map",
       },
@@ -47,6 +52,7 @@ export const navigationData = {
       }
     },
     4: {
+      route: "/settings",
       en: {
         name: "settings",
       },

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { NavbarBody, NavbarAnchor, NavbarLogo, NavbarDropdownItem, NavbarDropdown } from "../styles/NavigationStyle";
 import { navigationData } from "../mockup/navigationData";
 import { ButtonInput } from "../styles/InputStyle";
@@ -12,12 +13,18 @@ export default function NavigationModule() {
   const dispatch = useDispatch();
 
   const [navData, setNavData] = useState(navigationData);
+  const navigate = useNavigate();
+
+  const test = () => {
+    console.log("test");
+    navigate("/search")
+  }
 
   return (
     <NavbarBody
       className="navbar navbar-expand-lg"
     >
-      <NavbarLogo>
+      <NavbarLogo onClick={() => navigate("/")}>
         <img />
       </NavbarLogo>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +63,7 @@ export default function NavigationModule() {
                     Object.keys(navData[type][item]).map((child) => {
                       if (child === session.language) {
                         return (
-                          <ButtonInput key={item}>
+                          <ButtonInput onClick={() => navigate(navData[type][item].route)} key={item}>
                             {navData[type][item][child].name.toUpperCase()}
                           </ButtonInput>
                         )
@@ -76,7 +83,7 @@ export default function NavigationModule() {
                           if (child === session.language) {
                             if (item !== 0) {
                               return (
-                                <li className="nav-item" key={item}>
+                                <li className="nav-item" onClick={() => navigate(navData[type][item].route)} key={item}>
                                   <NavbarAnchor className="nav-link my-2 mx-4 menu-item" href="">{navData[type][item][child].name.toUpperCase()}</NavbarAnchor>
                                 </li >
                               )
