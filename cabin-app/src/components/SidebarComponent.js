@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
 import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter } from "./InputComponents";
-import { AddButton, CardList, CardBody, CardContent, CardDropdown, CardLabel, BodyTopContainer, Sidebar } from "../styles/SearchCardStyle";
+import { AddButton, CardBody, CardLabel, BodyTopContainer, Sidebar } from "../styles/SearchCardStyle";
 import { countByStatus, searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
@@ -20,7 +20,7 @@ const SidebarComponent = () => {
       return (
         <CardBody
           key={Object.keys(searchFilters).indexOf(item)}
-          className={searchFilters[item].dropdown ? "dropdownActive h-auto col-12 row m-0 p-0 " : "h-auto col-12 col-12 row m-0 p-0"}
+          className={searchFilters[item].dropdown ? "dropdownActive h-auto col-12 row m-0 p-0 " : "h-auto col-12 row m-0 p-0"}
         >
           <div className="col-12 row m-0 p-0">
             <div className="col-1 py-2 " onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)}>
@@ -29,12 +29,12 @@ const SidebarComponent = () => {
             <CardLabel className=" py-2 col-6">
               {ValidateElement(searchFilters[item]?.info?.[language]?.name, "label")}
             </CardLabel>
-            <CardDropdown
+            <div
               className="d-flex col-5 py-2 justify-content-end"
               onClick={() => ChangeState(setSearchFilters, searchFilters, !searchFilters[item].dropdown, "dropdown", item)}
             >
               {searchFilters[item].dropdown ? <>&#9650;</> : <>&#x25BC;</>}
-            </CardDropdown>
+            </div>
             {
               searchFilters[item].dropdown &&
               <>
@@ -143,14 +143,14 @@ const SidebarComponent = () => {
         </div>
       </BodyTopContainer >
       {sidebarActive &&
-        <div className="col-12 col-xl-2 g-danger overflow-y-scroll m-0 p-0 h-100 position-absolute top-0 end-0">
+        <Sidebar className="overflow-y-scroll m-0 p-0 h-100">
           <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px", backgroundColor: "rgba(0, 0, 0, 1)" }}>
             <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(255, 255, 255, 0.2)", color: "white" }}>
               +
             </div>
           </div>
           {listItems}
-        </div>
+        </Sidebar>
       }
       <div className="row justify-content-center m-0 p-0" style={{ height: "70%", backgroundColor: "rgba(255, 255, 255, 0.3)" }}>
         <div class="col-8 d-flex flex-wrap" >
