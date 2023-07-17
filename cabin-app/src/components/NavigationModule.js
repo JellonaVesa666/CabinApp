@@ -63,7 +63,7 @@ export default function NavigationModule() {
                     Object.keys(navData[type][item]).map((child) => {
                       if (child === session.language) {
                         return (
-                          <ButtonInput onClick={() => navigate(navData[type][item].route)} key={item}>
+                          <ButtonInput id={navData[type][item].route} onClick={(event) => navigate(event.target.id)} key={item}>
                             {navData[type][item][child].name.toUpperCase()}
                           </ButtonInput>
                         )
@@ -83,7 +83,7 @@ export default function NavigationModule() {
                           if (child === session.language) {
                             if (item !== 0) {
                               return (
-                                <li className="nav-item" onClick={() => navigate(navData[type][item].route)} key={item}>
+                                <li className="nav-item" id={navData[type][item].route} onClick={(event) => navigate(event.target.id)} key={item}>
                                   <NavbarAnchor className="nav-link my-2 mx-4 menu-item" href="">{navData[type][item][child].name.toUpperCase()}</NavbarAnchor>
                                 </li >
                               )
