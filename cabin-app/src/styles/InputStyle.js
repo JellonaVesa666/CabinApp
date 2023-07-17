@@ -152,7 +152,7 @@ export const Days = styled.p`
 `
 
 // Select
-export const MultiSelectInput = styled.div.attrs({
+export const MultiSelectInput = styled.li.attrs({
   className: "m-auto py-1 mt-2 px-2",
 })`
   width: ${props => (props.width)};
@@ -173,9 +173,7 @@ export const MultiSelectInput = styled.div.attrs({
 `
 
 // Option Select
-export const OptionItem = styled.select.attrs({
-  className: "mb-3 mt-3 py-1 px-2",
-})`
+export const OptionItem = styled.select`
   width: ${props => (props.width)};
   border-radius: ${props => (props.radius)};
   border: 1.5px solid rgba(0, 0, 0, 0.2);
@@ -220,6 +218,8 @@ export const CheckInput = styled.input.attrs({
   className: "form-check-input",
 })`
   background-color: rgba(255, 255, 255, 0.7);
+  min-height: 16px;
+  min-width: 16px;
   border: 0.1rem solid ${colors.lightGrey};
   outline: none;
   outline: 0px !important;

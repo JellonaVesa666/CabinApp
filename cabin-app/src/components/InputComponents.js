@@ -98,7 +98,7 @@ export const Counter = (props) => {
 export const OptionSelect = (props) => {
   return (
     <OptionItem
-      className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
+      className="mx-auto my-3 py-1 px-2"
       width={props.width}
       radius={props.radius}
       value={props.data[props.i].value}

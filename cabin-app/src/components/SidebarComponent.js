@@ -20,17 +20,17 @@ const SidebarComponent = () => {
       return (
         <CardBody
           key={Object.keys(searchFilters).indexOf(item)}
-          className={searchFilters[item].dropdown ? "dropdownActive h-auto col-12 row m-0 p-0 d-flex justify-content-center flex-wrap" : "h-auto col-12 col-12 row m-0 p-0 d-flex justify-content-center flex-wrap"}
+          className={searchFilters[item].dropdown ? "dropdownActive h-auto col-12 row m-0 p-0 " : "h-auto col-12 col-12 row m-0 p-0"}
         >
-          <div className="col-12 row m-0 p-0 d-flex justify-content-center flex-wrap">
-            <div className="col-1 bg-warning" /* onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)} className="col-1" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", height: "1%", color: "black" }} */>
+          <div className="col-12 row m-0 p-0">
+            <div className="col-1 py-2 " onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)}>
               -
             </div>
-            <CardLabel className="d-flex col-6 justify-content-start bg-info">
+            <CardLabel className=" py-2 col-6">
               {ValidateElement(searchFilters[item]?.info?.[language]?.name, "label")}
             </CardLabel>
             <CardDropdown
-              className="d-flex col-5 justify-content-end bg-danger"
+              className="d-flex col-5 py-2 justify-content-end"
               onClick={() => ChangeState(setSearchFilters, searchFilters, !searchFilters[item].dropdown, "dropdown", item)}
             >
               {searchFilters[item].dropdown ? <>&#9650;</> : <>&#x25BC;</>}
@@ -143,7 +143,7 @@ const SidebarComponent = () => {
         </div>
       </BodyTopContainer >
       {sidebarActive &&
-        <div className="col-12 col-xl-3 g-danger overflow-y-scroll m-0 p-0 h-100 position-absolute top-0 end-0">
+        <div className="col-12 col-xl-2 g-danger overflow-y-scroll m-0 p-0 h-100 position-absolute top-0 end-0">
           <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px", backgroundColor: "rgba(0, 0, 0, 1)" }}>
             <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(255, 255, 255, 0.2)", color: "white" }}>
               +
