@@ -86,37 +86,32 @@ export const AddButton = styled.div`
 `
 
 export const BodyTopContainer = styled.div`
+  position: relative;
   height: 30%;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) -50%, rgba(0, 0, 0, 0) 100%);
 `
 
 export const Sidebar = styled.div`
-  position: -webkit-sticky; 
-  position: sticky; 
-  left: 0; 
-  top: 0;
+  position: absolute;
+  right: 0;
 
-  @media only screen and (max-width: 600px) {
-
+  @media only screen and (max-width: 576px) {
+    top: 100%;
   }
 
-  @media only screen and (min-width: 600px) {
-
+  @media only screen and (min-width: 576px) {
+    top: 100%;
   }
 
   @media only screen and (min-width: 768px) {
-
+    top: 100%;
   }
 
   @media only screen and (min-width: 992px) {
-    width: 50%;
+    top: 100%;
   }
 
-  @media only screen and (min-width: 1600px) {
-    width: 22%;
-  }
-
-  @media only screen and (min-width: 1920px) {
-    width: 17%;
+  @media only screen and (min-width: 1200px) {
+    top: 0;
   }
 `
