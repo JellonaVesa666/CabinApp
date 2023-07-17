@@ -20,7 +20,7 @@ const SidebarComponent = () => {
       return (
         <CardBody
           key={Object.keys(searchFilters).indexOf(item)}
-          className={searchFilters[item].dropdown ? "dropdownActive col-12 row m-0 p-0 d-flex justify-content-center flex-wrap" : "col-12 row m-0 p-0 d-flex justify-content-center flex-wrap"}
+          className={searchFilters[item].dropdown ? "dropdownActive h-auto col-12 row m-0 p-0 d-flex justify-content-center flex-wrap" : "h-auto col-12 col-12 row m-0 p-0 d-flex justify-content-center flex-wrap"}
         >
           <div className="col-10 row m-0 p-0 d-flex justify-content-center flex-wrap">
             <div className="col-1 bg-warning" /* onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)} className="col-1" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", height: "1%", color: "black" }} */>
@@ -143,15 +143,13 @@ const SidebarComponent = () => {
         </div>
       </BodyTopContainer >
       {sidebarActive &&
-        <div className="overflow-y-scroll m-0 p-0 h-100 position-absolute top-0 end-0">
-          <div className="col-12 col-xl-3 g-danger float-end">
-            <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px", backgroundColor: "rgba(0, 0, 0, 1)" }}>
-              <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(255, 255, 255, 0.2)", color: "white" }}>
-                +
-              </div>
+        <div className="col-12 col-xl-3 g-danger overflow-y-scroll m-0 p-0 h-100 position-absolute top-0 end-0">
+          <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px", backgroundColor: "rgba(0, 0, 0, 1)" }}>
+            <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(255, 255, 255, 0.2)", color: "white" }}>
+              +
             </div>
-            {listItems}
           </div>
+          {listItems}
         </div>
       }
       <div className="row justify-content-center m-0 p-0" style={{ height: "70%", backgroundColor: "rgba(255, 255, 255, 0.3)" }}>
