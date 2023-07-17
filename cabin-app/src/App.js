@@ -3,7 +3,6 @@ import { Link, Route, Routes } from "react-router-dom"
 import { MainBody, Logo } from "./styles/BaseStyle"
 import LoginPage from "./pages/LoginPage";
 import NavigationModule from "./components/NavigationModule";
-import SidebarComponent from "./components/SidebarComponent";
 import SearchPage from './pages/SearchPage';
 
 function App() {
