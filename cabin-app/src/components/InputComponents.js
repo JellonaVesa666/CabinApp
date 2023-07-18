@@ -4,6 +4,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Slider, RangeInput, RangeValue, SliderBackground, TextInput, OptionItem, MultiSelectInput, CheckInput } from "../styles/InputStyle"
 import { useSelector } from "react-redux";
 import { ValidateElement } from "../helpers/HelperFunctions";
+import { colors } from "../styles/Colors";
 
 export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, changeState }) => {
   return (
@@ -70,12 +71,12 @@ export const Counter = (props) => {
                   type="button"
                   value="-"
                   className="col-4 d-flex justify-content-center align-items-center m-0 p-0"
-                  style={{ borderRadius: "20px", backgroundColor: "green", outline: 0, border: 0, width: "32px", height: "32px", color: "white", fontSize: "16px" }}
+                  style={{ borderRadius: "4px", outline: 0, border: "2px solid grey", width: "32px", height: "32px", color: "black", fontSize: "16px" }}
                   onClick={() => props.changeState(Number(props.data[props.i][item].value) > 0 ? Number(props.data[props.i][item].value) - 1 : 0, item)}
                 />
                 <div
                   className="col-4 d-flex justify-content-center align-items-center m-0 p-0"
-                  style={{ color: "black", fontSize: "14px" }}
+                  style={{ color: "black", fontSize: "14px", backgroundColor: colors.green }}
                 >
                   {props.data[props.i][item]?.value}
                 </div>
@@ -83,7 +84,7 @@ export const Counter = (props) => {
                   type="button"
                   value="+"
                   className="col-4 d-flex justify-content-center align-items-center m-0 p-0"
-                  style={{ borderRadius: "20px", backgroundColor: "green", outline: 0, border: 0, width: "32px", height: "32px", color: "white", fontSize: "16px" }}
+                  style={{ borderRadius: "4px", outline: 0, border: "2px solid grey", width: "32px", height: "32px", color: "black", fontSize: "16px" }}
                   onClick={() => props.changeState(Number(props.data[props.i][item].value) + 1, item)}
                 />
               </div>
