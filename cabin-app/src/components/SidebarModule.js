@@ -18,7 +18,7 @@ export const SidebarModule = ({ isActive }) => {
       return (
         <CardBody
           key={Object.keys(searchFilters).indexOf(item)}
-          className={searchFilters[item].dropdown ? "dropdownActive h-auto col-12 row m-0 p-0 " : "h-auto col-12 row m-0 p-0"}
+          className={searchFilters[item].dropdown ? "dropdownActive h-auto col-12 row m-0 p-0" : "h-auto col-12 row m-0 p-0"}
         >
           <div className="col-12 row m-0 p-0">
             <div className="col-1 py-2 " onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)}>
@@ -185,12 +185,14 @@ export const SidebarModule = ({ isActive }) => {
             </div>
           </div>
           <SidebarFilters className="h-75 w-100">
-            <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px" }}>
+{/*             <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px" }}>
               <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(0, 0, 0, 1)", color: "white" }}>
                 +
               </div>
+            </div> */}
+            <div style={{border: "2px solid"}}>
+              {listItems}
             </div>
-            {listItems}
           </SidebarFilters>
         </Sidebar>
       }
