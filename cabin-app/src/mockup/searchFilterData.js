@@ -88,9 +88,9 @@ export const searchParameters = {
     type: "slider",
     isActive: true,
     dropdown: true,
-    maxDefault: 10,
+    maxDefault: 1000,
     minDefault: 0,
-    maxValue: 10,
+    maxValue: 1000,
     minValue: 0,
     step: 1,
   },
@@ -271,7 +271,7 @@ export const searchParameters = {
     },
   },
   // Persons - Counter
-  persons: {
+  passive: {
     type: "counter",
     passive: true,
     info: {
