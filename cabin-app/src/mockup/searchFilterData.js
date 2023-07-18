@@ -300,14 +300,5 @@ export const searchParameters = {
       },
       value: 1,
     },
-    2: {
-      fi: {
-        name: "huoneet",
-      },
-      en: {
-        name: "rooms",
-      },
-      value: 1,
-    },
   },
 };

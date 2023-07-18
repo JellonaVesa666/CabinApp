@@ -92,6 +92,23 @@ export const Sidebar = styled.div`
   top:4.7%;
   width: 25%;
   height: 95.3vh;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+      border-radius: 8px;
+      background-color: #e7e7e7;
+      border: 1px solid #cacaca;
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      background-color: #363636;
+  }
 
   @media only screen and (min-width: 1400px) and (max-width: 1500px) {
     width: 26%;
@@ -104,12 +121,6 @@ export const Sidebar = styled.div`
   @media only screen and (min-width: 1900px) and (max-width: 3000px) {
     width: 20%;
   }
-`
-
-export const SidebarFilters = styled.div`
-  border: 2px solid grey;
-  border-radius: 10px;
-  overflow-y: scroll;
 `
 
 export const SearchBar = styled.div`

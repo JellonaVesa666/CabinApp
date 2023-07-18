@@ -19,7 +19,7 @@ function App() {
       <div class="container-fluid" style={{ height: "calc(100% - 60px)" }}>
         <div class="row h-100">
           <SidebarModule isActive={sidebarActive} />
-          <main class="col px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+          {/* <main class="col px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
 
             <section class="py-5 text-center container">
               <div class="row py-lg-5">
@@ -188,7 +188,7 @@ function App() {
               </div>
             </div>
 
-          </main>
+          </main> */}
         </div>
       </div>
     </BodyBackground>

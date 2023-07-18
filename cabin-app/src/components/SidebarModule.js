@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 export const SidebarModule = ({ isActive }) => {
   const language = useSelector(state => state.session.language);
 
-  const [showModal, setShowModal] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
   const [searchFilters, setSearchFilters] = useState(searchParameters);
 
   const listItems = Object.keys(searchFilters).map(item => {
@@ -18,7 +18,7 @@ export const SidebarModule = ({ isActive }) => {
       return (
         <CardBody
           key={Object.keys(searchFilters).indexOf(item)}
-          className={searchFilters[item].dropdown ? "dropdownActive h-auto col-12 row m-0 p-0" : "h-auto col-12 row m-0 p-0"}
+          className={searchFilters[item].dropdown ? "dropdownActive h-auto col-12 row m-2 p-0" : "h-auto col-12 row m-2 p-0"}
         >
           <div className="col-12 row m-0 p-0">
             <div className="col-1 py-2 " onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)}>
@@ -125,11 +125,14 @@ export const SidebarModule = ({ isActive }) => {
 
   return (
     <>
+      <Modal show={modalActive} options={searchFilters} handleClose={() => setModalActive(false)} setActive={(index) => ChangeState(setSearchFilters, searchFilters, !searchFilters[index].isActive, "isActive", index)}>
+        <p>Modal</p>
+      </Modal>
       {isActive &&
         <Sidebar>
           <div
             className="d-flex justify-content-start align-items-center flex-column w-100"
-            style={{ height: "40%" }}
+            style={{ height: "35%" }}
           >
             <div
               className="row h-100 w-100 d-flex justify-content-center align-items-center"
@@ -137,15 +140,15 @@ export const SidebarModule = ({ isActive }) => {
               <input
                 type="button"
                 value={"hae"}
-                className="d-flex justify-content-center align-items-center mt-5 text-uppercase"
+                className="d-flex justify-content-center align-items-center mt-5 rounded text-uppercase"
                 style={{ backgroundColor: colors.black, color: colors.white, width: "30%", height: "40px" }}
               />
               <div
-                className="mt-5"
-                style={{ height: "0.25%", width: "100%", backgroundColor: colors.black }}
+                className="m-5"
+                style={{ height: "0.5%", width: "100%", backgroundColor: colors.whiteDark }}
               />
               <div
-                className="w-75 mt-5"
+                className="col-10 row m-0 p-0"
                 style={{ height: "35px" }}
               >
                 <input
@@ -157,7 +160,7 @@ export const SidebarModule = ({ isActive }) => {
                 />
               </div>
               <div
-                className="w-75 mt-4 row"
+                className="col-10 row m-4 p-0"
                 style={{ height: "35px" }}
               >
                 <input
@@ -167,7 +170,7 @@ export const SidebarModule = ({ isActive }) => {
                   name=""
                 />
                 <div
-                  className="d-flex justify-content-center align-items-center  h-100 px-2"
+                  className="d-flex justify-content-center align-items-center h-100 px-2"
                   style={{ width: "10%" }}
                 >
                   /
@@ -179,25 +182,25 @@ export const SidebarModule = ({ isActive }) => {
                   name=""
                 />
               </div>
-              <div className="mt-4">
+              <div className="col-12 row m-0 p-0">
                 {persons}
               </div>
             </div>
           </div>
-          <SidebarFilters
-            /* className="h-75 w-100" */
-            className="w-100"
+          <div
+            className="d-flex justify-content-center align-items-center flex-column w-100 mx-2"
+            style={{ height: "5%" }}
+          >
+            <div className="d-flex justify-content-center align-items-center rounded" onClick={() => setModalActive(!modalActive)} style={{ height: "35px", width: "35px", backgroundColor: "black", color: "white", fontSize: "16px", marginRight: "auto" }}>
+              &equiv;
+            </div>
+          </div>
+          <div
+            className="d-flex justify-content-start align-items-center flex-column w-100"
             style={{ height: "60%" }}
           >
-            {/*             <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px" }}>
-              <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(0, 0, 0, 1)", color: "white" }}>
-                +
-              </div>
-            </div> */}
-
             {listItems}
-
-          </SidebarFilters>
+          </div>
         </Sidebar>
       }
     </>
