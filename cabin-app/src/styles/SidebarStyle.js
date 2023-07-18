@@ -82,6 +82,7 @@ export const BodyTopContainer = styled.div`
 `
 
 export const Sidebar = styled.div`
+  background-color: ${colors.white};
   overflow-y: scroll;
   position: -webkit-sticky;
   position: sticky;
