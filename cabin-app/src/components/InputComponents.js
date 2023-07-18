@@ -75,8 +75,8 @@ export const Counter = (props) => {
                   onClick={() => props.changeState(Number(props.data[props.i][item].value) > 0 ? Number(props.data[props.i][item].value) - 1 : 0, item)}
                 />
                 <div
-                  className="col-4 d-flex justify-content-center align-items-center m-0 p-0"
-                  style={{ color: "black", fontSize: "14px", backgroundColor: colors.green }}
+                  className="col-4 d-flex justify-content-center align-items-center m-0 p-0 mx-5"
+                  style={{ color: "white", fontSize: "14px", backgroundColor: colors.green, width: "15%", height: "26px", borderRadius: "20px" }}
                 >
                   {props.data[props.i][item]?.value}
                 </div>
