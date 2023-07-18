@@ -196,16 +196,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-{/* <MainBody className="container-fluid vh-100 d-flex flex-column m-0 p-0">
-<NavigationModule />
-<SidebarModule isActive={sidebarActive} />
-<Routes>
-  <Route path="/" element={<SearchPage changeState={() => setSidebarActive(!sidebarActive)} />} />
-  <Route path="/login" element={<LoginPage />} />
-  <Route path="/search" element={<SearchPage sortBy={'newest'} />} />
-</Routes>
-</MainBody> */}

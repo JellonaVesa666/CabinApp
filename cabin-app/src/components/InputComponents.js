@@ -51,6 +51,7 @@ export const Counter = (props) => {
     <div className="row px-5 py-3 m-0">
       {
         result.map(item => {
+          //console.log(props.data[props.i][item]?.value);
           return (
             <div
               className="d-flex justify-content-center align-items-center py-2 m-0"
@@ -86,7 +87,6 @@ export const Counter = (props) => {
                   onClick={() => props.changeState(Number(props.data[props.i][item].value) + 1, item)}
                 />
               </div>
-
             </div>
           )
         })

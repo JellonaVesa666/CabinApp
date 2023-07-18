@@ -96,6 +96,9 @@ export const searchParameters = {
   },
   checkboxMultiRow: {
     type: "checkboxMulti",
+    isActive: true,
+    dropdown: true,
+    rows: 2,
     info: {
       fi: {
         name: "mökki tyyppi",
@@ -104,9 +107,6 @@ export const searchParameters = {
         name: "cabin type",
       },
     },
-    isActive: true,
-    dropdown: true,
-    rows: 2,
     0: {
       fi: {
         name: "Mökki",
@@ -164,6 +164,9 @@ export const searchParameters = {
   },
   checkboxMulti: {
     type: "checkboxMulti",
+    isActive: true,
+    dropdown: true,
+    rows: 0,
     info: {
       fi: {
         name: "mökki tyyppi",
@@ -172,9 +175,6 @@ export const searchParameters = {
         name: "cabin type",
       },
     },
-    isActive: true,
-    dropdown: true,
-    rows: 0,
     0: {
       fi: {
         name: "Mökki",
@@ -232,6 +232,8 @@ export const searchParameters = {
   },
   checkboxSingle: {
     type: "checkboxSingle",
+    isActive: true,
+    dropdown: true,
     info: {
       fi: {
         name: "autopaikka",
@@ -240,8 +242,6 @@ export const searchParameters = {
         name: "parking space",
       },
     },
-    isActive: true,
-    dropdown: true,
     0: {
       fi: {
         name: "kyllä",
@@ -268,6 +268,46 @@ export const searchParameters = {
         name: "maybe",
       },
       value: true,
+    },
+  },
+  // Persons - Counter
+  persons: {
+    type: "counter",
+    passive: true,
+    info: {
+      fi: {
+        name: "henkilöt",
+      },
+      en: {
+        name: "persons",
+      },
+    },
+    0: {
+      fi: {
+        name: "aikuiset",
+      },
+      en: {
+        name: "adults",
+      },
+      value: 2,
+    },
+    1: {
+      fi: {
+        name: "lapset",
+      },
+      en: {
+        name: "children",
+      },
+      value: 1,
+    },
+    2: {
+      fi: {
+        name: "huoneet",
+      },
+      en: {
+        name: "rooms",
+      },
+      value: 1,
     },
   },
 };

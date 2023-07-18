@@ -105,60 +105,86 @@ export const SidebarModule = ({ isActive }) => {
       )
   })
 
+
+  const persons = Object.keys(searchFilters).map(item => {
+    return (
+      <>
+        {searchFilters[item].type === "counter" &&
+          searchFilters[item].passive &&
+          <Counter
+            data={searchFilters}
+            i={item}
+            changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", item, index)}
+          />
+        }
+      </>
+    )
+  })
+
+
+
   return (
     <>
       {isActive &&
         <Sidebar>
-          <div className="d-flex justify-content-start align-items-center flex-column mt-5 h-25 w-100">
+          <div
+            className="d-flex justify-content-start align-items-center flex-column w-100"
+            style={{ height: "36%" }}
+          >
             <div
-              className="d-flex justify-content-center align-items-center text-uppercase"
-              style={{ backgroundColor: colors.black, color: colors.white, width: "30%", height: "15%" }}
-            >
-              hae
-            </div>
-            <div
-              className="mt-5"
-              style={{ height: "1%", width: "100%", backgroundColor: colors.black }}
-            />
-            <div
-              className="w-75 mt-5"
-              style={{ height: "40px" }}
+              className="row h-100 w-100 d-flex justify-content-center align-items-center"
             >
               <input
-                className="w-100 h-100 px-2"
-                style={{ borderRadius: "6px", border: "1px solid grey" }}
-                type="text"
-                name=""
-                value="Town, City, Cabin..."
-              />
-            </div>
-            <div
-              className="w-75 mt-5 row"
-              style={{ height: "40px" }}
-            >
-              <input
-                className="h-100 px-2"
-                style={{ borderRadius: "6px", border: "1px solid grey", width: "45%" }}
-                type="date"
-                name=""
-                value="Town, City, Cabin..."
+                type="button"
+                value={"hae"}
+                className="d-flex justify-content-center align-items-center mt-5 text-uppercase"
+                style={{ backgroundColor: colors.black, color: colors.white, width: "30%", height: "40px" }}
               />
               <div
-                className="d-flex justify-content-center align-items-center  h-100 px-2"
-                style={{width: "10%"}}
-              >
-                /
-              </div>
-              <input
-                className="h-100 px-2"
-                style={{ borderRadius: "6px", border: "1px solid grey", width: "45%" }}
-                type="date"
-                name=""
-                value="Town, City, Cabin..."
+                className="mt-5"
+                style={{ height: "0.25%", width: "100%", backgroundColor: colors.black }}
               />
+              <div
+                className="w-75 mt-5"
+                style={{ height: "35px" }}
+              >
+                <input
+                  className="w-100 h-100 px-2"
+                  style={{ borderRadius: "6px", border: "1px solid grey" }}
+                  type="text"
+                  name=""
+                  value="Town, City, Cabin..."
+                />
+              </div>
+              <div
+                className="w-75 mt-4 row"
+                style={{ height: "35px" }}
+              >
+                <input
+                  className="h-100 px-2"
+                  style={{ borderRadius: "6px", border: "1px solid grey", width: "45%", fontSize: "14px" }}
+                  type="date"
+                  name=""
+                />
+                <div
+                  className="d-flex justify-content-center align-items-center  h-100 px-2"
+                  style={{ width: "10%" }}
+                >
+                  /
+                </div>
+                <input
+                  className="h-100 px-2"
+                  style={{ borderRadius: "6px", border: "1px solid grey", width: "45%", fontSize: "14px" }}
+                  type="date"
+                  name=""
+                />
+              </div>
+              <div className="mt-4">
+                {persons}
+              </div>
             </div>
           </div>
-          <SidebarFilters className="h-75">
+          <SidebarFilters className="h-75 w-100">
             <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px" }}>
               <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(0, 0, 0, 1)", color: "white" }}>
                 +
