@@ -1,24 +1,5 @@
 import styled from 'styled-components'
-import logoDark from "../images/logo_Dark.png";
 import { colors } from './Colors';
-
-export const NavbarBody = styled.div`
-  background-color: ${colors.white};
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;   
-`
-
-export const NavbarLogo = styled.a`
-  > img {
-  background: url(${logoDark}) no-repeat;
-  position: absolute;
-  width: 360px;
-  height: 220px;
-  bottom: 0;
-  left: 0;
-  padding: 0;
-  margin: 0;
-  } 
-`
 
 export const NavbarDropdown = styled.ul`
   min-width: 100% !important;

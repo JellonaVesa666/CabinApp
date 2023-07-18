@@ -32,7 +32,7 @@ export const CardBody = styled.li`
     height: 100%;
   }
   &:nth-child(2n) {
-    background-color: ${colors.whiteLight};
+    background-color: ${colors.white};
   }
 `
 export const CardLabel = styled.div`
@@ -82,15 +82,22 @@ export const BodyTopContainer = styled.div`
 `
 
 export const Sidebar = styled.div`
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  overflow-y: scroll;
+  position: -webkit-sticky;
+  position: sticky;
+  top:4.7%;
+  width: 25%;
+  height: 95.3vh;
 
-  @media only screen and (min-width: 1400px) and (max-width: 1600px) {
+  @media only screen and (min-width: 1400px) and (max-width: 1500px) {
+    width: 26%;
+  }
+
+  @media only screen and (min-width: 1500px) and (max-width: 1900px) {
     width: 23%;
   }
 
-  @media only screen and (min-width: 1600px) and (max-width: 3000px) {
+  @media only screen and (min-width: 1900px) and (max-width: 3000px) {
     width: 20%;
   }
 `

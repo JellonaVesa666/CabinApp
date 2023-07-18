@@ -247,7 +247,7 @@ export const CheckInput = styled.input.attrs({
 `
 
 export const ButtonInput = styled.a.attrs({
-  className: "btn btn-outline-success",
+  className: "btn",
 })`
   height: 60%;
   width: 110px;

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { NavbarBody, NavbarAnchor, NavbarLogo, NavbarDropdownItem, NavbarDropdown } from "../styles/NavigationStyle";
+import { NavbarAnchor, NavbarLogo, NavbarDropdownItem, NavbarDropdown } from "../styles/NavigationStyle";
 import { navigationData } from "../mockup/navigationData";
 import { ButtonInput } from "../styles/InputStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLanguage } from "../reducers/sessionReducer";
+import { colors } from "../styles/Colors";
 
 export default function NavigationModule() {
 
@@ -16,14 +17,13 @@ export default function NavigationModule() {
   const navigate = useNavigate();
 
   return (
-    <NavbarBody
-      className="navbar navbar-expand-lg"
+    <div
+      className="navbar sticky-top flex-md-nowrap shadow navbar-expand-lg"
+      style={{ height: "60px", backgroundColor: colors.white }}
     >
-      <NavbarLogo onClick={() => navigate("/")}>
-        <img />
-      </NavbarLogo>
-      <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+      <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse flex-grow-1 text-right" id="navbarSupportedContent">
         {
@@ -94,6 +94,6 @@ export default function NavigationModule() {
           })
         }
       </div>
-    </NavbarBody>
+    </div>
   )
 }

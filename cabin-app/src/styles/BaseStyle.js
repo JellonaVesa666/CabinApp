@@ -2,8 +2,7 @@ import styled from 'styled-components'
 import backgroundGray from "../images/background_Gray.png";
 import logoLight from "../images/logo_Light.png";
 
-export const MainBody = styled.div`
-  position: relative;
+export const BodyBackground = styled.div`
   background: url(${backgroundGray}) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
