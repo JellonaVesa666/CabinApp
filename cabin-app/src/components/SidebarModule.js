@@ -129,7 +129,7 @@ export const SidebarModule = ({ isActive }) => {
         <Sidebar>
           <div
             className="d-flex justify-content-start align-items-center flex-column w-100"
-            style={{ height: "36%" }}
+            style={{ height: "40%" }}
           >
             <div
               className="row h-100 w-100 d-flex justify-content-center align-items-center"
@@ -184,15 +184,19 @@ export const SidebarModule = ({ isActive }) => {
               </div>
             </div>
           </div>
-          <SidebarFilters className="h-75 w-100">
-{/*             <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px" }}>
+          <SidebarFilters
+            /* className="h-75 w-100" */
+            className="w-100"
+            style={{ height: "60%" }}
+          >
+            {/*             <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px" }}>
               <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(0, 0, 0, 1)", color: "white" }}>
                 +
               </div>
             </div> */}
-            <div style={{border: "2px solid"}}>
-              {listItems}
-            </div>
+
+            {listItems}
+
           </SidebarFilters>
         </Sidebar>
       }

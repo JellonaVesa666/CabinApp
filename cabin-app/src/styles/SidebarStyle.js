@@ -107,6 +107,8 @@ export const Sidebar = styled.div`
 `
 
 export const SidebarFilters = styled.div`
+  border: 2px solid grey;
+  border-radius: 10px;
   overflow-y: scroll;
 `
 
