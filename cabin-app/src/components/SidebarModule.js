@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
 import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter } from "./InputComponents";
-import { AddButton, CardBody, CardLabel, BodyTopContainer, Sidebar, SearchBar } from "../styles/SidebarStyle";
+import { AddButton, CardBody, CardLabel, BodyTopContainer, Sidebar, SearchBar, SidebarFilters } from "../styles/SidebarStyle";
 import { countByStatus, searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
@@ -108,15 +108,64 @@ export const SidebarModule = ({ isActive }) => {
   return (
     <>
       {isActive &&
-        <Sidebar id="sidebarMenu">
-          <div className="">
+        <Sidebar>
+          <div className="d-flex justify-content-start align-items-center flex-column mt-5 h-25 w-100">
+            <div
+              className="d-flex justify-content-center align-items-center text-uppercase"
+              style={{ backgroundColor: colors.black, color: colors.white, width: "30%", height: "15%" }}
+            >
+              hae
+            </div>
+            <div
+              className="mt-5"
+              style={{ height: "1%", width: "100%", backgroundColor: colors.black }}
+            />
+            <div
+              className="w-75 mt-5"
+              style={{ height: "40px" }}
+            >
+              <input
+                className="w-100 h-100 px-2"
+                style={{ borderRadius: "6px", border: "1px solid grey" }}
+                type="text"
+                name=""
+                value="Town, City, Cabin..."
+              />
+            </div>
+            <div
+              className="w-75 mt-5 row"
+              style={{ height: "40px" }}
+            >
+              <input
+                className="h-100 px-2"
+                style={{ borderRadius: "6px", border: "1px solid grey", width: "45%" }}
+                type="date"
+                name=""
+                value="Town, City, Cabin..."
+              />
+              <div
+                className="d-flex justify-content-center align-items-center  h-100 px-2"
+                style={{width: "10%"}}
+              >
+                /
+              </div>
+              <input
+                className="h-100 px-2"
+                style={{ borderRadius: "6px", border: "1px solid grey", width: "45%" }}
+                type="date"
+                name=""
+                value="Town, City, Cabin..."
+              />
+            </div>
+          </div>
+          <SidebarFilters className="h-75">
             <div className="px-3 d-flex justify-content-start align-items-center" style={{ height: "60px" }}>
               <div className="d-flex justify-content-center align-items-center rounded-circle m-0 p-0" onClick={() => setShowModal(!showModal)} style={{ height: "35px", width: "35px", backgroundColor: "rgba(0, 0, 0, 1)", color: "white" }}>
                 +
               </div>
             </div>
             {listItems}
-          </div>
+          </SidebarFilters>
         </Sidebar>
       }
     </>

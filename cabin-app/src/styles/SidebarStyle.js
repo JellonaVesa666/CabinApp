@@ -83,9 +83,12 @@ export const BodyTopContainer = styled.div`
 
 export const Sidebar = styled.div`
   background-color: ${colors.white};
-  overflow-y: scroll;
   position: -webkit-sticky;
   position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   top:4.7%;
   width: 25%;
   height: 95.3vh;
@@ -101,6 +104,10 @@ export const Sidebar = styled.div`
   @media only screen and (min-width: 1900px) and (max-width: 3000px) {
     width: 20%;
   }
+`
+
+export const SidebarFilters = styled.div`
+  overflow-y: scroll;
 `
 
 export const SearchBar = styled.div`
