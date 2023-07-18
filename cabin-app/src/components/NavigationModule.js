@@ -22,10 +22,10 @@ export default function NavigationModule() {
       style={{ height: "60px", backgroundColor: colors.white }}
     >
       <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
-      <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse flex-grow-1 text-right" id="navbarSupportedContent">
+      <div class="navbar-collapse collapse" id="navbarCollapse">
         {
           Object.keys(navData).reverse().map((type) => {
             if (type === "language") {

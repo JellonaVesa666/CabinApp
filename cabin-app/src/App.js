@@ -12,9 +12,9 @@ function App() {
 
   return (
     <BodyBackground>
-
-      <NavigationModule />
-
+      <header>
+        <NavigationModule />
+      </header>
 
       <div class="container-fluid" style={{ height: "calc(100% - 60px)" }}>
         <div class="row h-100">
