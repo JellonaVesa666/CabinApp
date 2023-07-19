@@ -110,9 +110,10 @@ export const Sidebar = styled.div`
   align-items: center;
   flex-wrap: wrap;
   top:4.7%;
-  width: 80%;
   height: 95.3vh;
   overflow-y: scroll;
+  margin: 0;
+  padding: 0;
 
   &::-webkit-scrollbar {
     width: 4px;
@@ -141,7 +142,6 @@ export const Sidebar = styled.div`
     background-color: ${colors.white};
   }
 
-  
   @media only screen and (min-width: 768px) and (max-width: 1350px) {
     position: relative;
     left: 0;
@@ -179,6 +179,10 @@ export const SidebarCollapsed = styled.div`
 
   @media only screen and (min-width: 768px) and (max-width: 1350px) {
     width: 70%;
+  }
+
+  @media only screen and (min-width: 1350px) and (max-width: 3000px) {
+    width: 95.5%;
   }
 `
 
