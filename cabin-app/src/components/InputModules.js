@@ -52,7 +52,6 @@ export const Counter = (props) => {
     <CounterInput>
       {
         result.map(item => {
-          //console.log(props.data[props.i][item]?.value);
           return (
             <div
               className="d-flex justify-content-center align-items-center py-2 m-0"

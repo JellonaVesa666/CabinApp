@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { ChangeState } from "../helpers/HelperFunctions";
-import { TextField, OptionSelect, CheckBox, PasswordField } from "./InputComponents";
+import { TextField, OptionSelect, CheckBox, PasswordField } from "./InputModules";
 import { CardHeader } from "../styles/SidebarStyle";
 import { RegisterBody, CloseBtn, SubmitBtn, LinkH4 } from "../styles/RegisterStyle";
 import { registerDO, registerDTO } from "../DTO/RegisterDTO";

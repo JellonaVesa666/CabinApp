@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
 import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
-import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter } from "./InputComponents";
-import { AddButton, FilterList, FilterCard, CardLabel, BodyTopContainer, Sidebar, SearchBar, SidebarFilters, SidebarCollapsed } from "../styles/SidebarStyle";
-import { countByStatus, searchParameters } from "../mockup/searchFilterData";
+import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter } from "./InputModules";
+import { FilterList, FilterCard, CardLabel, Sidebar, SidebarCollapsed } from "../styles/SidebarStyle";
+import { searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
 
