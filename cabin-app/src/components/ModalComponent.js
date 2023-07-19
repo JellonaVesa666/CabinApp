@@ -1,24 +1,25 @@
 import { ModalContent, ModalHeader, ModalLinkH4 } from "../styles/ModalStyle";
 
 export const Modal = ({ handleClose, setActive, show, options }) => {
-  const showHideClassName = show ? "show" : "hide";
-
+  
   const Filter = (props) => {
-    return (
-      <ModalHeader
-        className={options[props.index].isActive ? "isActive" : ""}
-        width={"80%"}
-        marginbottom={"5%"}
-        margintop={"5%"}
-        onClick={() => setActive(props.index)}
-      >
-        {props.index}
-      </ModalHeader >
-    )
+    if (options[props.index].hasOwnProperty("isActive")) {
+      return (
+        <ModalHeader
+          className={options[props.index].isActive ? "true" : ""}
+          width={"80%"}
+          marginbottom={"5%"}
+          margintop={"5%"}
+          onClick={() => setActive(props.index)}
+        >
+          {props.index}
+        </ModalHeader >
+      )
+    }
   }
 
   return (
-    <ModalContent className={showHideClassName} >
+    <ModalContent className={show.toString()} >
       <div style={{ marginTop: "50px" }}>
         {Object.keys(options).map(key => <Filter key={key} index={key} />)}
       </div>

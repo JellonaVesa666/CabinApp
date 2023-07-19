@@ -26,6 +26,7 @@ export const CardHeader = styled.p`
     background-color: rgba(0, 0, 0, 0.25);
   }
 `
+
 export const FilterList = styled.li`
   background-color: ${colors.whiteDark};
   &.dropdownActive {
@@ -177,7 +178,7 @@ export const SidebarCollapsed = styled.div`
   }
 
   @media only screen and (min-width: 768px) and (max-width: 1350px) {
-    width: 60%;
+    width: 70%;
   }
 `
 

@@ -13,10 +13,10 @@ export const ModalContent = styled.section`
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  &.show {
+  &.true {
     display: block;
   }
-  &.hide {
+  &.false {
     display: none;
   }
 `
@@ -35,7 +35,7 @@ export const ModalHeader = styled.p`
   border: 1.5px solid ${colors.lightGrey};
   color: rgba(0, 0, 0, 0.6);
   text-transform: capitalize;
-  &.isActive {
+  &.true {
     background-color: ${colors.green} !important;
     border: 1.5px solid transparent !important;
     color: white !important;

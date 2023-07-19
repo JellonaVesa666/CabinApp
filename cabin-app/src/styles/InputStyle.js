@@ -191,15 +191,16 @@ export const OptionItem = styled.select`
   }
 `
 
-// Text Input
-export const TextInput = styled.input`
+// Text Input //radius:40px
+export const Input = styled.input`
   width: ${props => (props.width)};
   height: ${props => (props.height)};
   padding: 0px 20px 0px 20px;
   border: 0.1rem solid ${colors.lightGrey};
-  border-radius: 40px;
+  border-radius: ${props => (props.radius)};
   background: rgba(255, 255, 255, 0.9);
-  margin-bottom: 12px;
+  margin-top: ${props => (props.margintop)};
+  margin-bottom: ${props => (props.marginbottom)};
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { Slider, RangeInput, RangeValue, SliderBackground, TextInput, OptionItem, MultiSelectInput, CheckInput, CounterInput, CounterValue } from "../styles/InputStyle"
+import { Slider, RangeInput, RangeValue, SliderBackground, Input, OptionItem, MultiSelectInput, CheckInput, CounterInput, CounterValue } from "../styles/InputStyle"
 import { useSelector } from "react-redux";
 import { ValidateElement } from "../helpers/HelperFunctions";
 import { colors } from "../styles/Colors";
@@ -60,7 +60,7 @@ export const Counter = (props) => {
                 className="col-6 d-flex justify-content-start align-items-center m-0 p-0"
                 style={{ color: "black", fontSize: "14px", fontWeight: 400 }}
               >
-                {ValidateElement(props.data[props.i][item]?.[language]?.name, "text")}
+                {ValidateElement(props.data[props.i][item]?.[language]?.translation, "text")}
               </div>
               <div
                 className="col-6 d-flex justify-content-end align-items-center m-0 p-0"
@@ -169,7 +169,7 @@ export const CheckBox = (props) => {
                   onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
                 />
                 <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "12px", paddingLeft: "15px" }}>
-                  {props.data[props.i][item]?.[language]?.name !== undefined ? props.data[props.i][item][language].name.toUpperCase() : "ERROR"}
+                  {props.data[props.i][item]?.[language]?.translation !== undefined ? props.data[props.i][item][language].translation.toUpperCase() : "ERROR"}
                 </label>
               </div>
             )
@@ -197,7 +197,7 @@ export const CheckBox = (props) => {
                   onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
                 />
                 <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "12px", paddingLeft: "15px" }}>
-                  {ValidateElement(props.data[props.i][item]?.[language]?.name, "text")}
+                  {ValidateElement(props.data[props.i][item]?.[language]?.translation, "text")}
                 </label>
               </div>
             )
@@ -209,18 +209,20 @@ export const CheckBox = (props) => {
 };
 
 
-export const TextField = (props) => {
+export const InputField = (props) => {
   return (
-    <>
-      <TextInput
-        width={props.width}
-        height={props.height}
-        className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
-        type={props.data[props.i].type}
-        value={props.data[props.i].value}
-        onChange={(event) => props.changeState(event)}
-      />
-    </>
+    <Input
+      type={props.type}
+      value={props.value}
+      width={props.width}
+      height={props.height}
+      radius={props.radius}
+      margintop={props.margintop}
+      marginbottom={props.marginbottom}
+      placeholder={props.placeholder}
+      className={props.data[props.i]?.errors?.length > 0 ? "invalid" : ""}
+      onChange={(event) => props.changeState(event.target.value)}
+    />
   )
 };
 
@@ -228,7 +230,7 @@ export const PasswordField = (props) => {
   const [showPassword, setHidePassword] = useState(false);
   return (
     <>
-      <TextInput
+      <Input
         width={props.width}
         height={props.height}
         className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
@@ -238,6 +240,20 @@ export const PasswordField = (props) => {
       />
       {showPassword && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword(false)} style={{ position: "absolute", top: 40, left: 185 }} />}
       {!showPassword && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword(true)} style={{ position: "absolute", top: 40, left: 185 }} />}
+    </>
+  )
+};
+
+
+export const Date = (props) => {
+  return (
+    <>
+      <input
+        className="px-2"
+        style={{ borderRadius: "6px", border: "1px solid grey", width: "45%", fontSize: "14px" }}
+        type="date"
+        name=""
+      />
     </>
   )
 };

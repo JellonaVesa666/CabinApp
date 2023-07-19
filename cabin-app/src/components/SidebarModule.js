@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
 import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
-import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter } from "./InputModules";
+import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, InputField } from "./InputModules";
 import { FilterList, FilterCard, CardLabel, Sidebar, SidebarCollapsed } from "../styles/SidebarStyle";
 import { searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
@@ -13,7 +13,7 @@ export const SidebarModule = ({ isActive }) => {
   const [modalActive, setModalActive] = useState(false);
   const [searchFilters, setSearchFilters] = useState(searchParameters);
 
-  const listItems = Object.keys(searchFilters).map(item => {
+  const dynamicFilters = Object.keys(searchFilters).map(item => {
     if (searchFilters[item].isActive)
       return (
 
@@ -26,7 +26,7 @@ export const SidebarModule = ({ isActive }) => {
               -
             </div>
             <CardLabel className=" py-2 col-6">
-              {ValidateElement(searchFilters[item]?.info?.[language]?.name, "label")}
+              {ValidateElement(searchFilters[item]?.info?.[language]?.translation, "label")}
             </CardLabel>
             <div
               className="d-flex col-5 py-2 justify-content-end"
@@ -106,20 +106,58 @@ export const SidebarModule = ({ isActive }) => {
       )
   })
 
-
-  const persons = Object.keys(searchFilters).map(item => {
-    return (
-      <>
-        {searchFilters[item].type === "counter" &&
-          searchFilters[item].passive &&
-          <Counter
-            data={searchFilters}
-            i={item}
-            changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", item, index)}
-          />
-        }
-      </>
-    )
+  // Static filter items
+  const staticFilters = Object.keys(searchFilters).map(item => {
+    if (searchFilters[item].static) {
+      return (
+        <>
+          {searchFilters[item].type === "text" &&
+            <InputField
+              type={searchFilters[item].type}
+              width={"80%"}
+              height={"40px"}
+              radius={"6px"}
+              margintop={"3rem"}
+              marginbottom={"0.5rem"}
+              i={item}
+              data={searchFilters}
+              placeholder={searchFilters[item].info[language].translation}
+              value={searchFilters[item].info[language].value}
+              changeState={(value) => ChangeState(setSearchFilters, searchFilters, value, "value", item)}
+            />
+          }
+          {searchFilters[item].type === "date" &&
+            <>
+              <InputField
+                type={searchFilters[item].type}
+                width={"35%"}
+                height={"40px"}
+                radius={"6px"}
+                margintop={"1rem"}
+                marginbottom={"1rem"}
+                i={item}
+                data={searchFilters}
+                placeholder={searchFilters[item].info[language].translation}
+                value={searchFilters[item].info[language].value}
+                changeState={(value) => ChangeState(setSearchFilters, searchFilters, value, "value", item)}
+              />
+              {searchFilters[item].spacer === "doubleArrow" &&
+                <div className="d-flex justify-content-center align-items-center mb-0" style={{ width: "10%", height: "100%", fontSize: "30px" }}>
+                  ⬌
+                </div>
+              }
+            </>
+          }
+          {searchFilters[item].type === "counter" &&
+            <Counter
+              data={searchFilters}
+              i={item}
+              changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", item, index)}
+            />
+          }
+        </>
+      )
+    }
   })
 
 
@@ -132,71 +170,26 @@ export const SidebarModule = ({ isActive }) => {
       {isActive &&
         <Sidebar>
           <SidebarCollapsed>
-            <div
-              className="d-flex justify-content-start align-items-center flex-column w-100"
-              style={{ height: "35%" }}
-            >
-              <div
-                className="col-10 row m-0 mt-5 p-0"
-                style={{ height: "40px" }}
-              >
-                <input
-                  className="w-100 h-100 px-2"
-                  style={{ borderRadius: "6px", border: "1px solid grey" }}
-                  type="text"
-                  name=""
-                  value="Town, City, Cabin..."
-                />
-              </div>
-              <div
-                className="col-10 row m-4 p-0"
-                style={{ height: "40px" }}
-              >
-                <input
-                  className="h-100 px-2"
-                  style={{ borderRadius: "6px", border: "1px solid grey", width: "45%", fontSize: "14px" }}
-                  type="date"
-                  name=""
-                />
-                <div
-                  className="d-flex justify-content-center align-items-center h-100 px-2"
-                  style={{ width: "10%" }}
-                >
-                  /
-                </div>
-                <input
-                  className="h-100 px-2"
-                  style={{ borderRadius: "6px", border: "1px solid grey", width: "45%", fontSize: "14px" }}
-                  type="date"
-                  name=""
-                />
-              </div>
-              <div className="col-12 row m-0 p-0">
-                {persons}
-              </div>
+            <div className="justify-content-center align-items-center row m-0 p-0">
+              {staticFilters}
             </div>
-            {listItems}
+            {dynamicFilters}
             <div
-              className="d-flex mb-4 mt-5 justify-content-center align-items-center row w-100"
+              className="mb-4 mt-5 justify-content-center align-items-center row w-100"
               style={{ height: "40px" }}
             >
               <input
                 type="button"
                 value={"hae"}
-                className="d-flex justify-content-center align-items-center text-uppercase"
+                className="text-uppercase"
                 style={{ color: colors.black, width: "180px", height: "40px", marginLeft: "45px", borderRadius: " 10px 0px 0px 10px" }}
               />
               <div className="d-flex justify-content-center align-items-center" onClick={() => setModalActive(!modalActive)} style={{ height: "40px", width: "40px", backgroundColor: "black", color: "white", fontSize: "12px", borderRadius: " 0px 10px 10px 0px" }}>
                 &equiv;
               </div>
             </div>
-            <div
-              className="d-flex justify-content-start align-items-center flex-column w-100"
-              style={{ height: "58%" }}
-            >
-            </div>
           </SidebarCollapsed>
-        </Sidebar>
+        </Sidebar >
       }
     </>
   )
