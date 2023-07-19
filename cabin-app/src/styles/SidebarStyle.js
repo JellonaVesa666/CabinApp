@@ -37,9 +37,15 @@ export const FilterList = styled.li`
 `
 
 export const FilterCard = styled.li`
-  @media only screen and (min-width: 0px) and (max-width: 1100px) {
-    margin-right: 3rem;
-    margin-left: 3rem;
+
+  @media only screen and (max-width: 768px) {
+    margin-right: 5rem;
+    margin-left: 5rem;
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1400px) {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
   }
 
   @media only screen and (min-width: 1400px) and (max-width: 3000px) {
@@ -47,8 +53,6 @@ export const FilterCard = styled.li`
     margin-top: 1.5rem;
   }
 `
-
-//className="col-12 row mx-0 my-0 p-0"
 
 export const CardLabel = styled.div`
   font-weight: 400;
@@ -125,13 +129,27 @@ export const Sidebar = styled.div`
       background-color: #363636;
   }
 
-  @media only screen and (min-width: 0px) and (max-width: 1350px) {
+  @media only screen and (max-width: 768px) {
     position: relative;
     left: 0;
     right: 0;
     margin: auto;
     height: auto;
     width: 100%;
+    overflow-y: hidden;
+    background-color: ${colors.white};
+  }
+
+  
+  @media only screen and (min-width: 768px) and (max-width: 1350px) {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: auto;
+    width: 100%;
+    overflow-y: hidden;
+    background-color: transparent;
   }
 
   @media only screen and (min-width: 1350px) and (max-width: 1500px) {
@@ -144,6 +162,22 @@ export const Sidebar = styled.div`
 
   @media only screen and (min-width: 1900px) and (max-width: 3000px) {
     width: 20%;
+  }
+`
+
+
+export const SidebarCollapsed = styled.div`
+  background-color: ${colors.white};
+  margin: 0;
+  padding: 0;
+  margin-bottom: auto;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1350px) {
+    width: 60%;
   }
 `
 

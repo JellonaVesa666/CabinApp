@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
 import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter } from "./InputComponents";
-import { AddButton, FilterList, FilterCard, CardLabel, BodyTopContainer, Sidebar, SearchBar, SidebarFilters } from "../styles/SidebarStyle";
+import { AddButton, FilterList, FilterCard, CardLabel, BodyTopContainer, Sidebar, SearchBar, SidebarFilters, SidebarCollapsed } from "../styles/SidebarStyle";
 import { countByStatus, searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
@@ -135,77 +135,79 @@ export const SidebarModule = ({ isActive }) => {
       </Modal>
       {isActive &&
         <Sidebar>
-          <div
-            className="d-flex justify-content-start align-items-center flex-column w-100"
-            style={{ height: "35%" }}
-          >
+          <SidebarCollapsed>
             <div
-              className="row h-100 w-100 d-flex justify-content-center align-items-center"
+              className="d-flex justify-content-start align-items-center flex-column w-100"
+              style={{ height: "35%" }}
             >
-              <input
-                type="button"
-                value={"hae"}
-                className="d-flex justify-content-center align-items-center mt-5 rounded text-uppercase"
-                style={{ backgroundColor: colors.black, color: colors.white, width: "30%", height: "40px" }}
-              />
               <div
-                className="m-5"
-                style={{ height: "0.5%", width: "100%", backgroundColor: colors.whiteDark }}
-              />
-              <div
-                className="col-10 row m-0 p-0"
-                style={{ height: "35px" }}
+                className="row h-100 w-100 d-flex justify-content-center align-items-center"
               >
                 <input
-                  className="w-100 h-100 px-2"
-                  style={{ borderRadius: "6px", border: "1px solid grey" }}
-                  type="text"
-                  name=""
-                  value="Town, City, Cabin..."
-                />
-              </div>
-              <div
-                className="col-10 row m-4 p-0"
-                style={{ height: "35px" }}
-              >
-                <input
-                  className="h-100 px-2"
-                  style={{ borderRadius: "6px", border: "1px solid grey", width: "45%", fontSize: "14px" }}
-                  type="date"
-                  name=""
+                  type="button"
+                  value={"hae"}
+                  className="d-flex justify-content-center align-items-center mt-5 rounded text-uppercase"
+                  style={{ backgroundColor: colors.black, color: colors.white, width: "30%", height: "40px" }}
                 />
                 <div
-                  className="d-flex justify-content-center align-items-center h-100 px-2"
-                  style={{ width: "10%" }}
-                >
-                  /
-                </div>
-                <input
-                  className="h-100 px-2"
-                  style={{ borderRadius: "6px", border: "1px solid grey", width: "45%", fontSize: "14px" }}
-                  type="date"
-                  name=""
+                  className="m-5"
+                  style={{ height: "0.5%", width: "100%", backgroundColor: colors.whiteDark }}
                 />
-              </div>
-              <div className="col-12 row m-0 p-0">
-                {persons}
+                <div
+                  className="col-10 row m-0 p-0"
+                  style={{ height: "35px" }}
+                >
+                  <input
+                    className="w-100 h-100 px-2"
+                    style={{ borderRadius: "6px", border: "1px solid grey" }}
+                    type="text"
+                    name=""
+                    value="Town, City, Cabin..."
+                  />
+                </div>
+                <div
+                  className="col-10 row m-4 p-0"
+                  style={{ height: "35px" }}
+                >
+                  <input
+                    className="h-100 px-2"
+                    style={{ borderRadius: "6px", border: "1px solid grey", width: "45%", fontSize: "14px" }}
+                    type="date"
+                    name=""
+                  />
+                  <div
+                    className="d-flex justify-content-center align-items-center h-100 px-2"
+                    style={{ width: "10%" }}
+                  >
+                    /
+                  </div>
+                  <input
+                    className="h-100 px-2"
+                    style={{ borderRadius: "6px", border: "1px solid grey", width: "45%", fontSize: "14px" }}
+                    type="date"
+                    name=""
+                  />
+                </div>
+                <div className="col-12 row m-0 p-0">
+                  {persons}
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            className="d-flex justify-content-center align-items-center flex-column w-100 mx-2"
-            style={{ height: "7%" }}
-          >
-            <div className="d-flex justify-content-center align-items-center rounded" onClick={() => setdropdownActive(!dropdownActive)} style={{ height: "35px", width: "35px", backgroundColor: "black", color: "white", fontSize: "16px", marginRight: "auto" }}>
-              &equiv;
+            <div
+              className="d-flex justify-content-center align-items-center flex-column w-100 mx-2"
+              style={{ height: "7%" }}
+            >
+              <div className="d-flex justify-content-center align-items-center rounded" onClick={() => setdropdownActive(!dropdownActive)} style={{ height: "35px", width: "35px", backgroundColor: "black", color: "white", fontSize: "16px", marginRight: "auto" }}>
+                &equiv;
+              </div>
             </div>
-          </div>
-          <div
-            className="d-flex justify-content-start align-items-center flex-column w-100"
-            style={{ height: "58%" }}
-          >
-            {listItems}
-          </div>
+            <div
+              className="d-flex justify-content-start align-items-center flex-column w-100"
+              style={{ height: "58%" }}
+            >
+              {listItems}
+            </div>
+          </SidebarCollapsed>
         </Sidebar>
       }
     </>
