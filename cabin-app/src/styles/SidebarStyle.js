@@ -26,7 +26,7 @@ export const CardHeader = styled.p`
     background-color: rgba(0, 0, 0, 0.25);
   }
 `
-export const CardBody = styled.li`
+export const FilterList = styled.li`
   background-color: ${colors.whiteDark};
   &.dropdownActive {
     height: 100%;
@@ -35,6 +35,21 @@ export const CardBody = styled.li`
     background-color: ${colors.white};
   }
 `
+
+export const FilterCard = styled.li`
+  @media only screen and (min-width: 0px) and (max-width: 1100px) {
+    margin-right: 3rem;
+    margin-left: 3rem;
+  }
+
+  @media only screen and (min-width: 1400px) and (max-width: 3000px) {
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+  }
+`
+
+//className="col-12 row mx-0 my-0 p-0"
+
 export const CardLabel = styled.div`
   font-weight: 400;
   font-size: 16px;
@@ -90,7 +105,7 @@ export const Sidebar = styled.div`
   align-items: center;
   flex-wrap: wrap;
   top:4.7%;
-  width: 25%;
+  width: 80%;
   height: 95.3vh;
   overflow-y: scroll;
 
@@ -110,7 +125,16 @@ export const Sidebar = styled.div`
       background-color: #363636;
   }
 
-  @media only screen and (min-width: 1400px) and (max-width: 1500px) {
+  @media only screen and (min-width: 0px) and (max-width: 1350px) {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: auto;
+    width: 100%;
+  }
+
+  @media only screen and (min-width: 1350px) and (max-width: 1500px) {
     width: 26%;
   }
 

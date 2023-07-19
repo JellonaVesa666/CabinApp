@@ -12,14 +12,14 @@ function App() {
 
   return (
     <BodyBackground>
-      <header>
+
         <NavigationModule />
-      </header>
+
 
       <div class="container-fluid" style={{ height: "calc(100% - 60px)" }}>
-        <div class="row h-100">
+        <div class="row h-100 d-flex flex-wrap">
           <SidebarModule isActive={sidebarActive} />
-          <main class="col px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+          <main class="col px-md-4">{/* <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div> */}
 
             <section class="py-5 text-center container">
               <div class="row py-lg-5">

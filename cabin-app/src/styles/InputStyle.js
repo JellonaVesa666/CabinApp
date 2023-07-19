@@ -276,6 +276,16 @@ export const ButtonInput = styled.a.attrs({
 export const CounterInput = styled.div.attrs({
   className: "row py-3 m-0",
 })`
+  @media only screen and (max-width: 600px) {
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+
+  @media only screen and (min-width: 600px) and (max-width: 1350px) {
+    padding-right: 6rem;
+    padding-left: 6rem;
+  }
+
   @media only screen and (min-width: 2100px) and (max-width: 3000px) {
     padding-right: 3rem;
     padding-left: 3rem;
@@ -289,8 +299,8 @@ export const CounterValue = styled.div.attrs({
   margin-bottom: 0;
 
   @media only screen and (min-width: 0px) and (max-width: 1100px) {
-    margin-right: 0.25rem;
-    margin-left: 0.25rem;
+    margin-right: 3rem;
+    margin-left: 3rem;
   }
 
   @media only screen and (min-width: 1100px) and (max-width: 1400px) {
