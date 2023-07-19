@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { Slider, RangeInput, RangeValue, SliderBackground, TextInput, OptionItem, MultiSelectInput, CheckInput } from "../styles/InputStyle"
+import { Slider, RangeInput, RangeValue, SliderBackground, TextInput, OptionItem, MultiSelectInput, CheckInput, CounterInput, CounterValue } from "../styles/InputStyle"
 import { useSelector } from "react-redux";
 import { ValidateElement } from "../helpers/HelperFunctions";
 import { colors } from "../styles/Colors";
@@ -49,7 +49,7 @@ export const Counter = (props) => {
   const language = useSelector(state => state.session.language);
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   return (
-    <div className="row px-5 py-3 m-0">
+    <CounterInput>
       {
         result.map(item => {
           //console.log(props.data[props.i][item]?.value);
@@ -74,12 +74,11 @@ export const Counter = (props) => {
                   style={{ borderRadius: "4px", outline: 0, border: "2px solid grey", width: "32px", height: "32px", color: "black", fontSize: "16px" }}
                   onClick={() => props.changeState(Number(props.data[props.i][item].value) > 0 ? Number(props.data[props.i][item].value) - 1 : 0, item)}
                 />
-                <div
-                  className="col-4 d-flex justify-content-center align-items-center m-0 p-0 mx-5"
+                <CounterValue
                   style={{ color: "white", fontSize: "14px", backgroundColor: colors.green, width: "26px", height: "26px", borderRadius: "20px" }}
                 >
                   {props.data[props.i][item]?.value}
-                </div>
+                </CounterValue>
                 <input
                   type="button"
                   value="+"
@@ -92,7 +91,7 @@ export const Counter = (props) => {
           )
         })
       }
-    </div>
+    </CounterInput>
   )
 }
 

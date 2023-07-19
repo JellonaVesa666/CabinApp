@@ -272,3 +272,34 @@ export const ButtonInput = styled.a.attrs({
     border: 0.1rem solid rgba(255, 255, 255, 0.1);
   }
 `
+
+export const CounterInput = styled.div.attrs({
+  className: "row py-3 m-0",
+})`
+  @media only screen and (min-width: 2100px) and (max-width: 3000px) {
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+`
+
+export const CounterValue = styled.div.attrs({
+  className: "col-4 d-flex justify-content-center align-items-center p-0",
+})`
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @media only screen and (min-width: 0px) and (max-width: 1100px) {
+    margin-right: 0.25rem;
+    margin-left: 0.25rem;
+  }
+
+  @media only screen and (min-width: 1100px) and (max-width: 1400px) {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  @media only screen and (min-width: 1400px) and (max-width: 3000px) {
+    margin-right: 3rem;
+    margin-left: 3rem;
+  }
+`
