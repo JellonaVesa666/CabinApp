@@ -187,7 +187,7 @@ export const SidebarModule = ({ isActive }) => {
                 type="button"
                 value={"hae"}
                 className="d-flex justify-content-center align-items-center text-uppercase"
-                style={{color: colors.black, width: "30%", height: "40px", marginLeft: "15%", borderRadius: " 10px 0px 0px 10px" }}
+                style={{ color: colors.black, width: "180px", height: "40px", marginLeft: "45px", borderRadius: " 10px 0px 0px 10px" }}
               />
               <div className="d-flex justify-content-center align-items-center" onClick={() => setdropdownActive(!dropdownActive)} style={{ height: "40px", width: "40px", backgroundColor: "black", color: "white", fontSize: "12px", borderRadius: " 0px 10px 10px 0px" }}>
                 &equiv;
@@ -197,7 +197,7 @@ export const SidebarModule = ({ isActive }) => {
               className="d-flex justify-content-start align-items-center flex-column w-100"
               style={{ height: "58%" }}
             >
-              {listItems}
+              {/* {listItems} */}
             </div>
           </SidebarCollapsed>
         </Sidebar>
