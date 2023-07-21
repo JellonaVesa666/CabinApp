@@ -7,6 +7,8 @@ export const CalendarModule = () => {
   const [currentDays, setCurrentDays] = useState();
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [selected, setSelected] = useState({ 0: "", 1: "", bool: false });
+  const [clicks, setClicks] = useState(1);
 
   const nextMonth = () => {
     if (currentMonth < 11) {
@@ -36,10 +38,10 @@ export const CalendarModule = () => {
     var prevMonth = {};
     const previousMonthLenght = new Date(currentYear, currentMonth, 0).getDate();
     for (var p = previousMonthLenght - startDay + 1; p <= previousMonthLenght; p++) {
-      let item = { "day": p, "month": monthNames[currentMonth], "reserved": "false", "active": false }
+      let item = { "day": p, "month": monthNames[currentMonth], "reserved": "false" }
       prevMonth[p - (previousMonthLenght - startDay + 1)] = item;
 
-      // Set Date Selected
+      // Set Reserved
       let month = monthNames[currentMonth];
       let index = p - (previousMonthLenght - startDay + 1);
       if (reservations[currentYear] && reservations[currentYear][month]) {
@@ -56,11 +58,11 @@ export const CalendarModule = () => {
     // This Month
     const thisMonthLenght = new Date(currentYear, currentMonth + 1, 0).getDate();
     var thisMonth = {};
-    for (var t = 1; t <= thisMonthLenght; t++) {
-      let item = { "day": t, "month": monthNames[currentMonth + 1], "reserved": "false", "active": false }
+    for (var t = 0; t <= thisMonthLenght - 1; t++) {
+      let item = { "day": t + 1, "month": monthNames[currentMonth + 1], "reserved": "false" }
       thisMonth[t + Object.keys(prevMonth).length] = item;
 
-      // Set Date Selected
+      // Set Reserved
       let month = monthNames[currentMonth + 1];
       let index = t + Object.keys(prevMonth).length;
       if (reservations[currentYear] && reservations[currentYear][month]) {
@@ -77,11 +79,11 @@ export const CalendarModule = () => {
     // Next Month
     var start = 42 - Object.keys(prevMonth).length - Object.keys(thisMonth).length;
     var nextMonth = {};
-    for (var n = 42 - start; n < 42; n++) {
-      let item = { "day": start - (42 - n) + 1, "month": monthNames[currentMonth + 2], "reserved": "false", "active": false }
+    for (var n = 41 - start; n < 41; n++) {
+      let item = { "day": start - (41 - n) + 1, "month": monthNames[currentMonth + 2], "reserved": "false" }
       nextMonth[n + 1] = item;
 
-      // Set Date Selected
+      // Set Reserved
       let month = monthNames[currentMonth + 2];
       let index = n + 1;
       if (reservations[currentYear] && reservations[currentYear][month]) {
@@ -106,17 +108,25 @@ export const CalendarModule = () => {
     setCurrentDays(range());
   }, [range]);
 
-  const Test = (day, month) => {
-    Object.keys(currentDays).forEach((index) => {
-      if (currentDays[index].month === month) {
-        if (currentDays[index].reserved === "false") {
-          if (currentDays[index].day === day) {
-            ChangeState(setCurrentDays, currentDays, !currentDays[index].active, "active", index);
-          }
-        }
-      }
-    });
+  const SelectDate = (index) => {
+
+    setClicks(clicks + 1);
+
+    if (selected.bool) {
+      ChangeState(setSelected, index, 0);
+      ChangeState(setSelected, !Boolean(selected.bool), "bool");
+    }
+
+    if (clicks % 2 === 0) {
+      ChangeState(setSelected, !Boolean(selected.bool), "bool");
+      ChangeState(setSelected, index, 1);
+    }
+    else {
+      ChangeState(setSelected, index, 0);
+    }
   }
+
+  console.log(selected);
 
   return (
     <Calendar>
@@ -148,11 +158,13 @@ export const CalendarModule = () => {
               className={`
                   ${currentDays[item].month === monthNames[currentMonth + 1] ? "this" : ""} 
                   ${currentDays[item].reserved === "true" ? "reserved" : ""} 
-                  ${currentDays[item].active ? "active" : ""}
+                  ${(index >= selected[0] && index <= selected[1] && selected.bool && selected[0] < selected[1]) ||
+                  (index <= selected[0] && index >= selected[1] && selected.bool && selected[0] > selected[1])
+                  || (!selected.bool && index === selected[0]) ? "active" : ""}
                 `}
-              onClick={() => Test(currentDays[item].day, currentDays[item].month)}
+              onClick={() => SelectDate(index)}
             >
-              {currentDays[item].day}
+              {currentDays[index].day}
             </Days>
           )
         }

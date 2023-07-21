@@ -22,7 +22,7 @@ export const SidebarModule = ({ isActive }) => {
           className={searchFilters[item].dropdown ? "dropdownActive h-auto col-12 row m-0 p-0" : "h-auto col-12 row m-0 p-0"}
         >
           <FilterCard className="col-12 row mx-0 p-0">
-            <div className="col-1 py-2 " onClick={() => ChangeState(setSearchFilters, searchFilters, false, "isActive", item)}>
+            <div className="col-1 py-2 " onClick={() => ChangeState(setSearchFilters, false, "isActive", item)}>
               -
             </div>
             <CardLabel className=" py-2 col-6">
@@ -30,7 +30,7 @@ export const SidebarModule = ({ isActive }) => {
             </CardLabel>
             <div
               className="d-flex col-5 py-2 justify-content-end"
-              onClick={() => ChangeState(setSearchFilters, searchFilters, !searchFilters[item].dropdown, "dropdown", item)}
+              onClick={() => ChangeState(setSearchFilters, !searchFilters[item].dropdown, "dropdown", item)}
             >
               {searchFilters[item].dropdown ? <>&#9650;</> : <>&#x25BC;</>}
             </div>
@@ -43,7 +43,7 @@ export const SidebarModule = ({ isActive }) => {
                     radius={"6px"}
                     data={searchFilters}
                     i={item}
-                    changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, !value, "value", item, index)}
+                    changeState={(value, index) => ChangeState(setSearchFilters, !value, "value", item, index)}
                   />
                 }
                 {searchFilters[item].type === "option" &&
@@ -53,7 +53,7 @@ export const SidebarModule = ({ isActive }) => {
                       radius={"6px"}
                       data={searchFilters}
                       i={item}
-                      changeState={(event) => ChangeState(setSearchFilters, searchFilters, event.target.value, "value", item)}
+                      changeState={(event) => ChangeState(setSearchFilters, event.target.value, "value", item)}
                     />
                   </>
                 }
@@ -61,7 +61,7 @@ export const SidebarModule = ({ isActive }) => {
                   <Counter
                     data={searchFilters}
                     i={item}
-                    changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", item, index)}
+                    changeState={(value, index) => ChangeState(setSearchFilters, value, "value", item, index)}
                   />
                 }
                 {searchFilters[item].type === "slider" &&
@@ -71,7 +71,7 @@ export const SidebarModule = ({ isActive }) => {
                     maxValue={searchFilters[item].maxValue}
                     minValue={searchFilters[item].minValue}
                     step={searchFilters[item].step}
-                    changeState={(value, property) => ChangeState(setSearchFilters, searchFilters, value, property, item)}
+                    changeState={(value, property) => ChangeState(setSearchFilters, value, property, item)}
                   />
                 }
                 {(() => {
@@ -83,7 +83,7 @@ export const SidebarModule = ({ isActive }) => {
                           i={item}
                           multi={true}
                           color={colors.green}
-                          changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, !value, "value", item, index)}
+                          changeState={(value, index) => ChangeState(setSearchFilters, !value, "value", item, index)}
                         />
                       )
                     } else if (searchFilters[item].type.split(/(?=[A-Z])/)[1] === "Single") {
@@ -93,7 +93,7 @@ export const SidebarModule = ({ isActive }) => {
                           i={item}
                           single={true}
                           color={colors.green}
-                          changeState={(index) => ChangeState(setSearchFilters, searchFilters, index, "value", item)}
+                          changeState={(index) => ChangeState(setSearchFilters, index, "value", item)}
                         />
                       )
                     }
@@ -123,7 +123,7 @@ export const SidebarModule = ({ isActive }) => {
               data={searchFilters}
               placeholder={searchFilters[item].info[language].translation}
               value={searchFilters[item].info[language].value}
-              changeState={(value) => ChangeState(setSearchFilters, searchFilters, value, "value", item)}
+              changeState={(value) => ChangeState(setSearchFilters, value, "value", item)}
             />
           }
           {searchFilters[item].type === "date" &&
@@ -139,7 +139,7 @@ export const SidebarModule = ({ isActive }) => {
                 data={searchFilters}
                 placeholder={searchFilters[item].info[language].translation}
                 value={searchFilters[item].info[language].value}
-                changeState={(value) => ChangeState(setSearchFilters, searchFilters, value, "value", item)}
+                changeState={(value) => ChangeState(setSearchFilters, value, "value", item)}
               />
               {searchFilters[item].spacer === "doubleArrow" &&
                 <div className="d-flex justify-content-center align-items-center mb-0" style={{ width: "10%", height: "100%", fontSize: "30px" }}>
@@ -152,7 +152,7 @@ export const SidebarModule = ({ isActive }) => {
             <Counter
               data={searchFilters}
               i={item}
-              changeState={(value, index) => ChangeState(setSearchFilters, searchFilters, value, "value", item, index)}
+              changeState={(value, index) => ChangeState(setSearchFilters, value, "value", item, index)}
             />
           }
         </>
@@ -164,7 +164,7 @@ export const SidebarModule = ({ isActive }) => {
 
   return (
     <>
-      <Modal show={modalActive} options={searchFilters} handleClose={() => setModalActive(false)} setActive={(index) => ChangeState(setSearchFilters, searchFilters, !searchFilters[index].isActive, "isActive", index)}>
+      <Modal show={modalActive} options={searchFilters} handleClose={() => setModalActive(false)} setActive={(index) => ChangeState(setSearchFilters, !searchFilters[index].isActive, "isActive", index)}>
         <p>Modal</p>
       </Modal>
       {isActive &&

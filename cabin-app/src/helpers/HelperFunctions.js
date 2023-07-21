@@ -1,21 +1,21 @@
-export const ChangeState = (State, initValues, newValue, property, index1, index2) => {
+export const ChangeState = (State, newValue, property, index1, index2) => {
   if (!index1 && !index2)
-    State({ ...initValues, [property]: newValue })
+    State((prevState) => ({ ...prevState, [property]: newValue }))
   else if (index2 === null || index2 === undefined)
-    State({
-      ...initValues, [index1]: { ...initValues[index1], [property]: newValue },
-    });
+    State((prevState) => ({
+      ...prevState, [index1]: { ...prevState[index1], [property]: newValue },
+    }));
   else
-    State({
-      ...initValues,
+    State((prevState) => ({
+      ...prevState,
       [index1]: {
-        ...initValues[index1],
+        ...prevState[index1],
         [index2]: {
-          ...initValues[index1][index2],
+          ...prevState[index1][index2],
           [property]: newValue
         },
       },
-    });
+    }));
 }
 
 export const ValidateElement = (element, type) => {

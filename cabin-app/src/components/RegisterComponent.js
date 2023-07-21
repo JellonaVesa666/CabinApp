@@ -54,31 +54,31 @@ export default function RegisterComponent(props) {
 
     //Name
     if (formData.fullName.value.length === 0) {
-      ChangeState(setFormData, formData, "Cannot be empty", "errors", "fullName");
+      ChangeState(setFormData, "Cannot be empty", "errors", "fullName");
       isValid = false;
     }
     else {
       const fullNameRegex = /^\w+\s\w+$/gm;
 
       if (!fullNameRegex.test(formData.fullName.value)) {
-        ChangeState(setFormData, formData, "Wrong format ! make sure to type whole name", "errors", "fullName");
+        ChangeState(setFormData, "Wrong format ! make sure to type whole name", "errors", "fullName");
         isValid = false;
       }
     }
     //Username
     if (formData.username.value.length === 0) {
-      ChangeState(setFormData, formData, "Cannot be empty", "errors", "username");
+      ChangeState(setFormData, "Cannot be empty", "errors", "username");
       isValid = false;
     }
     else {
       if (!formData.username.value.match(/^[a-zA-Z]+$/)) {
-        ChangeState(setFormData, formData, "Only letters are accepted", "errors", "username");
+        ChangeState(setFormData, "Only letters are accepted", "errors", "username");
         isValid = false;
       }
     }
     //Email
     if (formData.email.value.length === 0) {
-      ChangeState(setFormData, formData, "Cannot be empty", "errors", "email");
+      ChangeState(setFormData, "Cannot be empty", "errors", "email");
       isValid = false;
     }
     else {
@@ -91,64 +91,64 @@ export default function RegisterComponent(props) {
         lastDotPos > 2 &&
         formData.email.value.length - lastDotPos > 2
       )) {
-        ChangeState(setFormData, formData, "Email is not valid", "errors", "email");
+        ChangeState(setFormData, "Email is not valid", "errors", "email");
         isValid = false;
       }
     }
     if (formData.emailConfirm.value.length === 0) {
-      ChangeState(setFormData, formData, "Cannot be empty", "errors", "emailConfirm");
+      ChangeState(setFormData, "Cannot be empty", "errors", "emailConfirm");
       isValid = false;
     }
     else {
       if (formData.email.value !== formData.emailConfirm.value) {
-        ChangeState(setFormData, formData, "Emails do not match", "errors", "emailConfirm");
+        ChangeState(setFormData, "Emails do not match", "errors", "emailConfirm");
         isValid = false;
       }
     }
     // Phone
     if (formData.countryCode.value.length === 0 || formData.phone.value.length === 0) {
-      ChangeState(setFormData, formData, "Cannot be empty", "errors", "phone");
+      ChangeState(setFormData, "Cannot be empty", "errors", "phone");
       isValid = false;
     }
     else {
       const phoneRegex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
       if (!phoneRegex.test(formData.countryCode.value + formData.phone.value)) {
-        ChangeState(setFormData, formData, "Invalid phone number", "errors", "phone");
+        ChangeState(setFormData, "Invalid phone number", "errors", "phone");
         isValid = false;
       }
     }
     // Address
     if (formData.address.value.length === 0) {
-      ChangeState(setFormData, formData, "Cannot be empty", "errors", "address");
+      ChangeState(setFormData, "Cannot be empty", "errors", "address");
       isValid = false;
     }
     else {
       const adressRegex = /^\s*\S+(?:\s+\S+)/;
       if (!adressRegex.test(formData.address.value)) {
-        ChangeState(setFormData, formData, "Invalid Address", "errors", "address");
+        ChangeState(setFormData, "Invalid Address", "errors", "address");
         isValid = false;
       }
     }
     // Postal Code
     if (formData.postalCode.value.length === 0) {
-      ChangeState(setFormData, formData, "Cannot be empty", "errors", "postalCode");
+      ChangeState(setFormData, "Cannot be empty", "errors", "postalCode");
       isValid = false;
     }
     else {
       const postalRegex = /^\d{5}(?:[-\s]\d{4})?$/;
       if (!postalRegex.test(formData.postalCode.value)) {
-        ChangeState(setFormData, formData, "Invalid postal code", "errors", "postalCode");
+        ChangeState(setFormData, "Invalid postal code", "errors", "postalCode");
         isValid = false;
       }
     }
     // Role
     if (formData.role.value === "0") {
-      ChangeState(setFormData, formData, "Role is required", "errors", "role");
+      ChangeState(setFormData, "Role is required", "errors", "role");
       isValid = false;
     }
     // Password
     if (formData.password.value.length === 0) {
-      ChangeState(setFormData, formData, "Cannot be empty", "errors", "password");
+      ChangeState(setFormData, "Cannot be empty", "errors", "password");
       isValid = false;
     }
     else {
@@ -159,23 +159,23 @@ export default function RegisterComponent(props) {
       // Minimum eight in length .{8,} (with the anchors)
       const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
       if (!passwordRegex.test(formData.password.value)) {
-        ChangeState(setFormData, formData, "Password does not meet requirements", "errors", "password");
+        ChangeState(setFormData, "Password does not meet requirements", "errors", "password");
         isValid = false;
       }
     }
     if (formData.passwordConfirm.value.length === 0) {
-      ChangeState(setFormData, formData, "Cannot be empty", "errors", "passwordConfirm")
+      ChangeState(setFormData, "Cannot be empty", "errors", "passwordConfirm")
       isValid = false;
     }
     else {
       if (formData.password.value !== formData.passwordConfirm.value) {
-        ChangeState(setFormData, formData, "Passwords do not match", "errors", "passwordConfirm");
+        ChangeState(setFormData, "Passwords do not match", "errors", "passwordConfirm");
         isValid = false;
       }
     }
     // Terms of Service
     if (formData.termsOfService.value === false) {
-      ChangeState(setFormData, formData, "Please agree the terms of Service", "errors", "termsOfService");
+      ChangeState(setFormData, "Please agree the terms of Service", "errors", "termsOfService");
       isValid = false;
     }
 
@@ -206,7 +206,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={item}
-              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+              changeState={(event) => ChangeState(setFormData, event.target.value, "value", item)}
             />
           </div>
         )
@@ -229,7 +229,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={item}
-              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+              changeState={(event) => ChangeState(setFormData, event.target.value, "value", item)}
             />
           </div>
         )
@@ -251,7 +251,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={item}
-              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+              changeState={(event) => ChangeState(setFormData, event.target.value, "value", item)}
             />
           </div>
         )
@@ -276,7 +276,7 @@ export default function RegisterComponent(props) {
             padding={"0px 20px 0px 20px"}
             data={formData}
             i={item}
-            changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+            changeState={(event) => ChangeState(setFormData, event.target.value, "value", item)}
           />
         </div>
       )
@@ -299,7 +299,7 @@ export default function RegisterComponent(props) {
             height={"40px"}
             data={formData}
             i={item}
-            changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+            changeState={(event) => ChangeState(setFormData, event.target.value, "value", item)}
           />
         </div>
       )
@@ -323,7 +323,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={item}
-              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+              changeState={(event) => ChangeState(setFormData, event.target.value, "value", item)}
             />
           </div>
         )
@@ -347,7 +347,7 @@ export default function RegisterComponent(props) {
               height={"40px"}
               data={formData}
               i={item}
-              changeState={(event) => ChangeState(setFormData, formData, event.target.value, "value", item)}
+              changeState={(event) => ChangeState(setFormData, event.target.value, "value", item)}
             />
           </div>
         )
@@ -360,7 +360,7 @@ export default function RegisterComponent(props) {
           data={formData}
           i={item}
           color={colors.navy}
-          changeState={() => ChangeState(setFormData, formData, !formData[item].value, "value", item)}
+          changeState={() => ChangeState(setFormData, formData[item].value, "value", item)}
         />
       )
     }
