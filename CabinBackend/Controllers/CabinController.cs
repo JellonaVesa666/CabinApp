@@ -20,11 +20,18 @@ namespace CabinBackend.Controllers
             _context = context;
         }
 
-        // GET: api/<CabinController>
+        // GET: api/
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<IEnumerable<Cabin>>> GetCabins()
         {
-            return new string[] { "value1", "value2" };
+            var cabin = await _context.Cabin.ToListAsync();
+
+            if (cabin == null)
+            {
+                return NotFound("Cabins not found");
+            }
+
+            return cabin;
         }
 
         // GET api/<CabinController>/5

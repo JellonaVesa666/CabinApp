@@ -25,11 +25,13 @@ namespace CabinBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            if (_context.Users == null)
-            {
-                return NotFound("dasdas");
-            }
             var employee = await _context.Users.ToListAsync();
+
+            if (employee == null)
+            {
+                return NotFound("Users not found");
+            }
+ 
             return employee;
         }
 
