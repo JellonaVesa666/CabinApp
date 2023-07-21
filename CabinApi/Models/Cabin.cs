@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace CabinApi.Models
@@ -57,8 +59,12 @@ namespace CabinApi.Models
 
 
         // -- Price Details -- /
+        [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
+
+        [Column(TypeName = "decimal(18,4)")]
         public decimal Discount { get; set; }
+
         public float DiscountPercent { get; set; }
         [Required]
         public DateTime discountExpriration { get; set; }

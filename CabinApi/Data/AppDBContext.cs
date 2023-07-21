@@ -7,7 +7,9 @@ namespace CabinApi.Data
     {
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) { }
 
+        // Classes used by ef migrations
         public DbSet<User> Users { get; set; }
+        public DbSet<Cabin> Cabin { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
