@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace CabinApi.Models
+namespace CabinBackend.Models
 {
     public class User
     {

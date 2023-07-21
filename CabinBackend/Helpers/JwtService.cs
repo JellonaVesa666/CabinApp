@@ -2,7 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
-namespace CabinApi.Helpers
+namespace CabinBackend.Helpers
 {
     public class JwtService
     {

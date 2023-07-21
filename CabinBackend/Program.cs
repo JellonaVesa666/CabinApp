@@ -1,5 +1,5 @@
-using CabinApi.Data;
-using CabinApi.Helpers;
+using CabinBackend.Data;
+using CabinBackend.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +14,6 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 { 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); 
 });
-
 
 var app = builder.Build();
 

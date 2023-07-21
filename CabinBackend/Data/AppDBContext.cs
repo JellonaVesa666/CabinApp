@@ -1,9 +1,9 @@
-﻿using CabinApi.Models;
+﻿using CabinBackend.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CabinApi.Data
+namespace CabinBackend.Data
 {
-    public class AppDBContext: DbContext
+    public class AppDBContext : DbContext
     {
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) { }
 
@@ -16,7 +16,7 @@ namespace CabinApi.Data
         {
             // Sets email unique
             // Restricts usage of same email address
-            modelBuilder.Entity<User>(entity => 
+            modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(user => user.Email).IsUnique();
             });

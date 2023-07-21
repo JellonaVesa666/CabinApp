@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace CabinApi.Migrations
+namespace CabinBackend.Migrations
 {
     /// <inheritdoc />
     public partial class CreateUsersTable : Migration

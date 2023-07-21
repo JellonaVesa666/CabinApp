@@ -1,4 +1,4 @@
-﻿namespace CabinApi.DTOs
+﻿namespace CabinBackend.DTOs
 {
     public class LoginDTO
     {

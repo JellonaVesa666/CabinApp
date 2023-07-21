@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CabinApi.Data;
-using CabinApi.Models;
+using CabinBackend.Models;
+using CabinBackend.Data;
 
-namespace CabinApi.Controllers
+namespace CabinBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -33,7 +33,7 @@ namespace CabinApi.Controllers
             return employee;
         }
 
-        // GET: api/Users/5
+        // GET: api/Users
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
@@ -51,7 +51,7 @@ namespace CabinApi.Controllers
             return user;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
@@ -97,7 +97,7 @@ namespace CabinApi.Controllers
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Users
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {

@@ -1,14 +1,14 @@
-﻿using CabinApi.Data;
-using CabinApi.DTOs;
-using CabinApi.Helpers;
-using CabinApi.Models;
+﻿using CabinBackend.Data;
+using CabinBackend.DTOs;
+using CabinBackend.Helpers;
+using CabinBackend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text.Json;
 
 
-namespace CabinApi.Controllers
+namespace CabinBackend.Controllers
 {
     [Route("api")]
     [ApiController]
@@ -47,6 +47,7 @@ namespace CabinApi.Controllers
             _context.Add(user);
             await _context.SaveChangesAsync();
 
+            // Stringify user
             byte[] utf8bytesJson = JsonSerializer.SerializeToUtf8Bytes(user);
             string strJson = System.Text.Encoding.UTF8.GetString(utf8bytesJson);
             return Ok($"success added user: {strJson}");
@@ -82,7 +83,7 @@ namespace CabinApi.Controllers
             byte[] utf8bytesJson = JsonSerializer.SerializeToUtf8Bytes(user);
             string strJson = System.Text.Encoding.UTF8.GetString(utf8bytesJson);
 
-            return Ok(new {message = $"Logged in successfully{strJson}" });
+            return Ok(new { message = $"Logged in successfully{strJson}" });
         }
 
         // GET: api/user
@@ -110,9 +111,9 @@ namespace CabinApi.Controllers
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-                Response.Cookies.Delete("jwt");
+            Response.Cookies.Delete("jwt");
 
-                return Ok(new { message = "Logged out successfully" });
+            return Ok(new { message = "Logged out successfully" });
         }
     }
 }

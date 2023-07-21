@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace CabinApi.Migrations
+namespace CabinBackend.Migrations
 {
     /// <inheritdoc />
     public partial class CreateCabinTable : Migration
@@ -39,7 +39,7 @@ namespace CabinApi.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     Discount = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     DiscountPercent = table.Column<float>(type: "real", nullable: false),
-                    discountExpriration = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DiscountExpriration = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DiscountMultiplier = table.Column<int>(type: "int", nullable: false),
                     DiscountFromDays = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),

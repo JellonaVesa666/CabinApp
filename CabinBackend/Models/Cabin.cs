@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace CabinApi.Models
+namespace CabinBackend.Models
 {
     public class Cabin
     {
@@ -67,7 +67,7 @@ namespace CabinApi.Models
 
         public float DiscountPercent { get; set; }
         [Required]
-        public DateTime discountExpriration { get; set; }
+        public DateTime DiscountExpriration { get; set; }
         public int DiscountMultiplier { get; set; }
         public int DiscountFromDays { get; set; }
 
