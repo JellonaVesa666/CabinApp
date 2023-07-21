@@ -34,8 +34,8 @@ namespace CabinBackend.Controllers
             return "value";
         }
 
-        // POST api/<CabinController>
-        [HttpPost]
+        // POST api/>
+        [HttpPost()]
         public async Task<ActionResult<IEnumerable<Cabin>>> Register(CabinDTO dto)
         {
             var cabin = new Cabin

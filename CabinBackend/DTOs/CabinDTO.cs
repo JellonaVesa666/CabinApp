@@ -17,7 +17,7 @@
         public float Squares { get; set; }
         public float PlotSize { get; set; }
         public int Type { get; set; }
-        public int Features { get; set; }
+        public string Features { get; set; } = string.Empty;
         public string? Description { get; set; } = string.Empty;
         public TimeSpan? ArrivalTime { get; set; }
         public TimeSpan? DepartureTime { get; set; }

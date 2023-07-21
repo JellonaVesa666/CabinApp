@@ -52,7 +52,7 @@ namespace CabinBackend.Models
 
         // -- Features -- /
         public int Type { get; set; }
-        public int Features { get; set; }
+        public string? Features { get; set; }
         public string? Description { get; set; }
         public TimeSpan? ArrivalTime { get; set; }
         public TimeSpan? DepartureTime { get; set; }
