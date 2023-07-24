@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import backgroundGray from "../images/background_Gray.png";
+import backgroundGray from "../images/background_gray.png";
 import logoLight from "../images/logo_Light.png";
 
 export const BodyBackground = styled.div`
