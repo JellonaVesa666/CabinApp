@@ -21,12 +21,14 @@ export const Modal = ({ closeModal, setActive, show, options }) => {
 
   return (
     <ModalContent className={show.toString()} >
-      <CalendarModule/>
-
+      <div className="d-flex justify-content-evenly align-items-center ">
+        <CalendarModule />
+        <CalendarModule />
+      </div>
       {/*       <div style={{ marginTop: "50px" }}>
         {Object.keys(options).map(key => <Filter key={key} index={key} />)}
       </div> */}
-{/*       <div
+      {/*       <div
         style={{
           display: "flex",
           justifyContent: "center",

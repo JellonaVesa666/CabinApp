@@ -143,18 +143,20 @@ export const CalendarModule = ({ openModal }) => {
 
 
   return (
-    <Calendar>
+    <div
+      className="col-5"
+    >
       <>
         <MonthPanel>
           <p
-            style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
+            style={{ fontSize: "16px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
             onClick={() => prevMonth()}
           >
             &#9664;
           </p>
-          <p style={{ fontSize: "30px", color: "black", margin: "auto" }}>{monthNames[currentMonth + 1].toUpperCase()} / {currentYear}</p>
+          <p style={{ fontSize: "16px", color: "black", margin: "auto" }}>{monthNames[currentMonth + 1].toUpperCase()} / {currentYear}</p>
           <p
-            style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
+            style={{ fontSize: "16px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
             onClick={() => nextMonth()}
           >
             &#9654;
@@ -186,6 +188,6 @@ export const CalendarModule = ({ openModal }) => {
           )}
         </DayGrid>
       </>
-    </Calendar>
+    </div>
   )
 }
