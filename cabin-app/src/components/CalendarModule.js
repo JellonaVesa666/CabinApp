@@ -3,12 +3,13 @@ import { Calendar, MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputSt
 import { dayNames, monthNames, reservations } from "../mockup/calendarData";
 import { ChangeState } from "../helpers/HelperFunctions";
 
-export const CalendarModule = () => {
+export const CalendarModule = ({ openModal }) => {
   const [currentDays, setCurrentDays] = useState();
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-  const [selected, setSelected] = useState({ 0: "", 1: "", bool: false });
+  const [selected, setSelected] = useState({ 0: { "index": "", "day": "", "month": "", "year": "" }, 1: { "index": "", "day": "", "month": "", "year": "" }, bool: false });
   const [clicks, setClicks] = useState(1);
+  const [dropdownActive, setDropdownActive] = useState(false);
 
   const nextMonth = () => {
     if (currentMonth < 11) {
@@ -38,7 +39,7 @@ export const CalendarModule = () => {
     var prevMonth = {};
     const previousMonthLenght = new Date(currentYear, currentMonth, 0).getDate();
     for (var p = previousMonthLenght - startDay + 1; p <= previousMonthLenght; p++) {
-      let item = { "day": p, "month": monthNames[currentMonth], "reserved": "false" }
+      let item = { "day": p, "month": currentMonth, "reserved": false }
       prevMonth[p - (previousMonthLenght - startDay + 1)] = item;
 
       // Set Reserved
@@ -59,7 +60,7 @@ export const CalendarModule = () => {
     const thisMonthLenght = new Date(currentYear, currentMonth + 1, 0).getDate();
     var thisMonth = {};
     for (var t = 0; t <= thisMonthLenght - 1; t++) {
-      let item = { "day": t + 1, "month": monthNames[currentMonth + 1], "reserved": "false" }
+      let item = { "day": t + 1, "month": currentMonth + 1, "reserved": false }
       thisMonth[t + Object.keys(prevMonth).length] = item;
 
       // Set Reserved
@@ -80,7 +81,7 @@ export const CalendarModule = () => {
     var start = 42 - Object.keys(prevMonth).length - Object.keys(thisMonth).length;
     var nextMonth = {};
     for (var n = 41 - start; n < 41; n++) {
-      let item = { "day": start - (41 - n) + 1, "month": monthNames[currentMonth + 2], "reserved": "false" }
+      let item = { "day": start - (41 - n) + 1, "month": currentMonth + 2, "reserved": false }
       nextMonth[n + 1] = item;
 
       // Set Reserved
@@ -112,64 +113,79 @@ export const CalendarModule = () => {
 
     setClicks(clicks + 1);
 
+    var month = (currentDays[index].month === 0) ? (12) : ((currentDays[index].month === 13) ? (1) : (currentDays[index].month));
+    var year = (currentDays[index].month === 0) ? (currentYear - 1) : ((currentDays[index].month === 13) ? (currentYear + 1) : (currentYear));
+
     if (selected.bool) {
-      ChangeState(setSelected, index, 0);
+      ChangeState(setSelected, index, "index", 0);
+      ChangeState(setSelected, currentDays[index].day, "day", 0);
+      ChangeState(setSelected, month, "month", 0);
+      ChangeState(setSelected, year, "year", 0);
       ChangeState(setSelected, !Boolean(selected.bool), "bool");
     }
 
     if (clicks % 2 === 0) {
       ChangeState(setSelected, !Boolean(selected.bool), "bool");
-      ChangeState(setSelected, index, 1);
+      ChangeState(setSelected, index, "index", 1);
+      ChangeState(setSelected, currentDays[index].day, "day", 1);
+      ChangeState(setSelected, month, "month", 1);
+      ChangeState(setSelected, year, "year", 1);
     }
     else {
-      ChangeState(setSelected, index, 0);
+      ChangeState(setSelected, index, "index", 0);
+      ChangeState(setSelected, currentDays[index].day, "day", 0);
+      ChangeState(setSelected, month, "month", 0);
+      ChangeState(setSelected, year, "year", 0);
     }
   }
 
-  console.log(selected);
+  console.log(dropdownActive);
+
 
   return (
     <Calendar>
-      <MonthPanel>
-        <p
-          style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
-          onClick={() => prevMonth()}
-        >
-          &#9664;
-        </p>
-        <p style={{ fontSize: "30px", color: "black", margin: "auto" }}>{monthNames[currentMonth + 1].toUpperCase()} / {currentYear}</p>
-        <p
-          style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
-          onClick={() => nextMonth()}
-        >
-          &#9654;
-        </p>
-      </MonthPanel>
-      <WeekGrid>
-        {dayNames.map((item, index) =>
-          <p style={{ color: "black" }} key={index}>{item.toUpperCase()}</p>
-        )}
-      </WeekGrid>
-      <DayGrid>
-        {currentDays && Object.keys(currentDays).map((item, index) => {
-          return (
-            <Days
-              key={index}
-              className={`
-                  ${currentDays[item].month === monthNames[currentMonth + 1] ? "this" : ""} 
-                  ${currentDays[item].reserved === "true" ? "reserved" : ""} 
-                  ${(index >= selected[0] && index <= selected[1] && selected.bool && selected[0] < selected[1]) ||
-                  (index <= selected[0] && index >= selected[1] && selected.bool && selected[0] > selected[1])
-                  || (!selected.bool && index === selected[0]) ? "active" : ""}
-                `}
-              onClick={() => SelectDate(index)}
-            >
-              {currentDays[index].day}
-            </Days>
-          )
-        }
-        )}
-      </DayGrid>
-    </Calendar >
+      <>
+        <MonthPanel>
+          <p
+            style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
+            onClick={() => prevMonth()}
+          >
+            &#9664;
+          </p>
+          <p style={{ fontSize: "30px", color: "black", margin: "auto" }}>{monthNames[currentMonth + 1].toUpperCase()} / {currentYear}</p>
+          <p
+            style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
+            onClick={() => nextMonth()}
+          >
+            &#9654;
+          </p>
+        </MonthPanel>
+        <WeekGrid>
+          {dayNames.map((item, index) =>
+            <p style={{ color: "black" }} key={index}>{item.toUpperCase()}</p>
+          )}
+        </WeekGrid>
+        <DayGrid>
+          {currentDays && Object.keys(currentDays).map((item, index) => {
+            return (
+              <Days
+                key={index}
+                className={`
+                ${currentDays[item].month === currentMonth + 1 ? "this" : ""} 
+                ${currentDays[item].reserved === "true" ? "reserved" : ""} 
+                ${(index >= selected[0].index && index <= selected[1].index && selected.bool && selected[0].index < selected[1].index && !currentDays[item].reserved) ||
+                    (index <= selected[0].index && index >= selected[1].index && selected.bool && selected[0].index > selected[1].index && !currentDays[item].reserved)
+                    || (!selected.bool && index === selected[0].index && !currentDays[item].reserved) ? "active" : ""}
+              `}
+                onClick={() => SelectDate(index)}
+              >
+                {currentDays[index].day}
+              </Days>
+            )
+          }
+          )}
+        </DayGrid>
+      </>
+    </Calendar>
   )
 }

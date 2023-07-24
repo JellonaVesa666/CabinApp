@@ -6,6 +6,7 @@ import { FilterList, FilterCard, CardLabel, Sidebar, SidebarCollapsed } from "..
 import { searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
+import { CalendarModule } from "./CalendarModule";
 
 export const SidebarModule = ({ isActive }) => {
   const language = useSelector(state => state.session.language);
@@ -16,7 +17,6 @@ export const SidebarModule = ({ isActive }) => {
   const dynamicFilters = Object.keys(searchFilters).map(item => {
     if (searchFilters[item].isActive)
       return (
-
         <FilterList
           key={Object.keys(searchFilters).indexOf(item)}
           className={searchFilters[item].dropdown ? "dropdownActive h-auto col-12 row m-0 p-0" : "h-auto col-12 row m-0 p-0"}
@@ -127,26 +127,33 @@ export const SidebarModule = ({ isActive }) => {
             />
           }
           {searchFilters[item].type === "date" &&
-            <>
-              <InputField
-                type={searchFilters[item].type}
-                width={"35%"}
-                height={"40px"}
-                radius={"6px"}
-                margintop={"1rem"}
-                marginbottom={"1rem"}
-                i={item}
-                data={searchFilters}
-                placeholder={searchFilters[item].info[language].translation}
-                value={searchFilters[item].info[language].value}
-                changeState={(value) => ChangeState(setSearchFilters, value, "value", item)}
-              />
-              {searchFilters[item].spacer === "doubleArrow" &&
-                <div className="d-flex justify-content-center align-items-center mb-0" style={{ width: "10%", height: "100%", fontSize: "30px" }}>
-                  ⬌
-                </div>
-              }
-            </>
+            <div
+              className="row d-flex justify-content-center align-items-center"
+              style={{ height: "100px" }}
+            >
+              <div
+                className="col-4 d-flex justify-content-center align-items-center"
+                style={{ height: "30%", border: "1px solid grey", borderRadius: "6px", backgroundColor: "white" }}
+                onClick={() => setModalActive(!modalActive)}
+              >
+                {29 + "/" + 1 + "/" + 1991}
+                {/* {selected[0].day + "/" + selected[0].month + "/" + selected[0].year} */}
+              </div>
+              <div
+                className="col-2 d-flex justify-content-center align-items-center"
+              >
+                /
+                {/* {selected[1].day + "/" + selected[1].month + "/" + selected[1].year} */}
+              </div>
+              <div
+                className="col-4 d-flex justify-content-center align-items-center"
+                style={{ height: "30%", border: "1px solid grey", borderRadius: "6px", backgroundColor: "white" }}
+                onClick={() => setModalActive(!modalActive)}
+              >
+                {29 + "/" + 1 + "/" + 1991}
+                {/* {selected[0].day + "/" + selected[0].month + "/" + selected[0].year} */}
+              </div>
+            </div>
           }
           {searchFilters[item].type === "counter" &&
             <Counter
@@ -164,7 +171,7 @@ export const SidebarModule = ({ isActive }) => {
 
   return (
     <>
-      <Modal show={modalActive} options={searchFilters} handleClose={() => setModalActive(false)} setActive={(index) => ChangeState(setSearchFilters, !searchFilters[index].isActive, "isActive", index)}>
+      <Modal show={modalActive} options={searchFilters} closeModal={() => setModalActive(false)} setActive={(index) => ChangeState(setSearchFilters, !searchFilters[index].isActive, "isActive", index)}>
         <p>Modal</p>
       </Modal>
       {isActive &&

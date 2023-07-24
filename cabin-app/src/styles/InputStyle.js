@@ -87,24 +87,24 @@ export const RangeValue = styled.input.attrs({
 
 // Calendar
 export const Calendar = styled.div`
-  width: 20%;
-  height: 25%;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  border-radius: 10px;
-  background-color: ${colors.white};
-  margin: 0;
-  padding: 0;
+  margin: auto;
+  width: 90%;
+  height: 90%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  border-radius: 4px;
+  border: 1px solid ${colors.grey};
+  background-color: ${colors.whiteLight};
 `
 export const MonthPanel = styled.div`
-  height: 20%;
   padding-left: 3%;
   padding-right: 3%;
+  padding-top: 6px;
+  padding-bottom: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
 `
 export const WeekGrid = styled.div`
-  height: 10%;
   display: flex;
   padding: 6px;
   justify-content: center;
@@ -114,8 +114,9 @@ export const WeekGrid = styled.div`
   text-align: center;
 `
 export const DayGrid = styled.div`
-  height: 70%;
-  padding: 6px;
+  padding-right: 6px;
+  padding-left: 6px;
+  padding-bottom: 20px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   color: white;
@@ -124,6 +125,7 @@ export const Days = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 40px;
   color: ${colors.darkWhite};
   margin: 0;
   padding: 0;

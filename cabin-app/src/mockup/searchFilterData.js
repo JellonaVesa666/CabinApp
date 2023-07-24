@@ -293,32 +293,9 @@ export const searchParameters = {
       },
     },
   },
-  arrivalDate: {
+  reservationDate: {
     type: "date",
     static: true,
-    value: "",
-    spacer: "doubleArrow",
-    info: {
-      fi: {
-        translation: "",
-      },
-      en: {
-        translation: "",
-      },
-    },
-  },
-  departureDate: {
-    type: "date",
-    static: true,
-    value: "",
-    info: {
-      fi: {
-        translation: "",
-      },
-      en: {
-        translation: "",
-      },
-    },
   },
   persons: {
     type: "counter",
@@ -381,3 +358,35 @@ export const searchParameters = {
     },
   },
 };
+
+
+
+/* arrivalDate: {
+  type: "date",
+  static: true,
+  value: "",
+  spacer: "doubleArrow",
+  info: {
+    fi: {
+      translation: "",
+    },
+    en: {
+      translation: "",
+    },
+  },
+},
+
+
+departureDate: {
+  type: "date",
+  static: true,
+  value: "",
+  info: {
+    fi: {
+      translation: "",
+    },
+    en: {
+      translation: "",
+    },
+  },
+}, */

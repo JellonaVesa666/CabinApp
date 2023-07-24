@@ -7,9 +7,12 @@ export const ModalContent = styled.section`
   left: 0;
   border-radius: 50px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  border-radius: 20px;
-  width: 12.5%;
+  border-radius: 6px;
+  width: 20%;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   height: auto;
+  background-color: ${colors.white};
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);

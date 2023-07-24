@@ -1,11 +1,13 @@
 export const ChangeState = (State, newValue, property, index1, index2) => {
-  if (!index1 && !index2)
+  if (index1 === undefined && index2 === undefined) {
     State((prevState) => ({ ...prevState, [property]: newValue }))
-  else if (index2 === null || index2 === undefined)
+  }
+  else if (index2 === null || index2 === undefined) {
     State((prevState) => ({
       ...prevState, [index1]: { ...prevState[index1], [property]: newValue },
     }));
-  else
+  }
+  else {
     State((prevState) => ({
       ...prevState,
       [index1]: {
@@ -16,6 +18,7 @@ export const ChangeState = (State, newValue, property, index1, index2) => {
         },
       },
     }));
+  }
 }
 
 export const ValidateElement = (element, type) => {

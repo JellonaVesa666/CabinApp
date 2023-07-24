@@ -21,16 +21,16 @@ export default function NavigationModule() {
       className="navbar sticky-top flex-md-nowrap shadow navbar-expand-lg"
       style={{ height: "60px", backgroundColor: colors.white }}
     >
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
-      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+      <button className="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
       </button>
-      <div class="navbar-collapse collapse" id="navbarCollapse">
+      <div className="navbar-collapse collapse" id="navbarCollapse">
         {
-          Object.keys(navData).reverse().map((type) => {
+          Object.keys(navData).reverse().map(type => {
             if (type === "language") {
               return (
-                <div className="dropdown mx-4">
+                <div key={Object.keys(navData).indexOf(type)} className="dropdown mx-4">
                   <button className="btn dropdown-toggle border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {session.language.toUpperCase()}
                   </button>
