@@ -6,7 +6,6 @@ import { FilterList, FilterCard, CardLabel, Sidebar, SidebarCollapsed } from "..
 import { searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
-import { CalendarModule } from "./CalendarModule";
 
 export const SidebarModule = ({ isActive }) => {
   const language = useSelector(state => state.session.language);
@@ -23,7 +22,7 @@ export const SidebarModule = ({ isActive }) => {
         >
           <FilterCard className="col-12 row mx-0 p-0">
             <div className="col-1 py-2 " onClick={() => ChangeState(setSearchFilters, false, "isActive", item)}>
-              -
+              {/* - */}
             </div>
             <CardLabel className=" py-2 col-6">
               {ValidateElement(searchFilters[item]?.info?.[language]?.translation, "label")}
@@ -32,7 +31,7 @@ export const SidebarModule = ({ isActive }) => {
               className="d-flex col-5 py-2 justify-content-end"
               onClick={() => ChangeState(setSearchFilters, !searchFilters[item].dropdown, "dropdown", item)}
             >
-              {searchFilters[item].dropdown ? <>&#9650;</> : <>&#x25BC;</>}
+              {/* {searchFilters[item].dropdown ? <>&#9650;</> : <>&#x25BC;</>} */}
             </div>
             {
               searchFilters[item].dropdown &&
