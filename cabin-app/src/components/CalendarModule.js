@@ -165,7 +165,6 @@ export const CalendarModule = (props) => {
         </WeekGrid>
         <DayGrid>
           {currentDays && Object.keys(currentDays).map((item, index) => {
-            console.log(props);
             return (
               <>
                 {!props.prevMonth && props.thisMonth && !props.nextMonth &&
