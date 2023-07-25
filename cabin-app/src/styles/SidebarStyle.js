@@ -103,33 +103,11 @@ export const BodyTopContainer = styled.div`
 
 export const Sidebar = styled.div`
   background-color: ${colors.white};
-  position: -webkit-sticky;
-  position: sticky;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-  top:4.7%;
-  height: 95.3vh;
-  overflow-y: scroll;
-  margin: 0;
-  padding: 0;
-
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  &::-webkit-scrollbar-track {
-      border-radius: 8px;
-      background-color: #e7e7e7;
-      border: 1px solid #cacaca;
-      box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-  }
-
-  &::-webkit-scrollbar-thumb {
-      border-radius: 8px;
-      background-color: #363636;
-  }
 
   @media only screen and (max-width: 768px) {
     position: relative;
@@ -162,27 +140,7 @@ export const Sidebar = styled.div`
   }
 
   @media only screen and (min-width: 1900px) and (max-width: 3000px) {
-    width: 20%;
-  }
-`
-
-
-export const SidebarCollapsed = styled.div`
-  background-color: ${colors.white};
-  margin: 0;
-  padding: 0;
-  margin-bottom: auto;
-
-  @media only screen and (max-width: 768px) {
     width: 100%;
-  }
-
-  @media only screen and (min-width: 768px) and (max-width: 1350px) {
-    width: 70%;
-  }
-
-  @media only screen and (min-width: 1350px) and (max-width: 3000px) {
-    width: 95.5%;
   }
 `
 

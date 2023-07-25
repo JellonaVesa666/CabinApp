@@ -9,7 +9,6 @@ export const CalendarModule = ({ openModal }) => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [selected, setSelected] = useState({ 0: { "index": "", "day": "", "month": "", "year": "" }, 1: { "index": "", "day": "", "month": "", "year": "" }, bool: false });
   const [clicks, setClicks] = useState(1);
-  const [dropdownActive, setDropdownActive] = useState(false);
 
   const nextMonth = () => {
     if (currentMonth < 11) {
@@ -138,9 +137,6 @@ export const CalendarModule = ({ openModal }) => {
       ChangeState(setSelected, year, "year", 0);
     }
   }
-
-  console.log(dropdownActive);
-
 
   return (
     <div

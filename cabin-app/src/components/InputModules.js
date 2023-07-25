@@ -217,11 +217,13 @@ export const InputField = (props) => {
       width={props.width}
       height={props.height}
       radius={props.radius}
+      border={props.border}
       margintop={props.margintop}
       marginbottom={props.marginbottom}
       placeholder={props.placeholder}
       className={props.data[props.i]?.errors?.length > 0 ? "invalid" : ""}
       onChange={(event) => props.changeState(event.target.value)}
+      onClick={props.onClick}
     />
   )
 };

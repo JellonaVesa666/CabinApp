@@ -18,7 +18,7 @@ export const SidebarModule = ({ isActive }) => {
       return (
         <FilterList
           key={Object.keys(searchFilters).indexOf(item)}
-          className={searchFilters[item].dropdown ? "dropdownActive h-auto col-12 row m-0 p-0" : "h-auto col-12 row m-0 p-0"}
+          className={searchFilters[item].dropdown ? "h-auto col-12 row m-0 p-0" : "h-auto col-12 row m-0 p-0"}
         >
           <FilterCard className="col-12 row mx-0 p-0">
             <div className="col-1 py-2 " onClick={() => ChangeState(setSearchFilters, false, "isActive", item)}>
@@ -113,9 +113,10 @@ export const SidebarModule = ({ isActive }) => {
           {searchFilters[item].type === "text" &&
             <InputField
               type={searchFilters[item].type}
-              width={"80%"}
+              width={"15%"}
               height={"40px"}
-              radius={"6px"}
+              radius={"0px"}
+              border={"none"}
               margintop={"3rem"}
               marginbottom={"0.5rem"}
               i={item}
@@ -125,41 +126,42 @@ export const SidebarModule = ({ isActive }) => {
               changeState={(value) => ChangeState(setSearchFilters, value, "value", item)}
             />
           }
-          {searchFilters[item].type === "date" &&
-            <div
-              className="row d-flex justify-content-center align-items-center"
-              style={{ height: "100px" }}
-            >
-              <div
-                className="col-4 d-flex justify-content-center align-items-center"
-                style={{ height: "30%", border: "1px solid grey", borderRadius: "6px", backgroundColor: "white" }}
-                onClick={() => setModalActive(!modalActive)}
-              >
-                {29 + "/" + 1 + "/" + 1991}
-                {/* {selected[0].day + "/" + selected[0].month + "/" + selected[0].year} */}
-              </div>
-              <div
-                className="col-2 d-flex justify-content-center align-items-center"
-              >
-                /
-                {/* {selected[1].day + "/" + selected[1].month + "/" + selected[1].year} */}
-              </div>
-              <div
-                className="col-4 d-flex justify-content-center align-items-center"
-                style={{ height: "30%", border: "1px solid grey", borderRadius: "6px", backgroundColor: "white" }}
-                onClick={() => setModalActive(!modalActive)}
-              >
-                {29 + "/" + 1 + "/" + 1991}
-                {/* {selected[0].day + "/" + selected[0].month + "/" + selected[0].year} */}
-              </div>
-            </div>
+          {searchFilters[item].type === "button" &&
+            <InputField
+              type={searchFilters[item].type}
+              width={"15%"}
+              height={"40px"}
+              radius={"0px"}
+              border={"none"}
+              margintop={"3rem"}
+              marginbottom={"0.5rem"}
+              i={item}
+              data={searchFilters}
+              //placeholder={searchFilters[item].info[language].translation}
+              value={"ma 29 kesäkuu  -  ti 12 heinäkuu"}
+              onClick={() => setModalActive(!modalActive)}
+            />
           }
           {searchFilters[item].type === "counter" &&
-            <Counter
-              data={searchFilters}
+            <InputField
+              type={searchFilters[item].type}
+              width={"15%"}
+              height={"40px"}
+              radius={"0px"}
+              border={"none"}
+              margintop={"3rem"}
+              marginbottom={"0.5rem"}
               i={item}
-              changeState={(value, index) => ChangeState(setSearchFilters, value, "value", item, index)}
+              data={searchFilters}
+              //placeholder={searchFilters[item].info[language].translation}
+              value={"2 aikuista + 0 lasta"}
+              changeState={(value) => ChangeState(setSearchFilters, value, "value", item)}
             />
+            /*             <Counter
+                          data={searchFilters}
+                          i={item}
+                          changeState={(value, index) => ChangeState(setSearchFilters, value, "value", item, index)}
+                        /> */
           }
         </>
       )
@@ -175,26 +177,28 @@ export const SidebarModule = ({ isActive }) => {
       </Modal>
       {isActive &&
         <Sidebar>
-          <SidebarCollapsed>
-            <div className="justify-content-center align-items-center row m-0 p-0">
-              {staticFilters}
-            </div>
-            {dynamicFilters}
-            <div
-              className="mb-4 mt-5 justify-content-center align-items-center row w-100"
-              style={{ height: "40px" }}
-            >
+          <div
+            className="d-flex justify-content-center align-items-center gap-2"
+            style={{ width: "80%" }}
+          >
+            {staticFilters}
+
               <input
                 type="button"
                 value={"hae"}
-                className="text-uppercase"
-                style={{ color: colors.black, width: "180px", height: "40px", marginLeft: "45px", borderRadius: " 10px 0px 0px 10px" }}
+                className="text-uppercase d-flex justify-content-center align-items-center"
+                style={{ color: colors.black, width: "10%", height: "40px"}}
               />
-              <div className="d-flex justify-content-center align-items-center" onClick={() => setModalActive(!modalActive)} style={{ height: "40px", width: "40px", backgroundColor: "black", color: "white", fontSize: "12px", borderRadius: " 0px 10px 10px 0px" }}>
+              {/*               <div
+                className="d-flex justify-content-center align-items-center"
+                onClick={() => setModalActive(!modalActive)}
+                style={{ height: "40px", width: "40px", backgroundColor: "black", color: "white", fontSize: "12px", borderRadius: " 0px 10px 10px 0px" }}
+              >
                 &equiv;
-              </div>
+              </div> */}
             </div>
-          </SidebarCollapsed>
+  
+          {/* {dynamicFilters} */}
         </Sidebar >
       }
     </>

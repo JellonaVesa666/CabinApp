@@ -294,7 +294,7 @@ export const searchParameters = {
     },
   },
   reservationDate: {
-    type: "date",
+    type: "button",
     static: true,
   },
   persons: {

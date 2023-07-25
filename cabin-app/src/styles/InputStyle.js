@@ -185,21 +185,22 @@ export const Input = styled.input`
   width: ${props => (props.width)};
   height: ${props => (props.height)};
   padding: 0px 20px 0px 20px;
-  border: 0.1rem solid ${colors.lightGrey};
+  border: ${props => (props.border)};
   border-radius: ${props => (props.radius)};
   background: rgba(255, 255, 255, 0.9);
   margin-top: ${props => (props.margintop)};
   margin-bottom: ${props => (props.marginbottom)};
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }
   &.invalid {
-    border: 0.1rem solid transparent !important;
-    outline: 0.15rem solid ${colors.lightRed} !important;
+    border: ${props => (props.border)};
   }
   &:focus {
-    border: 0.1rem solid transparent;
-    outline: 0.15rem solid ${colors.grey};
+    border: ${props => (props.border)};
   }
 `
 
