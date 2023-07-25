@@ -105,12 +105,15 @@ export const CalendarModule = (props) => {
   }, [currentMonth, currentYear]);
 
   useEffect(() => {
-    setCurrentMonthDays(range(currentMonth + 1));
+    setCurrentMonthDays(range(currentMonth));
+    setNextMonthDays(range(currentMonth + 1));
   }, [range]);
 
   const SelectDate = (index) => {
 
     setClicks(clicks + 1);
+
+    console.log(index);
 
     var month = (currentMonthDays[index].month === 0) ? (12) : ((currentMonthDays[index].month === 13) ? (1) : (currentMonthDays[index].month));
     var year = (currentMonthDays[index].month === 0) ? (currentYear - 1) : ((currentMonthDays[index].month === 13) ? (currentYear + 1) : (currentYear));
@@ -138,24 +141,24 @@ export const CalendarModule = (props) => {
     }
   }
 
+  console.log(selected)
 
   const rows = [];
   for (let i = 0; i < props.count; i++) {
-    const test = currentMonth + 1;
+    const calendarDays = (i === 0 ? currentMonthDays : nextMonthDays);
+    const calendarMonth = (i === 0 ? currentMonth + 1 : currentMonth + 2);
     rows.push(
-      <div
-        className="col-5"
-      >
+      <>
         <MonthPanel>
           <p
-            style={{ fontSize: "16px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
+            style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
             onClick={() => prevMonth()}
           >
             &#9664;
           </p>
-          <p style={{ fontSize: "16px", color: "black", margin: "auto" }}>{monthNames[currentMonth + 1].toUpperCase()} / {currentYear}</p>
+          <p style={{ fontSize: "30px", color: "black", margin: "auto" }}>{monthNames[calendarMonth].toUpperCase()} / {currentYear}</p>
           <p
-            style={{ fontSize: "16px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
+            style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
             onClick={() => nextMonth()}
           >
             &#9654;
@@ -167,33 +170,28 @@ export const CalendarModule = (props) => {
           )}
         </WeekGrid>
         <DayGrid>
-          {currentMonthDays && Object.keys(currentMonthDays).map((item, index) => {
+          {calendarDays && Object.keys(calendarDays).map((item, index) => {
+
             return (
-              <>
-                {!props.prevMonth && props.thisMonth && !props.nextMonth &&
-                  currentMonthDays[item].month === currentMonth + 1 &&
-                  <Days
-                    key={index}
-                    className={`
-                      ${currentMonthDays[item].month === currentMonth + 1 ? "this" : ""} 
-                      ${currentMonthDays[item].reserved === "true" ? "reserved" : ""} 
-                      ${(index >= selected[0].index && index <= selected[1].index && selected.bool && selected[0].index < selected[1].index && !currentMonthDays[item].reserved) ||
-                        (index <= selected[0].index && index >= selected[1].index && selected.bool && selected[0].index > selected[1].index && !currentMonthDays[item].reserved) ||
-                        (!selected.bool && index === selected[0].index && !currentMonthDays[item].reserved) ? "active" : ""}
-                    `}
-                    onClick={() => SelectDate(index)}
-                  >
-                    {currentMonthDays[item].month === currentMonth + 1 &&
-                      currentMonthDays[index].day
-                    }
-                  </Days>
-                }
-              </>
+              <Days
+                key={index}
+                className={`
+                  ${calendarDays[item].month === calendarMonth ? "this" : ""} 
+                  ${calendarDays[item].reserved === "true" ? "reserved" : ""} 
+                  ${(index >= selected[0].index && index <= selected[1].index && selected.bool && selected[0].index < selected[1].index && !calendarDays[item].reserved) ||
+                    (index <= selected[0].index && index >= selected[1].index && selected.bool && selected[0].index > selected[1].index && !calendarDays[item].reserved)
+                    || (!selected.bool && index === selected[0].index && !calendarDays[item].reserved) ? "active" : ""}
+                `}
+                onClick={() => SelectDate(index)}
+              >
+                {calendarDays[index].day}
+              </Days>
             )
           }
           )}
         </DayGrid>
-      </div>)
+      </>
+    )
   }
   return (rows)
 }
