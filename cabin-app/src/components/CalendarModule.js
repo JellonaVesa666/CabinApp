@@ -145,7 +145,7 @@ export const CalendarModule = (props) => {
   }, [range]);
 
 
-  const SelectDate = (index) => {
+  const selectDate = (index) => {
 
     setClicks(clicks + 1);
 
@@ -227,7 +227,7 @@ export const CalendarModule = (props) => {
                   ${calendarDays[item].reserved === true ? "reserved" : ""}
                   ${calendarDays[item].active === true ? "active" : ""}
                 `}
-                onClick={() => SelectDate(index)}
+                onClick={() => selectDate(index)}
               >
                 {calendarDays[index].day}
               </Days>
