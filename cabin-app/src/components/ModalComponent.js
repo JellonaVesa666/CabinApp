@@ -22,16 +22,12 @@ export const Modal = (props) => {
   if (props.filter) {
     const result = Object.keys(props.options[props.filter]).filter((i) => typeof i === "string" && !isNaN(i));
     return (
-      <ModalContent className={props.show.toString()} >
-        {props.options?.[props.filter]?.context === "date" &&
-          <div className="d-flex justify-content-evenly align-items-center ">
-            {result.map(item => {
-              return (
-                <CalendarModule prevMonth={props.options[props.filter][item].prevMonth} thisMonth={props.options[props.filter][item].thisMonth} nextMonth={props.options[props.filter][item].nextMonth} />
-              )
-            })}
-          </div>
-        }
+      <ModalContent>
+        <CalendarModule
+          prevMonth={props.options[props.filter].prevMonth}
+          thisMonth={props.options[props.filter].thisMonth}
+          nextMonth={props.options[props.filter].nextMonth}
+        />
       </ModalContent>
     );
   }

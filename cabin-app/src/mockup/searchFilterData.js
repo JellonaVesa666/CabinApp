@@ -287,16 +287,10 @@ export const searchParameters = {
     context: "date",
     static: true,
     modal: true,
-    0: {
-      prevMonth: false,
-      thisMonth: true,
-      nextMonth: false
-    },
-    1: {
-      prevMonth: false,
-      thisMonth: true,
-      nextMonth: false
-    }
+    count: 2,
+    prevMonth: false,
+    thisMonth: true,
+    nextMonth: false,
   },
   persons: {
     type: "counter",
