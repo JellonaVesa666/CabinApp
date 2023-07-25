@@ -145,7 +145,7 @@ export const CalendarModule = (props) => {
   }, [range]);
 
 
-  const selectDate = (index) => {
+  const selectDate = (item) => {
 
     setClicks(clicks + 1);
 
@@ -161,8 +161,8 @@ export const CalendarModule = (props) => {
       let min = 0;
       let max = 0;
 
-      if (!currentMonthDays[index].active) {
-        currentMonthDays[index].active = true;
+      if (!currentMonthDays[item].active) {
+        currentMonthDays[item].active = true;
 
         for (let i = 0; i < 42; i++) {
           if (currentMonthDays[i].active) {
@@ -182,16 +182,16 @@ export const CalendarModule = (props) => {
         }
       }
       else {
-        currentMonthDays[index].active = false;
+        currentMonthDays[item].active = false;
       }
     }
     else {
-      currentMonthDays[index].active = true;
+      currentMonthDays[item].active = true;
     }
   }
 
   const rows = [];
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < props.count; i++) {
     const calendarDays = (i === 0 ? currentMonthDays : nextMonthDays);
     const calendarMonth = (i === 0 ? currentMonth + 1 : currentMonth + 2);
     rows.push(
@@ -217,19 +217,19 @@ export const CalendarModule = (props) => {
           )}
         </WeekGrid>
         <DayGrid>
-          {calendarDays && Object.keys(calendarDays).map((item, index) => {
+          {calendarDays && Object.keys(calendarDays).map((item) => {
 
             return (
               <Days
-                key={index}
+                key={item}
                 className={`
                   ${calendarDays[item].month === calendarMonth ? "this" : ""} 
-                  ${calendarDays[item].reserved === true ? "reserved" : ""}
-                  ${calendarDays[item].active === true ? "active" : ""}
+                  ${calendarDays[item].reserved ? "reserved" : ""}
+                  ${calendarDays[item].active && !calendarDays[item].reserved ? "active" : ""}
                 `}
-                onClick={() => selectDate(index)}
+                onClick={() => selectDate(item)}
               >
-                {calendarDays[index].day}
+                {calendarDays[item].day}
               </Days>
             )
           }
