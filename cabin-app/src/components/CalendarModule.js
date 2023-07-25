@@ -138,11 +138,13 @@ export const CalendarModule = (props) => {
     }
   }
 
-  return (
-    <div
-      className="col-5"
-    >
-      <>
+
+  const rows = [];
+  for (let i = 0; i < 2; i++) {
+    rows.push(
+      <div
+        className="col-5"
+      >
         <MonthPanel>
           <p
             style={{ fontSize: "16px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
@@ -190,7 +192,7 @@ export const CalendarModule = (props) => {
           }
           )}
         </DayGrid>
-      </>
-    </div>
-  )
+      </div>)
+  }
+  return (rows)
 }
