@@ -157,7 +157,6 @@ export const CalendarModule = (props) => {
       setClicks(1);
     }
 
-
     if (clicks > 0) {
       let min = 0;
       let max = 0;
