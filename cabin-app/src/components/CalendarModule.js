@@ -31,13 +31,20 @@ export const CalendarModule = (props) => {
   }
   const range = useCallback((CurrentMonth) => {
     const startDay = dayNames.indexOf((new Date(currentYear, CurrentMonth, 1)).toString().toLowerCase().split(' ')[0]);
-    //const endDay = dayNames.indexOf((new Date(currentYear, CurrentMonth + 1, 0)).toString().toLowerCase().split(' ')[0]);
 
     // Previous Month
     var prevMonth = {};
     const previousMonthLenght = new Date(currentYear, CurrentMonth, 0).getDate();
     for (var p = previousMonthLenght - startDay + 1; p <= previousMonthLenght; p++) {
-      let item = { "day": p, "dayName": "", "month": CurrentMonth, "monthName": monthNames[CurrentMonth], "reserved": false, "active": false }
+
+      const item = Object.create(day);
+      item.day = p;
+      item.dayName = "";
+      item.month = CurrentMonth;
+      item.monthName = monthNames[CurrentMonth];
+      item.reserved = false;
+      item.active = false;
+
       prevMonth[p - (previousMonthLenght - startDay + 1)] = item;
 
       // Set Reserved
@@ -58,7 +65,15 @@ export const CalendarModule = (props) => {
     const thisMonthLenght = new Date(currentYear, CurrentMonth + 1, 0).getDate();
     var thisMonth = {};
     for (var t = 0; t <= thisMonthLenght - 1; t++) {
-      let item = { "day": t + 1, "dayName": "", "month": CurrentMonth + 1, "monthName": monthNames[CurrentMonth + 1], "reserved": false, "active": false }
+
+      const item = Object.create(day);
+      item.day = t + 1;
+      item.dayName = "";
+      item.month = CurrentMonth + 1;
+      item.monthName = monthNames[CurrentMonth + 1];
+      item.reserved = false;
+      item.active = false;
+
       thisMonth[t + Object.keys(prevMonth).length] = item;
 
       // Set Reserved
@@ -79,7 +94,15 @@ export const CalendarModule = (props) => {
     var start = 42 - Object.keys(prevMonth).length - Object.keys(thisMonth).length;
     var nextMonth = {};
     for (var n = 41 - start; n < 41; n++) {
-      let item = { "day": start - (41 - n) + 1, "dayName": "", "month": CurrentMonth + 2, "monthName": monthNames[CurrentMonth + 2], "reserved": false, "active": false }
+
+      const item = Object.create(day);
+      item.day = start - (41 - n) + 1;
+      item.dayName = "";
+      item.month = CurrentMonth + 2;
+      item.monthName = monthNames[CurrentMonth + 2];
+      item.reserved = false;
+      item.active = false;
+
       nextMonth[n + 1] = item;
 
       // Set Reserved
@@ -134,30 +157,37 @@ export const CalendarModule = (props) => {
       setClicks(1);
     }
 
-    currentMonthDays[index].active = true;
 
-    if (clicks === 1) {
+    if (clicks > 0) {
       let min = 0;
       let max = 0;
 
-      for (let i = 0; i < 42; i++) {
-        if (currentMonthDays[i].active) {
-          min = i;
-          break;
+      if (!currentMonthDays[index].active) {
+        currentMonthDays[index].active = true;
+
+        for (let i = 0; i < 42; i++) {
+          if (currentMonthDays[i].active) {
+            min = i;
+            break;
+          }
+        }
+        for (let i = 41; i >= 0; i--) {
+          if (currentMonthDays[i].active) {
+            max = i;
+            break;
+          }
+
+        }
+        for (let i = min; i < max; i++) {
+          currentMonthDays[i].active = true;
         }
       }
-
-      for (let i = 41; i >= 0; i--) {
-        if (currentMonthDays[i].active) {
-          max = i;
-          break;
-        }
-
+      else {
+        currentMonthDays[index].active = false;
       }
-
-      for (let i = min; i < max; i++) {
-        currentMonthDays[i].active = true;
-      }
+    }
+    else {
+      currentMonthDays[index].active = true;
     }
   }
 
