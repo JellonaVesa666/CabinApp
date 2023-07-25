@@ -27,6 +27,7 @@ export const Modal = (props) => {
           prevMonth={props.options[props.filter].prevMonth}
           thisMonth={props.options[props.filter].thisMonth}
           nextMonth={props.options[props.filter].nextMonth}
+          count={props.options[props.filter].count}
         />
       </ModalContent>
     );
