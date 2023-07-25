@@ -1,3 +1,12 @@
+export const day = {
+  "day": 0,
+  "dayName": "",
+  "month": 0,
+  "monthName": "",
+  "reserved": false,
+  "active": false
+}
+
 export const monthNames = {
   0: "0",
   1: "january",

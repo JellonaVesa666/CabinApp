@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Calendar, MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputStyle";
-import { dayNames, monthNames, reservations } from "../mockup/calendarData";
+import { MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputStyle";
+import { dayNames, monthNames, reservations, day } from "../mockup/calendarData";
 import { ChangeState } from "../helpers/HelperFunctions";
 
 export const CalendarModule = (props) => {
@@ -8,8 +8,7 @@ export const CalendarModule = (props) => {
   const [nextMonthDays, setNextMonthDays] = useState();
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-  const [selected, setSelected] = useState({ 0: { "index": "", "day": "", "month": "", "year": "" }, 1: { "index": "", "day": "", "month": "", "year": "" }, bool: false });
-  const [clicks, setClicks] = useState(1);
+  const [clicks, setClicks] = useState(0);
 
   const nextMonth = () => {
     if (currentMonth < 11) {
@@ -38,7 +37,7 @@ export const CalendarModule = (props) => {
     var prevMonth = {};
     const previousMonthLenght = new Date(currentYear, CurrentMonth, 0).getDate();
     for (var p = previousMonthLenght - startDay + 1; p <= previousMonthLenght; p++) {
-      let item = { "day": p, "dayName": "", "month": CurrentMonth, "monthName": monthNames[CurrentMonth], "reserved": false }
+      let item = { "day": p, "dayName": "", "month": CurrentMonth, "monthName": monthNames[CurrentMonth], "reserved": false, "active": false }
       prevMonth[p - (previousMonthLenght - startDay + 1)] = item;
 
       // Set Reserved
@@ -48,7 +47,7 @@ export const CalendarModule = (props) => {
         Object.keys(reservations[currentYear][month]).forEach((element) => {
           if (prevMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
             prevMonth[index].day <= reservations[currentYear][month][element].departureDate) {
-            prevMonth[index].reserved = "true";
+            prevMonth[index].reserved = true;
           }
         });
       }
@@ -59,7 +58,7 @@ export const CalendarModule = (props) => {
     const thisMonthLenght = new Date(currentYear, CurrentMonth + 1, 0).getDate();
     var thisMonth = {};
     for (var t = 0; t <= thisMonthLenght - 1; t++) {
-      let item = { "day": t + 1, "dayName": "", "month": CurrentMonth + 1, "monthName": monthNames[CurrentMonth + 1], "reserved": false }
+      let item = { "day": t + 1, "dayName": "", "month": CurrentMonth + 1, "monthName": monthNames[CurrentMonth + 1], "reserved": false, "active": false }
       thisMonth[t + Object.keys(prevMonth).length] = item;
 
       // Set Reserved
@@ -69,7 +68,7 @@ export const CalendarModule = (props) => {
         Object.keys(reservations[currentYear][month]).forEach((element) => {
           if (thisMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
             thisMonth[index].day <= reservations[currentYear][month][element].departureDate) {
-            thisMonth[index].reserved = "true";
+            thisMonth[index].reserved = true;
           }
         });
       }
@@ -80,7 +79,7 @@ export const CalendarModule = (props) => {
     var start = 42 - Object.keys(prevMonth).length - Object.keys(thisMonth).length;
     var nextMonth = {};
     for (var n = 41 - start; n < 41; n++) {
-      let item = { "day": start - (41 - n) + 1, "dayName": "", "month": CurrentMonth + 2, "monthName": monthNames[CurrentMonth + 2], "reserved": false }
+      let item = { "day": start - (41 - n) + 1, "dayName": "", "month": CurrentMonth + 2, "monthName": monthNames[CurrentMonth + 2], "reserved": false, "active": false }
       nextMonth[n + 1] = item;
 
       // Set Reserved
@@ -90,7 +89,7 @@ export const CalendarModule = (props) => {
         Object.keys(reservations[currentYear][month]).forEach((element) => {
           if (nextMonth[index].day >= reservations[currentYear][month][element].arrivalDate &&
             nextMonth[index].day <= reservations[currentYear][month][element].departureDate) {
-            nextMonth[index].reserved = "true";
+            nextMonth[index].reserved = true;
           }
         });
       }
@@ -127,44 +126,40 @@ export const CalendarModule = (props) => {
 
     setClicks(clicks + 1);
 
-    //console.log(index);
+    if (clicks === 2) {
+      for (let i = 0; i < 42; i++) {
+        currentMonthDays[i].active = false
+      }
 
-    var month = (currentMonthDays[index].month === 0) ? (12) : ((currentMonthDays[index].month === 13) ? (1) : (currentMonthDays[index].month));
-    var year = (currentMonthDays[index].month === 0) ? (currentYear - 1) : ((currentMonthDays[index].month === 13) ? (currentYear + 1) : (currentYear));
-
-    if (selected.bool) {
-
-      if (selected[1] !== null)
-        ChangeState(setSelected, "", "index", 1);
-
-      ChangeState(setSelected, index, "index", 0);
-      ChangeState(setSelected, currentMonthDays[index].day, "day", 0);
-      ChangeState(setSelected, month, "month", 0);
-      ChangeState(setSelected, year, "year", 0);
-      ChangeState(setSelected, !Boolean(selected.bool), "bool");
+      setClicks(1);
     }
 
-    if (clicks % 2 === 0) {
+    currentMonthDays[index].active = true;
 
-      ChangeState(setSelected, !Boolean(selected.bool), "bool");
-      ChangeState(setSelected, index, "index", 1);
-      ChangeState(setSelected, currentMonthDays[index].day, "day", 1);
-      ChangeState(setSelected, month, "month", 1);
-      ChangeState(setSelected, year, "year", 1);
-    }
-    else {
+    if (clicks === 1) {
+      let min = 0;
+      let max = 0;
 
-      if (selected[1] !== null)
-        ChangeState(setSelected, "", "index", 1);
+      for (let i = 0; i < 42; i++) {
+        if (currentMonthDays[i].active) {
+          min = i;
+          break;
+        }
+      }
 
-      ChangeState(setSelected, index, "index", 0);
-      ChangeState(setSelected, currentMonthDays[index].day, "day", 0);
-      ChangeState(setSelected, month, "month", 0);
-      ChangeState(setSelected, year, "year", 0);
+      for (let i = 41; i >= 0; i--) {
+        if (currentMonthDays[i].active) {
+          max = i;
+          break;
+        }
+
+      }
+
+      for (let i = min; i < max; i++) {
+        currentMonthDays[i].active = true;
+      }
     }
   }
-
-  console.log(selected);
 
   const rows = [];
   for (let i = 0; i < 1; i++) {
@@ -200,10 +195,8 @@ export const CalendarModule = (props) => {
                 key={index}
                 className={`
                   ${calendarDays[item].month === calendarMonth ? "this" : ""} 
-                  ${calendarDays[item].reserved === "true" ? "reserved" : ""} 
-                  ${(index >= selected[0].index && index <= selected[1].index && selected.bool && selected[0].index < selected[1].index && !calendarDays[item].reserved) ||
-                    (index <= selected[0].index && index >= selected[1].index && selected.bool && selected[0].index > selected[1].index && !calendarDays[item].reserved)
-                    || (!selected.bool && index === selected[0].index && !calendarDays[item].reserved) ? "active" : ""}
+                  ${calendarDays[item].reserved === true ? "reserved" : ""}
+                  ${calendarDays[item].active === true ? "active" : ""}
                 `}
                 onClick={() => SelectDate(index)}
               >
