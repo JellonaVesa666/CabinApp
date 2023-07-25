@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { ChangeState } from "../helpers/HelperFunctions";
-import { InputField, OptionSelect, CheckBox, PasswordField } from "./InputModules";
+import { Input, OptionSelect, CheckBox, PasswordField } from "./InputModules";
 import { CardHeader } from "../styles/SidebarStyle";
 import { RegisterBody, CloseBtn, SubmitBtn, LinkH4 } from "../styles/RegisterStyle";
 import { registerDO, registerDTO } from "../DTO/RegisterDTO";
@@ -201,7 +201,7 @@ export default function RegisterComponent(props) {
             >
               {header[0]} {header[1]} {header[2]}
             </CardHeader>
-            <InputField
+            <Input
               width={"100%"}
               height={"40px"}
               data={formData}
@@ -224,7 +224,7 @@ export default function RegisterComponent(props) {
             >
               {header[0]} {header[1]} {header[2]}
             </CardHeader>
-            <InputField
+            <Input
               width={"100%"}
               height={"40px"}
               data={formData}
@@ -246,7 +246,7 @@ export default function RegisterComponent(props) {
             >
               {header[0]} {header[1]} {header[2]}
             </CardHeader>
-            <InputField
+            <Input
               width={"100%"}
               height={"40px"}
               data={formData}
@@ -318,7 +318,7 @@ export default function RegisterComponent(props) {
             >
               Phone
             </CardHeader>
-            <InputField
+            <Input
               width={"100%"}
               height={"40px"}
               data={formData}
@@ -342,7 +342,7 @@ export default function RegisterComponent(props) {
             >
               {header[0]} {header[1]} {header[2]}
             </CardHeader>
-            <InputField
+            <Input
               width={"100%"}
               height={"40px"}
               data={formData}

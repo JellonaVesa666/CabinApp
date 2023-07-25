@@ -3,7 +3,7 @@ import { Calendar, MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputSt
 import { dayNames, monthNames, reservations } from "../mockup/calendarData";
 import { ChangeState } from "../helpers/HelperFunctions";
 
-export const CalendarModule = ({ openModal }) => {
+export const CalendarModule = (props) => {
   const [currentDays, setCurrentDays] = useState();
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -165,20 +165,28 @@ export const CalendarModule = ({ openModal }) => {
         </WeekGrid>
         <DayGrid>
           {currentDays && Object.keys(currentDays).map((item, index) => {
+            console.log(props);
             return (
-              <Days
-                key={index}
-                className={`
-                ${currentDays[item].month === currentMonth + 1 ? "this" : ""} 
-                ${currentDays[item].reserved === "true" ? "reserved" : ""} 
-                ${(index >= selected[0].index && index <= selected[1].index && selected.bool && selected[0].index < selected[1].index && !currentDays[item].reserved) ||
-                    (index <= selected[0].index && index >= selected[1].index && selected.bool && selected[0].index > selected[1].index && !currentDays[item].reserved)
-                    || (!selected.bool && index === selected[0].index && !currentDays[item].reserved) ? "active" : ""}
-              `}
-                onClick={() => SelectDate(index)}
-              >
-                {currentDays[index].day}
-              </Days>
+              <>
+                {!props.prevMonth && props.thisMonth && !props.nextMonth &&
+                  currentDays[item].month === currentMonth + 1 &&
+                  <Days
+                    key={index}
+                    className={`
+                      ${currentDays[item].month === currentMonth + 1 ? "this" : ""} 
+                      ${currentDays[item].reserved === "true" ? "reserved" : ""} 
+                      ${(index >= selected[0].index && index <= selected[1].index && selected.bool && selected[0].index < selected[1].index && !currentDays[item].reserved) ||
+                        (index <= selected[0].index && index >= selected[1].index && selected.bool && selected[0].index > selected[1].index && !currentDays[item].reserved) ||
+                        (!selected.bool && index === selected[0].index && !currentDays[item].reserved) ? "active" : ""}
+                    `}
+                    onClick={() => SelectDate(index)}
+                  >
+                    {currentDays[item].month === currentMonth + 1 &&
+                      currentDays[index].day
+                    }
+                  </Days>
+                }
+              </>
             )
           }
           )}

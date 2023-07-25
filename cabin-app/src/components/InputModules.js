@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { Slider, RangeInput, RangeValue, SliderBackground, Input, OptionItem, MultiSelectInput, CheckInput, CounterInput, CounterValue } from "../styles/InputStyle"
+import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionItem, MultiSelectInput, CheckInput, CounterInput, CounterValue } from "../styles/InputStyle"
 import { useSelector } from "react-redux";
 import { ValidateElement } from "../helpers/HelperFunctions";
 import { colors } from "../styles/Colors";
@@ -209,9 +209,9 @@ export const CheckBox = (props) => {
 };
 
 
-export const InputField = (props) => {
+export const Input = (props) => {
   return (
-    <Input
+    <InputStyle
       type={props.type}
       value={props.value}
       width={props.width}
@@ -232,7 +232,7 @@ export const PasswordField = (props) => {
   const [showPassword, setHidePassword] = useState(false);
   return (
     <>
-      <Input
+      <InputStyle
         width={props.width}
         height={props.height}
         className={props.data[props.i].errors.length > 0 ? "invalid" : ""}

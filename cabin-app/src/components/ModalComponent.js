@@ -1,46 +1,62 @@
 import { ModalContent, ModalHeader, ModalLinkH4 } from "../styles/ModalStyle";
 import { CalendarModule } from "./CalendarModule";
 
-export const Modal = ({ closeModal, setActive, show, options }) => {
+export const Modal = (props) => {
 
-  const Filter = (props) => {
-    if (options[props.index].hasOwnProperty("isActive")) {
-      return (
-        <ModalHeader
-          className={options[props.index].isActive ? "true" : ""}
-          width={"80%"}
-          marginbottom={"5%"}
-          margintop={"5%"}
-          onClick={() => setActive(props.index)}
-        >
-          {props.index}
-        </ModalHeader >
-      )
+  /*   const Filter = (props) => {
+      if (options[props.index].hasOwnProperty("isActive")) {
+        return (
+          <ModalHeader
+            className={options[props.index].isActive ? "true" : ""}
+            width={"80%"}
+            marginbottom={"5%"}
+            margintop={"5%"}
+            onClick={() => props.setActive(props.index)}
+          >
+            {props.index}
+          </ModalHeader >
+        )
+      }
     }
+   */
+  if (props.filter) {
+    const result = Object.keys(props.options[props.filter]).filter((i) => typeof i === "string" && !isNaN(i));
+    return (
+      <ModalContent className={props.show.toString()} >
+        {props.options?.[props.filter]?.context === "date" &&
+          <div className="d-flex justify-content-evenly align-items-center ">
+            {result.map(item => {
+              return (
+                <CalendarModule prevMonth={props.options[props.filter][item].prevMonth} thisMonth={props.options[props.filter][item].thisMonth} nextMonth={props.options[props.filter][item].nextMonth} />
+              )
+            })}
+          </div>
+        }
+      </ModalContent>
+    );
   }
+};
 
-  return (
-    <ModalContent className={show.toString()} >
-      <div className="d-flex justify-content-evenly align-items-center ">
-        <CalendarModule />
-        <CalendarModule />
-      </div>
-      {/*       <div style={{ marginTop: "50px" }}>
+
+
+{/*           <CalendarModule  prevMonth={props.options?.[props.filter][0].prevMonth} thisMonth={props.options?.[props.filter][0].thisMonth} nextMonth={props.options?.[props.filter][0].nextMonth}/>
+          <CalendarModule /> */}
+
+{/*       <div style={{ marginTop: "50px" }}>
         {Object.keys(options).map(key => <Filter key={key} index={key} />)}
       </div> */}
-      {/*       <div
+{/*       <div
         style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
         }}
-        onClick={closeModal}
+        onClick={props.closeModal}
       >
         <ModalLinkH4 className="mt-2"
         >
           Close
         </ModalLinkH4>
       </div> */}
-    </ModalContent>
-  );
-};
+
+      //<div className="d-flex justify-content-evenly align-items-center ">

@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
 import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
-import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, InputField } from "./InputModules";
+import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, Input } from "./InputModules";
 import { FilterList, FilterCard, CardLabel, Sidebar, SidebarCollapsed } from "../styles/SidebarStyle";
 import { searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
 
-export const SidebarModule = ({ isActive }) => {
+export const SidebarModule = () => {
   const language = useSelector(state => state.session.language);
 
   const [modalActive, setModalActive] = useState(false);
   const [searchFilters, setSearchFilters] = useState(searchParameters);
+  const [selectedFilter, setSelectedFilter] = useState("");
 
   const dynamicFilters = Object.keys(searchFilters).map(item => {
     if (searchFilters[item].isActive)
@@ -111,7 +112,9 @@ export const SidebarModule = ({ isActive }) => {
       return (
         <>
           {searchFilters[item].type === "text" &&
-            <InputField
+            searchFilters[item].context === "field" &&
+            !searchFilters[item].modal &&
+            < Input
               type={searchFilters[item].type}
               width={"15%"}
               height={"40px"}
@@ -127,7 +130,9 @@ export const SidebarModule = ({ isActive }) => {
             />
           }
           {searchFilters[item].type === "button" &&
-            <InputField
+            searchFilters[item].context === "date" &&
+            searchFilters[item].modal &&
+            <Input
               type={searchFilters[item].type}
               width={"15%"}
               height={"40px"}
@@ -139,11 +144,11 @@ export const SidebarModule = ({ isActive }) => {
               data={searchFilters}
               //placeholder={searchFilters[item].info[language].translation}
               value={"ma 29 kesäkuu  -  ti 12 heinäkuu"}
-              onClick={() => setModalActive(!modalActive)}
+              onClick={() => SelectedFilter(searchFilters[item].type, searchFilters[item].context, searchFilters[item].modal, item)}
             />
           }
           {searchFilters[item].type === "counter" &&
-            <InputField
+            <Input
               type={searchFilters[item].type}
               width={"15%"}
               height={"40px"}
@@ -169,38 +174,49 @@ export const SidebarModule = ({ isActive }) => {
   })
 
 
+  const SelectedFilter = (type, context, modal, item) => {
+    if (type === "button") {
+      if (context === "date") {
+        if (modal === true) {
+          setModalActive(!modalActive);
+          setSelectedFilter(item);
+          console.log(item);
+        }
+      }
+    }
+  }
+
+
 
   return (
     <>
-      <Modal show={modalActive} options={searchFilters} closeModal={() => setModalActive(false)} setActive={(index) => ChangeState(setSearchFilters, !searchFilters[index].isActive, "isActive", index)}>
+      <Modal show={modalActive} filter={selectedFilter} options={searchFilters} closeModal={() => setModalActive(false)} /* setActive={(index) => ChangeState(setSearchFilters, !searchFilters[index].isActive, "isActive", index)} */>
         <p>Modal</p>
       </Modal>
-      {isActive &&
-        <Sidebar>
-          <div
-            className="d-flex justify-content-center align-items-center gap-2"
-            style={{ width: "80%" }}
-          >
-            {staticFilters}
+      <Sidebar>
+        <div
+          className="d-flex justify-content-center align-items-center gap-2"
+          style={{ width: "80%" }}
+        >
+          {staticFilters}
 
-              <input
-                type="button"
-                value={"hae"}
-                className="text-uppercase d-flex justify-content-center align-items-center"
-                style={{ color: colors.black, width: "10%", height: "40px"}}
-              />
-              {/*               <div
+          <input
+            type="button"
+            value={"hae"}
+            className="text-uppercase d-flex justify-content-center align-items-center"
+            style={{ color: colors.black, width: "10%", height: "40px" }}
+          />
+          {/*               <div
                 className="d-flex justify-content-center align-items-center"
                 onClick={() => setModalActive(!modalActive)}
                 style={{ height: "40px", width: "40px", backgroundColor: "black", color: "white", fontSize: "12px", borderRadius: " 0px 10px 10px 0px" }}
               >
                 &equiv;
               </div> */}
-            </div>
-  
-          {/* {dynamicFilters} */}
-        </Sidebar >
-      }
+        </div>
+
+        {/* {dynamicFilters} */}
+      </Sidebar >
     </>
   )
 }

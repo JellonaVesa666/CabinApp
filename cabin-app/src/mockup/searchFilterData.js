@@ -1,16 +1,3 @@
-export const countByStatus = {
-  0: {
-    name: "kaikki",
-    count: "100",
-    selected: false,
-  },
-  1: {
-    name: "varattu",
-    count: "30",
-    selected: false,
-  }
-};
-
 export const searchParameters = {
   multiSelect: {
     type: "multiSelect",
@@ -282,7 +269,9 @@ export const searchParameters = {
   // ---Static Filters--- //
   searchWord: {
     type: "text",
+    context: "field",
     static: true,
+    modal: false,
     value: "",
     info: {
       fi: {
@@ -295,7 +284,19 @@ export const searchParameters = {
   },
   reservationDate: {
     type: "button",
+    context: "date",
     static: true,
+    modal: true,
+    0: {
+      prevMonth: false,
+      thisMonth: true,
+      nextMonth: false
+    },
+    1: {
+      prevMonth: false,
+      thisMonth: true,
+      nextMonth: false
+    }
   },
   persons: {
     type: "counter",
@@ -358,35 +359,3 @@ export const searchParameters = {
     },
   },
 };
-
-
-
-/* arrivalDate: {
-  type: "date",
-  static: true,
-  value: "",
-  spacer: "doubleArrow",
-  info: {
-    fi: {
-      translation: "",
-    },
-    en: {
-      translation: "",
-    },
-  },
-},
-
-
-departureDate: {
-  type: "date",
-  static: true,
-  value: "",
-  info: {
-    fi: {
-      translation: "",
-    },
-    en: {
-      translation: "",
-    },
-  },
-}, */

@@ -181,7 +181,7 @@ export const OptionItem = styled.select`
 `
 
 // Text Input //radius:40px
-export const Input = styled.input`
+export const InputStyle = styled.input`
   width: ${props => (props.width)};
   height: ${props => (props.height)};
   padding: 0px 20px 0px 20px;
