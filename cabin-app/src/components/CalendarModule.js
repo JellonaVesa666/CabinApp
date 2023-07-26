@@ -71,9 +71,9 @@ export const CalendarModule = (props) => {
       const item = Object.create(day);
       item.day = t + 1;
       item.dayName = "";
-      item.month = (CurrentMonth + 1 === 13) ? (1) : (CurrentMonth + 1);
+      item.month = (CurrentMonth === 12) ? (1) : (CurrentMonth + 1);
       item.monthName = monthNames[item.month];
-      item.year = CurrentMonth <= 11 ? currentYear : currentYear + 1;
+      item.year = (CurrentMonth === 12) ? currentYear + 1 : currentYear;
       item.reserved = false;
       item.active = false;
 
@@ -102,7 +102,7 @@ export const CalendarModule = (props) => {
       item.day = start - (41 - n) + 1;
       item.dayName = "";
       console.log(CurrentMonth + 2);
-      item.month = (CurrentMonth + 2 === 13) ? (1) : (CurrentMonth + 2 === 14) ? (2) : (CurrentMonth + 2);
+      item.month = (CurrentMonth === 11) ? (1) : (CurrentMonth === 12) ? (2) : (CurrentMonth + 2);
       item.monthName = monthNames[item.month];
       item.year = CurrentMonth === 11 ? currentYear + 1 : CurrentMonth === 12 ? currentYear + 1 : currentYear;
       console.log(CurrentMonth);
