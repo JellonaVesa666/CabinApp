@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputStyle";
 import { dayNames, monthNames, reservations, day } from "../mockup/calendarData";
-import { DynamicSortMultiple } from "../helpers/HelperFunctions";
 
 export const CalendarModule = (props) => {
   const [currentMonthDays, setCurrentMonthDays] = useState();
@@ -161,9 +160,6 @@ export const CalendarModule = (props) => {
       setClicks(1);
     }
 
-
-    console.log("PASS  " + clicks);
-
     if ((!currentMonthDays[item].active && month) ||
       (!nextMonthDays[item].active && month)
     ) {
@@ -195,7 +191,7 @@ export const CalendarModule = (props) => {
           }
         }
 
-
+        // Sort values from min to max
         selected.sort((a, b) => {
           // Sort by year
           if (a.year < b.year) return -1;
@@ -208,25 +204,18 @@ export const CalendarModule = (props) => {
           if (a.day > b.day) return 1;
           return 0;
         });
-        // Sort values from min to max
-        //selected.sort(DynamicSortMultiple("month", "day"));
 
-        console.log(JSON.stringify(selected));
+        //console.log(JSON.stringify(selected));
 
         // Set active days 
         if (selected[0].month === currentMonth + 1) {
 
-          console.log(selected[0].month);
-          console.log(selected[1].month);
-
           if (selected[1].month === currentMonth + 1) {
-            console.log("A");
             for (let i = selected[0].day; i < selected[1].day; i++) {
               currentMonthDays[i].active = true;
             }
           }
-          else if (selected[1].month === currentMonth + 2 || selected[0].month === 12 && selected[1].month === 1) {
-            console.log("B");
+          else if ((selected[1].month === currentMonth + 2) || (selected[0].month === 12 && selected[1].month === 1)) {
             for (let i = selected[0].day; i < 42; i++) {
               currentMonthDays[i].active = true;
             }
@@ -235,11 +224,9 @@ export const CalendarModule = (props) => {
             }
           }
         }
-        else if (selected[0].month === currentMonth + 2 /* || selected[1].month === 1 */) {
-          if (selected[1].month === currentMonth + 2) {
-            for (let i = selected[0].day; i < selected[1].day; i++) {
-              nextMonthDays[i].active = true;
-            }
+        else if ((selected[0].month === currentMonth + 2) || (selected[1].month === 1)) {
+          for (let i = selected[0].day; i < selected[1].day; i++) {
+            nextMonthDays[i].active = true;
           }
         }
       }
