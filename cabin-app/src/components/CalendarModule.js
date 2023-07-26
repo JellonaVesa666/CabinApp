@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputStyle";
 import { dayNames, monthNames, reservations, day } from "../mockup/calendarData";
-import { ChangeState } from "../helpers/HelperFunctions";
+import { ChangeState, DynamicSortMultiple } from "../helpers/HelperFunctions";
+import { json } from "react-router-dom";
 
 export const CalendarModule = (props) => {
   const [currentMonthDays, setCurrentMonthDays] = useState();
@@ -145,50 +146,83 @@ export const CalendarModule = (props) => {
   }, [range]);
 
 
-  const selectDate = (item) => {
+  const selectDate = (item, month) => {
+
+
+    // return if reserved
+    console.log(month);
 
     setClicks(clicks + 1);
 
     if (clicks === 2) {
       for (let i = 0; i < 42; i++) {
-        currentMonthDays[i].active = false
+        setActiveStatus(i, month, false);
       }
 
       setClicks(1);
     }
 
     if (clicks > 0) {
-      let min = 0;
-      let max = 0;
+      let selected = [{ 0: "" }, { 1: "" }];
 
       if (!currentMonthDays[item].active) {
-        currentMonthDays[item].active = true;
+
+        setActiveStatus(item, month, true);
 
         for (let i = 0; i < 42; i++) {
           if (currentMonthDays[i].active) {
-            min = i;
+            selected[0] = { "val": i, "month": currentMonth + 1 };
+            break;
+          }
+          else if (nextMonthDays[i].active) {
+            selected[0] = { "val": i, "month": currentMonth + 2 };
             break;
           }
         }
+
         for (let i = 41; i >= 0; i--) {
           if (currentMonthDays[i].active) {
-            max = i;
+            selected[1] = { "val": i, "month": currentMonth + 1 };
             break;
           }
-
+          else if (nextMonthDays[i].active) {
+            selected[1] = { "val": i, "month": currentMonth + 2 };
+            break;
+          }
         }
-        for (let i = min; i < max; i++) {
-          currentMonthDays[i].active = true;
+
+        selected.sort(DynamicSortMultiple("month", "val"));
+
+        if (selected[0].month === currentMonth + 1) {
+
+          const limit = selected[1].month === currentMonth + 1 ? selected[1].val : 41;
+          for (let i = selected[0].val; i < limit; i++) {
+            currentMonthDays[i].active = true;
+          }
         }
       }
       else {
-        currentMonthDays[item].active = false;
+        setActiveStatus(item, month, false);
       }
     }
     else {
-      currentMonthDays[item].active = true;
+      setActiveStatus(item, month, true);
     }
   }
+
+  const setActiveStatus = (item, month, bool) => {
+    if (month === currentMonth + 1) {
+      console.log("A");
+      currentMonthDays[item].active = bool;
+    }
+    else {
+      console.log("B");
+      nextMonthDays[item].active = bool;
+    }
+  }
+
+
+
 
   const rows = [];
   for (let i = 0; i < props.count; i++) {
@@ -227,7 +261,7 @@ export const CalendarModule = (props) => {
                   ${calendarDays[item].reserved ? "reserved" : ""}
                   ${calendarDays[item].active && !calendarDays[item].reserved ? "active" : ""}
                 `}
-                onClick={() => selectDate(item)}
+                onClick={() => selectDate(item, calendarDays[item].month)}
               >
                 {calendarDays[item].day}
               </Days>
