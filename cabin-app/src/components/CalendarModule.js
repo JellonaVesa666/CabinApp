@@ -67,7 +67,6 @@ export const CalendarModule = (props) => {
     var thisMonth = {};
     for (var t = 0; t <= thisMonthLenght - 1; t++) {
 
-      console.log(CurrentMonth);
       const item = Object.create(day);
       item.day = t + 1;
       item.dayName = "";
@@ -101,12 +100,9 @@ export const CalendarModule = (props) => {
       const item = Object.create(day);
       item.day = start - (41 - n) + 1;
       item.dayName = "";
-      console.log(CurrentMonth + 2);
       item.month = (CurrentMonth === 11) ? (1) : (CurrentMonth === 12) ? (2) : (CurrentMonth + 2);
       item.monthName = monthNames[item.month];
       item.year = CurrentMonth === 11 ? currentYear + 1 : CurrentMonth === 12 ? currentYear + 1 : currentYear;
-      console.log(CurrentMonth);
-      //item.year = (CurrentMonth + 2 === 13) ? (currentYear + 1) : (CurrentMonth + 2 === 14) ? (currentYear + 1) : (currentYear)
       item.reserved = false;
       item.active = false;
 
@@ -152,19 +148,7 @@ export const CalendarModule = (props) => {
     setNextMonthDays(range(currentMonth + 1));
   }, [range, currentMonth]);
 
-  console.log("A    /   " + JSON.stringify(currentMonthDays));
-  console.log("B    /   " + JSON.stringify(nextMonthDays));
-
-
-  const selectDate = (item, month) => {
-
-    if (
-      (month < currentMonth + 1) ||
-      (month > currentMonth + 2) ||
-      (month === currentMonth + 1 && currentMonthDays[item].reserved) ||
-      (month === currentMonth + 2 && nextMonthDays[item].reserved)
-    )
-      return;
+  const selectDate = (item, month, year) => {
 
     setClicks(clicks + 1);
 
@@ -178,8 +162,10 @@ export const CalendarModule = (props) => {
     }
 
 
-    if ((!currentMonthDays[item].active && month === currentMonth + 1) ||
-      (!nextMonthDays[item].active && month === currentMonth + 2)
+    console.log("PASS  " + clicks);
+
+    if ((!currentMonthDays[item].active && month) ||
+      (!nextMonthDays[item].active && month)
     ) {
 
       if (clicks > 0) {
@@ -189,51 +175,69 @@ export const CalendarModule = (props) => {
 
         for (let i = 0; i < 42; i++) {
           if (currentMonthDays[i].active) {
-            selected[0] = { "val": i, "month": currentMonth + 1 };
+            selected[0] = { "day": i, "month": currentMonthDays[i].month, "year": currentMonthDays[i].year };
             break;
           }
           else if (nextMonthDays[i].active) {
-            selected[0] = { "val": i, "month": currentMonth + 2 };
+            selected[0] = { "day": i, "month": nextMonthDays[i].month, "year": nextMonthDays[i].year };
             break;
           }
         }
 
         for (let i = 41; i >= 0; i--) {
           if (nextMonthDays[i].active) {
-            selected[1] = { "val": i, "month": currentMonth + 2 };
+            selected[1] = { "day": i, "month": nextMonthDays[i].month, "year": nextMonthDays[i].year };
             break;
           }
           else if (currentMonthDays[i].active) {
-            selected[1] = { "val": i, "month": currentMonth + 1 };
+            selected[1] = { "day": i, "month": currentMonthDays[i].month, "year": currentMonthDays[i].year };
             break;
           }
         }
 
+
+        selected.sort((a, b) => {
+          // Sort by year
+          if (a.year < b.year) return -1;
+          if (a.year > b.year) return 1;
+          // Sort by month
+          if (a.month < b.month) return -1;
+          if (a.month > b.month) return 1;
+          // Sort by day
+          if (a.day < b.day) return -1;
+          if (a.day > b.day) return 1;
+          return 0;
+        });
         // Sort values from min to max
-        selected.sort(DynamicSortMultiple("month", "val"));
+        //selected.sort(DynamicSortMultiple("month", "day"));
 
         console.log(JSON.stringify(selected));
 
         // Set active days 
         if (selected[0].month === currentMonth + 1) {
 
+          console.log(selected[0].month);
+          console.log(selected[1].month);
+
           if (selected[1].month === currentMonth + 1) {
-            for (let i = selected[0].val; i < selected[1].val; i++) {
+            console.log("A");
+            for (let i = selected[0].day; i < selected[1].day; i++) {
               currentMonthDays[i].active = true;
             }
           }
-          else if (selected[1].month === currentMonth + 2) {
-            for (let i = selected[0].val; i < 42; i++) {
+          else if (selected[1].month === currentMonth + 2 || selected[0].month === 12 && selected[1].month === 1) {
+            console.log("B");
+            for (let i = selected[0].day; i < 42; i++) {
               currentMonthDays[i].active = true;
             }
-            for (let i = 0; i < selected[1].val; i++) {
+            for (let i = 0; i < selected[1].day; i++) {
               nextMonthDays[i].active = true;
             }
           }
         }
-        else if (selected[0].month === currentMonth + 2) {
+        else if (selected[0].month === currentMonth + 2 /* || selected[1].month === 1 */) {
           if (selected[1].month === currentMonth + 2) {
-            for (let i = selected[0].val; i < selected[1].val; i++) {
+            for (let i = selected[0].day; i < selected[1].day; i++) {
               nextMonthDays[i].active = true;
             }
           }
@@ -290,7 +294,6 @@ export const CalendarModule = (props) => {
         </WeekGrid>
         <DayGrid>
           {calendarDays && Object.keys(calendarDays).map((item) => {
-
             return (
               <Days
                 key={item}
@@ -299,7 +302,7 @@ export const CalendarModule = (props) => {
                   ${calendarDays[item].reserved ? "reserved" : ""}
                   ${calendarDays[item].active && !calendarDays[item].reserved ? "active" : ""}
                 `}
-                onClick={() => selectDate(item, calendarDays[item].month)}
+                onClick={() => selectDate(item, calendarDays[item].month, calendarDays[item].year)}
               >
                 {calendarDays[item].day}
               </Days>
