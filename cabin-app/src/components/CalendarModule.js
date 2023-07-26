@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputStyle";
 import { dayNames, monthNames, reservations, day } from "../mockup/calendarData";
-import { ChangeState, DynamicSortMultiple } from "../helpers/HelperFunctions";
-import { json } from "react-router-dom";
+import { DynamicSortMultiple } from "../helpers/HelperFunctions";
 
 export const CalendarModule = (props) => {
   const [currentMonthDays, setCurrentMonthDays] = useState();
@@ -137,13 +136,15 @@ export const CalendarModule = (props) => {
     //console.log(merged);
     return merged;
 
-  }, [currentMonth, currentYear]);
+  }, [currentYear]);
+
 
 
   useEffect(() => {
     setCurrentMonthDays(range(currentMonth));
     setNextMonthDays(range(currentMonth + 1));
-  }, [range]);
+  }, [range, currentMonth]);
+
 
 
   const selectDate = (item, month) => {
@@ -207,8 +208,6 @@ export const CalendarModule = (props) => {
         // Set active days 
         if (selected[0].month === currentMonth + 1) {
 
-          //console.log(JSON.stringify(selected));
-
           if (selected[1].month === currentMonth + 1) {
             for (let i = selected[0].val; i < selected[1].val; i++) {
               currentMonthDays[i].active = true;
@@ -232,12 +231,10 @@ export const CalendarModule = (props) => {
         }
       }
       else {
-        console.log("A");
         setActiveStatus(item, month, true);
       }
     }
     else {
-      console.log("false");
       setActiveStatus(item, month, false);
     }
   }
