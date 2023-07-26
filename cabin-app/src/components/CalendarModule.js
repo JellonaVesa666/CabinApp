@@ -20,7 +20,7 @@ export const CalendarModule = (props) => {
     }
   }
 
-  const prevMonth = () => {
+  const PrevMonth = () => {
     if (currentMonth > 0) {
       setCurrentMonth((prev) => prev - 1);
     }
@@ -40,8 +40,8 @@ export const CalendarModule = (props) => {
       const item = Object.create(day);
       item.day = p;
       item.dayName = "";
-      item.month = CurrentMonth;
-      item.monthName = monthNames[CurrentMonth];
+      item.month = currentMonth === 12 ? 12 : CurrentMonth;
+      item.monthName = monthNames[item.month];
       item.reserved = false;
       item.active = false;
 
@@ -69,8 +69,8 @@ export const CalendarModule = (props) => {
       const item = Object.create(day);
       item.day = t + 1;
       item.dayName = "";
-      item.month = CurrentMonth + 1;
-      item.monthName = monthNames[CurrentMonth + 1];
+      item.month = currentMonth === 12 ? 1 : CurrentMonth + 1;
+      item.monthName = monthNames[item.month];
       item.reserved = false;
       item.active = false;
 
@@ -98,8 +98,8 @@ export const CalendarModule = (props) => {
       const item = Object.create(day);
       item.day = start - (41 - n) + 1;
       item.dayName = "";
-      item.month = CurrentMonth + 2;
-      item.monthName = monthNames[CurrentMonth + 2];
+      item.month = currentMonth === 12 ? 2 : CurrentMonth + 2;
+      item.monthName = monthNames[item.month];
       item.reserved = false;
       item.active = false;
 
@@ -141,10 +141,16 @@ export const CalendarModule = (props) => {
 
 
   useEffect(() => {
+
+
+
+
     setCurrentMonthDays(range(currentMonth));
     setNextMonthDays(range(currentMonth + 1));
   }, [range, currentMonth]);
 
+  console.log("A    /   " + JSON.stringify(currentMonthDays));
+  console.log("B    /   " + JSON.stringify(nextMonthDays));
 
 
   const selectDate = (item, month) => {
@@ -255,17 +261,17 @@ export const CalendarModule = (props) => {
   const rows = [];
   for (let i = 0; i < props.count; i++) {
     const calendarDays = (i === 0 ? currentMonthDays : nextMonthDays);
-    const calendarMonth = (i === 0 ? currentMonth + 1 : currentMonth + 2);
+    const calendarMonth = (i === 0 ? currentMonth + 1 : currentMonth === 12 ? currentMonth + 2 : currentMonth + 2);
     rows.push(
       <>
         <MonthPanel>
           <p
             style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
-            onClick={() => prevMonth()}
+            onClick={() => PrevMonth()}
           >
             &#9664;
           </p>
-          <p style={{ fontSize: "30px", color: "black", margin: "auto" }}>{monthNames[calendarMonth].toUpperCase()} / {currentYear}</p>
+          <p style={{ fontSize: "30px", color: "black", margin: "auto" }}>{calendarMonth} / {currentYear}</p>
           <p
             style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
             onClick={() => NextMonth()}
