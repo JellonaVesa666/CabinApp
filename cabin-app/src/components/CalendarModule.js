@@ -257,7 +257,9 @@ export const CalendarModule = (props) => {
   for (let i = 0; i < props.count; i++) {
     /// Needs optimization
     const calendarDays = (i === 0 ? currentMonthDays : nextMonthDays)
-    const calendarMonth = (i === 0 ? currentMonth + 1 : currentMonth + 2 > 12 ? 1 : currentMonth + 2);
+    const calendarInfo = calendarDays?.[Math.round(Object.keys?.(calendarDays).length) / 2];
+    const calendarMonth = calendarInfo?.month;
+    const calendarYear = calendarInfo?.year;
     rows.push(
       <>
         <MonthPanel>
@@ -267,7 +269,7 @@ export const CalendarModule = (props) => {
           >
             &#9664;
           </p>
-          <p style={{ fontSize: "30px", color: "black", margin: "auto" }}>{calendarMonth} / {currentYear}</p>
+          <p style={{ fontSize: "30px", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.toUpperCase()} / {calendarYear}</p>
           <p
             style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
             onClick={() => NextMonth()}
