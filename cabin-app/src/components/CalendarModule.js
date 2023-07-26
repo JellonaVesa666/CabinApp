@@ -40,8 +40,9 @@ export const CalendarModule = (props) => {
       const item = Object.create(day);
       item.day = p;
       item.dayName = "";
-      item.month = currentMonth === 12 ? 12 : CurrentMonth;
+      item.month = CurrentMonth;
       item.monthName = monthNames[item.month];
+      item.year = CurrentMonth > 12 ? currentYear + 1 : currentYear;
       item.reserved = false;
       item.active = false;
 
@@ -71,6 +72,7 @@ export const CalendarModule = (props) => {
       item.dayName = "";
       item.month = currentMonth === 12 ? 1 : CurrentMonth + 1;
       item.monthName = monthNames[item.month];
+      item.year = CurrentMonth >= 12 ? currentYear + 1 : currentYear;
       item.reserved = false;
       item.active = false;
 
@@ -100,6 +102,7 @@ export const CalendarModule = (props) => {
       item.dayName = "";
       item.month = currentMonth === 12 ? 2 : CurrentMonth + 2;
       item.monthName = monthNames[item.month];
+      item.year = CurrentMonth >= 12 ? currentYear + 1 : currentYear;
       item.reserved = false;
       item.active = false;
 

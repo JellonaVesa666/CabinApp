@@ -4,7 +4,8 @@ export const day = {
   "month": 0,
   "monthName": "",
   "reserved": false,
-  "active": false
+  "active": false,
+  "year": 0,
 }
 
 export const monthNames = {
@@ -19,7 +20,7 @@ export const monthNames = {
   9: "september",
   10: "october",
   11: "november",
-  12: "december"
+  12: "december",
 }
 
 export const dayNames = [
