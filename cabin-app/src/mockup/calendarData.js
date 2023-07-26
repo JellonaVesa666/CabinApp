@@ -8,7 +8,6 @@ export const day = {
 }
 
 export const monthNames = {
-  0: "0",
   1: "january",
   2: "february",
   3: "march",
