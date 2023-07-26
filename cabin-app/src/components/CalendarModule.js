@@ -149,14 +149,14 @@ export const CalendarModule = (props) => {
   const selectDate = (item, month) => {
 
 
-    // return if reserved
     console.log(month);
 
     setClicks(clicks + 1);
 
     if (clicks === 2) {
       for (let i = 0; i < 42; i++) {
-        setActiveStatus(i, month, false);
+        setActiveStatus(i, currentMonth + 1, false);
+        setActiveStatus(i, currentMonth + 2, false);
       }
 
       setClicks(1);
@@ -165,7 +165,7 @@ export const CalendarModule = (props) => {
     if (clicks > 0) {
       let selected = [{ 0: "" }, { 1: "" }];
 
-      if (!currentMonthDays[item].active) {
+      if (!currentMonthDays[item].active && month === currentMonth + 1 || !nextMonthDays[item].active && month === currentMonth + 2 ) {
 
         setActiveStatus(item, month, true);
 
@@ -195,13 +195,30 @@ export const CalendarModule = (props) => {
 
         if (selected[0].month === currentMonth + 1) {
 
-          const limit = selected[1].month === currentMonth + 1 ? selected[1].val : 41;
-          for (let i = selected[0].val; i < limit; i++) {
-            currentMonthDays[i].active = true;
+          if (selected[1].month === currentMonth + 1) {
+            for (let i = selected[0].val; i < selected[1].val; i++) {
+              currentMonthDays[i].active = true;
+            }
+          }
+          else if (selected[1].month === currentMonth + 2) {
+            for (let i = selected[0].val; i < 42; i++) {
+              currentMonthDays[i].active = true;
+            }
+            for (let i = 0; i < selected[1].val; i++) {
+              nextMonthDays[i].active = true;
+            }
+          }
+        }
+        else if (selected[0].month === currentMonth + 2) {
+          if (selected[1].month === currentMonth + 2) {
+            for (let i = selected[0].val; i < selected[1].val; i++) {
+              nextMonthDays[i].active = true;
+            }
           }
         }
       }
       else {
+        console.log("false");
         setActiveStatus(item, month, false);
       }
     }
@@ -212,11 +229,9 @@ export const CalendarModule = (props) => {
 
   const setActiveStatus = (item, month, bool) => {
     if (month === currentMonth + 1) {
-      console.log("A");
       currentMonthDays[item].active = bool;
     }
     else {
-      console.log("B");
       nextMonthDays[item].active = bool;
     }
   }
