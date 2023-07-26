@@ -112,20 +112,22 @@ export const Days = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${colors.darkWhite};
   height: 40px;
   margin: 0;
   padding: 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: rgba(0, 0, 0, 0.1);
   color: ${colors.grey};
+  visibility: hidden;
   &.this {
     background-color: ${colors.white};
     cursor: pointer;
     color: ${colors.black};
+    visibility: visible;
     &.reserved {
       background-color: ${colors.lightRed};
       color: ${colors.black};
+      visibility: visible;
     }
   }
   &.reserved {
