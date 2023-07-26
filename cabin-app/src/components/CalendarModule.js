@@ -40,9 +40,9 @@ export const CalendarModule = (props) => {
       const item = Object.create(day);
       item.day = p;
       item.dayName = "";
-      item.month = CurrentMonth;
+      item.month = CurrentMonth === 0 ? 12 : CurrentMonth;
       item.monthName = monthNames[item.month];
-      item.year = currentYear;
+      item.year = CurrentMonth === 0 ? currentYear - 1 : currentYear;
       item.reserved = false;
       item.active = false;
 
@@ -67,12 +67,13 @@ export const CalendarModule = (props) => {
     var thisMonth = {};
     for (var t = 0; t <= thisMonthLenght - 1; t++) {
 
+      console.log(CurrentMonth);
       const item = Object.create(day);
       item.day = t + 1;
       item.dayName = "";
-      item.month = CurrentMonth + 1 === 13 ? 1 : CurrentMonth + 1;
+      item.month = (CurrentMonth + 1 === 13) ? (1) : (CurrentMonth + 1);
       item.monthName = monthNames[item.month];
-      item.year = currentYear;
+      item.year = CurrentMonth <= 11 ? currentYear : currentYear + 1;
       item.reserved = false;
       item.active = false;
 
@@ -101,9 +102,11 @@ export const CalendarModule = (props) => {
       item.day = start - (41 - n) + 1;
       item.dayName = "";
       console.log(CurrentMonth + 2);
-      item.month = CurrentMonth + 2 === 13 ? 1 : CurrentMonth + 2 === 14 ? 2 : CurrentMonth + 2;
+      item.month = (CurrentMonth + 2 === 13) ? (1) : (CurrentMonth + 2 === 14) ? (2) : (CurrentMonth + 2);
       item.monthName = monthNames[item.month];
-      item.year = currentYear;
+      item.year = CurrentMonth === 11 ? currentYear + 1 : CurrentMonth === 12 ? currentYear + 1 : currentYear;
+      console.log(CurrentMonth);
+      //item.year = (CurrentMonth + 2 === 13) ? (currentYear + 1) : (CurrentMonth + 2 === 14) ? (currentYear + 1) : (currentYear)
       item.reserved = false;
       item.active = false;
 
