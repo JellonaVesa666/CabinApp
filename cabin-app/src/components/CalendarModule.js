@@ -10,7 +10,7 @@ export const CalendarModule = (props) => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [clicks, setClicks] = useState(0);
 
-  const nextMonth = () => {
+  const NextMonth = () => {
     if (currentMonth < 11) {
       setCurrentMonth((prev) => prev + 1);
     }
@@ -268,7 +268,7 @@ export const CalendarModule = (props) => {
           <p style={{ fontSize: "30px", color: "black", margin: "auto" }}>{monthNames[calendarMonth].toUpperCase()} / {currentYear}</p>
           <p
             style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
-            onClick={() => nextMonth()}
+            onClick={() => NextMonth()}
           >
             &#9654;
           </p>
