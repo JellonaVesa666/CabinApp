@@ -145,10 +145,6 @@ export const CalendarModule = (props) => {
 
 
   useEffect(() => {
-
-
-
-
     setCurrentMonthDays(range(currentMonth));
     setNextMonthDays(range(currentMonth + 1));
   }, [range, currentMonth]);
@@ -264,8 +260,8 @@ export const CalendarModule = (props) => {
 
   const rows = [];
   for (let i = 0; i < props.count; i++) {
+    /// Needs optimization
     const calendarDays = (i === 0 ? currentMonthDays : nextMonthDays)
-    console.log(currentMonth);
     const calendarMonth = (i === 0 ? currentMonth + 1 : currentMonth + 2 > 12 ? 1 : currentMonth + 2);
     rows.push(
       <>
