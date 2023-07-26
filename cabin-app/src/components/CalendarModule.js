@@ -28,7 +28,7 @@ export const CalendarModule = (props) => {
       setCurrentYear((prev) => prev - 1);
     }
   }
-  const range = useCallback((CurrentMonth) => {
+  const Range = useCallback((CurrentMonth) => {
     const startDay = dayNames.indexOf((new Date(currentYear, CurrentMonth, 1)).toString().toLowerCase().split(' ')[0]);
 
     // Previous Month
@@ -141,13 +141,13 @@ export const CalendarModule = (props) => {
   }, [currentYear]);
 
 
-
   useEffect(() => {
-    setCurrentMonthDays(range(currentMonth));
-    setNextMonthDays(range(currentMonth + 1));
-  }, [range, currentMonth]);
+    setCurrentMonthDays(Range(currentMonth));
+    setNextMonthDays(Range(currentMonth + 1));
+  }, [Range, currentMonth]);
 
-  const selectDate = (item, month, year) => {
+
+  const SelectDate = (item, month) => {
 
     setClicks(clicks + 1);
 
@@ -160,10 +160,10 @@ export const CalendarModule = (props) => {
       setClicks(1);
     }
 
-    if ((!currentMonthDays[item].active && month) ||
-      (!nextMonthDays[item].active && month)
+    if ((!currentMonthDays[item].active && currentMonthDays[item].month === month) ||
+      (!nextMonthDays[item].active && nextMonthDays[item].month === month)
     ) {
-
+      console.log("true")
       if (clicks > 0) {
         let selected = [{ 0: "" }, { 1: "" }];
 
@@ -235,6 +235,7 @@ export const CalendarModule = (props) => {
       }
     }
     else {
+      console.log("false");
       setActiveStatus(item, month, false);
     }
   }
@@ -289,7 +290,7 @@ export const CalendarModule = (props) => {
                   ${calendarDays[item].reserved ? "reserved" : ""}
                   ${calendarDays[item].active && !calendarDays[item].reserved ? "active" : ""}
                 `}
-                onClick={() => selectDate(item, calendarDays[item].month, calendarDays[item].year)}
+                onClick={() => { if (!calendarDays[item].reserved) SelectDate(item, calendarDays[item].month) }}
               >
                 {calendarDays[item].day}
               </Days>
