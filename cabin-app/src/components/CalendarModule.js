@@ -28,6 +28,7 @@ export const CalendarModule = (props) => {
       setCurrentYear((prev) => prev - 1);
     }
   }
+
   const Range = useCallback((CurrentMonth) => {
     const startDay = dayNames.indexOf((new Date(currentYear, CurrentMonth, 1)).toString().toLowerCase().split(' ')[0]);
 
@@ -261,17 +262,20 @@ export const CalendarModule = (props) => {
     const calendarMonth = calendarInfo?.month;
     const calendarYear = calendarInfo?.year;
     rows.push(
-      <>
+      <div
+        className="row"
+        style={{ width: "45%" }}
+      >
         <MonthPanel>
           <p
-            style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
+            style={{ fontSize: "16px", fontWeight: "500", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
             onClick={() => PrevMonth()}
           >
             &#9664;
           </p>
-          <p style={{ fontSize: "30px", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.toUpperCase()} / {calendarYear}</p>
+          <p style={{ fontSize: "16px", fontWeight: "500", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.toUpperCase()} / {calendarYear}</p>
           <p
-            style={{ fontSize: "30px", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
+            style={{ fontSize: "16px", fontWeight: "500", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
             onClick={() => NextMonth()}
           >
             &#9654;
@@ -279,7 +283,7 @@ export const CalendarModule = (props) => {
         </MonthPanel>
         <WeekGrid>
           {dayNames.map((item, index) =>
-            <p style={{ color: "black" }} key={index}>{item.toUpperCase()}</p>
+            <p style={{ fontSize: "12px", color: "black" }} key={index}>{item.toUpperCase()}</p>
           )}
         </WeekGrid>
         <DayGrid>
@@ -300,7 +304,7 @@ export const CalendarModule = (props) => {
           }
           )}
         </DayGrid>
-      </>
+      </div >
     )
   }
   return (rows)

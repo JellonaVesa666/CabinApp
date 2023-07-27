@@ -1,15 +1,20 @@
 import styled from 'styled-components'
-import {colors} from "./Colors";
+import { colors } from "./Colors";
 
 export const ModalContent = styled.section`
   z-index:10;
   position: fixed;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
   top: 0;
   left: 0;
   border-radius: 50px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   border-radius: 6px;
-  width: 27.5%;
+  width: 30%;
   padding-top: 3rem;
   padding-bottom: 3rem;
   height: auto;
@@ -17,9 +22,6 @@ export const ModalContent = styled.section`
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  &.true {
-    display: block;
-  }
   &.false {
     display: none;
   }

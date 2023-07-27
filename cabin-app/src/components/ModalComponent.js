@@ -23,18 +23,16 @@ export const Modal = (props) => {
     const result = Object.keys(props.options[props.filter]).filter((i) => typeof i === "string" && !isNaN(i));
     return (
       <ModalContent>
-        <CalendarModule
-          prevMonth={props.options[props.filter].prevMonth}
-          thisMonth={props.options[props.filter].thisMonth}
-          nextMonth={props.options[props.filter].nextMonth}
-          count={props.options[props.filter].count}
-        />
+          <CalendarModule
+            prevMonth={props.options[props.filter].prevMonth}
+            thisMonth={props.options[props.filter].thisMonth}
+            nextMonth={props.options[props.filter].nextMonth}
+            count={props.options[props.filter].count}
+          />
       </ModalContent>
     );
   }
 };
-
-
 
 {/*           <CalendarModule  prevMonth={props.options?.[props.filter][0].prevMonth} thisMonth={props.options?.[props.filter][0].thisMonth} nextMonth={props.options?.[props.filter][0].nextMonth}/>
           <CalendarModule /> */}
