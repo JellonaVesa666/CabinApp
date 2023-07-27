@@ -17,7 +17,7 @@ export const CalendarModule = (props) => {
       setCurrentMonth(0);
       setCurrentYear((prev) => prev + 1);
     }
-    ResetSelected();
+    ResetSelected(0);
   }
 
   const PrevMonth = () => {
@@ -28,7 +28,7 @@ export const CalendarModule = (props) => {
       setCurrentMonth(11);
       setCurrentYear((prev) => prev - 1);
     }
-    ResetSelected();
+    ResetSelected(0);
   }
 
   const Range = useCallback((CurrentMonth) => {
@@ -155,22 +155,16 @@ export const CalendarModule = (props) => {
     setClicks(clicks + 1);
 
     if (clicks === 2) {
-      for (let i = 0; i < 42; i++) {
-        SetActiveStatus(i, currentMonth + 1, false);
-        SetActiveStatus(i, currentMonth + 2, false);
-      }
-
-      setClicks(1);
+      ResetSelected(1);
     }
 
     if ((!currentMonthDays[item].active && currentMonthDays[item].month === month) ||
       (!nextMonthDays[item].active && nextMonthDays[item].month === month)
     ) {
-      console.log("true")
       if (clicks > 0) {
         let selected = [{ 0: "" }, { 1: "" }];
 
-        SetActiveStatus(item, month, true);
+        SetSelected(item, month, true);
 
         for (let i = 0; i < 42; i++) {
           if (currentMonthDays[i].active) {
@@ -234,17 +228,16 @@ export const CalendarModule = (props) => {
         }
       }
       else {
-        SetActiveStatus(item, month, true);
+        SetSelected(item, month, true);
       }
     }
     else {
-      console.log("false");
-      SetActiveStatus(item, month, false);
+      SetSelected(item, month, false);
     }
   }
 
 
-  const SetActiveStatus = (item, month, bool) => {
+  const SetSelected = (item, month, bool) => {
     if (month === currentMonth + 1) {
       currentMonthDays[item].active = bool;
     }
@@ -254,13 +247,13 @@ export const CalendarModule = (props) => {
   }
 
 
-  const ResetSelected = () => {
+  const ResetSelected = (clickCount) => {
     for (let i = 0; i < 42; i++) {
-      SetActiveStatus(i, currentMonth + 1, false);
-      SetActiveStatus(i, currentMonth + 2, false);
+      SetSelected(i, currentMonth + 1, false);
+      SetSelected(i, currentMonth + 2, false);
     }
 
-    setClicks(0);
+    setClicks(clickCount);
   }
 
 
@@ -343,7 +336,7 @@ export const CalendarModule = (props) => {
       {rows}
       <input type="button" name="" value="Reset"
         style={{ width: "20%" }}
-        onClick={() => ResetSelected()}
+        onClick={() => ResetSelected(0)}
       />
     </>
   )
