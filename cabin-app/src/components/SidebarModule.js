@@ -191,7 +191,7 @@ export const SidebarModule = () => {
   return (
     <>
       {modalActive &&
-        <Modal filter={selectedFilter} isActive={modalActive} options={searchFilters} closeModal={() => setModalActive(false)} /* setActive={(index) => ChangeState(setSearchFilters, !searchFilters[index].isActive, "isActive", index)} */ />
+        <Modal filter={selectedFilter} options={searchFilters} closeModal={() => setModalActive(false)} /* setActive={(index) => ChangeState(setSearchFilters, !searchFilters[index].isActive, "isActive", index)} */ />
       }
       <Sidebar>
         <div
