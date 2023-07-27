@@ -17,6 +17,7 @@ export const CalendarModule = (props) => {
       setCurrentMonth(0);
       setCurrentYear((prev) => prev + 1);
     }
+    ResetSelected();
   }
 
   const PrevMonth = () => {
@@ -27,6 +28,7 @@ export const CalendarModule = (props) => {
       setCurrentMonth(11);
       setCurrentYear((prev) => prev - 1);
     }
+    ResetSelected();
   }
 
   const Range = useCallback((CurrentMonth) => {
@@ -154,8 +156,8 @@ export const CalendarModule = (props) => {
 
     if (clicks === 2) {
       for (let i = 0; i < 42; i++) {
-        setActiveStatus(i, currentMonth + 1, false);
-        setActiveStatus(i, currentMonth + 2, false);
+        SetActiveStatus(i, currentMonth + 1, false);
+        SetActiveStatus(i, currentMonth + 2, false);
       }
 
       setClicks(1);
@@ -168,7 +170,7 @@ export const CalendarModule = (props) => {
       if (clicks > 0) {
         let selected = [{ 0: "" }, { 1: "" }];
 
-        setActiveStatus(item, month, true);
+        SetActiveStatus(item, month, true);
 
         for (let i = 0; i < 42; i++) {
           if (currentMonthDays[i].active) {
@@ -232,17 +234,17 @@ export const CalendarModule = (props) => {
         }
       }
       else {
-        setActiveStatus(item, month, true);
+        SetActiveStatus(item, month, true);
       }
     }
     else {
       console.log("false");
-      setActiveStatus(item, month, false);
+      SetActiveStatus(item, month, false);
     }
   }
 
 
-  const setActiveStatus = (item, month, bool) => {
+  const SetActiveStatus = (item, month, bool) => {
     if (month === currentMonth + 1) {
       currentMonthDays[item].active = bool;
     }
@@ -252,6 +254,14 @@ export const CalendarModule = (props) => {
   }
 
 
+  const ResetSelected = () => {
+    for (let i = 0; i < 42; i++) {
+      SetActiveStatus(i, currentMonth + 1, false);
+      SetActiveStatus(i, currentMonth + 2, false);
+    }
+
+    setClicks(0);
+  }
 
 
   const rows = [];
@@ -267,19 +277,33 @@ export const CalendarModule = (props) => {
         style={{ width: "45%" }}
       >
         <MonthPanel>
-          <p
-            style={{ fontSize: "16px", fontWeight: "500", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
-            onClick={() => PrevMonth()}
-          >
-            &#9664;
-          </p>
-          <p style={{ fontSize: "16px", fontWeight: "500", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.toUpperCase()} / {calendarYear}</p>
-          <p
-            style={{ fontSize: "16px", fontWeight: "500", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
-            onClick={() => NextMonth()}
-          >
-            &#9654;
-          </p>
+          {props.count > 1 &&
+            <>
+              {i === 0 &&
+                <>
+                  <p
+                    style={{ fontSize: "20px", fontWeight: "500", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
+                    onClick={() => PrevMonth()}
+                  >
+                    {"<"}
+                  </p>
+                  <p style={{ fontSize: "16px", fontWeight: "500", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.toUpperCase()} / {calendarYear}</p>
+                </>
+              }
+              {i === 1 &&
+                <>
+
+                  <p style={{ fontSize: "16px", fontWeight: "500", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.toUpperCase()} / {calendarYear}</p>
+                  <p
+                    style={{ fontSize: "20px", fontWeight: "500", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
+                    onClick={() => NextMonth()}
+                  >
+                    {">"}
+                  </p>
+                </>
+              }
+            </>
+          }
         </MonthPanel>
         <WeekGrid>
           {dayNames.map((item, index) =>
@@ -293,10 +317,17 @@ export const CalendarModule = (props) => {
                 key={item}
                 className={`
                   ${calendarDays[item].month === calendarMonth ? "this" : ""} 
-                  ${calendarDays[item].reserved ? "reserved" : ""}
-                  ${calendarDays[item].active && !calendarDays[item].reserved ? "active" : ""}
+                  ${props.reservations && calendarDays[item].reserved ? "reserved" : ""}
+                  ${props.reservations && calendarDays[item].active && !calendarDays[item].reserved ? "active" : ""}
+                  ${!props.reservations && calendarDays[item].active ? "active" : ""}
                 `}
-                onClick={() => { if (!calendarDays[item].reserved) SelectDate(item, calendarDays[item].month) }}
+                onClick={() => {
+
+                  if (props.reservations && !calendarDays[item].reserved)
+                    SelectDate(item, calendarDays[item].month)
+                  else
+                    SelectDate(item, calendarDays[item].month)
+                }}
               >
                 {calendarDays[item].day}
               </Days>
@@ -307,5 +338,13 @@ export const CalendarModule = (props) => {
       </div >
     )
   }
-  return (rows)
+  return (
+    <>
+      {rows}
+      <input type="button" name="" value="Reset"
+        style={{ width: "20%" }}
+        onClick={() => ResetSelected()}
+      />
+    </>
+  )
 }

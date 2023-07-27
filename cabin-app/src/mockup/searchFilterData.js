@@ -282,12 +282,13 @@ export const searchParameters = {
       },
     },
   },
-  reservationDate: {
+  searchDate: {
     type: "button",
     context: "date",
     static: true,
     modal: true,
     count: 2,
+    reservations: false,
     prevMonth: false,
     thisMonth: true,
     nextMonth: false,

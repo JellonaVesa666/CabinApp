@@ -115,8 +115,8 @@ export const Days = styled.p`
   height: 40px;
   margin: 0;
   padding: 0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   color: ${colors.grey};
   visibility: hidden;
   &.this {
@@ -135,10 +135,9 @@ export const Days = styled.p`
     color: ${colors.grey};
   }
   &.active {
-    background-color: rgba(160, 200, 50, 0.5);
-    color: ${colors.black};
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    border-radius: 4px;
+    background-color: #4AADF9;
+    color: ${colors.white};
+    border: 1px solid ${colors.white};
   }
 `
 
