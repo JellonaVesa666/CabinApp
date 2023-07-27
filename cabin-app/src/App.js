@@ -8,12 +8,10 @@ import { SidebarModule } from './components/SidebarModule';
 
 function App() {
 
-  const [sidebarActive, setSidebarActive] = useState(true);
-
   return (
     <BodyBackground>
       <NavigationModule />
-      <SidebarModule isActive={sidebarActive} />
+      <SidebarModule />
     </BodyBackground>
   );
 }

@@ -190,9 +190,9 @@ export const SidebarModule = () => {
 
   return (
     <>
-      <Modal filter={selectedFilter} options={searchFilters} closeModal={() => setModalActive(false)} /* setActive={(index) => ChangeState(setSearchFilters, !searchFilters[index].isActive, "isActive", index)} */>
-        <p>Modal</p>
-      </Modal>
+      {modalActive &&
+        <Modal filter={selectedFilter} isActive={modalActive} options={searchFilters} closeModal={() => setModalActive(false)} /* setActive={(index) => ChangeState(setSearchFilters, !searchFilters[index].isActive, "isActive", index)} */ />
+      }
       <Sidebar>
         <div
           className="d-flex justify-content-center align-items-center gap-2"
