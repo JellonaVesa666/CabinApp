@@ -9,7 +9,6 @@ import { colors } from "../styles/Colors";
 
 export default function NavigationModule() {
 
-  // TODO: Implement reducer usage through App.js
   const session = useSelector(state => state.session);
   const dispatch = useDispatch();
 

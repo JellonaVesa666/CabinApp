@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputStyle";
 import { dayNames, monthNames, reservations, day } from "../mockup/calendarData";
+import { useSelector } from "react-redux";
 
 export const CalendarModule = (props) => {
   const [currentMonthDays, setCurrentMonthDays] = useState();
@@ -8,6 +9,8 @@ export const CalendarModule = (props) => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [clicks, setClicks] = useState(0);
+
+  const session = useSelector(state => state.session);
 
   const NextMonth = () => {
     if (currentMonth < 11) {
@@ -32,7 +35,9 @@ export const CalendarModule = (props) => {
   }
 
   const Range = useCallback((CurrentMonth) => {
-    const startDay = dayNames.indexOf((new Date(currentYear, CurrentMonth, 1)).toString().toLowerCase().split(' ')[0]);
+    let startDay = new Date(currentYear, CurrentMonth, 1).getDay() - 1;
+    startDay = startDay < 0 ? 6 : startDay;
+    console.log(startDay);
 
     // Previous Month
     var prevMonth = {};
@@ -300,7 +305,7 @@ export const CalendarModule = (props) => {
         </MonthPanel>
         <WeekGrid>
           {dayNames.map((item, index) =>
-            <p style={{ fontSize: "12px", color: "black" }} key={index}>{item.toUpperCase()}</p>
+            <p style={{ fontSize: "12px", color: "black" }} key={index}>{item[session.language].toUpperCase()}</p>
           )}
         </WeekGrid>
         <DayGrid>
@@ -309,11 +314,11 @@ export const CalendarModule = (props) => {
               <Days
                 key={item}
                 className={`
-                  ${calendarDays[item].month === calendarMonth ? "this" : ""} 
-                  ${props.reservations && calendarDays[item].reserved ? "reserved" : ""}
-                  ${props.reservations && calendarDays[item].active && !calendarDays[item].reserved ? "active" : ""}
-                  ${!props.reservations && calendarDays[item].active ? "active" : ""}
-                `}
+                    ${calendarDays[item].month === calendarMonth ? "this" : ""} 
+                    ${props.reservations && calendarDays[item].reserved ? "reserved" : ""}
+                    ${props.reservations && calendarDays[item].active && !calendarDays[item].reserved ? "active" : ""}
+                    ${!props.reservations && calendarDays[item].active ? "active" : ""}
+                  `}
                 onClick={() => {
 
                   if (props.reservations && !calendarDays[item].reserved)
@@ -331,6 +336,7 @@ export const CalendarModule = (props) => {
       </div >
     )
   }
+
   return (
     <>
       {rows}

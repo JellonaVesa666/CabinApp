@@ -5,6 +5,7 @@ import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionIte
 import { useSelector } from "react-redux";
 import { ValidateElement } from "../helpers/HelperFunctions";
 import { colors } from "../styles/Colors";
+import { dayNames } from "../mockup/calendarData";
 
 export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, changeState }) => {
   return (
@@ -245,7 +246,6 @@ export const PasswordField = (props) => {
     </>
   )
 };
-
 
 export const Date = (props) => {
   return (

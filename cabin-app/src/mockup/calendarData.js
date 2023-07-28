@@ -24,13 +24,34 @@ export const monthNames = {
 }
 
 export const dayNames = [
-  "mon",
-  "tue",
-  "wed",
-  "thu",
-  "fri",
-  "sat",
-  "sun"
+  {
+    fi: "ma",
+    en: "mon"
+  },
+  {
+    fi: "ti",
+    en: "tue"
+  },
+  {
+    fi: "ke",
+    en: "wed"
+  },
+  {
+    fi: "to",
+    en: "thu"
+  },
+  {
+    fi: "pe",
+    en: "fri"
+  },
+  {
+    fi: "la",
+    en: "sat"
+  },
+  {
+    fi: "su",
+    en: "sun"
+  }
 ]
 
 export const reservations = {

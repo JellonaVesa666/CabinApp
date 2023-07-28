@@ -158,7 +158,6 @@ export const SearchBarModule = () => {
               marginbottom={"0.5rem"}
               i={item}
               data={searchFilters}
-              //placeholder={searchFilters[item].info[language].translation}
               value={"2 aikuista + 0 lasta"}
               changeState={(value) => ChangeState(setSearchFilters, value, "value", item)}
             />
