@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
-import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
+import { ChangeState, DayToInt, ValidateElement } from "../helpers/HelperFunctions";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, Input } from "./InputModules";
 import { FilterList, FilterCard, CardLabel, SearchBar, SidebarCollapsed } from "../styles/SearchBarStyle";
 import { searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
+import { dayNames, monthNames } from "../mockup/calendarData";
 
 export const SearchBarModule = () => {
   const language = useSelector(state => state.session.language);
@@ -26,7 +27,7 @@ export const SearchBarModule = () => {
               {/* - */}
             </div>
             <CardLabel className=" py-2 col-6">
-              {ValidateElement(searchFilters[item]?.info?.[language]?.translation, "label")}
+              {searchFilters[item]?.info?.[language]?.translation}
             </CardLabel>
             <div
               className="d-flex col-5 py-2 justify-content-end"
@@ -108,8 +109,9 @@ export const SearchBarModule = () => {
 
   // Static filter items
   const staticFilters = Object.keys(searchFilters).map(item => {
+    var test = searchFilters?.[item]?.value?.[0]?.["day"]?.[language];
+    console.log(JSON.stringify(test))
     if (searchFilters[item].static) {
-      console.log(searchFilters?.[item]?.value?.[0]);
       return (
         <>
           {searchFilters[item].type === "text" &&
@@ -143,7 +145,9 @@ export const SearchBarModule = () => {
               marginbottom={"0.5rem"}
               i={item}
               data={searchFilters}
-              value={"ma 29 kesäkuu  -  ti 12 heinäkuu"}
+              value={`${searchFilters?.[item]?.value?.[0]?.["day"]?.[language] + '\x20' +
+              searchFilters?.[item]?.value?.[0]?.["date"] + '\x20' +
+              searchFilters?.[item]?.value?.[0]?.["month"]?.[language]} - `}
               onClick={() => SelectedFilter(searchFilters[item].type, searchFilters[item].context, searchFilters[item].modal, item)}
             />
           }

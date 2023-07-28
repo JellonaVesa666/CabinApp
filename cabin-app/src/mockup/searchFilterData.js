@@ -1,3 +1,5 @@
+import { GetCurrentDate } from "../helpers/HelperFunctions";
+
 export const searchParameters = {
   multiSelect: {
     type: "multiSelect",
@@ -293,7 +295,7 @@ export const searchParameters = {
     thisMonth: true,
     nextMonth: false,
     value: {
-      0: new Date(),
+      0: GetCurrentDate(),
       1: "",
     }
   },

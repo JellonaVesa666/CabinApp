@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionItem, MultiSelectInput, CheckInput, CounterInput, CounterValue } from "../styles/InputStyle"
 import { useSelector } from "react-redux";
-import { ValidateElement } from "../helpers/HelperFunctions";
 import { colors } from "../styles/Colors";
 import { dayNames } from "../mockup/calendarData";
 
@@ -61,7 +60,7 @@ export const Counter = (props) => {
                 className="col-6 d-flex justify-content-start align-items-center m-0 p-0"
                 style={{ color: "black", fontSize: "14px", fontWeight: 400 }}
               >
-                {ValidateElement(props.data[props.i][item]?.[language]?.translation, "text")}
+                {props.data[props.i][item]?.[language]?.translation}
               </div>
               <div
                 className="col-6 d-flex justify-content-end align-items-center m-0 p-0"
@@ -198,7 +197,7 @@ export const CheckBox = (props) => {
                   onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
                 />
                 <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "12px", paddingLeft: "15px" }}>
-                  {ValidateElement(props.data[props.i][item]?.[language]?.translation, "text")}
+                  {props.data[props.i][item]?.[language]?.translation}
                 </label>
               </div>
             )

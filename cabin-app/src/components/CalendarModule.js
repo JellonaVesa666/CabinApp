@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputStyle";
 import { dayNames, monthNames, reservations, day } from "../mockup/calendarData";
 import { useSelector } from "react-redux";
+import { DayToInt } from "../helpers/HelperFunctions";
 
 export const CalendarModule = (props) => {
   const [currentMonthDays, setCurrentMonthDays] = useState();
@@ -10,7 +11,7 @@ export const CalendarModule = (props) => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [clicks, setClicks] = useState(0);
 
-  const session = useSelector(state => state.session);
+  const language = useSelector(state => state.session.language);
 
   const NextMonth = () => {
     if (currentMonth < 11) {
@@ -35,9 +36,7 @@ export const CalendarModule = (props) => {
   }
 
   const Range = useCallback((CurrentMonth) => {
-    let startDay = new Date(currentYear, CurrentMonth, 1).getDay() - 1;
-    startDay = startDay < 0 ? 6 : startDay;
-    console.log(startDay);
+    let startDay = DayToInt(new Date(currentYear, CurrentMonth, 1).getDay());
 
     // Previous Month
     var prevMonth = {};
@@ -143,7 +142,7 @@ export const CalendarModule = (props) => {
         x = 0;
     }
 
-    //console.log(merged);
+    console.log(merged);
     return merged;
 
   }, [currentYear]);
@@ -285,13 +284,13 @@ export const CalendarModule = (props) => {
                   >
                     {"<"}
                   </p>
-                  <p style={{ fontSize: "16px", fontWeight: "500", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.[session.language].toUpperCase()} / {calendarYear}</p>
+                  <p style={{ fontSize: "16px", fontWeight: "500", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.[language].toUpperCase()} / {calendarYear}</p>
                 </>
               }
               {i === 1 &&
                 <>
 
-                  <p style={{ fontSize: "16px", fontWeight: "500", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.[session.language].toUpperCase()} / {calendarYear}</p>
+                  <p style={{ fontSize: "16px", fontWeight: "500", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.[language].toUpperCase()} / {calendarYear}</p>
                   <p
                     style={{ fontSize: "20px", fontWeight: "500", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
                     onClick={() => NextMonth()}
@@ -305,7 +304,7 @@ export const CalendarModule = (props) => {
         </MonthPanel>
         <WeekGrid>
           {dayNames.map((item, index) =>
-            <p style={{ fontSize: "12px", color: "black" }} key={index}>{item[session.language].toUpperCase()}</p>
+            <p style={{ fontSize: "12px", color: "black" }} key={index}>{item[language].toUpperCase()}</p>
           )}
         </WeekGrid>
         <DayGrid>

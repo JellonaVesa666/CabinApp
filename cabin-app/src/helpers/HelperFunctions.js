@@ -1,3 +1,5 @@
+import { dayNames, monthNames } from "../mockup/calendarData";
+
 export const ChangeState = (State, newValue, property, index1, index2) => {
   if (index1 === undefined && index2 === undefined) {
     State((prevState) => ({ ...prevState, [property]: newValue }))
@@ -21,9 +23,20 @@ export const ChangeState = (State, newValue, property, index1, index2) => {
   }
 }
 
-export const ValidateElement = (element, type) => {
-  if (element === undefined)
-    return `ERROR ! missing ${type.toString()}`;
 
-  return element.toUpperCase();
+export const DayToInt = (day) => {
+  day = day - 1 < 0 ? 6 : day - 1;
+  return day;
+}
+
+
+export const GetCurrentDate = () => {
+  const currentDate = new Date();
+
+  const day = dayNames[DayToInt(currentDate.getDay())];
+  const date = currentDate.getDate();
+  const month = monthNames[currentDate.getMonth() + 1];
+  const year = currentDate.getFullYear();
+
+  return ({ day, date, month, year })
 }
