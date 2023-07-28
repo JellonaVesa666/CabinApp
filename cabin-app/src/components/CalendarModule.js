@@ -132,17 +132,32 @@ export const CalendarModule = (props) => {
     // Combine dates from each month
     let merged = { ...prevMonth, ...thisMonth, ...nextMonth };
 
-    // Find day names 
+    // Set day names 
     let x = 0;
-    for (let index = 0; index < 42; index++) {
-      merged[index].dayName = dayNames[x];
+    for (let i = 0; i < 42; i++) {
+      merged[i].dayName = dayNames[x];
       if (x !== 6)
         x++
       else
         x = 0;
     }
 
-    console.log(merged);
+    // Set initial dates to active
+    if (!props.reservations) {
+      for (let i = 0; i < 42; i++) {
+        if (merged[i].month == props.value[0].month &&
+          merged[i].day == props.value[0].day) {
+          merged[i].active = true;
+        }
+
+        else if (merged[i].month == props.value[1].month &&
+          merged[i].day == props.value[1].day) {
+          merged[i].active = true;
+        }
+      }
+    }
+
+    //console.log(merged);
     return merged;
 
   }, [currentYear]);
@@ -319,7 +334,6 @@ export const CalendarModule = (props) => {
                     ${!props.reservations && calendarDays[item].active ? "active" : ""}
                   `}
                 onClick={() => {
-
                   if (props.reservations && !calendarDays[item].reserved)
                     SelectDate(item, calendarDays[item].month)
                   else

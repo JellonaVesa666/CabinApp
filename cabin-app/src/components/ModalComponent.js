@@ -2,8 +2,6 @@ import React, { useRef, useEffect } from "react";
 import { ModalContent, ModalHeader, ModalLinkH4 } from "../styles/ModalStyle";
 import { CalendarModule } from "./CalendarModule";
 
-
-
 export const Modal = (props) => {
 
   const OutsideClick = (ref) => {
@@ -28,10 +26,10 @@ export const Modal = (props) => {
   OutsideClick(wrapperRef);
 
   /*   const Filter = (props) => {
-      if (options[props.index].hasOwnProperty("isActive")) {
+      if (searchFilters[props.index].hasOwnProperty("isActive")) {
         return (
           <ModalHeader
-            className={options[props.index].isActive ? "true" : ""}
+            className={searchFilters[props.index].isActive ? "true" : ""}
             width={"80%"}
             marginbottom={"5%"}
             margintop={"5%"}
@@ -44,15 +42,16 @@ export const Modal = (props) => {
     }
    */
   if (props.filter) {
-    //const result = Object.keys(props.options[props.filter]).filter((i) => typeof i === "string" && !isNaN(i));
+    //const result = Object.keys(props.searchFilters[props.filter]).filter((i) => typeof i === "string" && !isNaN(i));
     return (
       <ModalContent ref={wrapperRef} close={() => props.closeModal()}>
         <CalendarModule
-          prevMonth={props.options[props.filter].prevMonth}
-          thisMonth={props.options[props.filter].thisMonth}
-          nextMonth={props.options[props.filter].nextMonth}
-          reservations={props.options[props.filter].reservations}
-          count={props.options[props.filter].count}
+          value={props.searchFilters[props.filter].value}
+          prevMonth={props.searchFilters[props.filter].prevMonth}
+          thisMonth={props.searchFilters[props.filter].thisMonth}
+          nextMonth={props.searchFilters[props.filter].nextMonth}
+          reservations={props.searchFilters[props.filter].reservations}
+          count={props.searchFilters[props.filter].count}
         />
       </ModalContent>
     );

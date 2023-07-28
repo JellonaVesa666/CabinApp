@@ -4,7 +4,6 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionItem, MultiSelectInput, CheckInput, CounterInput, CounterValue } from "../styles/InputStyle"
 import { useSelector } from "react-redux";
 import { colors } from "../styles/Colors";
-import { dayNames } from "../mockup/calendarData";
 
 export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, changeState }) => {
   return (
