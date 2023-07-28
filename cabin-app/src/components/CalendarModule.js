@@ -285,13 +285,13 @@ export const CalendarModule = (props) => {
                   >
                     {"<"}
                   </p>
-                  <p style={{ fontSize: "16px", fontWeight: "500", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.toUpperCase()} / {calendarYear}</p>
+                  <p style={{ fontSize: "16px", fontWeight: "500", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.[session.language].toUpperCase()} / {calendarYear}</p>
                 </>
               }
               {i === 1 &&
                 <>
 
-                  <p style={{ fontSize: "16px", fontWeight: "500", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.toUpperCase()} / {calendarYear}</p>
+                  <p style={{ fontSize: "16px", fontWeight: "500", color: "black", margin: "auto" }}>{monthNames[calendarMonth]?.[session.language].toUpperCase()} / {calendarYear}</p>
                   <p
                     style={{ fontSize: "20px", fontWeight: "500", marginTop: "auto", marginBottom: "auto", cursor: "pointer" }}
                     onClick={() => NextMonth()}

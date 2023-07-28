@@ -9,18 +9,54 @@ export const day = {
 }
 
 export const monthNames = {
-  1: "january",
-  2: "february",
-  3: "march",
-  4: "april",
-  5: "may",
-  6: "june",
-  7: "july",
-  8: "august",
-  9: "september",
-  10: "october",
-  11: "november",
-  12: "december",
+  1: {
+    en: "january",
+    fi: "tammikuu"
+  },
+  2: {
+    en: "february",
+    fi: "helmikuu"
+  },
+  3: {
+    en: "march",
+    fi: "maaliskuu"
+  },
+  4: {
+    en: "april",
+    fi: "huhtikuu"
+  },
+  5: {
+    en: "may",
+    fi: "toukokuu"
+  },
+  6: {
+    en: "june",
+    fi: "kesäkuu"
+  },
+  7: {
+    en: "july",
+    fi: "heinäkuu"
+  },
+  8: {
+    en: "august",
+    fi: "elokuu"
+  },
+  9: {
+    en: "september",
+    fi: "syyskuu"
+  },
+  10: {
+    en: "october",
+    fi: "lokakuu"
+  },
+  11: {
+    en: "november",
+    fi: "marraskuu"
+  },
+  12: {
+    en: "december",
+    fi: "joulukuu"
+  },
 }
 
 export const dayNames = [
