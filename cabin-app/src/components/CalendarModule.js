@@ -9,7 +9,7 @@ export const CalendarModule = (props) => {
   const [nextMonthDays, setNextMonthDays] = useState();
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-  const [clicks, setClicks] = useState(0);
+  const [clicks, setClicks] = useState(1);
 
   const language = useSelector(state => state.session.language);
 
@@ -149,11 +149,6 @@ export const CalendarModule = (props) => {
           merged[i].day == props.value[0].day) {
           merged[i].active = true;
         }
-
-        else if (merged[i].month == props.value[1].month &&
-          merged[i].day == props.value[1].day) {
-          merged[i].active = true;
-        }
       }
     }
 
@@ -257,6 +252,8 @@ export const CalendarModule = (props) => {
 
 
   const SetSelected = (item, month, bool) => {
+    console.log(currentMonth);
+    console.log(month);
     if (month === currentMonth + 1) {
       currentMonthDays[item].active = bool;
     }
@@ -268,14 +265,15 @@ export const CalendarModule = (props) => {
 
   const ResetSelected = (clickCount) => {
     for (let i = 0; i < 42; i++) {
-      SetSelected(i, currentMonth + 1, false);
-      SetSelected(i, currentMonth + 2, false);
+      currentMonthDays[i].active = false;
+      nextMonthDays[i].active = false;
     }
-
     setClicks(clickCount);
   }
 
 
+  console.log(currentMonthDays);
+  
   const rows = [];
   for (let i = 0; i < props.count; i++) {
     /// Needs optimization
