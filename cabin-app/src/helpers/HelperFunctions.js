@@ -30,13 +30,27 @@ export const DayToInt = (day) => {
 }
 
 
-export const GetCurrentDate = () => {
+export const GetCurrentDate = (add) => {
+
   const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() + add)
 
   const day = dayNames[DayToInt(currentDate.getDay())];
   const date = currentDate.getDate();
   const month = monthNames[currentDate.getMonth() + 1];
   const year = currentDate.getFullYear();
+
+  const lastDay = new Date(new Date().getFullYear(), 11, 31).toString().split(/[ ,]+/);
+
+  // Check addition exceeds the amount of days in the year
+  if (add > 0) {
+    if (month === 11 && date === lastDay[2]) {
+      month = monthNames[1];
+      day = dayNames[DayToInt(new Date(new Date().getFullYear() + 1, 0, 1).getDay())];
+      date = 1;
+      year += 1;
+    }
+  }
 
   return ({ day, date, month, year })
 }

@@ -146,8 +146,12 @@ export const SearchBarModule = () => {
               i={item}
               data={searchFilters}
               value={`${searchFilters?.[item]?.value?.[0]?.["day"]?.[language] + '\x20' +
-              searchFilters?.[item]?.value?.[0]?.["date"] + '\x20' +
-              searchFilters?.[item]?.value?.[0]?.["month"]?.[language]} - `}
+                  searchFilters?.[item]?.value?.[0]?.["date"] + '\x20' +
+                  searchFilters?.[item]?.value?.[0]?.["month"]?.[language] + ' - ' +
+                  searchFilters?.[item]?.value?.[1]?.["day"]?.[language] + '\x20' +
+                  searchFilters?.[item]?.value?.[1]?.["date"] + '\x20' +
+                  searchFilters?.[item]?.value?.[1]?.["month"]?.[language]
+                }`}
               onClick={() => SelectedFilter(searchFilters[item].type, searchFilters[item].context, searchFilters[item].modal, item)}
             />
           }

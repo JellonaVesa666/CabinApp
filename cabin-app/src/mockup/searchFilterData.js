@@ -295,8 +295,8 @@ export const searchParameters = {
     thisMonth: true,
     nextMonth: false,
     value: {
-      0: GetCurrentDate(),
-      1: "",
+      0: GetCurrentDate(0),
+      1: GetCurrentDate(1),
     }
   },
   persons: {
