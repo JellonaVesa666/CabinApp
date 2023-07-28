@@ -101,7 +101,7 @@ export const BodyTopContainer = styled.div`
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) -50%, rgba(0, 0, 0, 0) 100%);
 `
 
-export const Sidebar = styled.div`
+export const SearchBar = styled.div`
   background-color: ${colors.white};
   display: flex;
   justify-content: space-evenly;
@@ -129,31 +129,5 @@ export const Sidebar = styled.div`
     width: 100%;
     overflow-y: hidden;
     background-color: transparent;
-  }
-
-  @media only screen and (min-width: 1350px) and (max-width: 1500px) {
-    width: 26%;
-  }
-
-  @media only screen and (min-width: 1500px) and (max-width: 1900px) {
-    width: 23%;
-  }
-
-  @media only screen and (min-width: 1900px) and (max-width: 3000px) {
-    width: 100%;
-  }
-`
-
-export const SearchBar = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media only screen and (min-width: 1400px) and (max-width: 1600px) {
-    width: 23%;
-  }
-
-  @media only screen and (min-width: 1600px) and (max-width: 3000px) {
-    width: 40%;
   }
 `

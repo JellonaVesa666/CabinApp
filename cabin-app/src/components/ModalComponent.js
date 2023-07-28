@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { ModalContent, ModalHeader, ModalLinkH4 } from "../styles/ModalStyle";
 import { CalendarModule } from "./CalendarModule";
 

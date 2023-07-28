@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
 import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, Input } from "./InputModules";
-import { FilterList, FilterCard, CardLabel, Sidebar, SidebarCollapsed } from "../styles/SidebarStyle";
+import { FilterList, FilterCard, CardLabel, SearchBar, SidebarCollapsed } from "../styles/SearchBarStyle";
 import { searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
 
-export const SidebarModule = () => {
+export const SearchBarModule = () => {
   const language = useSelector(state => state.session.language);
 
   const [modalActive, setModalActive] = useState(false);
@@ -109,6 +109,7 @@ export const SidebarModule = () => {
   // Static filter items
   const staticFilters = Object.keys(searchFilters).map(item => {
     if (searchFilters[item].static) {
+      console.log(searchFilters?.[item]?.value?.[0]);
       return (
         <>
           {searchFilters[item].type === "text" &&
@@ -124,8 +125,8 @@ export const SidebarModule = () => {
               marginbottom={"0.5rem"}
               i={item}
               data={searchFilters}
-              placeholder={searchFilters[item].info[language].translation}
-              value={searchFilters[item].info[language].value}
+              placeholder={searchFilters[item].placeholder[language].translation}
+              value={searchFilters[item].value}
               changeState={(value) => ChangeState(setSearchFilters, value, "value", item)}
             />
           }
@@ -142,7 +143,6 @@ export const SidebarModule = () => {
               marginbottom={"0.5rem"}
               i={item}
               data={searchFilters}
-              //placeholder={searchFilters[item].info[language].translation}
               value={"ma 29 kesäkuu  -  ti 12 heinäkuu"}
               onClick={() => SelectedFilter(searchFilters[item].type, searchFilters[item].context, searchFilters[item].modal, item)}
             />
@@ -173,6 +173,8 @@ export const SidebarModule = () => {
     }
   })
 
+  console.log(searchFilters);
+
 
   const SelectedFilter = (type, context, modal, item) => {
     if (type === "button") {
@@ -193,30 +195,31 @@ export const SidebarModule = () => {
       {modalActive &&
         <Modal filter={selectedFilter} options={searchFilters} closeModal={() => setModalActive(false)} /* setActive={(index) => ChangeState(setSearchFilters, !searchFilters[index].isActive, "isActive", index)} */ />
       }
-      <Sidebar>
-        <div
-          className="d-flex justify-content-center align-items-center gap-2"
-          style={{ width: "80%" }}
-        >
+      <SearchBar>
+        <div className="d-flex justify-content-center align-items-center gap-2" style={{ width: "60%" }}>
           {staticFilters}
-
           <input
             type="button"
             value={"hae"}
             className="text-uppercase d-flex justify-content-center align-items-center"
             style={{ color: colors.black, width: "10%", height: "40px" }}
           />
-          {/*               <div
+        </div>
+      </SearchBar >
+    </>
+  )
+}
+
+
+
+
+{/*               <div
                 className="d-flex justify-content-center align-items-center"
                 onClick={() => setModalActive(!modalActive)}
                 style={{ height: "40px", width: "40px", backgroundColor: "black", color: "white", fontSize: "12px", borderRadius: " 0px 10px 10px 0px" }}
               >
                 &equiv;
               </div> */}
-        </div>
+/* </div> */
 
-        {/* {dynamicFilters} */}
-      </Sidebar >
-    </>
-  )
-}
+{/* {dynamicFilters} */ }

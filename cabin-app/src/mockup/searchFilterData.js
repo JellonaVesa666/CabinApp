@@ -273,7 +273,7 @@ export const searchParameters = {
     static: true,
     modal: false,
     value: "",
-    info: {
+    placeholder: {
       fi: {
         translation: "Alue, Kaupunki, Mökki...",
       },
@@ -292,6 +292,10 @@ export const searchParameters = {
     prevMonth: false,
     thisMonth: true,
     nextMonth: false,
+    value: {
+      0: new Date(),
+      1: "",
+    }
   },
   persons: {
     type: "counter",

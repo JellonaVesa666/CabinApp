@@ -1,5 +1,5 @@
 import React from "react";
-import { AddButton, BodyTopContainer, SearchBar } from "../styles/SidebarStyle";
+import { AddButton, BodyTopContainer, SearchBar } from "../styles/SearchBarStyle";
 
 export const SearchPage = (props) => {
   return (

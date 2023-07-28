@@ -18,8 +18,8 @@ export const ModalContent = styled.section`
   height: auto;
   padding-top: 3rem;
   padding-bottom: 3rem;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 51.5%;
   transform: translate(-50%,-50%);
   background-color: ${colors.white};
 `
