@@ -218,6 +218,8 @@ export const CalendarModule = (props) => {
         // Sort values from min to max
         SortMinMax(selected);
 
+        console.log(selected);
+
         // Set active days 
         SetActiveDaysByRange(selected);
 
@@ -241,7 +243,6 @@ export const CalendarModule = (props) => {
       currentMonthDays[item].active = bool;
     }
     else {
-      console.log(nextMonthDays[item]);
       nextMonthDays[item].active = bool;
     }
   }
@@ -255,6 +256,8 @@ export const CalendarModule = (props) => {
           currentMonthDays[i].active = false;
 
         nextMonthDays[i].active = false;
+        setCurrentMonth(props.defaultValue[0].month - 1)
+        setCurrentYear(props.defaultValue[0].year)
       }
       else {
         currentMonthDays[i].active = false;
@@ -266,7 +269,8 @@ export const CalendarModule = (props) => {
 
   const FindActiveRange = (selected) => {
     for (let i = 0; i < 42; i++) {
-      if (currentMonthDays[i].active && currentMonthDays[i].month == currentMonth + 1) {
+      if (currentMonthDays[i].active && currentMonthDays[i].month === currentMonth + 1) {
+        console.log("A");
         selected[0] = {
           "index": i,
           "day": currentMonthDays[i].day,
@@ -277,7 +281,8 @@ export const CalendarModule = (props) => {
         };
         break;
       }
-      else if (nextMonthDays[i].active && nextMonthDays[i].month == currentMonth + 2) {
+      else if (nextMonthDays[i].active && nextMonthDays[i].month === (currentMonth === 11 ? 1 : currentMonth + 2)) {
+        console.log(nextMonthDays[i].month);
         selected[0] = {
           "index": i,
           "day": nextMonthDays[i].day,
@@ -290,7 +295,8 @@ export const CalendarModule = (props) => {
       }
     }
     for (let i = 41; i >= 0; i--) {
-      if (nextMonthDays[i].active && nextMonthDays[i].month == currentMonth + 2) {
+      if (nextMonthDays[i].active && nextMonthDays[i].month === (currentMonth === 11 ? 1 : currentMonth + 2)) {
+        console.log("C");
         selected[1] = {
           "index": i,
           "day": nextMonthDays[i].day,
@@ -301,7 +307,8 @@ export const CalendarModule = (props) => {
         };
         break;
       }
-      else if (currentMonthDays[i].active && currentMonthDays[i].month == currentMonth + 1) {
+      else if (currentMonthDays[i].active && currentMonthDays[i].month === currentMonth + 1) {
+        console.log("D");
         selected[1] = {
           "index": i,
           "day": currentMonthDays[i].day,
@@ -414,12 +421,19 @@ export const CalendarModule = (props) => {
                     ${!props.reservations && calendarDays[item].active && calendarDays[item].year >= props.defaultValue[0].year ? "active" : ""}
                   `}
                 onClick={() => {
-                  if (
-                    (!props.reservations && calendarDays[item].month >= props.defaultValue[0].month &&
-                      calendarDays[item].day >= props.defaultValue[0].day &&
-                      calendarDays[item].year == props.defaultValue[0].year
-                    ) ||
-                    calendarDays[item].year > props.defaultValue[0].year
+                  if
+                    ((calendarDays[item].year == props.defaultValue[0].year &&
+                      calendarDays[item].month == props.defaultValue[0].month &&
+                      calendarDays[item].day >= props.defaultValue[0].day)
+                    ||
+                    (
+                      calendarDays[item].year == props.defaultValue[0].year &&
+                      calendarDays[item].month > props.defaultValue[0].month
+                    )
+                    ||
+                    (
+                      calendarDays[item].year > props.defaultValue[0].year
+                    )
                   )
                     SelectDate(item, calendarDays[item].month)
                 }}
