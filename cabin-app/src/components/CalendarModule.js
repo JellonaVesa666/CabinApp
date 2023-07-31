@@ -220,31 +220,26 @@ export const CalendarModule = (props) => {
 
   const FindSelectionRange = (selected) => {
     for (let i = 0; i < 42; i++) {
-      if (currentMonthDays[i].active) {
-        if (!props.nextMonth && !props.prevMonth && currentMonthDays[i].month == currentMonth + 1) {
-          selected[0] = { "day": i, "month": currentMonthDays[i].month, "year": currentMonthDays[i].year };
-          break;
-        }
+      if (currentMonthDays[i].active && currentMonthDays[i].month == currentMonth + 1) {
+        selected[0] = { "day": i, "month": currentMonthDays[i].month, "year": currentMonthDays[i].year };
+        break;
+
       }
-      else if (nextMonthDays[i].active) {
-        if (!props.nextMonth && !props.prevMonth && nextMonthDays[i].month == currentMonth + 2) {
-          selected[0] = { "day": i, "month": nextMonthDays[i].month, "year": nextMonthDays[i].year };
-          break;
-        }
+      else if (nextMonthDays[i].active && nextMonthDays[i].month == currentMonth + 2) {
+        selected[0] = { "day": i, "month": nextMonthDays[i].month, "year": nextMonthDays[i].year };
+        break;
+
       }
     }
     for (let i = 41; i >= 0; i--) {
-      if (nextMonthDays[i].active) {
-        if (!props.nextMonth && !props.prevMonth && nextMonthDays[i].month == currentMonth + 2) {
-          selected[1] = { "day": i, "month": nextMonthDays[i].month, "year": nextMonthDays[i].year };
-          break;
-        }
+      if (nextMonthDays[i].active && nextMonthDays[i].month == currentMonth + 2) {
+        selected[1] = { "day": i, "month": nextMonthDays[i].month, "year": nextMonthDays[i].year };
+        break;
+
       }
-      else if (currentMonthDays[i].active) {
-        if (!props.nextMonth && !props.prevMonth && currentMonthDays[i].month == currentMonth + 1) {
-          selected[1] = { "day": i, "month": currentMonthDays[i].month, "year": currentMonthDays[i].year };
-          break;
-        }
+      else if (currentMonthDays[i].active && currentMonthDays[i].month == currentMonth + 1) {
+        selected[1] = { "day": i, "month": currentMonthDays[i].month, "year": currentMonthDays[i].year };
+        break;
       }
     }
     return selected;
