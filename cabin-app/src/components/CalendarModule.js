@@ -142,11 +142,11 @@ export const CalendarModule = (props) => {
         x = 0;
     }
 
-    // Set initial dates to active
+    // Set initial date to active
     if (!props.reservations) {
       for (let i = 0; i < 42; i++) {
-        if (merged[i].month == props.value[0].month &&
-          merged[i].day == props.value[0].day) {
+        if (merged[i].month == props.defaultValue[0].month &&
+          merged[i].day == props.defaultValue[0].day) {
           merged[i].active = true;
         }
       }
@@ -176,70 +176,19 @@ export const CalendarModule = (props) => {
       (!nextMonthDays[item].active && nextMonthDays[item].month === month)
     ) {
       if (clicks > 0) {
-        let selected = [{ 0: "" }, { 1: "" }];
 
         SetSelected(item, month, true);
 
-        for (let i = 0; i < 42; i++) {
-          if (currentMonthDays[i].active) {
-            selected[0] = { "day": i, "month": currentMonthDays[i].month, "year": currentMonthDays[i].year };
-            break;
-          }
-          else if (nextMonthDays[i].active) {
-            selected[0] = { "day": i, "month": nextMonthDays[i].month, "year": nextMonthDays[i].year };
-            break;
-          }
-        }
+        let selected = [{ 0: "" }, { 1: "" }];
 
-        for (let i = 41; i >= 0; i--) {
-          if (nextMonthDays[i].active) {
-            selected[1] = { "day": i, "month": nextMonthDays[i].month, "year": nextMonthDays[i].year };
-            break;
-          }
-          else if (currentMonthDays[i].active) {
-            selected[1] = { "day": i, "month": currentMonthDays[i].month, "year": currentMonthDays[i].year };
-            break;
-          }
-        }
+        // Loop currentMonthDays and nextMonthDays to find min and max range for selected dates.
+        selected = FindSelectionRange(selected);
 
         // Sort values from min to max
-        selected.sort((a, b) => {
-          // Sort by year
-          if (a.year < b.year) return -1;
-          if (a.year > b.year) return 1;
-          // Sort by month
-          if (a.month < b.month) return -1;
-          if (a.month > b.month) return 1;
-          // Sort by day
-          if (a.day < b.day) return -1;
-          if (a.day > b.day) return 1;
-          return 0;
-        });
-
-        //console.log(JSON.stringify(selected));
+        SortMinMax(selected);
 
         // Set active days 
-        if (selected[0].month === currentMonth + 1) {
-
-          if (selected[1].month === currentMonth + 1) {
-            for (let i = selected[0].day; i < selected[1].day; i++) {
-              currentMonthDays[i].active = true;
-            }
-          }
-          else if ((selected[1].month === currentMonth + 2) || (selected[0].month === 12 && selected[1].month === 1)) {
-            for (let i = selected[0].day; i < 42; i++) {
-              currentMonthDays[i].active = true;
-            }
-            for (let i = 0; i < selected[1].day; i++) {
-              nextMonthDays[i].active = true;
-            }
-          }
-        }
-        else if ((selected[0].month === currentMonth + 2) || (selected[1].month === 1)) {
-          for (let i = selected[0].day; i < selected[1].day; i++) {
-            nextMonthDays[i].active = true;
-          }
-        }
+        SetActiveDaysByRange(selected);
       }
       else {
         SetSelected(item, month, true);
@@ -248,20 +197,18 @@ export const CalendarModule = (props) => {
     else {
       SetSelected(item, month, false);
     }
+
   }
 
-
   const SetSelected = (item, month, bool) => {
-    console.log(currentMonth);
-    console.log(month);
     if (month === currentMonth + 1) {
       currentMonthDays[item].active = bool;
     }
     else {
+      console.log(nextMonthDays[item]);
       nextMonthDays[item].active = bool;
     }
   }
-
 
   const ResetSelected = (clickCount) => {
     for (let i = 0; i < 42; i++) {
@@ -271,9 +218,78 @@ export const CalendarModule = (props) => {
     setClicks(clickCount);
   }
 
+  const FindSelectionRange = (selected) => {
+    for (let i = 0; i < 42; i++) {
+      if (currentMonthDays[i].active) {
+        if (!props.nextMonth && !props.prevMonth && currentMonthDays[i].month == currentMonth + 1) {
+          selected[0] = { "day": i, "month": currentMonthDays[i].month, "year": currentMonthDays[i].year };
+          break;
+        }
+      }
+      else if (nextMonthDays[i].active) {
+        if (!props.nextMonth && !props.prevMonth && nextMonthDays[i].month == currentMonth + 2) {
+          selected[0] = { "day": i, "month": nextMonthDays[i].month, "year": nextMonthDays[i].year };
+          break;
+        }
+      }
+    }
+    for (let i = 41; i >= 0; i--) {
+      if (nextMonthDays[i].active) {
+        if (!props.nextMonth && !props.prevMonth && nextMonthDays[i].month == currentMonth + 2) {
+          selected[1] = { "day": i, "month": nextMonthDays[i].month, "year": nextMonthDays[i].year };
+          break;
+        }
+      }
+      else if (currentMonthDays[i].active) {
+        if (!props.nextMonth && !props.prevMonth && currentMonthDays[i].month == currentMonth + 1) {
+          selected[1] = { "day": i, "month": currentMonthDays[i].month, "year": currentMonthDays[i].year };
+          break;
+        }
+      }
+    }
+    return selected;
+  }
 
-  console.log(currentMonthDays);
-  
+  const SortMinMax = (selected) => {
+    selected.sort((a, b) => {
+      // Sort by year
+      if (a.year < b.year) return -1;
+      if (a.year > b.year) return 1;
+      // Sort by month
+      if (a.month < b.month) return -1;
+      if (a.month > b.month) return 1;
+      // Sort by day
+      if (a.day < b.day) return -1;
+      if (a.day > b.day) return 1;
+      return 0;
+    });
+  }
+
+  const SetActiveDaysByRange = (selected) => {
+    if (selected[0].month === currentMonth + 1) {
+
+      if (selected[1].month === currentMonth + 1) {
+        for (let i = selected[0].day; i < selected[1].day; i++) {
+          currentMonthDays[i].active = true;
+        }
+      }
+      else if ((selected[1].month === currentMonth + 2) || (selected[0].month === 12 && selected[1].month === 1)) {
+        for (let i = selected[0].day; i < 42; i++) {
+          currentMonthDays[i].active = true;
+        }
+        for (let i = 0; i < selected[1].day; i++) {
+          nextMonthDays[i].active = true;
+        }
+      }
+    }
+    else if ((selected[0].month === currentMonth + 2) || (selected[1].month === 1)) {
+      for (let i = selected[0].day; i < selected[1].day; i++) {
+        nextMonthDays[i].active = true;
+      }
+    }
+  }
+
+
   const rows = [];
   for (let i = 0; i < props.count; i++) {
     /// Needs optimization

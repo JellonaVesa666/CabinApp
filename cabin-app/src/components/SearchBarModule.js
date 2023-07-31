@@ -143,12 +143,12 @@ export const SearchBarModule = () => {
               marginbottom={"0.5rem"}
               i={item}
               data={searchFilters}
-              value={`${searchFilters?.[item]?.value?.[0]?.["dayName"]?.[language] + '\x20' +
-                  searchFilters?.[item]?.value?.[0]?.["day"] + '\x20' +
-                  searchFilters?.[item]?.value?.[0]?.["monthName"]?.[language] + ' - ' +
-                  searchFilters?.[item]?.value?.[1]?.["dayName"]?.[language] + '\x20' +
-                  searchFilters?.[item]?.value?.[1]?.["day"] + '\x20' +
-                  searchFilters?.[item]?.value?.[1]?.["monthName"]?.[language]
+              value={`${searchFilters?.[item]?.defaultValue?.[0]?.["dayName"]?.[language] + '\x20' +
+                  searchFilters?.[item]?.defaultValue?.[0]?.["day"] + '\x20' +
+                  searchFilters?.[item]?.defaultValue?.[0]?.["monthName"]?.[language] + ' - ' +
+                  searchFilters?.[item]?.defaultValue?.[1]?.["dayName"]?.[language] + '\x20' +
+                  searchFilters?.[item]?.defaultValue?.[1]?.["day"] + '\x20' +
+                  searchFilters?.[item]?.defaultValue?.[1]?.["monthName"]?.[language]
                 }`}
               onClick={() => SelectedFilter(searchFilters[item].type, searchFilters[item].context, searchFilters[item].modal, item)}
             />

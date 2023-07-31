@@ -46,7 +46,7 @@ export const Modal = (props) => {
     return (
       <ModalContent ref={wrapperRef} close={() => props.closeModal()}>
         <CalendarModule
-          value={props.searchFilters[props.filter].value}
+          defaultValue={props.searchFilters[props.filter].defaultValue}
           prevMonth={props.searchFilters[props.filter].prevMonth}
           thisMonth={props.searchFilters[props.filter].thisMonth}
           nextMonth={props.searchFilters[props.filter].nextMonth}

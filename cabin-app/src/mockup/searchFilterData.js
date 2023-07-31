@@ -294,7 +294,7 @@ export const searchParameters = {
     prevMonth: false,
     thisMonth: true,
     nextMonth: false,
-    value: {
+    defaultValue: {
       0: GetCurrentDate(0),
       1: GetCurrentDate(1),
     }
