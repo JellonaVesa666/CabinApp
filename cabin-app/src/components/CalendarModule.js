@@ -166,6 +166,9 @@ export const CalendarModule = (props) => {
 
   const SelectDate = (item, month) => {
 
+
+    console.log(month);
+
     setClicks(clicks + 1);
 
     if (clicks === 2) {
@@ -340,12 +343,18 @@ export const CalendarModule = (props) => {
                     ${calendarDays[item].month === calendarMonth ? "this" : ""} 
                     ${props.reservations && calendarDays[item].reserved ? "reserved" : ""}
                     ${props.reservations && calendarDays[item].active && !calendarDays[item].reserved ? "active" : ""}
-                    ${!props.reservations && calendarDays[item].active ? "active" : ""}
+                    ${!props.reservations && calendarDays[item].active && calendarDays[item].year >= props.defaultValue[0].year ? "active" : ""}
                   `}
                 onClick={() => {
-                  if (props.reservations && !calendarDays[item].reserved)
-                    SelectDate(item, calendarDays[item].month)
-                  else
+                  if (
+                    (!props.reservations && calendarDays[item].month == props.defaultValue[0].month &&
+                      calendarDays[item].day >= props.defaultValue[0].day &&
+                      calendarDays[item].year >= props.defaultValue[0].year
+                    ) ||
+                    (!props.reservations && calendarDays[item].month > props.defaultValue[0].month &&
+                      calendarDays[item].year >= props.defaultValue[0].year
+                    )
+                  )
                     SelectDate(item, calendarDays[item].month)
                 }}
               >
@@ -358,6 +367,8 @@ export const CalendarModule = (props) => {
       </div >
     )
   }
+
+  console.log(props.defaultValue[0].day);
 
   return (
     <>
