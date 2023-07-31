@@ -21,7 +21,7 @@ export const CalendarModule = (props) => {
       setCurrentMonth(0);
       setCurrentYear((prev) => prev + 1);
     }
-    ResetSelected(0);
+    ResetSelected(0, false);
   }
 
   const PrevMonth = () => {
@@ -32,7 +32,7 @@ export const CalendarModule = (props) => {
       setCurrentMonth(11);
       setCurrentYear((prev) => prev - 1);
     }
-    ResetSelected(0);
+    ResetSelected(0, false);
   }
 
   const Range = useCallback((CurrentMonth) => {
@@ -143,7 +143,17 @@ export const CalendarModule = (props) => {
     }
 
     // Set initial date to active
-    if (!props.reservations) {
+    merged = InitialActiveDates(merged);
+
+    //console.log(merged);
+    return merged;
+
+  }, [currentYear]);
+
+
+  const InitialActiveDates = (merged) => {
+    // If searchFilter values are empty
+    if (props.value[0] === "" && props.value[1] === "") {
       for (let i = 0; i < 42; i++) {
         if (merged[i].month == props.defaultValue[0].month &&
           merged[i].day == props.defaultValue[0].day) {
@@ -151,12 +161,33 @@ export const CalendarModule = (props) => {
         }
       }
     }
-
-    //console.log(merged);
+    else {
+      for (let i = 0; i < 42; i++) {
+        // If date values are on same month
+        if (merged[i].month == props.value[1].month && merged[i].month == props.value[0].month &&
+          merged[i].day <= props.value[1].day && merged[i].day >= props.value[0].day) {
+          merged[i].active = true;
+        }
+        // If date value is on current month
+        else if (merged[i].month === props.value[0].month && merged[i].month !== props.value[1].month &&
+          merged[i].day >= props.value[0].day) {
+          merged[i].active = true;
+        }
+        // If date value is on next month
+        else if (merged[i].month === props.value[1].month && merged[i].month !== props.value[0].month &&
+          merged[i].day <= props.value[1].day) {
+          merged[i].active = true;
+        }
+      }
+      if (props.value[0].day === props.value[1].day && props.value[0].month === props.value[1].month) {
+        setClicks(1);
+      }
+      else {
+        setClicks(2);
+      }
+    }
     return merged;
-
-  }, [currentYear]);
-
+  }
 
   useEffect(() => {
     setCurrentMonthDays(Range(currentMonth));
@@ -166,9 +197,6 @@ export const CalendarModule = (props) => {
 
   const SelectDate = (item, month) => {
 
-
-    console.log(month);
-
     setClicks(clicks + 1);
 
     if (clicks === 2) {
@@ -176,34 +204,39 @@ export const CalendarModule = (props) => {
     }
 
     if ((!currentMonthDays[item].active && currentMonthDays[item].month === month) ||
-      (!nextMonthDays[item].active && nextMonthDays[item].month === month)
-    ) {
+      (!nextMonthDays[item].active && nextMonthDays[item].month === month)) {
+
       if (clicks > 0) {
 
-        SetSelected(item, month, true);
+        SetActive(item, month, true);
 
         let selected = [{ 0: "" }, { 1: "" }];
 
         // Loop currentMonthDays and nextMonthDays to find min and max range for selected dates.
-        selected = FindSelectionRange(selected);
+        selected = FindActiveRange(selected);
 
         // Sort values from min to max
         SortMinMax(selected);
 
         // Set active days 
         SetActiveDaysByRange(selected);
+
+        // Remove index before passing to changeState
+        delete selected[0].index;
+        delete selected[1].index;
+        props.changeState(selected[0], 0)
+        props.changeState(selected[1], 1)
       }
       else {
-        SetSelected(item, month, true);
+        SetActive(item, month, true);
       }
     }
     else {
-      SetSelected(item, month, false);
+      SetActive(item, month, false);
     }
-
   }
 
-  const SetSelected = (item, month, bool) => {
+  const SetActive = (item, month, bool) => {
     if (month === currentMonth + 1) {
       currentMonthDays[item].active = bool;
     }
@@ -213,35 +246,70 @@ export const CalendarModule = (props) => {
     }
   }
 
-  const ResetSelected = (clickCount) => {
+  const ResetSelected = (clickCount, bool) => {
     for (let i = 0; i < 42; i++) {
-      currentMonthDays[i].active = false;
-      nextMonthDays[i].active = false;
+      if (bool) {
+        if (currentMonthDays[i].day === props.defaultValue[0].day)
+          currentMonthDays[i].active = true;
+        else
+          currentMonthDays[i].active = false;
+
+        nextMonthDays[i].active = false;
+      }
+      else {
+        currentMonthDays[i].active = false;
+        nextMonthDays[i].active = false;
+      }
     }
     setClicks(clickCount);
   }
 
-  const FindSelectionRange = (selected) => {
+  const FindActiveRange = (selected) => {
     for (let i = 0; i < 42; i++) {
       if (currentMonthDays[i].active && currentMonthDays[i].month == currentMonth + 1) {
-        selected[0] = { "day": i, "month": currentMonthDays[i].month, "year": currentMonthDays[i].year };
+        selected[0] = {
+          "index": i,
+          "day": currentMonthDays[i].day,
+          "dayName": currentMonthDays[i].dayName,
+          "month": currentMonthDays[i].month,
+          "monthName": currentMonthDays[i].monthName,
+          "year": currentMonthDays[i].year
+        };
         break;
-
       }
       else if (nextMonthDays[i].active && nextMonthDays[i].month == currentMonth + 2) {
-        selected[0] = { "day": i, "month": nextMonthDays[i].month, "year": nextMonthDays[i].year };
+        selected[0] = {
+          "index": i,
+          "day": nextMonthDays[i].day,
+          "dayName": nextMonthDays[i].dayName,
+          "month": nextMonthDays[i].month,
+          "monthName": nextMonthDays[i].monthName,
+          "year": nextMonthDays[i].year
+        };
         break;
-
       }
     }
     for (let i = 41; i >= 0; i--) {
       if (nextMonthDays[i].active && nextMonthDays[i].month == currentMonth + 2) {
-        selected[1] = { "day": i, "month": nextMonthDays[i].month, "year": nextMonthDays[i].year };
+        selected[1] = {
+          "index": i,
+          "day": nextMonthDays[i].day,
+          "dayName": nextMonthDays[i].dayName,
+          "month": nextMonthDays[i].month,
+          "monthName": nextMonthDays[i].monthName,
+          "year": nextMonthDays[i].year
+        };
         break;
-
       }
       else if (currentMonthDays[i].active && currentMonthDays[i].month == currentMonth + 1) {
-        selected[1] = { "day": i, "month": currentMonthDays[i].month, "year": currentMonthDays[i].year };
+        selected[1] = {
+          "index": i,
+          "day": currentMonthDays[i].day,
+          "dayName": currentMonthDays[i].dayName,
+          "month": currentMonthDays[i].month,
+          "monthName": currentMonthDays[i].monthName,
+          "year": currentMonthDays[i].year
+        };
         break;
       }
     }
@@ -267,21 +335,21 @@ export const CalendarModule = (props) => {
     if (selected[0].month === currentMonth + 1) {
 
       if (selected[1].month === currentMonth + 1) {
-        for (let i = selected[0].day; i < selected[1].day; i++) {
+        for (let i = selected[0].index; i < selected[1].index; i++) {
           currentMonthDays[i].active = true;
         }
       }
       else if ((selected[1].month === currentMonth + 2) || (selected[0].month === 12 && selected[1].month === 1)) {
-        for (let i = selected[0].day; i < 42; i++) {
+        for (let i = selected[0].index; i < 42; i++) {
           currentMonthDays[i].active = true;
         }
-        for (let i = 0; i < selected[1].day; i++) {
+        for (let i = 0; i < selected[1].index; i++) {
           nextMonthDays[i].active = true;
         }
       }
     }
     else if ((selected[0].month === currentMonth + 2) || (selected[1].month === 1)) {
-      for (let i = selected[0].day; i < selected[1].day; i++) {
+      for (let i = selected[0].index; i < selected[1].index; i++) {
         nextMonthDays[i].active = true;
       }
     }
@@ -368,14 +436,12 @@ export const CalendarModule = (props) => {
     )
   }
 
-  console.log(props.defaultValue[0].day);
-
   return (
     <>
       {rows}
       <input type="button" name="" value="Reset"
         style={{ width: "20%" }}
-        onClick={() => ResetSelected(0)}
+        onClick={() => { ResetSelected(1, true) }}
       />
     </>
   )

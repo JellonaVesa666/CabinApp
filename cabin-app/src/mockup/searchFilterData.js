@@ -291,6 +291,10 @@ export const searchParameters = {
     modal: true,
     count: 2,
     reservations: false,
+    value: {
+      0: "",
+      1: "",
+    },
     defaultValue: {
       0: GetCurrentDate(0),
       1: GetCurrentDate(1),

@@ -47,8 +47,10 @@ export const Modal = (props) => {
       <ModalContent ref={wrapperRef} close={() => props.closeModal()}>
         <CalendarModule
           defaultValue={props.searchFilters[props.filter].defaultValue}
+          value={props.searchFilters[props.filter].value}
           reservations={props.searchFilters[props.filter].reservations}
           count={props.searchFilters[props.filter].count}
+          changeState={(newValue, index) => props.changeState(newValue, index)}
         />
       </ModalContent>
     );

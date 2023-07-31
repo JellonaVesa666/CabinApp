@@ -109,6 +109,35 @@ export const SearchBarModule = () => {
 
   // Static filter items
   const staticFilters = Object.keys(searchFilters).map(item => {
+
+    /*     let dateValue;
+    
+        if (searchFilters[item].type === "button" &&
+          searchFilters[item].context === "date" &&
+          searchFilters[item].modal) {
+          if (searchFilters?.[item]?.value[0] === "" && searchFilters?.[item]?.value[1] === "") {
+            dateValue = (`${searchFilters?.[item]?.defaultValue?.[0]?.["dayName"]?.[language] + '\x20' +
+              searchFilters?.[item]?.defaultValue?.[0]?.["day"] + '\x20' +
+              searchFilters?.[item]?.defaultValue?.[0]?.["monthName"]?.[language] + ' - ' +
+              searchFilters?.[item]?.defaultValue?.[1]?.["dayName"]?.[language] + '\x20' +
+              searchFilters?.[item]?.defaultValue?.[1]?.["day"] + '\x20' +
+              searchFilters?.[item]?.defaultValue?.[1]?.["monthName"]?.[language]
+              }`);
+          }
+          else if (searchFilters?.[item]?.value[0] === "" && searchFilters?.[item]?.value[1] !== "") {
+            console.log("B")
+            dateValue = (`${searchFilters?.[item]?.defaultValue?.[0]?.["dayName"]?.[language] + '\x20' +
+              searchFilters?.[item]?.defaultValue?.[0]?.["day"] + '\x20' +
+              searchFilters?.[item]?.defaultValue?.[0]?.["monthName"]?.[language] + ' - ' +
+              searchFilters?.[item]?.value?.[1]?.["dayName"]?.[language] + '\x20' +
+              searchFilters?.[item]?.value?.[1]?.["day"] + '\x20' +
+              searchFilters?.[item]?.value?.[1]?.["monthName"]?.[language]
+              }`);
+          }
+        }
+     */
+    //console.log(searchFilters);
+
     if (searchFilters[item].static) {
       return (
         <>
@@ -143,13 +172,25 @@ export const SearchBarModule = () => {
               marginbottom={"0.5rem"}
               i={item}
               data={searchFilters}
-              value={`${searchFilters?.[item]?.defaultValue?.[0]?.["dayName"]?.[language] + '\x20' +
-                  searchFilters?.[item]?.defaultValue?.[0]?.["day"] + '\x20' +
-                  searchFilters?.[item]?.defaultValue?.[0]?.["monthName"]?.[language] + ' - ' +
-                  searchFilters?.[item]?.defaultValue?.[1]?.["dayName"]?.[language] + '\x20' +
-                  searchFilters?.[item]?.defaultValue?.[1]?.["day"] + '\x20' +
-                  searchFilters?.[item]?.defaultValue?.[1]?.["monthName"]?.[language]
-                }`}
+              value={(searchFilters?.[item]?.value[0] === "" && searchFilters?.[item]?.value[1] === "") ?
+                `${searchFilters?.[item]?.defaultValue?.[0]?.["dayName"]?.[language] + '\x20' +
+                searchFilters?.[item]?.defaultValue?.[0]?.["day"] + '\x20' +
+                searchFilters?.[item]?.defaultValue?.[0]?.["monthName"]?.[language] + ' - ' +
+                searchFilters?.[item]?.defaultValue?.[1]?.["dayName"]?.[language] + '\x20' +
+                searchFilters?.[item]?.defaultValue?.[1]?.["day"] + '\x20' +
+                searchFilters?.[item]?.defaultValue?.[1]?.["monthName"]?.[language]
+                }`
+                :
+                `${searchFilters?.[item]?.value?.[0]?.["dayName"]?.[language] + '\x20' +
+                searchFilters?.[item]?.value?.[0]?.["day"] + '\x20' +
+                searchFilters?.[item]?.value?.[0]?.["monthName"]?.[language] + ' - ' +
+                searchFilters?.[item]?.value?.[1]?.["dayName"]?.[language] + '\x20' +
+                searchFilters?.[item]?.value?.[1]?.["day"] + '\x20' +
+                searchFilters?.[item]?.value?.[1]?.["monthName"]?.[language]
+                }`
+
+
+              }
               onClick={() => SelectedFilter(searchFilters[item].type, searchFilters[item].context, searchFilters[item].modal, item)}
             />
           }
@@ -193,7 +234,12 @@ export const SearchBarModule = () => {
   return (
     <>
       {modalActive &&
-        <Modal filter={selectedFilter} searchFilters={searchFilters} closeModal={() => setModalActive(false)} /* setActive={(index) => ChangeState(setSearchFilters, !searchFilters[index].isActive, "isActive", index)} */ />
+        <Modal
+          filter={selectedFilter}
+          searchFilters={searchFilters}
+          closeModal={() => setModalActive(false)}
+          changeState={(newValue, index) => ChangeState(setSearchFilters, newValue, index, "searchDate", "value")}
+        />
       }
       <SearchBar>
         <div className="d-flex justify-content-center align-items-center gap-2" style={{ width: "60%" }}>
@@ -209,7 +255,6 @@ export const SearchBarModule = () => {
     </>
   )
 }
-
 
 
 
