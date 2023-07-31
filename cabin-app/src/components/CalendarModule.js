@@ -415,13 +415,11 @@ export const CalendarModule = (props) => {
                   `}
                 onClick={() => {
                   if (
-                    (!props.reservations && calendarDays[item].month == props.defaultValue[0].month &&
+                    (!props.reservations && calendarDays[item].month >= props.defaultValue[0].month &&
                       calendarDays[item].day >= props.defaultValue[0].day &&
-                      calendarDays[item].year >= props.defaultValue[0].year
+                      calendarDays[item].year == props.defaultValue[0].year
                     ) ||
-                    (!props.reservations && calendarDays[item].month > props.defaultValue[0].month &&
-                      calendarDays[item].year >= props.defaultValue[0].year
-                    )
+                    calendarDays[item].year > props.defaultValue[0].year
                   )
                     SelectDate(item, calendarDays[item].month)
                 }}
