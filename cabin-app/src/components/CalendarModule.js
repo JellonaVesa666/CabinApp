@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { MonthPanel, WeekGrid, Days, DayGrid } from "../styles/InputStyle";
 import { dayNames, monthNames, reservations, day } from "../mockup/calendarData";
 import { useSelector } from "react-redux";
@@ -40,7 +40,40 @@ export const CalendarModule = (props) => {
     setClicks(3);
   }
 
-  const Range = (CurrentMonth) => {
+  const InitialActiveDates = useCallback((merged) => {
+    // If searchFilter values are empty
+    if (props.value[0] === "" && props.value[1] === "") {
+      for (let i = 0; i < 42; i++) {
+        if (merged[i].month === props.defaultValue[0].month &&
+          merged[i].day === props.defaultValue[0].day) {
+          merged[i].active = true;
+        }
+      }
+    }
+    else {
+      for (let i = 0; i < 42; i++) {
+        // If date values are on same month
+        if (merged[i].month === props.value[1].month && merged[i].month === props.value[0].month &&
+          merged[i].day <= props.value[1].day && merged[i].day >= props.value[0].day) {
+          merged[i].active = true;
+        }
+        // If date value is on current month
+        else if (merged[i].month === props.value[0].month && merged[i].month !== props.value[1].month &&
+          merged[i].day >= props.value[0].day) {
+          merged[i].active = true;
+        }
+        // If date value is on next month
+        else if (merged[i].month === props.value[1].month && merged[i].month !== props.value[0].month &&
+          merged[i].day <= props.value[1].day) {
+          merged[i].active = true;
+        }
+      }
+      setClicks(2);
+    }
+    return merged;
+  }, [props.defaultValue, props.value]);
+
+  const Range = useCallback((CurrentMonth) => {
     let startDay = DayToInt(new Date(currentYear, CurrentMonth, 1).getDay());
 
     // Previous Month
@@ -153,44 +186,10 @@ export const CalendarModule = (props) => {
     //console.log(merged);
     return merged;
 
-  };
+  }, [currentYear, InitialActiveDates]);
 
 
-  const InitialActiveDates = (merged) => {
-    // If searchFilter values are empty
-    if (props.value[0] === "" && props.value[1] === "") {
-      for (let i = 0; i < 42; i++) {
-        if (merged[i].month === props.defaultValue[0].month &&
-          merged[i].day === props.defaultValue[0].day) {
-          merged[i].active = true;
-        }
-      }
-    }
-    else {
-      for (let i = 0; i < 42; i++) {
-        // If date values are on same month
-        if (merged[i].month === props.value[1].month && merged[i].month === props.value[0].month &&
-          merged[i].day <= props.value[1].day && merged[i].day >= props.value[0].day) {
-          merged[i].active = true;
-        }
-        // If date value is on current month
-        else if (merged[i].month === props.value[0].month && merged[i].month !== props.value[1].month &&
-          merged[i].day >= props.value[0].day) {
-          merged[i].active = true;
-        }
-        // If date value is on next month
-        else if (merged[i].month === props.value[1].month && merged[i].month !== props.value[0].month &&
-          merged[i].day <= props.value[1].day) {
-          merged[i].active = true;
-        }
-      }
-      setClicks(2);
-    }
-    return merged;
-  }
-
-
-  const SetActiveDaysByRange = (selected) => {
+  const SetActiveDaysByRange = useCallback((selected) => {
     if (selected[0].month === currentMonth + 1) {
 
       if (selected[1].month === currentMonth + 1) {
@@ -212,9 +211,9 @@ export const CalendarModule = (props) => {
         ChangeState(setNextMonthDays, true, "active", i);
       }
     }
-  }
+  }, [currentMonth]);
 
-  const FindActiveRange = (selected) => {
+  const FindActiveRange = useCallback((selected) => {
     for (let i = 0; i < 42; i++) {
       if (currentMonthDays[i].active && currentMonthDays[i].month === currentMonth + 1) {
         selected[0] = {
@@ -264,7 +263,7 @@ export const CalendarModule = (props) => {
       }
     }
     return selected;
-  }
+  }, [currentMonth, currentMonthDays, nextMonthDays]);
 
   useEffect(() => {
 
@@ -298,7 +297,7 @@ export const CalendarModule = (props) => {
       setClicks(3);
     }
 
-  }, [Range, refresh, clicks, currentMonthDays, nextMonthDays, currentMonth, props]);
+  }, [Range, FindActiveRange, SetActiveDaysByRange, refresh, clicks, currentMonthDays, nextMonthDays, currentMonth, props]);
 
 
   const SelectDate = async (item, month) => {
