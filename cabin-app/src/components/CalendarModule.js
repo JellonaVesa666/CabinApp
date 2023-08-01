@@ -276,11 +276,8 @@ export const CalendarModule = (props) => {
       setRefresh(true);
     }
 
-    console.log(clicks);
-
     if (clicks === 2) {
 
-      console.log("click");
       let selected = [{ 0: "" }, { 1: "" }];
 
       // Loop currentMonthDays and nextMonthDays to find min and max range for selected dates.
@@ -288,8 +285,6 @@ export const CalendarModule = (props) => {
 
       // Sort values from min to max
       SortMinMax(selected);
-
-      console.log(selected);
 
       // Set active days 
       SetActiveDaysByRange(selected);
@@ -310,20 +305,13 @@ export const CalendarModule = (props) => {
 
     const result = await ResetSelected();
 
-
-    console.log(nextMonthDays[item].month === (currentMonth === 11 ? 1 : currentMonth + 2));
-    console.log(nextMonthDays[item].active);
-
-
     if (!result) {
       if ((!currentMonthDays[item].active && month === currentMonth + 1) ||
         (!nextMonthDays[item].active && month === (currentMonth === 11 ? 1 : currentMonth + 2))) {
-        console.log("pass");
         SetActive(item, month, true);
         setClicks(clicks + 1);
       }
       else {
-        console.log("fail");
         SetActive(item, month, false);
         setClicks(clicks - 1);
       }
@@ -423,7 +411,8 @@ export const CalendarModule = (props) => {
               <Days
                 key={item}
                 className={`
-                    ${calendarDays[item].month === calendarMonth ? "this" : ""} 
+                    ${(calendarDays[item].month === calendarMonth && calendarMonth >= props.defaultValue[0].month && calendarYear === props.defaultValue[0].year)
+                    || (calendarDays[item].month === calendarMonth && calendarYear > props.defaultValue[0].year) ? "this" : ""}
                     ${props.reservations && calendarDays[item].reserved ? "reserved" : ""}
                     ${props.reservations && calendarDays[item].active && !calendarDays[item].reserved ? "active" : ""}
                     ${!props.reservations && calendarDays[item].active && calendarDays[item].year >= props.defaultValue[0].year ? "active" : ""}

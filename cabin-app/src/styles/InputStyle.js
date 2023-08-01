@@ -130,6 +130,10 @@ export const Days = styled.p`
       visibility: visible;
     }
   }
+  &.other{
+    background-color: ${colors.grey};
+    visibility: visible;
+  }
   &.reserved {
     background-color: ${colors.lightRed};
     color: ${colors.grey};
