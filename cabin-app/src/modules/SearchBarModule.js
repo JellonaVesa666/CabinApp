@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal } from "./ModalComponent"
+import { ModalModule } from "./ModalModule"
 import { ChangeState } from "../helpers/HelperFunctions";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, Input } from "./InputModules";
 import { FilterList, FilterCard, CardLabel, SearchBar } from "../styles/SearchBarStyle";
@@ -109,34 +109,6 @@ export const SearchBarModule = () => {
   // Static filter items
   const staticFilters = Object.keys(searchFilters).map(item => {
 
-    /*     let dateValue;
-    
-        if (searchFilters[item].type === "button" &&
-          searchFilters[item].context === "date" &&
-          searchFilters[item].modal) {
-          if (searchFilters?.[item]?.value[0] === "" && searchFilters?.[item]?.value[1] === "") {
-            dateValue = (`${searchFilters?.[item]?.defaultValue?.[0]?.["dayName"]?.[language] + '\x20' +
-              searchFilters?.[item]?.defaultValue?.[0]?.["day"] + '\x20' +
-              searchFilters?.[item]?.defaultValue?.[0]?.["monthName"]?.[language] + ' - ' +
-              searchFilters?.[item]?.defaultValue?.[1]?.["dayName"]?.[language] + '\x20' +
-              searchFilters?.[item]?.defaultValue?.[1]?.["day"] + '\x20' +
-              searchFilters?.[item]?.defaultValue?.[1]?.["monthName"]?.[language]
-              }`);
-          }
-          else if (searchFilters?.[item]?.value[0] === "" && searchFilters?.[item]?.value[1] !== "") {
-            console.log("B")
-            dateValue = (`${searchFilters?.[item]?.defaultValue?.[0]?.["dayName"]?.[language] + '\x20' +
-              searchFilters?.[item]?.defaultValue?.[0]?.["day"] + '\x20' +
-              searchFilters?.[item]?.defaultValue?.[0]?.["monthName"]?.[language] + ' - ' +
-              searchFilters?.[item]?.value?.[1]?.["dayName"]?.[language] + '\x20' +
-              searchFilters?.[item]?.value?.[1]?.["day"] + '\x20' +
-              searchFilters?.[item]?.value?.[1]?.["monthName"]?.[language]
-              }`);
-          }
-        }
-     */
-    //console.log(searchFilters);
-
     if (searchFilters[item].static) {
       return (
         <>
@@ -193,7 +165,9 @@ export const SearchBarModule = () => {
               onClick={() => SelectedFilter(searchFilters[item].type, searchFilters[item].context, searchFilters[item].modal, item)}
             />
           }
-          {searchFilters[item].type === "counter" &&
+          {searchFilters[item].type === "button" &&
+            searchFilters[item].context === "counter" &&
+            searchFilters[item].modal &&
             <Input
               type={searchFilters[item].type}
               width={"15%"}
@@ -204,14 +178,9 @@ export const SearchBarModule = () => {
               marginbottom={"0.5rem"}
               i={item}
               data={searchFilters}
-              value={"2 aikuista + 0 lasta"}
+              value={`${searchFilters[item][0].value} ${searchFilters[item][0][language].translation} ${"\uD83D\uDF84"} ${searchFilters[item][1].value} ${searchFilters[item][1][language].translation}`}
               changeState={(value) => ChangeState(setSearchFilters, value, "value", item)}
             />
-            /*             <Counter
-                          data={searchFilters}
-                          i={item}
-                          changeState={(value, index) => ChangeState(setSearchFilters, value, "value", item, index)}
-                        /> */
           }
         </>
       )
@@ -221,7 +190,7 @@ export const SearchBarModule = () => {
   const SelectedFilter = (type, context, modal, item) => {
     if (type === "button") {
       if (context === "date") {
-        if (modal === true) {
+        if (modal) {
           setModalActive(!modalActive);
           setSelectedFilter(item);
           console.log(item);
@@ -233,7 +202,7 @@ export const SearchBarModule = () => {
   return (
     <>
       {modalActive &&
-        <Modal
+        <ModalModule
           filter={selectedFilter}
           searchFilters={searchFilters}
           closeModal={() => setModalActive(false)}

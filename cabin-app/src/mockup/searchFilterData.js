@@ -301,8 +301,8 @@ export const searchParameters = {
     }
   },
   persons: {
-    type: "counter",
-    context: "occupants",
+    type: "button",
+    context: "counter",
     static: true,
     modal: true,
     info: {
@@ -315,16 +315,16 @@ export const searchParameters = {
     },
     0: {
       fi: {
-        translation: "aikuiset",
+        translation: "aikuista",
       },
       en: {
         translation: "adults",
       },
-      value: 1,
+      value: 2,
     },
     1: {
       fi: {
-        translation: "lapset",
+        translation: "lasta",
       },
       en: {
         translation: "children",
@@ -333,8 +333,10 @@ export const searchParameters = {
     },
   },
   rooms: {
-    type: "counter",
+    type: "button",
+    context: "counter",
     static: true,
+    modal: true,
     info: {
       fi: {
         translation: "huoneet",

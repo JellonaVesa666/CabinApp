@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionItem, MultiSelectInput, CheckInput, CounterInput, CounterValue } from "../styles/InputStyle"
+import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionItem, MultiSelectInput, CheckInput, CounterStyle, CounterValue } from "../styles/InputStyle"
 import { useSelector } from "react-redux";
 import { colors } from "../styles/Colors";
 
@@ -48,7 +48,7 @@ export const Counter = (props) => {
   const language = useSelector(state => state.session.language);
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   return (
-    <CounterInput>
+    <CounterStyle>
       {
         result.map(item => {
           return (
@@ -89,7 +89,7 @@ export const Counter = (props) => {
           )
         })
       }
-    </CounterInput>
+    </CounterStyle>
   )
 }
 

@@ -19,7 +19,7 @@ export const ModalContent = styled.section`
   padding-top: 3rem;
   padding-bottom: 3rem;
   top: 30%;
-  left: 51.5%;
+  left: 50%;
   transform: translate(-50%,-50%);
   background-color: ${colors.white};
 `

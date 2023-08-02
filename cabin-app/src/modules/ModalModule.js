@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { ModalContent, ModalHeader, ModalLinkH4 } from "../styles/ModalStyle";
 import { CalendarModule } from "./CalendarModule";
 
-export const Modal = (props) => {
+export const ModalModule = (props) => {
 
   const OutsideClick = (ref) => {
     useEffect(() => {

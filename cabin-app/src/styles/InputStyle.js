@@ -269,7 +269,7 @@ export const ButtonInput = styled.a.attrs({
   }
 `
 
-export const CounterInput = styled.div.attrs({
+export const CounterStyle = styled.div.attrs({
   className: "row py-3 m-0",
 })`
   @media only screen and (max-width: 768px) {
