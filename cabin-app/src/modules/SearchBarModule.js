@@ -201,7 +201,7 @@ export const SearchBarModule = () => {
           filter={selectedFilter}
           searchFilters={searchFilters}
           closeModal={() => setModalActive(false)}
-          changeState={(newValue, index) => ChangeState(setSearchFilters, newValue, index, "searchDate", "value")}
+          changeState={(newValue, property, index1, index2) => ChangeState(setSearchFilters, newValue, property, index1, index2)}
         />
       }
       <SearchBar>

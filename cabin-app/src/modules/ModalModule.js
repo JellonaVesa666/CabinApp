@@ -55,7 +55,7 @@ export const ModalModule = (props) => {
             value={props.searchFilters[props.filter].value}
             reservations={props.searchFilters[props.filter].reservations}
             count={props.searchFilters[props.filter].count}
-            changeState={(newValue, index) => props.changeState(newValue, index)}
+            changeState={(newValue, property) => props.changeState(newValue, property, "searchDate", "value")}
           />
         }
         {props.filter === "persons" &&
@@ -66,7 +66,10 @@ export const ModalModule = (props) => {
                   <Counter
                     data={props.searchFilters}
                     i={item}
+                    changeState={(newValue, index2) => props.changeState(newValue, "value", "persons", index2)}
+                  //changeState={(newValue, index) => props.changeState(newValue, index, )}
                   //changeState={(value, index) => ChangeState(setSearchFilters, value, "value", item, index)}
+                  //changeState={(value, index) => ChangeState(setSearchFilters, value, "value", "persons", index)}
                   />
                   /*                 <>
                                     {item}
@@ -79,9 +82,10 @@ export const ModalModule = (props) => {
         }
       </ModalContent>
     )
-
   }
 };
+
+//changeState={(newValue, index) => ChangeState(setSearchFilters, newValue, index, "searchDate", "value")}
 
 {/*           <CalendarModule  prevMonth={props.options?.[props.filter][0].prevMonth} thisMonth={props.options?.[props.filter][0].thisMonth} nextMonth={props.options?.[props.filter][0].nextMonth}/>
           <CalendarModule /> */}
