@@ -180,6 +180,7 @@ export const SearchBarModule = () => {
               data={searchFilters}
               value={`${searchFilters[item][0].value} ${searchFilters[item][0][language].translation} ${"\uD83D\uDF84"} ${searchFilters[item][1].value} ${searchFilters[item][1][language].translation}`}
               changeState={(value) => ChangeState(setSearchFilters, value, "value", item)}
+              onClick={() => SelectedFilter(searchFilters[item].type, searchFilters[item].context, searchFilters[item].modal, item)}
             />
           }
         </>
@@ -188,15 +189,9 @@ export const SearchBarModule = () => {
   })
 
   const SelectedFilter = (type, context, modal, item) => {
-    if (type === "button") {
-      if (context === "date") {
-        if (modal) {
-          setModalActive(!modalActive);
-          setSelectedFilter(item);
-          console.log(item);
-        }
-      }
-    }
+    setModalActive(!modalActive);
+    setSelectedFilter(item);
+    console.log(item);
   }
 
   return (

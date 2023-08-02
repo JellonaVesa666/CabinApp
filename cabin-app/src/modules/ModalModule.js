@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { ModalContent, ModalHeader, ModalLinkH4 } from "../styles/ModalStyle";
 import { CalendarModule } from "./CalendarModule";
+import { Counter } from "./InputModules";
 
 export const ModalModule = (props) => {
 
@@ -41,13 +42,14 @@ export const ModalModule = (props) => {
       }
     }
    */
+
   if (props.filter) {
     console.log(props.filter);
     //const result = Object.keys(props.searchFilters[props.filter]).filter((i) => typeof i === "string" && !isNaN(i));
 
-    if (props.filter === "searchDate") {
-      return (
-        <ModalContent ref={wrapperRef} close={() => props.closeModal()}>
+    return (
+      <ModalContent ref={wrapperRef}>
+        {props.filter === "searchDate" &&
           <CalendarModule
             defaultValue={props.searchFilters[props.filter].defaultValue}
             value={props.searchFilters[props.filter].value}
@@ -55,9 +57,29 @@ export const ModalModule = (props) => {
             count={props.searchFilters[props.filter].count}
             changeState={(newValue, index) => props.changeState(newValue, index)}
           />
-        </ModalContent>
-      );
-    }
+        }
+        {props.filter === "persons" &&
+          <>
+            {Object.keys(props.searchFilters).map(item => {
+              if (item === "persons") {
+                return (
+                  <Counter
+                    data={props.searchFilters}
+                    i={item}
+                  //changeState={(value, index) => ChangeState(setSearchFilters, value, "value", item, index)}
+                  />
+                  /*                 <>
+                                    {item}
+                                  </> */
+                )
+              }
+            })
+            }
+          </>
+        }
+      </ModalContent>
+    )
+
   }
 };
 

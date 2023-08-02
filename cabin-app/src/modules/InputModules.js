@@ -46,6 +46,8 @@ export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, 
 
 export const Counter = (props) => {
   const language = useSelector(state => state.session.language);
+  console.log(props.data);
+  console.log(props.i);
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   return (
     <CounterStyle>
