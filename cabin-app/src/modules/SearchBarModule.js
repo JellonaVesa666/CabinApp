@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
-import { ChangeState, DayToInt, ValidateElement } from "../helpers/HelperFunctions";
+import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, Input } from "./InputModules";
 import { FilterList, FilterCard, CardLabel, SearchBar, SidebarCollapsed } from "../styles/SearchBarStyle";
 import { searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
-import { dayNames, monthNames } from "../mockup/calendarData";
 
 export const SearchBarModule = () => {
   const language = useSelector(state => state.session.language);

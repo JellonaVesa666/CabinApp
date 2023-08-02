@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import LoginComponent from "../components/LoginComponent"
-import RegisterComponent from "../components/RegisterComponent"
+import LoginComponent from "../modules/LoginComponent"
+import RegisterComponent from "../modules/RegisterComponent"
 
 export default function LoginPage() {
 

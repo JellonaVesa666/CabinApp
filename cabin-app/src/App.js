@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom"
 import { BodyBackground, Logo } from "./styles/BaseStyle"
 import LoginPage from "./pages/LoginPage";
-import NavigationModule from "./components/NavigationModule";
+import NavigationModule from "./modules/NavigationModule";
 import { SearchPage } from './pages/SearchPage';
-import { SearchBarModule } from './components/SearchBarModule';
+import { SearchBarModule } from './modules/SearchBarModule';
 
 function App() {
 
