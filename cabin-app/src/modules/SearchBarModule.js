@@ -190,12 +190,12 @@ export const SearchBarModule = () => {
 
   return (
     <>
+
       {/* Modal Component */}
       {modalActive &&
         <ModalModule
           filter={selectedFilter}
           searchFilters={searchFilters}
-          setSearchFilters={setSelectedFilter}
           closeModal={() => setModalActive(false)}
           changeState={(newValue, property, index1, index2) => ChangeState(setSearchFilters, newValue, property, index1, index2)}
         />
