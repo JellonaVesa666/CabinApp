@@ -4,45 +4,46 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionItem, MultiSelectInput, CheckInput, CounterButton } from "../styles/InputStyle"
 import { useSelector } from "react-redux";
 import { colors } from "../styles/Colors";
+import { ChangeState } from "../helpers/HelperFunctions";
 
-export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, changeState }) => {
+export const RangeSlider = (props) => {
   return (
     <Slider
       className="d-flex align-items-center justify-content-center m-auto p-0"
     >
       <RangeInput
         type="range"
-        min={minDefault}
-        max={maxDefault}
-        value={minValue}
-        step={step}
-        onChange={(event) => changeState(Math.max(minDefault, Math.min(event.target.value, maxValue)), "minValue")}
+        min={props.minDefault}
+        max={props.maxDefault}
+        value={props.minValue}
+        step={props.step}
+        onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minDefault, Math.min(event.target.value, props.maxValue)), "minValue", "slider")}
       />
       <RangeInput
         type="range"
-        min={minDefault}
-        max={maxDefault}
-        value={maxValue}
-        step={step}
-        onChange={(event) => changeState(Math.max(minValue, Math.min(event.target.value, maxDefault)), "maxValue")}
+        min={props.minDefault}
+        max={props.maxDefault}
+        value={props.maxValue}
+        step={props.step}
+        onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minValue, Math.min(event.target.value, props.maxDefault)), "maxValue", "slider")}
       />
-      <SliderBackground left={minValue / maxDefault * 100} right={maxValue / maxDefault * 100} className="center" />
+      <SliderBackground left={props.minValue / props.maxDefault * 100} right={props.maxValue / props.maxDefault * 100} className="center" />
       <SliderBackground />
       <RangeValue
         className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
         type="number"
-        value={minValue}
+        value={props.minValue}
         marginright={"38%"}
         width={"12%"}
-        onChange={(event) => changeState(Math.max(minDefault, Math.min(event.target.value, maxValue)), "minValue")}
+        onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minDefault, Math.min(event.target.value, props.maxValue)), "minValue", "slider")}
       />
       <RangeValue
         className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
         type="number"
-        value={maxValue}
+        value={props.maxValue}
         marginleft={"38%"}
         width={"12%"}
-        onChange={(event) => changeState(Math.max(minValue, Math.min(event.target.value, maxDefault)), "maxValue")}
+        onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minValue, Math.min(event.target.value, props.maxDefault)), "maxValue", "slider")}
       />
     </Slider>
   )
@@ -82,7 +83,7 @@ export const Counter = (props) => {
                     value="-"
                     className=""
                     style={{ borderRadius: "4px", outline: 0, border: "none", width: "32px", height: "32px", color: "black", fontSize: "16px" }}
-                    onClick={() => props.changeState(Number(props.data[props.i][item].value) > 0 ? Number(props.data[props.i][item].value) - 1 : 0, item)}
+                    onClick={() => { ChangeState(props.SetSearchFilters, (Number(props.data[props.i][item].value) > 0 ? Number(props.data[props.i][item].value) - 1 : 0), "value", props.index1, item) }}
                   />
                 </div>
                 <div
@@ -97,7 +98,7 @@ export const Counter = (props) => {
                   <CounterButton
                     type="button"
                     value="+"
-                    onClick={() => props.changeState(Number(props.data[props.i][item].value) + 1, item)}
+                    onClick={() => { ChangeState(props.SetSearchFilters, (Number(props.data[props.i][item].value) + 1), "value", props.index1, item) }}
                   />
                 </div>
               </div>
@@ -180,7 +181,7 @@ export const CheckBox = (props) => {
                   type="checkbox"
                   color={props.color}
                   checked={props.multi ? props.data[props.i][item].value : props.single ? props.data[props.i].value === item : props.data[props.i].value}
-                  onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
+                  onChange={props.multi ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", "checkboxMulti", item) : () => props.changeState(item)}
                 />
                 <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "12px", paddingLeft: "15px" }}>
                   {props.data[props.i][item]?.[language]?.translation !== undefined ? props.data[props.i][item][language].translation.toUpperCase() : "ERROR"}

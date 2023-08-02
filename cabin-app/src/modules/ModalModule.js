@@ -3,6 +3,7 @@ import { ModalContent, ModalHeader, ModalLinkH4 } from "../styles/ModalStyle";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, Input } from "./InputModules";
 import { CalendarModule } from "./CalendarModule";
 import { colors } from "../styles/Colors";
+import { ChangeState } from "../helpers/HelperFunctions";
 
 export const ModalModule = (props) => {
 
@@ -54,7 +55,7 @@ export const ModalModule = (props) => {
             value={props.searchFilters[props.filter].value}
             reservations={props.searchFilters[props.filter].reservations}
             count={props.searchFilters[props.filter].count}
-            changeState={(newValue, property) => props.changeState(newValue, property, "searchDate", "value")}
+            SetSearchFilters={props.SetSearchFilters}
           />
         }
         {props.filter === "persons" &&
@@ -64,8 +65,9 @@ export const ModalModule = (props) => {
                 return (
                   <Counter
                     data={props.searchFilters}
+                    index1={props.filter}
                     i={item}
-                    changeState={(newValue, index2) => props.changeState(newValue, "value", item, index2)}
+                    SetSearchFilters={props.SetSearchFilters}
                   />
                 )
               }
@@ -80,8 +82,9 @@ export const ModalModule = (props) => {
                 return (
                   <Counter
                     data={props.searchFilters}
+                    index1={props.filter}
                     i={item}
-                    changeState={(newValue, index2) => props.changeState(newValue, "value", item, index2)}
+                    SetSearchFilters={props.SetSearchFilters}
                   />
                 )
               }
@@ -97,7 +100,7 @@ export const ModalModule = (props) => {
             maxValue={props.searchFilters["slider"].maxValue}
             minValue={props.searchFilters["slider"].minValue}
             step={props.searchFilters["slider"].step}
-            changeState={(newValue, property) => props.changeState(newValue, property, "slider")}
+            SetSearchFilters={props.SetSearchFilters}
           />
 
         }
@@ -109,7 +112,7 @@ export const ModalModule = (props) => {
               i={"checkboxMulti"}
               multi={true}
               color={colors.blue}
-              changeState={(newValue, item) => props.changeState(!newValue, "value", "checkboxMulti", item)}
+              SetSearchFilters={props.SetSearchFilters}
             />
           </>
         }

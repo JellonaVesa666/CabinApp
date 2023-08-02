@@ -300,8 +300,9 @@ export const CalendarModule = (props) => {
       // Remove index before passing to changeState
       delete selected[0].index;
       delete selected[1].index;
-      props.changeState(selected[0], 0)
-      props.changeState(selected[1], 1)
+
+      ChangeState(props.SetSearchFilters, selected[0], 0, "searchDate", "value")
+      ChangeState(props.SetSearchFilters, selected[1], 1, "searchDate", "value")
 
       setClicks(3);
     }
