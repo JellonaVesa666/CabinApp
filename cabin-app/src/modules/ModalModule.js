@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { ModalContent, ModalHeader, ModalLinkH4 } from "../styles/ModalStyle";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, Input } from "./InputModules";
 import { CalendarModule } from "./CalendarModule";
+import { colors } from "../styles/Colors";
 
 export const ModalModule = (props) => {
 
@@ -88,7 +89,7 @@ export const ModalModule = (props) => {
             }
           </>
         }
-        {props.filter === "dynamicFilters" &&
+        {/*         {props.filter === "dynamicFilters" &&
           props.searchFilters["slider"].type === "slider" &&
           <RangeSlider
             minDefault={props.searchFilters["slider"].minDefault}
@@ -99,6 +100,20 @@ export const ModalModule = (props) => {
             changeState={(newValue, property) => props.changeState(newValue, property, "slider")}
           />
 
+        } */}
+        {props.filter === "dynamicFilters" &&
+          props.searchFilters["checkboxMulti"].type === "checkboxMulti" &&
+          <>
+            <CheckBox
+              data={props.searchFilters}
+              i={"checkboxMulti"}
+              multi={true}
+              color={colors.blue}
+              //changeState={(newValue, item) => console.log(newValue, item)}
+              changeState={(newValue, item) => props.changeState(!newValue, "value", "checkboxMulti", item)}
+            />
+            dåpaodl
+          </>
         }
       </ModalContent>
     )

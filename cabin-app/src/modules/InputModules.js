@@ -161,7 +161,7 @@ export const CheckBox = (props) => {
   const language = useSelector(state => state.session.language);
   // Filter out string keys
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
-  if (props.data[props.i].rows === undefined || props.data[props.i].rows < 1) {
+  if (props.data?.[props.i]?.rows < 1) {
     return (
       <div className="row w-100 px-5 py-3 m-0">
         {
@@ -175,7 +175,6 @@ export const CheckBox = (props) => {
                   className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
                   type="checkbox"
                   color={props.color}
-                  //       (condition) ? (true block) : ((condition2) ? (true block2) : (else block2))
                   checked={props.multi ? props.data[props.i][item].value : props.single ? props.data[props.i].value === item : props.data[props.i].value}
                   onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
                 />
