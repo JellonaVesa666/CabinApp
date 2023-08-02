@@ -102,32 +102,17 @@ export const BodyTopContainer = styled.div`
 `
 
 export const SearchBar = styled.div`
-  background-color: ${colors.white};
+  position: relative;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-
-  @media only screen and (max-width: 768px) {
-    position: relative;
-    left: 0;
-    right: 0;
-    margin: auto;
-    height: auto;
-    width: 100%;
-    overflow-y: hidden;
-    background-color: ${colors.white};
-  }
-
-  @media only screen and (min-width: 768px) and (max-width: 1350px) {
-    position: relative;
-    left: 0;
-    right: 0;
-    margin: auto;
-    height: auto;
-    width: 100%;
-    overflow-y: hidden;
-    background-color: transparent;
-  }
+  margin: auto;
+  height: 100px;
+  width: 100%;
+  overflow-y: hidden;
+  background-color: ${colors.white};
 `

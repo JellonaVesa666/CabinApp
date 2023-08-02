@@ -54,7 +54,7 @@ export const SliderBackground = styled.div`
   border-radius: 20px;
   &.center {
     z-index: 1;
-    background-color: ${colors.green};
+    background-color: ${colors.blue};
     width: ${props => `${props.right - props.left}%`};
     margin-left: ${props => `${props.left}%`};
   }
@@ -192,7 +192,7 @@ export const InputStyle = styled.input`
   padding: 0px 20px 0px 20px;
   border: ${props => (props.border)};
   border-radius: ${props => (props.radius)};
-  background: rgba(255, 255, 255, 0.9);
+  background: ${colors.white};
   margin-top: ${props => (props.margintop)};
   margin-bottom: ${props => (props.marginbottom)};
   outline: none;

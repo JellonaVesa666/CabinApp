@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { ModalContent, ModalHeader, ModalLinkH4 } from "../styles/ModalStyle";
+import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, Input } from "./InputModules";
 import { CalendarModule } from "./CalendarModule";
-import { Counter } from "./InputModules";
 
 export const ModalModule = (props) => {
 
@@ -87,6 +87,18 @@ export const ModalModule = (props) => {
             })
             }
           </>
+        }
+        {props.filter === "dynamicFilters" &&
+          props.searchFilters["slider"].type === "slider" &&
+          <RangeSlider
+            minDefault={props.searchFilters["slider"].minDefault}
+            maxDefault={props.searchFilters["slider"].maxDefault}
+            maxValue={props.searchFilters["slider"].maxValue}
+            minValue={props.searchFilters["slider"].minValue}
+            step={props.searchFilters["slider"].step}
+            changeState={(newValue, property) => props.changeState(newValue, property, "slider")}
+          />
+
         }
       </ModalContent>
     )

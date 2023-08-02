@@ -16,10 +16,10 @@ export const ModalContent = styled.section`
   border-radius: 2px;
   width: auto;
   height: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   top: 30%;
   left: 50%;
   transform: translate(-50%,-50%);

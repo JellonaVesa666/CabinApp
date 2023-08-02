@@ -6,6 +6,7 @@ import { FilterList, FilterCard, CardLabel, SearchBar } from "../styles/SearchBa
 import { searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
+import filterBlack from "../images/icon_filter_black.png"
 
 export const SearchBarModule = () => {
   const language = useSelector(state => state.session.language);
@@ -117,12 +118,10 @@ export const SearchBarModule = () => {
             !searchFilters[item].modal &&
             < Input
               type={searchFilters[item].type}
-              width={"15%"}
+              width={"200px"}
               height={"40px"}
               radius={"0px"}
               border={"none"}
-              margintop={"3rem"}
-              marginbottom={"0.5rem"}
               i={item}
               data={searchFilters}
               placeholder={searchFilters[item].placeholder[language].translation}
@@ -135,12 +134,10 @@ export const SearchBarModule = () => {
             searchFilters[item].modal &&
             <Input
               type={searchFilters[item].type}
-              width={"15%"}
+              width={"220px"}
               height={"40px"}
               radius={"0px"}
               border={"none"}
-              margintop={"3rem"}
-              marginbottom={"0.5rem"}
               i={item}
               data={searchFilters}
               value={(searchFilters?.[item]?.value[0] === "" && searchFilters?.[item]?.value[1] === "") ?
@@ -162,7 +159,7 @@ export const SearchBarModule = () => {
 
 
               }
-              onClick={() => SelectedFilter(item)}
+              onClick={() => OpenModal(item)}
             />
           }
           {searchFilters[item].type === "button" &&
@@ -170,17 +167,15 @@ export const SearchBarModule = () => {
             searchFilters[item].modal &&
             <Input
               type={searchFilters[item].type}
-              width={"15%"}
+              width={"200px"}
               height={"40px"}
               radius={"0px"}
               border={"none"}
-              margintop={"3rem"}
-              marginbottom={"0.5rem"}
               i={item}
               data={searchFilters}
               value={`${searchFilters[item][0].value} ${searchFilters[item][0][language].translation} ${"\uD83D\uDF84"} ${searchFilters[item][1].value} ${searchFilters[item][1][language].translation}`}
               changeState={(value) => ChangeState(setSearchFilters, value, "value", item)}
-              onClick={() => SelectedFilter(item)}
+              onClick={() => OpenModal(item)}
             />
           }
         </>
@@ -188,14 +183,15 @@ export const SearchBarModule = () => {
     }
   })
 
-  const SelectedFilter = (item) => {
+  const OpenModal = (item) => {
     setModalActive(!modalActive);
     setSelectedFilter(item);
-    console.log(item);
   }
 
   return (
     <>
+
+      {/* Modal Component */}
       {modalActive &&
         <ModalModule
           filter={selectedFilter}
@@ -204,14 +200,31 @@ export const SearchBarModule = () => {
           changeState={(newValue, property, index1, index2) => ChangeState(setSearchFilters, newValue, property, index1, index2)}
         />
       }
+
+      {/* Searchbar */}
       <SearchBar>
-        <div className="d-flex justify-content-center align-items-center gap-2" style={{ width: "60%" }}>
+        <div
+          className="d-flex justify-content-center align-items-center gap-2 bg-warning py-1 px-1 mt-4"
+          style={{ width: "auto" }}
+        >
+          {/* Filters - Static Filters */}
           {staticFilters}
+
+          {/* Button - Search */}
           <input
             type="button"
             value={"hae"}
             className="text-uppercase d-flex justify-content-center align-items-center"
-            style={{ color: colors.black, width: "10%", height: "40px" }}
+            style={{ color: colors.white, outline: "none", border: "none", fontWeight: 500, backgroundColor: colors.navy, width: "100px", height: "40px" }}
+          />
+
+          {/* Button - Advanced Filters */}
+          <input
+            type="image"
+            src={filterBlack}
+            className="text-uppercase d-flex justify-content-center align-items-center"
+            style={{ width: "40px", height: "40px", backgroundColor: colors.white }}
+            onClick={() => OpenModal("dynamicFilters")}
           />
         </div>
       </SearchBar >
