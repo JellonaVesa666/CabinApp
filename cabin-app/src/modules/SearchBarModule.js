@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal } from "./ModalComponent"
-import { ChangeState, ValidateElement } from "../helpers/HelperFunctions";
+import { ChangeState } from "../helpers/HelperFunctions";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, Input } from "./InputModules";
-import { FilterList, FilterCard, CardLabel, SearchBar, SidebarCollapsed } from "../styles/SearchBarStyle";
+import { FilterList, FilterCard, CardLabel, SearchBar } from "../styles/SearchBarStyle";
 import { searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";

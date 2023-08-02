@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { NavbarAnchor, NavbarLogo, NavbarDropdownItem, NavbarDropdown } from "../styles/NavigationStyle";
+import { NavbarAnchor, NavbarDropdownItem, NavbarDropdown } from "../styles/NavigationStyle";
 import { navigationData } from "../mockup/navigationData";
 import { ButtonInput } from "../styles/InputStyle";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,11 +8,9 @@ import { changeLanguage } from "../reducers/sessionReducer";
 import { colors } from "../styles/Colors";
 
 export default function NavigationModule() {
-
-  const session = useSelector(state => state.session);
+  const language = useSelector(state => state.session.language);
   const dispatch = useDispatch();
 
-  const [navData, setNavData] = useState(navigationData);
   const navigate = useNavigate();
 
   return (
@@ -26,17 +24,17 @@ export default function NavigationModule() {
       </button>
       <div className="navbar-collapse collapse" id="navbarCollapse">
         {
-          Object.keys(navData).reverse().map(type => {
+          Object.keys(navigationData).reverse().map(type => {
             if (type === "language") {
               return (
-                <div key={Object.keys(navData).indexOf(type)} className="dropdown mx-4">
+                <div key={Object.keys(navigationData).indexOf(type)} className="dropdown mx-4">
                   <button className="btn dropdown-toggle border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {session.language.toUpperCase()}
+                    {language.toUpperCase()}
                   </button>
                   <NavbarDropdown className="dropdown-menu" key={type}>
                     {
-                      Object.keys(navData[type]).map((item) => {
-                        if (item !== session.language)
+                      Object.keys(navigationData[type]).map((item) => {
+                        if (item !== language)
                           return (
                             <li key={item}>
                               <NavbarDropdownItem defaultValue={item.toUpperCase()} className="dropdown-item" id={item} onClick={(event) => dispatch(changeLanguage(event.target.id))}>
@@ -52,13 +50,13 @@ export default function NavigationModule() {
             }
             if (type === "button") {
               return (
-                Object.keys(navData[type]).map((item) => {
+                Object.keys(navigationData[type]).map((item) => {
                   return (
-                    Object.keys(navData[type][item]).map((child) => {
-                      if (child === session.language) {
+                    Object.keys(navigationData[type][item]).map((child) => {
+                      if (child === language) {
                         return (
-                          <ButtonInput id={navData[type][item].route} onClick={(event) => navigate(event.target.id)} key={item}>
-                            {navData[type][item][child].name.toUpperCase()}
+                          <ButtonInput id={navigationData[type][item].route} onClick={(event) => navigate(event.target.id)} key={item}>
+                            {navigationData[type][item][child].name.toUpperCase()}
                           </ButtonInput>
                         )
                       }
@@ -71,14 +69,14 @@ export default function NavigationModule() {
               return (
                 <ul key={type} className="ms-auto navbar-nav flex-nowrap">
                   {
-                    Object.keys(navData[type]).map((item) => {
+                    Object.keys(navigationData[type]).map((item) => {
                       return (
-                        Object.keys(navData[type][item]).map((child) => {
-                          if (child === session.language) {
+                        Object.keys(navigationData[type][item]).map((child) => {
+                          if (child === language) {
                             if (item !== 0) {
                               return (
-                                <li className="nav-item" id={navData[type][item].route} onClick={(event) => navigate(event.target.id)} key={item}>
-                                  <NavbarAnchor className="nav-link my-2 mx-4 menu-item" href="">{navData[type][item][child].name.toUpperCase()}</NavbarAnchor>
+                                <li className="nav-item" id={navigationData[type][item].route} onClick={(event) => navigate(event.target.id)} key={item}>
+                                  <NavbarAnchor className="nav-link my-2 mx-4 menu-item" >{navigationData[type][item][child].name.toUpperCase()}</NavbarAnchor>
                                 </li >
                               )
                             }

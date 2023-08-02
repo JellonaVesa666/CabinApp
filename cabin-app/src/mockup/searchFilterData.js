@@ -302,7 +302,9 @@ export const searchParameters = {
   },
   persons: {
     type: "counter",
+    context: "occupants",
     static: true,
+    modal: true,
     info: {
       fi: {
         translation: "henkilöt",

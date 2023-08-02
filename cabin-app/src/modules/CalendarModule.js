@@ -65,11 +65,10 @@ export const CalendarModule = (props) => {
         if (merged[i].month === props.value[1].month && merged[i].month === props.value[0].month &&
           merged[i].day <= props.value[1].day && merged[i].day >= props.value[0].day && merged[i].year === props.value[0].year) {
           merged[i].active = true;
-          console.log("A");
         }
         // If date value is on current month
         else if (merged[i].month === props.value[0].month && merged[i].month !== props.value[1].month &&
-          merged[i].day >= props.value[0].day && merged[i].year === props.value[0].year ) {
+          merged[i].day >= props.value[0].day && merged[i].year === props.value[0].year) {
           merged[i].active = true;
         }
         // If date value is on next month
@@ -103,7 +102,7 @@ export const CalendarModule = (props) => {
       prevMonth[p - (previousMonthLenght - startDay + 1)] = item;
 
       // Set Reserved
-      let month = monthNames[CurrentMonth];
+      let month = item.monthName["en"];
       let index = p - (previousMonthLenght - startDay + 1);
       if (reservations[currentYear] && reservations[currentYear][month]) {
         Object.keys(reservations[currentYear][month]).forEach((element) => {
@@ -133,7 +132,7 @@ export const CalendarModule = (props) => {
       thisMonth[t + Object.keys(prevMonth).length] = item;
 
       // Set Reserved
-      let month = monthNames[CurrentMonth + 1];
+      let month = item.monthName["en"];
       let index = t + Object.keys(prevMonth).length;
       if (reservations[currentYear] && reservations[currentYear][month]) {
         Object.keys(reservations[currentYear][month]).forEach((element) => {
@@ -163,7 +162,7 @@ export const CalendarModule = (props) => {
       nextMonth[n + 1] = item;
 
       // Set Reserved
-      let month = monthNames[CurrentMonth + 2];
+      let month = item.monthName["en"];
       let index = n + 1;
       if (reservations[currentYear] && reservations[currentYear][month]) {
         Object.keys(reservations[currentYear][month]).forEach((element) => {

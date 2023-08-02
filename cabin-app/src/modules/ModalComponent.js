@@ -42,18 +42,22 @@ export const Modal = (props) => {
     }
    */
   if (props.filter) {
+    console.log(props.filter);
     //const result = Object.keys(props.searchFilters[props.filter]).filter((i) => typeof i === "string" && !isNaN(i));
-    return (
-      <ModalContent ref={wrapperRef} close={() => props.closeModal()}>
-        <CalendarModule
-          defaultValue={props.searchFilters[props.filter].defaultValue}
-          value={props.searchFilters[props.filter].value}
-          reservations={props.searchFilters[props.filter].reservations}
-          count={props.searchFilters[props.filter].count}
-          changeState={(newValue, index) => props.changeState(newValue, index)}
-        />
-      </ModalContent>
-    );
+
+    if (props.filter === "searchDate") {
+      return (
+        <ModalContent ref={wrapperRef} close={() => props.closeModal()}>
+          <CalendarModule
+            defaultValue={props.searchFilters[props.filter].defaultValue}
+            value={props.searchFilters[props.filter].value}
+            reservations={props.searchFilters[props.filter].reservations}
+            count={props.searchFilters[props.filter].count}
+            changeState={(newValue, index) => props.changeState(newValue, index)}
+          />
+        </ModalContent>
+      );
+    }
   }
 };
 
