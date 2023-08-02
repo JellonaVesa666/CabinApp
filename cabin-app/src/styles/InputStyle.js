@@ -131,7 +131,7 @@ export const Days = styled.p`
     }
   }
   &.other{
-    background-color: ${colors.grey};
+    background-color: rgba(0, 0, 0, 0.1);
     visibility: visible;
   }
   &.reserved {

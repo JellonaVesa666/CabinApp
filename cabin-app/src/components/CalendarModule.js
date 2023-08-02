@@ -7,9 +7,9 @@ import { ChangeState, DayToInt } from "../helpers/HelperFunctions";
 export const CalendarModule = (props) => {
   const [currentMonthDays, setCurrentMonthDays] = useState();
   const [nextMonthDays, setNextMonthDays] = useState();
-  const [currentMonth, setCurrentMonth] = useState(props.value[0].month !== undefined ? props.value[0].month - 1 : new Date().getMonth());
-  const [currentYear, setCurrentYear] = useState(props.value[0].year !== undefined ? props.value[0].year : new Date().getFullYear());
-  const [clicks, setClicks] = useState(1);
+  const [currentMonth, setCurrentMonth] = useState(props.value[0] !== "" ? props.value[0].month - 1 : new Date().getMonth());
+  const [currentYear, setCurrentYear] = useState(props.value[0] !== "" ? props.value[0].year : new Date().getFullYear());
+  const [clicks, setClicks] = useState(0);
   const [refresh, setRefresh] = useState(false);
 
   const language = useSelector(state => state.session.language);
@@ -24,6 +24,7 @@ export const CalendarModule = (props) => {
     }
 
     setRefresh(false);
+    //ClearSelected(true);
     setClicks(3);
   }
 
@@ -37,6 +38,7 @@ export const CalendarModule = (props) => {
     }
 
     setRefresh(false);
+    //ClearSelected(true);
     setClicks(3);
   }
 
@@ -44,34 +46,42 @@ export const CalendarModule = (props) => {
     // If searchFilter values are empty
     if (props.value[0] === "" && props.value[1] === "") {
       for (let i = 0; i < 42; i++) {
-        if (merged[i].month === props.defaultValue[0].month &&
+        if (merged[i].year === props.defaultValue[0].year &&
+          merged[i].month === props.defaultValue[0].month &&
           merged[i].day === props.defaultValue[0].day) {
           merged[i].active = true;
         }
+      }
+      if (currentMonth + 1 === props.defaultValue[0].month) {
+        setClicks(1);
+      }
+      else {
+        setClicks(0);
       }
     }
     else {
       for (let i = 0; i < 42; i++) {
         // If date values are on same month
         if (merged[i].month === props.value[1].month && merged[i].month === props.value[0].month &&
-          merged[i].day <= props.value[1].day && merged[i].day >= props.value[0].day) {
+          merged[i].day <= props.value[1].day && merged[i].day >= props.value[0].day && merged[i].year === props.value[0].year) {
           merged[i].active = true;
+          console.log("A");
         }
         // If date value is on current month
         else if (merged[i].month === props.value[0].month && merged[i].month !== props.value[1].month &&
-          merged[i].day >= props.value[0].day) {
+          merged[i].day >= props.value[0].day && merged[i].year === props.value[0].year ) {
           merged[i].active = true;
         }
         // If date value is on next month
         else if (merged[i].month === props.value[1].month && merged[i].month !== props.value[0].month &&
-          merged[i].day <= props.value[1].day) {
+          merged[i].day <= props.value[1].day && merged[i].year === props.value[1].year) {
           merged[i].active = true;
         }
       }
-      setClicks(2);
+      setClicks(3);
     }
     return merged;
-  }, [props.defaultValue, props.value]);
+  }, [props.defaultValue, props.value, currentMonth]);
 
   const Range = useCallback((CurrentMonth) => {
     let startDay = DayToInt(new Date(currentYear, CurrentMonth, 1).getDay());
@@ -302,7 +312,7 @@ export const CalendarModule = (props) => {
 
   const SelectDate = async (item, month) => {
 
-    const result = await ResetSelected();
+    const result = await ClearSelected();
 
     if (!result) {
       if ((!currentMonthDays[item].active && month === currentMonth + 1) ||
@@ -321,14 +331,25 @@ export const CalendarModule = (props) => {
     }
   }
 
-  const ResetSelected = async () => {
+  const ClearSelected = async (forceClear) => {
 
-    if (clicks !== 3)
+    if (clicks !== 3 && !forceClear) {
       return false;
+    }
 
-    for (let i = 0; i < 42; i++) {
-      ChangeState(setCurrentMonthDays, false, "active", i)
-      ChangeState(setNextMonthDays, false, "active", i)
+    try {
+      for (let i = 0; i < 42; i++) {
+        ChangeState(setCurrentMonthDays, false, "active", i)
+        ChangeState(setNextMonthDays, false, "active", i)
+      }
+
+      if (forceClear) {
+        setClicks(0);
+      }
+    }
+    catch (error) {
+      console.log(error);
+      return false;
     }
 
     return true;
@@ -410,8 +431,16 @@ export const CalendarModule = (props) => {
               <Days
                 key={item}
                 className={`
-                    ${(calendarDays[item].month === calendarMonth && calendarMonth >= props.defaultValue[0].month && calendarYear === props.defaultValue[0].year)
-                    || (calendarDays[item].month === calendarMonth && calendarYear > props.defaultValue[0].year) ? "this" : ""}
+                ${(calendarDays[item].month === calendarMonth && calendarMonth === props.defaultValue[0].month && calendarYear === props.defaultValue[0].year && calendarDays[item].day >= props.defaultValue[0].day)
+                    || (calendarDays[item].month > props.defaultValue[0].month && calendarDays[item].month === calendarMonth && calendarYear >= props.defaultValue[0].year) ||
+                    (calendarDays[item].month === calendarMonth && calendarYear > props.defaultValue[0].year) ?
+                    "this"
+                    :
+                    (calendarDays[item].month === calendarMonth && calendarDays[item].day < props.defaultValue[0].day && calendarYear === props.defaultValue[0].year && calendarMonth === props.defaultValue[0].month) ?
+                      "other"
+                      :
+                      ""
+                  }
                     ${props.reservations && calendarDays[item].reserved ? "reserved" : ""}
                     ${props.reservations && calendarDays[item].active && !calendarDays[item].reserved ? "active" : ""}
                     ${!props.reservations && calendarDays[item].active && calendarDays[item].year >= props.defaultValue[0].year ? "active" : ""}
@@ -447,9 +476,9 @@ export const CalendarModule = (props) => {
   return (
     <>
       {rows}
-      <input type="button" name="" value="Reset"
+      <input type="button" name="" value="Clear"
         style={{ width: "20%" }}
-        onClick={() => { ResetSelected(1, true) }}
+        onClick={() => { ClearSelected(true) }}
       />
     </>
   )
