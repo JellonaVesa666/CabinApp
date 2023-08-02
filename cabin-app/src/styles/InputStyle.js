@@ -2,9 +2,7 @@ import styled from 'styled-components'
 import { colors } from "./Colors";
 
 // Range Slider
-export const Slider = styled.div.attrs({
-  className: "d-flex align-items-center justify-content-center m-auto p-0"
-})`
+export const Slider = styled.div`
   width: 75%;
   position: relative;
 `
@@ -59,9 +57,7 @@ export const SliderBackground = styled.div`
     margin-left: ${props => `${props.left}%`};
   }
 `
-export const RangeValue = styled.input.attrs({
-  className: "d-flex align-items-center justify-content-start mt-5 mb-3 py-1",
-})`
+export const RangeValue = styled.input`
   text-align: center;
   width: ${props => props.width};
   border-radius: 10px;

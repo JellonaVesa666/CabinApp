@@ -7,7 +7,9 @@ import { colors } from "../styles/Colors";
 
 export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, changeState }) => {
   return (
-    <Slider>
+    <Slider
+      className="d-flex align-items-center justify-content-center m-auto p-0"
+    >
       <RangeInput
         type="range"
         min={minDefault}
@@ -27,6 +29,7 @@ export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, 
       <SliderBackground left={minValue / maxDefault * 100} right={maxValue / maxDefault * 100} className="center" />
       <SliderBackground />
       <RangeValue
+        className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
         type="number"
         value={minValue}
         marginright={"38%"}
@@ -34,6 +37,7 @@ export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, 
         onChange={(event) => changeState(Math.max(minDefault, Math.min(event.target.value, maxValue)), "minValue")}
       />
       <RangeValue
+        className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
         type="number"
         value={maxValue}
         marginleft={"38%"}
