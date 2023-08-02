@@ -44,9 +44,7 @@ export const ModalModule = (props) => {
    */
 
   if (props.filter) {
-    console.log(props.filter);
     //const result = Object.keys(props.searchFilters[props.filter]).filter((i) => typeof i === "string" && !isNaN(i));
-
     return (
       <ModalContent ref={wrapperRef}>
         {props.filter === "searchDate" &&
@@ -61,19 +59,29 @@ export const ModalModule = (props) => {
         {props.filter === "persons" &&
           <>
             {Object.keys(props.searchFilters).map(item => {
-              if (item === "persons") {
+              if (item === props.filter) {
                 return (
                   <Counter
                     data={props.searchFilters}
                     i={item}
-                    changeState={(newValue, index2) => props.changeState(newValue, "value", "persons", index2)}
-                  //changeState={(newValue, index) => props.changeState(newValue, index, )}
-                  //changeState={(value, index) => ChangeState(setSearchFilters, value, "value", item, index)}
-                  //changeState={(value, index) => ChangeState(setSearchFilters, value, "value", "persons", index)}
+                    changeState={(newValue, index2) => props.changeState(newValue, "value", item, index2)}
                   />
-                  /*                 <>
-                                    {item}
-                                  </> */
+                )
+              }
+            })
+            }
+          </>
+        }
+        {props.filter === "rooms" &&
+          <>
+            {Object.keys(props.searchFilters).map(item => {
+              if (item === props.filter) {
+                return (
+                  <Counter
+                    data={props.searchFilters}
+                    i={item}
+                    changeState={(newValue, index2) => props.changeState(newValue, "value", item, index2)}
+                  />
                 )
               }
             })
