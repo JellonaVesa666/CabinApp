@@ -269,30 +269,18 @@ export const ButtonInput = styled.a.attrs({
   }
 `
 
-export const CounterStyle = styled.div.attrs({
-  className: "row py-3 m-0",
+export const CounterButton = styled.input.attrs({
+  className: "col-5 d-flex justify-content-center align-items-center m-0 p-0"
 })`
-  @media only screen and (max-width: 768px) {
-    padding-right: 3rem;
-    padding-left: 3rem;
+  border-radius: 4px;
+  outline: 0;
+  border: none;
+  width: 32px;
+  height: 32px;
+  color: black;
+  font-size: 16px;
+  &:hover {
+    cursor: pointer;
+    background-color: ${colors.blueLight}
   }
-
-  @media only screen and (min-width: 768px) and (max-width: 1350px) {
-    padding-right: 6rem;
-    padding-left: 6rem;
-  }
-
-  @media only screen and (min-width: 2100px) and (max-width: 3000px) {
-    padding-right: 3rem;
-    padding-left: 3rem;
-  }
-`
-
-export const CounterValue = styled.div.attrs({
-  className: "col-4 d-flex justify-content-center align-items-center p-0",
-})`
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-right: 3rem;
-  margin-left: 3rem;
 `

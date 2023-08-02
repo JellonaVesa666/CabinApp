@@ -386,10 +386,7 @@ export const CalendarModule = (props) => {
     const calendarMonth = calendarInfo?.month;
     const calendarYear = calendarInfo?.year;
     rows.push(
-      <div
-        className="row"
-        style={{ width: "45%" }}
-      >
+      <div className="col-6 px-4">
         <MonthPanel>
           {props.count > 1 &&
             <>

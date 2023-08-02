@@ -13,11 +13,13 @@ export const ModalContent = styled.section`
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   border-radius: 50px;
-  border-radius: 6px;
-  width: 28%;
+  border-radius: 2px;
+  width: auto;
   height: auto;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   top: 30%;
   left: 50%;
   transform: translate(-50%,-50%);

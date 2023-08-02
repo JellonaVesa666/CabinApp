@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionItem, MultiSelectInput, CheckInput, CounterStyle, CounterValue } from "../styles/InputStyle"
+import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionItem, MultiSelectInput, CheckInput, CounterButton } from "../styles/InputStyle"
 import { useSelector } from "react-redux";
 import { colors } from "../styles/Colors";
 
@@ -46,11 +46,11 @@ export const RangeSlider = ({ minDefault, maxDefault, maxValue, minValue, step, 
 
 export const Counter = (props) => {
   const language = useSelector(state => state.session.language);
-  console.log(props.data);
-  console.log(props.i);
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   return (
-    <CounterStyle>
+    <div
+      className="row col-12 py-3 m-0"
+    >
       {
         result.map(item => {
           return (
@@ -59,39 +59,49 @@ export const Counter = (props) => {
             >
               <div
                 className="col-6 d-flex justify-content-start align-items-center m-0 p-0"
-                style={{ color: "black", fontSize: "14px", fontWeight: 400 }}
+                style={{ color: "black", fontSize: "14px", fontWeight: 600, textTransform: "capitalize" }}
               >
-                {props.data[props.i][item]?.[language]?.translation}
+                {
+                  props.data[props.i][item]?.[language]?.translation[0].toUpperCase() +
+                  props.data[props.i][item]?.[language]?.translation.slice(1).toLowerCase()
+                }
               </div>
               <div
-                className="col-6 d-flex justify-content-end align-items-center m-0 p-0"
-                style={{ color: "black", fontSize: "14px" }}
+                className="col-6 d-flex justify-content-end align-items-center p-1"
+                style={{ border: "1px solid black" }}
               >
-                <input
-                  type="button"
-                  value="-"
-                  className="col-4 d-flex justify-content-center align-items-center m-0 p-0"
-                  style={{ borderRadius: "4px", outline: 0, border: "2px solid grey", width: "32px", height: "32px", color: "black", fontSize: "16px" }}
-                  onClick={() => props.changeState(Number(props.data[props.i][item].value) > 0 ? Number(props.data[props.i][item].value) - 1 : 0, item)}
-                />
-                <CounterValue
-                  style={{ color: "white", fontSize: "14px", backgroundColor: colors.green, width: "26px", height: "26px", borderRadius: "20px" }}
+                <div
+                  className="col-5 d-flex justify-content-start align-items-start m-0 p-0"
+                >
+                  <CounterButton
+                    type="button"
+                    value="-"
+                    className=""
+                    style={{ borderRadius: "4px", outline: 0, border: "none", width: "32px", height: "32px", color: "black", fontSize: "16px" }}
+                    onClick={() => props.changeState(Number(props.data[props.i][item].value) > 0 ? Number(props.data[props.i][item].value) - 1 : 0, item)}
+                  />
+                </div>
+                <div
+                  className="col-2 d-flex justify-content-center align-items-center p-0 m-0"
+                  style={{ color: colors.black, fontSize: "16px", fontWeight: 600, width: "26px", height: "26px", borderRadius: "20px" }}
                 >
                   {props.data[props.i][item]?.value}
-                </CounterValue>
-                <input
-                  type="button"
-                  value="+"
-                  className="col-4 d-flex justify-content-center align-items-center m-0 p-0"
-                  style={{ borderRadius: "4px", outline: 0, border: "2px solid grey", width: "32px", height: "32px", color: "black", fontSize: "16px" }}
-                  onClick={() => props.changeState(Number(props.data[props.i][item].value) + 1, item)}
-                />
+                </div>
+                <div
+                  className="col-5 d-flex justify-content-end align-items-start m-0 p-0"
+                >
+                  <CounterButton
+                    type="button"
+                    value="+"
+                    onClick={() => props.changeState(Number(props.data[props.i][item].value) + 1, item)}
+                  />
+                </div>
               </div>
             </div>
           )
         })
       }
-    </CounterStyle>
+    </div >
   )
 }
 
