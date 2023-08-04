@@ -122,9 +122,6 @@ export const ModalModule = (props) => {
                   <CheckBox
                     data={props.searchFilters}
                     i={item}
-                    rows={props.searchFilters[item].rows}
-                    multi={props.searchFilters[item].multi}
-                    single={props.searchFilters[item].single}
                     color={colors.blue}
                     SetSearchFilters={props.SetSearchFilters}
                   />

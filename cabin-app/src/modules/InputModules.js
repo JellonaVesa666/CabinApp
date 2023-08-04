@@ -163,11 +163,10 @@ export const MultiSelect = (props) => {
 }
 
 export const CheckBox = (props) => {
-  console.log(props);
   const language = useSelector(state => state.session.language);
   // Filter out string keys
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
-  if (props?.rows < 1) {
+  if (props.data?.[props.i]?.rows < 1) {
     return (
       <div className="row w-100 px-5 py-3 m-0">
         {
@@ -181,8 +180,8 @@ export const CheckBox = (props) => {
                   className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
                   type="checkbox"
                   color={props.color}
-                  checked={props.multi ? props.data[props.i][item].value : props.single ? props.data[props.i].value === item : props.data[props.i].value}
-                  onChange={props.multi ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", "checkboxMulti", item) : () => props.changeState(item)}
+                  checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
+                  onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.SetSearchFilters, Number(item), "value", props.i)}
                 />
                 <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "12px", paddingLeft: "15px" }}>
                   {props.data[props.i][item]?.[language] !== undefined ? props.data[props.i][item][language].toUpperCase() : "ERROR"}
@@ -202,14 +201,14 @@ export const CheckBox = (props) => {
             return (
               <div
                 key={Object.keys(props.data[props.i]).indexOf(item)}
-                className={`d-flex col-${Math.round(12 / props.rows)} justify-content-start my-1`}
+                className={`d-flex col-${12 / props.data[props.i].rows} justify-content-start my-1`}
               >
                 <CheckInput
                   className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
                   type="checkbox"
                   color={props.color}
-                  checked={props.multi ? props.data[props.i][item].value : props.single ? props.data[props.i].value === item : props.data[props.i].value}
-                  onChange={props.multi ? () => props.changeState(props.data[props.i][item].value, item) : () => props.changeState(item)}
+                  checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
+                  onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.SetSearchFilters, Number(item), "value", props.i)}
                 />
                 <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "12px", paddingLeft: "15px" }}>
                   {props.data[props.i][item]?.[language]}

@@ -87,7 +87,7 @@ export const searchParameters = {
     type: "checkbox",
     isActive: true,
     static: false,
-    multi: true,
+    multiSelect: true,
     rows: 2,
     info: {
       fi:
@@ -142,7 +142,7 @@ export const searchParameters = {
     type: "checkbox",
     isActive: true,
     static: false,
-    multi: true,
+    multiSelect: true,
     rows: 0,
     info: {
       fi:
@@ -197,9 +197,9 @@ export const searchParameters = {
     type: "checkbox",
     isActive: true,
     static: false,
-    multi: false,
-    single: true,
+    multiSelect: false,
     rows: 0,
+    value: 0,
     info: {
       fi:
         "autopaikka",
@@ -211,21 +211,21 @@ export const searchParameters = {
         "kyllä",
       en:
         "yes",
-      value: false,
+      value: 1,
     },
     1: {
       fi:
         "ei",
       en:
         "no",
-      value: true,
+      value: 0,
     },
     2: {
       fi:
         "ehkä",
       en:
         "maybe",
-      value: true,
+      value: 2,
     },
   },
 
