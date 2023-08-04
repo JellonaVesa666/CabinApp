@@ -2,55 +2,64 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionItem, MultiSelectInput, CheckInput, CounterButton } from "../styles/InputStyle"
-import { useSelector } from "react-redux";
 import { colors } from "../styles/Colors";
 import { ChangeState } from "../helpers/HelperFunctions";
 
 export const RangeSlider = (props) => {
   return (
-    <Slider
-      className="d-flex align-items-center justify-content-center m-auto p-0"
-    >
-      <RangeInput
-        type="range"
-        min={props.minDefault}
-        max={props.maxDefault}
-        value={props.minValue}
-        step={props.step}
-        onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minDefault, Math.min(event.target.value, props.maxValue)), "minValue", "slider")}
-      />
-      <RangeInput
-        type="range"
-        min={props.minDefault}
-        max={props.maxDefault}
-        value={props.maxValue}
-        step={props.step}
-        onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minValue, Math.min(event.target.value, props.maxDefault)), "maxValue", "slider")}
-      />
-      <SliderBackground left={props.minValue / props.maxDefault * 100} right={props.maxValue / props.maxDefault * 100} className="center" />
-      <SliderBackground />
-      <RangeValue
-        className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
-        type="number"
-        value={props.minValue}
-        marginright={"38%"}
-        width={"12%"}
-        onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minDefault, Math.min(event.target.value, props.maxValue)), "minValue", "slider")}
-      />
-      <RangeValue
-        className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
-        type="number"
-        value={props.maxValue}
-        marginleft={"38%"}
-        width={"12%"}
-        onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minValue, Math.min(event.target.value, props.maxDefault)), "maxValue", "slider")}
-      />
-    </Slider>
+    <div className="col-12 d-flex justify-content-center align-items-center">
+      <div
+        className="col-2 d-flex justify-content-center align-items-center mb-auto"
+        style={{ fontWeight: 500 }}
+      >
+        {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
+      </div>
+      <div className="col-10 row px-5 py-3 m-0">
+
+        <Slider
+          className="d-flex align-items-center justify-content-center m-0 p-0"
+        >
+          <RangeInput
+            type="range"
+            min={props.minDefault}
+            max={props.maxDefault}
+            value={props.minValue}
+            step={props.step}
+            onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minDefault, Math.min(event.target.value, props.maxValue)), "minValue", "slider")}
+          />
+          <RangeInput
+            type="range"
+            min={props.minDefault}
+            max={props.maxDefault}
+            value={props.maxValue}
+            step={props.step}
+            onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minValue, Math.min(event.target.value, props.maxDefault)), "maxValue", "slider")}
+          />
+          <SliderBackground left={props.minValue / props.maxDefault * 100} right={props.maxValue / props.maxDefault * 100} className="center" />
+          <SliderBackground />
+          <RangeValue
+            className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
+            type="number"
+            value={props.minValue}
+            marginright={"38%"}
+            width={"12%"}
+            onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minDefault, Math.min(event.target.value, props.maxValue)), "minValue", "slider")}
+          />
+          <RangeValue
+            className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
+            type="number"
+            value={props.maxValue}
+            marginleft={"38%"}
+            width={"12%"}
+            onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minValue, Math.min(event.target.value, props.maxDefault)), "maxValue", "slider")}
+          />
+        </Slider>
+      </div>
+    </div>
   )
 };
 
 export const Counter = (props) => {
-  const language = useSelector(state => state.session.language);
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   return (
     <div
@@ -67,8 +76,8 @@ export const Counter = (props) => {
                 style={{ color: "black", fontSize: "14px", fontWeight: 600, textTransform: "capitalize" }}
               >
                 {
-                  props.data[props.i][item]?.[language]?.[0].toUpperCase() +
-                  props.data[props.i][item]?.[language].slice(1).toLowerCase()
+                  props.data[props.i][item]?.[props.language]?.[0].toUpperCase() +
+                  props.data[props.i][item]?.[props.language].slice(1).toLowerCase()
                 }
               </div>
               <div
@@ -163,60 +172,75 @@ export const MultiSelect = (props) => {
 }
 
 export const CheckBox = (props) => {
-  const language = useSelector(state => state.session.language);
   // Filter out string keys
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   if (props.data?.[props.i]?.rows < 1) {
     return (
-      <div className="row w-100 px-5 py-3 m-0">
-        {
-          result.map(item => {
-            return (
-              <div
-                key={Object.keys(props.data[props.i]).indexOf(item)}
-                className={`d-flex col-${result.length <= 3 ? (12 / result.length) : 12} justify-content-start my-1`}
-              >
-                <CheckInput
-                  className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
-                  type="checkbox"
-                  color={props.color}
-                  checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
-                  onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.SetSearchFilters, Number(item), "value", props.i)}
-                />
-                <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "12px", paddingLeft: "15px" }}>
-                  {props.data[props.i][item]?.[language] !== undefined ? props.data[props.i][item][language].toUpperCase() : "ERROR"}
-                </label>
-              </div>
-            )
-          })
-        }
+      <div className="col-12 d-flex justify-content-center align-items-center">
+        <div
+          className="col-2 d-flex justify-content-center align-items-center mb-auto"
+          style={{ fontWeight: 500 }}
+        >
+          {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
+        </div>
+        <div className="col-10 row px-5 py-3 m-0">
+          {
+            result.map(item => {
+              return (
+                <div
+                  key={Object.keys(props.data[props.i]).indexOf(item)}
+                  className={`d-flex col-${result.length <= 3 ? (12 / result.length) : 12} justify-content-start my-1`}
+                >
+                  <CheckInput
+                    className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
+                    type="checkbox"
+                    color={props.color}
+                    checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
+                    onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.SetSearchFilters, Number(item), "value", props.i)}
+                  />
+                  <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "12px", paddingLeft: "15px" }}>
+                    {props.data[props.i][item]?.[props.language] !== undefined ? props.data[props.i][item][props.language].toUpperCase() : "ERROR"}
+                  </label>
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
     )
   }
   else {
     return (
-      <div className="row px-5 py-3 m-0">
-        {
-          result.map(item => {
-            return (
-              <div
-                key={Object.keys(props.data[props.i]).indexOf(item)}
-                className={`d-flex col-${12 / props.data[props.i].rows} justify-content-start my-1`}
-              >
-                <CheckInput
-                  className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
-                  type="checkbox"
-                  color={props.color}
-                  checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
-                  onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.SetSearchFilters, Number(item), "value", props.i)}
-                />
-                <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "12px", paddingLeft: "15px" }}>
-                  {props.data[props.i][item]?.[language]}
-                </label>
-              </div>
-            )
-          })
-        }
+      <div className="col-12 d-flex justify-content-center align-items-center">
+        <div
+          className="col-2 d-flex justify-content-center align-items-center mb-auto"
+          style={{ fontWeight: 500 }}
+        >
+          {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
+        </div>
+        <div className="col-10 row px-5 py-3 m-0">
+          {
+            result.map(item => {
+              return (
+                <div
+                  key={Object.keys(props.data[props.i]).indexOf(item)}
+                  className={`d-flex col-${12 / props.data[props.i].rows} justify-content-start my-1`}
+                >
+                  <CheckInput
+                    className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
+                    type="checkbox"
+                    color={props.color}
+                    checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
+                    onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.SetSearchFilters, Number(item), "value", props.i)}
+                  />
+                  <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "12px", paddingLeft: "15px" }}>
+                    {props.data[props.i][item]?.[props.language]}
+                  </label>
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
     )
   }

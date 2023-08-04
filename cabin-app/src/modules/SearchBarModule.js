@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ModalModule } from "./ModalModule"
 import { ChangeState } from "../helpers/HelperFunctions";
-import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, Input } from "./InputModules";
+import { OptionSelect, MultiSelect, Counter, Input } from "./InputModules";
 import { FilterList, FilterCard, CardLabel, SearchBar } from "../styles/SearchBarStyle";
 import { searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";

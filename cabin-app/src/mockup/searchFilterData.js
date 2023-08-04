@@ -77,10 +77,12 @@ export const searchParameters = {
     minValue: 0,
     step: 1,
     info: {
-      fi:
-        "hinta",
-      en:
-        "price",
+      header: {
+        fi:
+          "hinta",
+        en:
+          "price",
+      }
     },
   },
   checkboxMultiRow1: {
@@ -146,10 +148,12 @@ export const searchParameters = {
     rows: 2,
     value: 0,
     info: {
-      fi:
-        "mökki tyyppi",
-      en:
-        "cabin type",
+      header: {
+        fi:
+          "mökin tiedot",
+        en:
+          "cabin info",
+      }
     },
     0: {
       fi:
@@ -194,6 +198,92 @@ export const searchParameters = {
       value: 0,
     },
   },
+  features: {
+    type: "checkbox",
+    isActive: true,
+    static: false,
+    multiSelect: false,
+    rows: 2,
+    value: 0,
+    info: {
+      header: {
+        fi:
+          "mökin tiedot",
+        en:
+          "cabin info",
+      }
+    },
+    0: {
+      fi:
+        "wi-fi",
+      en:
+        "wi-fi",
+      value: 0,
+    },
+    1: {
+      fi:
+        "yksityinen ranta",
+      en:
+        "private waterfront",
+      value: 0,
+    },
+    2: {
+      fi:
+        "palju",
+      en:
+        "bathing tub",
+      value: 0,
+    },
+    3: {
+      fi:
+        "syöttötuoli",
+      en:
+        "highchair",
+      value: 0,
+    },
+    5: {
+      fi:
+        "astianpesukone",
+      en:
+        "dishwasher",
+      value: 0,
+    },
+    6: {
+      fi:
+        "lemmikit sallitty",
+      en:
+        "pets allowed",
+      value: 0,
+    },
+    7: {
+      fi:
+        "jacuzzi",
+      en:
+        "hot tub",
+      value: 0,
+    },
+    8: {
+      fi:
+        "pinnasänky",
+      en:
+        "crib",
+      value: 0,
+    },
+    9: {
+      fi:
+        "pyykinpesukone",
+      en:
+        "washing machine",
+      value: 0,
+    },
+    10: {
+      fi:
+        "sauna",
+      en:
+        "sauna",
+      value: 0,
+    },
+  },
   checkboxMulti: {
     type: "checkbox",
     isActive: true,
@@ -201,10 +291,12 @@ export const searchParameters = {
     multiSelect: true,
     rows: 0,
     info: {
-      fi:
-        "mökki tyyppi",
-      en:
-        "cabin type",
+      header: {
+        fi:
+          "mökin tiedot",
+        en:
+          "cabin info",
+      }
     },
     0: {
       fi:
@@ -257,10 +349,12 @@ export const searchParameters = {
     rows: 0,
     value: 0,
     info: {
-      fi:
-        "autopaikka",
-      en:
-        "parking space",
+      header: {
+        fi:
+          "mökin tiedot",
+        en:
+          "cabin info",
+      }
     },
     0: {
       fi:

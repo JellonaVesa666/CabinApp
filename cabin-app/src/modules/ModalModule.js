@@ -3,9 +3,11 @@ import { ModalContent, ModalHeader, ModalLinkH4 } from "../styles/ModalStyle";
 import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, Input } from "./InputModules";
 import { CalendarModule } from "./CalendarModule";
 import { colors } from "../styles/Colors";
-import { ChangeState } from "../helpers/HelperFunctions";
+import { useSelector } from "react-redux";
 
 export const ModalModule = (props) => {
+
+  const language = useSelector(state => state.session.language);
 
   const OutsideClick = (ref) => {
     useEffect(() => {
@@ -46,9 +48,12 @@ export const ModalModule = (props) => {
    */
 
   if (props.filter !== "dynamic") {
-    //const result = Object.keys(props.searchFilters[props.filter]).filter((i) => typeof i === "string" && !isNaN(i));
+    // Add Counter etc. modules under one if statement
     return (
-      <ModalContent ref={wrapperRef}>
+      <ModalContent
+        ref={wrapperRef}
+        width={"auto"}
+      >
         {props.filter === "searchDate" &&
           <CalendarModule
             defaultValue={props.searchFilters[props.filter].defaultValue}
@@ -64,6 +69,7 @@ export const ModalModule = (props) => {
               if (item === props.filter) {
                 return (
                   <Counter
+                    language={language}
                     data={props.searchFilters}
                     index1={props.filter}
                     i={item}
@@ -81,6 +87,7 @@ export const ModalModule = (props) => {
               if (item === props.filter) {
                 return (
                   <Counter
+                    language={language}
                     data={props.searchFilters}
                     index1={props.filter}
                     i={item}
@@ -96,9 +103,11 @@ export const ModalModule = (props) => {
     )
   }
   else {
-
     return (
-      <ModalContent ref={wrapperRef}>
+      <ModalContent
+        ref={wrapperRef}
+        width={"40%"}
+      >
         {Object.keys(props.searchFilters).map(item => {
           return (
             <>
@@ -107,6 +116,9 @@ export const ModalModule = (props) => {
                 props.searchFilters[item].type === "slider" &&
 
                 <RangeSlider
+                  data={props.searchFilters}
+                  i={item}
+                  language={language}
                   minDefault={props.searchFilters["slider"].minDefault}
                   maxDefault={props.searchFilters["slider"].maxDefault}
                   maxValue={props.searchFilters["slider"].maxValue}
@@ -122,6 +134,7 @@ export const ModalModule = (props) => {
                   <CheckBox
                     data={props.searchFilters}
                     i={item}
+                    language={language}
                     color={colors.blue}
                     SetSearchFilters={props.SetSearchFilters}
                   />

@@ -4,26 +4,27 @@ import { colors } from "./Colors";
 export const ModalContent = styled.section`
   z-index:10;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 13%;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
   display: flex;
-  justify-content: space-evenly;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  width: ${props => (props.width)};
+  height: auto;
   border-radius: 50px;
   border-radius: 2px;
-  width: auto;
-  height: auto;
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%,-50%);
   background-color: ${colors.white};
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 `
 
 export const ModalHeader = styled.p`
