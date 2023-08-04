@@ -115,6 +115,63 @@ export const searchParameters = {
       value: 0,
     },
   },
+  housing: {
+    type: "checkbox",
+    isActive: true,
+    static: false,
+    multiSelect: true,
+    rows: 2,
+    info: {
+      header: {
+        fi:
+          "majoitustyyppi",
+        en:
+          "housing type",
+      }
+    },
+    0: {
+      fi:
+        "Mökki",
+      en:
+        "Cabin",
+      value: false,
+    },
+    1: {
+      fi:
+        "Rantamökki",
+      en:
+        "Cottage",
+      value: true,
+    },
+    2: {
+      fi:
+        "Erämökki",
+      en:
+        "Hut",
+      value: false,
+    },
+    3: {
+      fi:
+        "Huvila",
+      en:
+        "Villa",
+      value: false,
+    },
+    5: {
+      fi:
+        "Mökkikylä",
+      en:
+        "Resort",
+      value: false,
+    },
+    6: {
+      fi:
+        "Hirsimökki",
+      en:
+        "Log House",
+      value: false,
+    },
+  },
   features: {
     type: "checkbox",
     isActive: true,
@@ -199,63 +256,6 @@ export const searchParameters = {
       en:
         "sauna",
       value: 0,
-    },
-  },
-  housing: {
-    type: "checkbox",
-    isActive: true,
-    static: false,
-    multiSelect: true,
-    rows: 2,
-    info: {
-      header: {
-        fi:
-          "majoitustyyppi",
-        en:
-          "housing type",
-      }
-    },
-    0: {
-      fi:
-        "Mökki",
-      en:
-        "Cabin",
-      value: false,
-    },
-    1: {
-      fi:
-        "Rantamökki",
-      en:
-        "Cottage",
-      value: true,
-    },
-    2: {
-      fi:
-        "Erämökki",
-      en:
-        "Hut",
-      value: false,
-    },
-    3: {
-      fi:
-        "Huvila",
-      en:
-        "Villa",
-      value: false,
-    },
-    5: {
-      fi:
-        "Mökkikylä",
-      en:
-        "Resort",
-      value: false,
-    },
-    6: {
-      fi:
-        "Hirsimökki",
-      en:
-        "Log House",
-      value: false,
     },
   },
 

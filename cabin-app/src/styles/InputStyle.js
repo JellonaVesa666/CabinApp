@@ -206,31 +206,31 @@ export const InputStyle = styled.input`
 `
 
 // Check Input
-export const CheckInput = styled.input.attrs({
-  className: "form-check-input",
-})`
-  background-color: rgba(255, 255, 255, 0.7);
-  min-height: 16px;
-  min-width: 16px;
-  border: 0.1rem solid ${colors.lightGrey};
+export const CheckInput = styled.input`
+  -webkit-appearance: none;
+  appearance: none;
   outline: none;
-  outline: 0px !important;
-  -webkit-appearance:none !important;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 0.1rem;
+  border: 0.05rem solid rgba(0, 0 ,0, 0.3);
+  vertical-align: middle;
+  cursor: pointer;
   &:hover {
-    border: 0.15rem solid ${colors.grey};
+    border: 0.1rem solid ${colors.black};
     cursor: pointer;
-    color:white;
+    -webkit-appearance: button;
   }
   &:focus {
-    border: 0.15rem solid ${colors.grey};
+    border: 0.1rem solid ${colors.black};
     cursor: pointer;
   }
   &:checked {
     border: 0.15rem solid transparent;
     background-color: ${props => (props.color)};
+    accent-color: #4b7cc5;
+    -webkit-appearance: button;
   }
   &.invalid {
     border: 0.1rem solid transparent !important;
