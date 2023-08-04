@@ -10,7 +10,7 @@ export const RangeSlider = (props) => {
     <div className="col-12 d-flex justify-content-center align-items-center">
       <div
         className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5"
-        style={{ fontWeight: 500, letterSpacing: "0.05em"}}
+        style={{ fontWeight: 500, letterSpacing: "2px", fontSize: "1em"}}
       >
         {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
       </div>
@@ -178,7 +178,7 @@ export const CheckBox = (props) => {
       <div className="col-12 d-flex justify-content-center align-items-center">
         <div
           className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5"
-          style={{ fontWeight: 500, letterSpacing: "0.05em"}}
+          style={{ fontWeight: 500, letterSpacing: "2px"}}
         >
           {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
         </div>
@@ -197,7 +197,7 @@ export const CheckBox = (props) => {
                     checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
                     onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.SetSearchFilters, Number(item), "value", props.i)}
                   />
-                  <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "0.75em", paddingLeft: "15px" }}>
+                  <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: "2px", fontSize: "0.75em", paddingLeft: "15px" }}>
                     {props.data[props.i][item]?.[props.language] !== undefined ? props.data[props.i][item][props.language].toUpperCase() : "ERROR"}
                   </label>
                 </div>
@@ -213,7 +213,7 @@ export const CheckBox = (props) => {
       <div className="col-12 d-flex justify-content-center align-items-center">
         <div
           className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5"
-          style={{ fontWeight: 500, letterSpacing: "0.05em"}}
+          style={{ fontWeight: 500, letterSpacing: "2px", fontSize: "1em"}}
         >
           {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
         </div>
@@ -232,7 +232,7 @@ export const CheckBox = (props) => {
                     checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
                     onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.SetSearchFilters, Number(item), "value", props.i)}
                   />
-                  <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: "0.1em", fontSize: "0.75em", paddingLeft: "15px" }}>
+                  <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: "2px", fontSize: "0.75em", paddingLeft: "15px" }}>
                     {(props.data[props.i][item]?.[props.language])?.toUpperCase()}
                   </label>
                 </div>
