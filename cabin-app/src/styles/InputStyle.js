@@ -3,7 +3,7 @@ import { colors } from "./Colors";
 
 // Range Slider
 export const Slider = styled.div`
-  width: 100%;
+  width: 80%;
   position: relative;
 `
 export const RangeInput = styled.input`

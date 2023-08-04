@@ -85,116 +85,33 @@ export const searchParameters = {
       }
     },
   },
-  checkboxMultiRow1: {
-    type: "checkbox",
-    isActive: true,
-    static: false,
-    multiSelect: true,
-    rows: 2,
-    info: {
-      fi:
-        "mökki tyyppi",
-      en:
-        "cabin type",
-    },
-    0: {
-      fi:
-        "Mökki",
-      en:
-        "Cabin",
-      value: false,
-    },
-    1: {
-      fi:
-        "Rantamökki",
-      en:
-        "Cottage",
-      value: true,
-    },
-    2: {
-      fi:
-        "Erämökki",
-      en:
-        "Hut",
-      value: false,
-    },
-    3: {
-      fi:
-        "Huvila",
-      en:
-        "Villa",
-      value: false,
-    },
-    5: {
-      fi:
-        "Mökkikylä",
-      en:
-        "Resort",
-      value: false,
-    },
-    6: {
-      fi:
-        "Hirsimökki",
-      en:
-        "Log House",
-      value: false,
-    },
-  },
-  checkboxMultiRow2: {
+  class: {
     type: "checkbox",
     isActive: true,
     static: false,
     multiSelect: false,
-    rows: 2,
+    rows: 0,
     value: 0,
     info: {
       header: {
         fi:
-          "mökin tiedot",
+          "luokka",
         en:
-          "cabin info",
+          "class",
       }
     },
     0: {
       fi:
-        "Mökki",
+        "basic",
       en:
-        "Cabin",
+        "basic",
       value: 0,
     },
     1: {
       fi:
-        "Rantamökki",
+        "premium",
       en:
-        "Cottage",
-      value: 0,
-    },
-    2: {
-      fi:
-        "Erämökki",
-      en:
-        "Hut",
-      value: 0,
-    },
-    3: {
-      fi:
-        "Huvila",
-      en:
-        "Villa",
-      value: 0,
-    },
-    5: {
-      fi:
-        "Mökkikylä",
-      en:
-        "Resort",
-      value: 0,
-    },
-    6: {
-      fi:
-        "Hirsimökki",
-      en:
-        "Log House",
+        "premium",
       value: 0,
     },
   },
@@ -257,9 +174,9 @@ export const searchParameters = {
     },
     7: {
       fi:
-        "jacuzzi",
+        "poreallas",
       en:
-        "hot tub",
+        "jacuzzi",
       value: 0,
     },
     8: {
@@ -284,18 +201,18 @@ export const searchParameters = {
       value: 0,
     },
   },
-  checkboxMulti: {
+  housing: {
     type: "checkbox",
     isActive: true,
     static: false,
     multiSelect: true,
-    rows: 0,
+    rows: 2,
     info: {
       header: {
         fi:
-          "mökin tiedot",
+          "majoitustyyppi",
         en:
-          "cabin info",
+          "housing type",
       }
     },
     0: {
@@ -339,43 +256,6 @@ export const searchParameters = {
       en:
         "Log House",
       value: false,
-    },
-  },
-  checkboxSingle: {
-    type: "checkbox",
-    isActive: true,
-    static: false,
-    multiSelect: false,
-    rows: 0,
-    value: 0,
-    info: {
-      header: {
-        fi:
-          "mökin tiedot",
-        en:
-          "cabin info",
-      }
-    },
-    0: {
-      fi:
-        "kyllä",
-      en:
-        "yes",
-      value: 0,
-    },
-    1: {
-      fi:
-        "ei",
-      en:
-        "no",
-      value: 0,
-    },
-    2: {
-      fi:
-        "ehkä",
-      en:
-        "maybe",
-      value: 0,
     },
   },
 

@@ -19,12 +19,13 @@ export const ModalContent = styled.section`
   height: auto;
   border-radius: 50px;
   border-radius: 2px;
-  padding-left: 1rem;
-  padding-right: 1rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: ${colors.white};
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  > :nth-child(even) {
+    background-color: ${colors.whiteDark};
+  }
 `
 
 export const ModalHeader = styled.p`

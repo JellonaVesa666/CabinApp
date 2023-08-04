@@ -9,13 +9,12 @@ export const RangeSlider = (props) => {
   return (
     <div className="col-12 d-flex justify-content-center align-items-center">
       <div
-        className="col-2 d-flex justify-content-center align-items-center mb-auto"
-        style={{ fontWeight: 500 }}
+        className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5"
+        style={{ fontWeight: 500, letterSpacing: "0.05em"}}
       >
         {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
       </div>
-      <div className="col-10 row px-5 py-3 m-0">
-
+      <div className="col-9 row px-5 py-3 m-0">
         <Slider
           className="d-flex align-items-center justify-content-center m-0 p-0"
         >
@@ -178,12 +177,12 @@ export const CheckBox = (props) => {
     return (
       <div className="col-12 d-flex justify-content-center align-items-center">
         <div
-          className="col-2 d-flex justify-content-center align-items-center mb-auto"
-          style={{ fontWeight: 500 }}
+          className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5"
+          style={{ fontWeight: 500, letterSpacing: "0.05em"}}
         >
           {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
         </div>
-        <div className="col-10 row px-5 py-3 m-0">
+        <div className="col-9 row px-5 py-3 m-0">
           {
             result.map(item => {
               return (
@@ -198,7 +197,7 @@ export const CheckBox = (props) => {
                     checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
                     onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.SetSearchFilters, Number(item), "value", props.i)}
                   />
-                  <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "12px", paddingLeft: "15px" }}>
+                  <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "14px", paddingLeft: "15px" }}>
                     {props.data[props.i][item]?.[props.language] !== undefined ? props.data[props.i][item][props.language].toUpperCase() : "ERROR"}
                   </label>
                 </div>
@@ -213,12 +212,12 @@ export const CheckBox = (props) => {
     return (
       <div className="col-12 d-flex justify-content-center align-items-center">
         <div
-          className="col-2 d-flex justify-content-center align-items-center mb-auto"
-          style={{ fontWeight: 500 }}
+          className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5"
+          style={{ fontWeight: 500, letterSpacing: "0.05em"}}
         >
           {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
         </div>
-        <div className="col-10 row px-5 py-3 m-0">
+        <div className="col-9 row px-5 py-3 m-0">
           {
             result.map(item => {
               return (
@@ -233,8 +232,8 @@ export const CheckBox = (props) => {
                     checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
                     onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.SetSearchFilters, Number(item), "value", props.i)}
                   />
-                  <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", fontSize: "12px", paddingLeft: "15px" }}>
-                    {props.data[props.i][item]?.[props.language]}
+                  <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: "0.1em", fontSize: "12px", paddingLeft: "15px" }}>
+                    {(props.data[props.i][item]?.[props.language])?.toUpperCase()}
                   </label>
                 </div>
               )
