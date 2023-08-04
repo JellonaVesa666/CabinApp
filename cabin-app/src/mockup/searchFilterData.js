@@ -77,13 +77,13 @@ export const searchParameters = {
     minValue: 0,
     step: 1,
     info: {
-      fi: 
+      fi:
         "hinta",
-      en: 
+      en:
         "price",
     },
   },
-  checkboxMultiRow: {
+  checkboxMultiRow1: {
     type: "checkbox",
     isActive: true,
     static: false,
@@ -136,6 +136,62 @@ export const searchParameters = {
       en:
         "Log House",
       value: false,
+    },
+  },
+  checkboxMultiRow2: {
+    type: "checkbox",
+    isActive: true,
+    static: false,
+    multiSelect: false,
+    rows: 2,
+    value: 0,
+    info: {
+      fi:
+        "mökki tyyppi",
+      en:
+        "cabin type",
+    },
+    0: {
+      fi:
+        "Mökki",
+      en:
+        "Cabin",
+      value: 0,
+    },
+    1: {
+      fi:
+        "Rantamökki",
+      en:
+        "Cottage",
+      value: 0,
+    },
+    2: {
+      fi:
+        "Erämökki",
+      en:
+        "Hut",
+      value: 0,
+    },
+    3: {
+      fi:
+        "Huvila",
+      en:
+        "Villa",
+      value: 0,
+    },
+    5: {
+      fi:
+        "Mökkikylä",
+      en:
+        "Resort",
+      value: 0,
+    },
+    6: {
+      fi:
+        "Hirsimökki",
+      en:
+        "Log House",
+      value: 0,
     },
   },
   checkboxMulti: {
@@ -211,7 +267,7 @@ export const searchParameters = {
         "kyllä",
       en:
         "yes",
-      value: 1,
+      value: 0,
     },
     1: {
       fi:
@@ -225,7 +281,7 @@ export const searchParameters = {
         "ehkä",
       en:
         "maybe",
-      value: 2,
+      value: 0,
     },
   },
 
