@@ -65,41 +65,6 @@ export const SearchBarModule = () => {
                     changeState={(value, index) => ChangeState(setSearchFilters, value, "value", item, index)}
                   />
                 }
-                {searchFilters[item].type === "slider" &&
-                  <RangeSlider
-                    minDefault={searchFilters[item].minDefault}
-                    maxDefault={searchFilters[item].maxDefault}
-                    maxValue={searchFilters[item].maxValue}
-                    minValue={searchFilters[item].minValue}
-                    step={searchFilters[item].step}
-                    changeState={(value, property) => ChangeState(setSearchFilters, value, property, item)}
-                  />
-                }
-                {(() => {
-                  if (searchFilters[item].type.split(/(?=[A-Z])/)[0] === "checkbox") {
-                    if (searchFilters[item].type.split(/(?=[A-Z])/)[1] === "Multi") {
-                      return (
-                        <CheckBox
-                          data={searchFilters}
-                          i={item}
-                          multi={true}
-                          color={colors.green}
-                          changeState={(value, index) => ChangeState(setSearchFilters, !value, "value", item, index)}
-                        />
-                      )
-                    } else if (searchFilters[item].type.split(/(?=[A-Z])/)[1] === "Single") {
-                      return (
-                        <CheckBox
-                          data={searchFilters}
-                          i={item}
-                          single={true}
-                          color={colors.green}
-                          changeState={(index) => ChangeState(setSearchFilters, index, "value", item)}
-                        />
-                      )
-                    }
-                  }
-                })()}
               </>
             }
           </FilterCard>
