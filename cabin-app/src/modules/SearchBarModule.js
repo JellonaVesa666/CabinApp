@@ -15,7 +15,7 @@ export const SearchBarModule = () => {
   const [searchFilters, setSearchFilters] = useState(searchParameters);
   const [selectedFilter, setSelectedFilter] = useState("");
 
-  const dynamicFilters = Object.keys(searchFilters).map(item => {
+  const dynamicFilters2 = Object.keys(searchFilters).map(item => {
     if (searchFilters[item].isActive)
       return (
         <FilterList
@@ -27,7 +27,7 @@ export const SearchBarModule = () => {
               {/* - */}
             </div>
             <CardLabel className=" py-2 col-6">
-              {searchFilters[item]?.info?.[language]?.translation}
+              {searchFilters[item]?.info?.[language]}
             </CardLabel>
             <div
               className="d-flex col-5 py-2 justify-content-end"
@@ -124,7 +124,7 @@ export const SearchBarModule = () => {
               border={"none"}
               i={item}
               data={searchFilters}
-              placeholder={searchFilters[item].placeholder[language].translation}
+              placeholder={searchFilters[item].placeholder[language]}
               value={searchFilters[item].value}
               changeState={(value) => ChangeState(setSearchFilters, value, "value", item)}
             />
@@ -173,7 +173,7 @@ export const SearchBarModule = () => {
               border={"none"}
               i={item}
               data={searchFilters}
-              value={`${searchFilters[item][0].value} ${searchFilters[item][0][language].translation} ${"\uD83D\uDF84"} ${searchFilters[item][1].value} ${searchFilters[item][1][language].translation}`}
+              value={`${searchFilters[item][0].value} ${searchFilters[item][0][language]} ${"\uD83D\uDF84"} ${searchFilters[item][1].value} ${searchFilters[item][1][language]}`}
               changeState={(value) => ChangeState(setSearchFilters, value, "value", item)}
               onClick={() => OpenModal(item)}
             />
@@ -225,7 +225,7 @@ export const SearchBarModule = () => {
             src={filterBlack}
             className="text-uppercase d-flex justify-content-center align-items-center"
             style={{ width: "40px", height: "40px", backgroundColor: colors.white }}
-            onClick={() => OpenModal("dynamicFilters")}
+            onClick={() => OpenModal("dynamic")}
           />
         </div>
       </SearchBar >

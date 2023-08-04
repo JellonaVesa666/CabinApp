@@ -3,12 +3,10 @@ export const cabinData = {
     type: 1,
     reserved: {
       value: false,
-      fi: {
-        translation: "varattu"
-      },
-      en: {
-        translation: "reserved"
-      }
+      fi:
+        "varattu",
+      en:
+        "reserved"
     },
     price: 200,
     discount: 50,

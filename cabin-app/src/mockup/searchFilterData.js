@@ -4,7 +4,7 @@ export const searchParameters = {
   multiSelect: {
     type: "multiSelect",
     isActive: true,
-    dropdown: true,
+    static: false,
     0: {
       name: "> 10m",
       value: false,
@@ -29,7 +29,7 @@ export const searchParameters = {
   option: {
     type: "option",
     isActive: true,
-    dropdown: true,
+    static: false,
     value: "test",
     name: "numero",
     0: {
@@ -45,225 +45,186 @@ export const searchParameters = {
   counter: {
     type: "counter",
     isActive: true,
-    dropdown: true,
+    static: false,
     info: {
-      fi: {
-        translation: "huoneet",
-      },
-      en: {
-        translation: "rooms",
-      },
+      fi:
+        "huoneet",
+      en:
+        "rooms",
     },
     0: {
-      fi: {
-        translation: "makuuhuoneet",
-      },
-      en: {
-        translation: "bedrooms",
-      },
+      fi:
+        "makuuhuoneet",
+      en:
+        "bedrooms",
       value: 2,
     },
     1: {
-      fi: {
-        translation: "kylpyhuoneet",
-      },
-      en: {
-        translation: "bathrooms",
-      },
+      fi:
+        "kylpyhuoneet",
+      en:
+        "bathrooms",
       value: 1,
     },
   },
   slider: {
     type: "slider",
     isActive: true,
-    dropdown: true,
+    static: false,
     maxDefault: 1000,
     minDefault: 0,
     maxValue: 1000,
     minValue: 0,
     step: 1,
     info: {
-      fi: {
-        translation: "hinta",
-      },
-      en: {
-        translation: "price",
-      },
+      fi: 
+        "hinta",
+      en: 
+        "price",
     },
   },
   checkboxMultiRow: {
-    type: "checkboxMulti",
+    type: "checkbox",
     isActive: true,
-    dropdown: true,
+    static: false,
+    multi: true,
     rows: 2,
     info: {
-      fi: {
-        translation: "mökki tyyppi",
-      },
-      en: {
-        translation: "cabin type",
-      },
+      fi:
+        "mökki tyyppi",
+      en:
+        "cabin type",
     },
     0: {
-      fi: {
-        translation: "Mökki",
-      },
-      en: {
-        translation: "Cabin",
-      },
+      fi:
+        "Mökki",
+      en:
+        "Cabin",
       value: false,
     },
     1: {
-      fi: {
-        translation: "Rantamökki",
-      },
-      en: {
-        translation: "Cottage",
-      },
+      fi:
+        "Rantamökki",
+      en:
+        "Cottage",
       value: true,
     },
     2: {
-      fi: {
-        translation: "Erämökki",
-      },
-      en: {
-        translation: "Hut",
-      },
+      fi:
+        "Erämökki",
+      en:
+        "Hut",
       value: false,
     },
     3: {
-      fi: {
-        translation: "Huvila",
-      },
-      en: {
-        translation: "Villa",
-      },
+      fi:
+        "Huvila",
+      en:
+        "Villa",
       value: false,
     },
     5: {
-      fi: {
-        translation: "Mökkikylä",
-      },
-      en: {
-        translation: "Resort",
-      },
+      fi:
+        "Mökkikylä",
+      en:
+        "Resort",
       value: false,
     },
     6: {
-      fi: {
-        translation: "Hirsimökki",
-      },
-      en: {
-        translation: "Log House",
-      },
+      fi:
+        "Hirsimökki",
+      en:
+        "Log House",
       value: false,
     },
   },
   checkboxMulti: {
-    type: "checkboxMulti",
+    type: "checkbox",
     isActive: true,
-    dropdown: true,
+    static: false,
+    multi: true,
     rows: 0,
     info: {
-      fi: {
-        translation: "mökki tyyppi",
-      },
-      en: {
-        translation: "cabin type",
-      },
+      fi:
+        "mökki tyyppi",
+      en:
+        "cabin type",
     },
     0: {
-      fi: {
-        translation: "Mökki",
-      },
-      en: {
-        translation: "Cabin",
-      },
+      fi:
+        "Mökki",
+      en:
+        "Cabin",
       value: false,
     },
     1: {
-      fi: {
-        translation: "Rantamökki",
-      },
-      en: {
-        translation: "Cottage",
-      },
+      fi:
+        "Rantamökki",
+      en:
+        "Cottage",
       value: true,
     },
     2: {
-      fi: {
-        translation: "Erämökki",
-      },
-      en: {
-        translation: "Hut",
-      },
+      fi:
+        "Erämökki",
+      en:
+        "Hut",
       value: false,
     },
     3: {
-      fi: {
-        translation: "Huvila",
-      },
-      en: {
-        translation: "Villa",
-      },
+      fi:
+        "Huvila",
+      en:
+        "Villa",
       value: false,
     },
     5: {
-      fi: {
-        translation: "Mökkikylä",
-      },
-      en: {
-        translation: "Resort",
-      },
+      fi:
+        "Mökkikylä",
+      en:
+        "Resort",
       value: false,
     },
     6: {
-      fi: {
-        translation: "Hirsimökki",
-      },
-      en: {
-        translation: "Log House",
-      },
+      fi:
+        "Hirsimökki",
+      en:
+        "Log House",
       value: false,
     },
   },
   checkboxSingle: {
-    type: "checkboxSingle",
+    type: "checkbox",
     isActive: true,
-    dropdown: true,
+    static: false,
+    multi: false,
+    single: true,
+    rows: 0,
     info: {
-      fi: {
-        translation: "autopaikka",
-      },
-      en: {
-        translation: "parking space",
-      },
+      fi:
+        "autopaikka",
+      en:
+        "parking space",
     },
     0: {
-      fi: {
-        translation: "kyllä",
-      },
-      en: {
-        translation: "yes",
-      },
+      fi:
+        "kyllä",
+      en:
+        "yes",
       value: false,
     },
     1: {
-      fi: {
-        translation: "ei",
-      },
-      en: {
-        translation: "no",
-      },
+      fi:
+        "ei",
+      en:
+        "no",
       value: true,
     },
     2: {
-      fi: {
-        translation: "ehkä",
-      },
-      en: {
-        translation: "maybe",
-      },
+      fi:
+        "ehkä",
+      en:
+        "maybe",
       value: true,
     },
   },
@@ -276,12 +237,10 @@ export const searchParameters = {
     modal: false,
     value: "",
     placeholder: {
-      fi: {
-        translation: "Alue, Kaupunki, Mökki...",
-      },
-      en: {
-        translation: "Area, City, Cabin...",
-      },
+      fi:
+        "Alue, Kaupunki, Mökki...",
+      en:
+        "Area, City, Cabin...",
     },
   },
   searchDate: {
@@ -306,29 +265,23 @@ export const searchParameters = {
     static: true,
     modal: true,
     info: {
-      fi: {
-        translation: "henkilöt",
-      },
-      en: {
-        translation: "persons",
-      },
+      fi:
+        "henkilöt",
+      en:
+        "persons",
     },
     0: {
-      fi: {
-        translation: "aikuista",
-      },
-      en: {
-        translation: "adults",
-      },
+      fi:
+        "aikuista",
+      en:
+        "adults",
       value: 2,
     },
     1: {
-      fi: {
-        translation: "lasta",
-      },
-      en: {
-        translation: "children",
-      },
+      fi:
+        "lasta",
+      en:
+        "children",
       value: 0,
     },
   },
@@ -338,29 +291,29 @@ export const searchParameters = {
     static: true,
     modal: true,
     info: {
-      fi: {
-        translation: "huoneet",
-      },
-      en: {
-        translation: "rooms",
-      },
+      fi:
+        "huoneet",
+
+      en:
+        "rooms",
+
     },
     0: {
-      fi: {
-        translation: "makuuhuoneet",
-      },
-      en: {
-        translation: "bedrooms",
-      },
+      fi:
+        "makuuhuoneet",
+
+      en:
+        "bedrooms",
+
       value: 2,
     },
     1: {
-      fi: {
-        translation: "kylpyhuoneet",
-      },
-      en: {
-        translation: "bathrooms",
-      },
+      fi:
+        "kylpyhuoneet",
+
+      en:
+        "bathrooms",
+
       value: 1,
     },
   },

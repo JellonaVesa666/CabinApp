@@ -45,7 +45,7 @@ export const ModalModule = (props) => {
     }
    */
 
-  if (props.filter) {
+  if (props.filter !== "dynamic") {
     //const result = Object.keys(props.searchFilters[props.filter]).filter((i) => typeof i === "string" && !isNaN(i));
     return (
       <ModalContent ref={wrapperRef}>
@@ -92,30 +92,47 @@ export const ModalModule = (props) => {
             }
           </>
         }
-        {props.filter === "dynamicFilters" &&
-          props.searchFilters["slider"].type === "slider" &&
-          <RangeSlider
-            minDefault={props.searchFilters["slider"].minDefault}
-            maxDefault={props.searchFilters["slider"].maxDefault}
-            maxValue={props.searchFilters["slider"].maxValue}
-            minValue={props.searchFilters["slider"].minValue}
-            step={props.searchFilters["slider"].step}
-            SetSearchFilters={props.SetSearchFilters}
-          />
+      </ModalContent>
+    )
+  }
+  else {
 
-        }
-        {props.filter === "dynamicFilters" &&
-          props.searchFilters["checkboxMulti"].type === "checkboxMulti" &&
-          <>
-            <CheckBox
-              data={props.searchFilters}
-              i={"checkboxMulti"}
-              multi={true}
-              color={colors.blue}
-              SetSearchFilters={props.SetSearchFilters}
-            />
-          </>
-        }
+    return (
+      <ModalContent ref={wrapperRef}>
+        {Object.keys(props.searchFilters).map(item => {
+          return (
+            <>
+              {
+                !props.searchFilters?.[item]?.static &&
+                props.searchFilters[item].type === "slider" &&
+
+                <RangeSlider
+                  minDefault={props.searchFilters["slider"].minDefault}
+                  maxDefault={props.searchFilters["slider"].maxDefault}
+                  maxValue={props.searchFilters["slider"].maxValue}
+                  minValue={props.searchFilters["slider"].minValue}
+                  step={props.searchFilters["slider"].step}
+                  SetSearchFilters={props.SetSearchFilters}
+                />
+
+              }
+              {!props.searchFilters?.[item]?.static &&
+                props.searchFilters[item].type === "checkbox" &&
+                <>
+                  <CheckBox
+                    data={props.searchFilters}
+                    i={item}
+                    rows={props.searchFilters[item].rows}
+                    multi={props.searchFilters[item].multi}
+                    single={props.searchFilters[item].single}
+                    color={colors.blue}
+                    SetSearchFilters={props.SetSearchFilters}
+                  />
+                </>
+              }
+            </>
+          )
+        })}
       </ModalContent>
     )
   }
