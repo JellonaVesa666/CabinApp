@@ -114,14 +114,12 @@ export const ModalModule = (props) => {
               {
                 !props.searchFilters?.[item]?.static &&
                 props.searchFilters[item].type === "slider" &&
-
                 <RangeSlider
                   data={props.searchFilters}
                   i={item}
                   language={language}
                   SetSearchFilters={props.SetSearchFilters}
                 />
-
               }
               {!props.searchFilters?.[item]?.static &&
                 props.searchFilters[item].type === "checkbox" &&

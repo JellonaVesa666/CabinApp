@@ -60,18 +60,15 @@ export const SliderBackground = styled.div.attrs(props => ({
     background-color: ${colors.blue};
   }
 `
-export const Test = styled.div.attrs(props => ({
-  style: {
-    marginLeft: props.marginleft,
-    marginRight: props.marginright,
-  },
-}))`
+export const RangeWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 10%;
+  margin-left: ${props => (props.marginleft)};
+  margin-right: ${props => (props.marginright)};
   &::after {
-    content: "m";
+    content: ${(props) => ("'" + props.suffix + "'")};
   }
 `
 

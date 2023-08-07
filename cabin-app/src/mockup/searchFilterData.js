@@ -85,6 +85,7 @@ export const searchParameters = {
       maxValue: 1000,
       minValue: 0,
       step: 1,
+      suffix: "€",
     },
   },
   remoteness: {
@@ -109,6 +110,7 @@ export const searchParameters = {
       maxValue: 5000,
       minValue: 0,
       step: 100,
+      suffix: "m",
     },
     1: {
       fi:
@@ -120,6 +122,7 @@ export const searchParameters = {
       maxValue: 5000,
       minValue: 0,
       step: 100,
+      suffix: "m",
     },
     2: {
       fi:
@@ -131,6 +134,7 @@ export const searchParameters = {
       maxValue: 5000,
       minValue: 0,
       step: 100,
+      suffix: "m",
     },
     3: {
       fi:
@@ -142,6 +146,7 @@ export const searchParameters = {
       maxValue: 5000,
       minValue: 0,
       step: 100,
+      suffix: "m",
     },
     4: {
       fi:
@@ -153,6 +158,7 @@ export const searchParameters = {
       maxValue: 5000,
       minValue: 0,
       step: 100,
+      suffix: "m",
     },
   },
   class: {

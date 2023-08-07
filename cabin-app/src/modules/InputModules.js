@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionItem, MultiSelectInput, CheckInput, CounterButton, Test } from "../styles/InputStyle"
+import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionItem, MultiSelectInput, CheckInput, CounterButton, RangeWrapper } from "../styles/InputStyle"
 import { colors } from "../styles/Colors";
 import { ChangeState } from "../helpers/HelperFunctions";
 
@@ -41,9 +41,10 @@ export const RangeSlider = (props) => {
                   />
                   <SliderBackground left={props.data?.[props.i]?.[item]?.minValue / props.data?.[props.i]?.[item]?.maxDefault * 100} right={props.data?.[props.i]?.[item]?.maxValue / props.data?.[props.i]?.[item]?.maxDefault * 100} className="center" />
                   <SliderBackground />
-                  <Test
+                  <RangeWrapper
                     className="mt-5 mb-3"
                     marginright={"auto"}
+                    suffix={props.data?.[props.i]?.[item]?.suffix}
                   >
                     <RangeValue
                       type="number"
@@ -51,17 +52,18 @@ export const RangeSlider = (props) => {
 
                       onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
                     />
-                  </Test>
-                  <Test
+                  </RangeWrapper>
+                  <RangeWrapper
                     className="mt-5 mb-3"
                     marginleft={"auto"}
+                    suffix={props.data?.[props.i]?.[item]?.suffix}
                   >
                     <RangeValue
                       type="number"
                       value={props.data?.[props.i]?.[item]?.maxValue}
                       onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
                     />
-                  </Test>
+                  </RangeWrapper>
                 </Slider>
               </div>
             </>
@@ -108,9 +110,10 @@ export const RangeSlider = (props) => {
                       />
                       <SliderBackground left={props.data?.[props.i]?.[item]?.minValue / props.data?.[props.i]?.[item]?.maxDefault * 100} right={props.data?.[props.i]?.[item]?.maxValue / props.data?.[props.i]?.[item]?.maxDefault * 100} className="center" />
                       <SliderBackground />
-                      <Test
+                      <RangeWrapper
                         className="mt-5 mb-3"
                         marginright={"40%"}
+                        suffix={props.data?.[props.i]?.[item]?.suffix}
                       >
                         <RangeValue
                           type="number"
@@ -118,17 +121,18 @@ export const RangeSlider = (props) => {
 
                           onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
                         />
-                      </Test>
-                      <Test
+                      </RangeWrapper>
+                      <RangeWrapper
                         className="mt-5 mb-3"
                         marginleft={"40%"}
+                        suffix={props.data?.[props.i]?.[item]?.suffix}
                       >
                         <RangeValue
                           type="number"
                           value={props.data?.[props.i]?.[item]?.maxValue}
                           onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
                         />
-                      </Test>
+                      </RangeWrapper>
                     </Slider>
                   </div>
                 </>
