@@ -6,55 +6,106 @@ import { colors } from "../styles/Colors";
 import { ChangeState } from "../helpers/HelperFunctions";
 
 export const RangeSlider = (props) => {
+  const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   return (
-    <div className="col-12 d-flex justify-content-center align-items-center">
+    <div className="col-12 row flex-wrap d-flex justify-content-center align-items-center">
       <div
         className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5"
-        style={{ fontWeight: 500, letterSpacing: "2px", fontSize: "1em"}}
+        style={{ fontWeight: 500, letterSpacing: "2px ", fontSize: "1em" }}
       >
-        {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
+        {props.data[props.i].info?.header[props.language].toUpperCase()}
       </div>
-      <div className="col-9 row px-5 py-3 m-0">
-        <Slider
-          className="d-flex align-items-center justify-content-center m-0 p-0"
-        >
-          <RangeInput
-            type="range"
-            min={props.minDefault}
-            max={props.maxDefault}
-            value={props.minValue}
-            step={props.step}
-            onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minDefault, Math.min(event.target.value, props.maxValue)), "minValue", "slider")}
-          />
-          <RangeInput
-            type="range"
-            min={props.minDefault}
-            max={props.maxDefault}
-            value={props.maxValue}
-            step={props.step}
-            onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minValue, Math.min(event.target.value, props.maxDefault)), "maxValue", "slider")}
-          />
-          <SliderBackground left={props.minValue / props.maxDefault * 100} right={props.maxValue / props.maxDefault * 100} className="center" />
-          <SliderBackground />
-          <RangeValue
-            className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
-            type="number"
-            value={props.minValue}
-            marginright={"38%"}
-            width={"12%"}
-            onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minDefault, Math.min(event.target.value, props.maxValue)), "minValue", "slider")}
-          />
-          <RangeValue
-            className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
-            type="number"
-            value={props.maxValue}
-            marginleft={"38%"}
-            width={"12%"}
-            onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.minValue, Math.min(event.target.value, props.maxDefault)), "maxValue", "slider")}
-          />
-        </Slider>
-      </div>
-    </div>
+      {result.map(item => {
+        if (result.length <= 1) {
+          return (
+            <div className="col-9 row px-5 py-3 m-0">
+              <Slider
+                className="d-flex align-items-center justify-content-center m-0 p-0"
+              >
+                <RangeInput
+                  type="range"
+                  min={props.data?.[props.i]?.[item]?.minDefault}
+                  max={props.data?.[props.i]?.[item]?.maxDefault}
+                  value={props.data?.[props.i]?.[item]?.minValue}
+                  step={props.data?.[props.i]?.[item]?.step}
+                  onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
+                />
+                <RangeInput
+                  type="range"
+                  min={props.data?.[props.i]?.[item]?.minDefault}
+                  max={props.data?.[props.i]?.[item]?.maxDefault}
+                  value={props.data?.[props.i]?.[item]?.maxValue}
+                  step={props.step}
+                  onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
+                />
+                <SliderBackground left={props.data?.[props.i]?.[item]?.minValue / props.data?.[props.i]?.[item]?.maxDefault * 100} right={props.data?.[props.i]?.[item]?.maxValue / props.data?.[props.i]?.[item]?.maxDefault * 100} className="center" />
+                <SliderBackground/>
+                <RangeValue
+                  className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
+                  type="number"
+                  value={props.data?.[props.i]?.[item]?.minValue}
+                  marginright={"38%"}
+                  width={"12%"}
+                  onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
+                />
+                <RangeValue
+                  className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
+                  type="number"
+                  value={props.data?.[props.i]?.[item]?.maxValue}
+                  marginleft={"38%"}
+                  width={"12%"}
+                  onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
+                />
+              </Slider>
+            </div>
+          )
+        }
+        else {
+          return (
+            <div className="col-9 row px-5 py-3 m-0">
+              <Slider
+                className="d-flex align-items-center justify-content-center m-0 p-0"
+              >
+                <RangeInput
+                  type="range"
+                  min={props.data?.[props.i]?.[item]?.minDefault}
+                  max={props.data?.[props.i]?.[item]?.maxDefault}
+                  value={props.data?.[props.i]?.[item]?.minValue}
+                  step={props.data?.[props.i]?.[item]?.step}
+                  onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", "slider")}
+                />
+                <RangeInput
+                  type="range"
+                  min={props.data?.[props.i]?.[item]?.minDefault}
+                  max={props.data?.[props.i]?.[item]?.maxDefault}
+                  value={props.data?.[props.i]?.[item]?.maxValue}
+                  step={props.step}
+                  onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", "slider")}
+                />
+                <SliderBackground left={props.data?.[props.i]?.[item]?.minValue / props.data?.[props.i]?.[item]?.maxDefault * 100} right={props.data?.[props.i]?.[item]?.maxValue / props.data?.[props.i]?.[item]?.maxDefault * 100} className="center" />
+                <SliderBackground />
+                <RangeValue
+                  className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
+                  type="number"
+                  value={props.data?.[props.i]?.[item]?.minValue}
+                  marginright={"38%"}
+                  width={"12%"}
+                  onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", "slider")}
+                />
+                <RangeValue
+                  className="d-flex align-items-center justify-content-start mt-5 mb-3 py-1"
+                  type="number"
+                  value={props.data?.[props.i]?.[item]?.maxValue}
+                  marginleft={"38%"}
+                  width={"12%"}
+                  onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", "slider")}
+                />
+              </Slider>
+            </div>
+          )
+        }
+      })}
+    </div >
   )
 };
 
@@ -178,7 +229,7 @@ export const CheckBox = (props) => {
       <div className="col-12 d-flex justify-content-center align-items-center">
         <div
           className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5"
-          style={{ fontWeight: 500, letterSpacing: "2px"}}
+          style={{ fontWeight: 500, letterSpacing: "2px" }}
         >
           {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
         </div>
@@ -213,7 +264,7 @@ export const CheckBox = (props) => {
       <div className="col-12 d-flex justify-content-center align-items-center">
         <div
           className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5"
-          style={{ fontWeight: 500, letterSpacing: "2px", fontSize: "1em"}}
+          style={{ fontWeight: 500, letterSpacing: "2px", fontSize: "1em" }}
         >
           {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
         </div>
@@ -244,7 +295,6 @@ export const CheckBox = (props) => {
     )
   }
 };
-
 
 export const Input = (props) => {
   return (

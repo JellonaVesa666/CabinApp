@@ -41,7 +41,12 @@ export const RangeInput = styled.input`
     color: black;
   }
 `
-export const SliderBackground = styled.div`
+export const SliderBackground = styled.div.attrs(props => ({
+  style: {
+    width: `${100 - props.left - (100 - props.right)}%`,
+    marginLeft: `${100 - (props.right - (props.left - (100 - props.right)))}%`,
+  },
+}))`
   position: absolute;
   top: 0;
   left: 0;
@@ -53,8 +58,6 @@ export const SliderBackground = styled.div`
   &.center {
     z-index: 1;
     background-color: ${colors.blue};
-    width: ${props => `${props.right - props.left}%`};
-    margin-left: ${props => `${props.left}%`};
   }
 `
 export const RangeValue = styled.input`

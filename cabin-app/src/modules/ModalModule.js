@@ -119,11 +119,11 @@ export const ModalModule = (props) => {
                   data={props.searchFilters}
                   i={item}
                   language={language}
-                  minDefault={props.searchFilters["slider"].minDefault}
-                  maxDefault={props.searchFilters["slider"].maxDefault}
-                  maxValue={props.searchFilters["slider"].maxValue}
-                  minValue={props.searchFilters["slider"].minValue}
-                  step={props.searchFilters["slider"].step}
+                  //minDefault={props.searchFilters["slider"].minDefault}
+                  //maxDefault={props.searchFilters["slider"].maxDefault}
+                  //maxValue={props.searchFilters["slider"].maxValue}
+                  //minValue={props.searchFilters["slider"].minValue}
+                  //step={props.searchFilters["slider"].step}
                   SetSearchFilters={props.SetSearchFilters}
                 />
 

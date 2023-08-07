@@ -42,7 +42,7 @@ export const searchParameters = {
       name: "test 3",
     },
   },
-  counter: {
+  price: {
     type: "counter",
     isActive: true,
     static: false,
@@ -67,15 +67,10 @@ export const searchParameters = {
       value: 1,
     },
   },
-  slider: {
+  distance: {
     type: "slider",
     isActive: true,
     static: false,
-    maxDefault: 1000,
-    minDefault: 0,
-    maxValue: 1000,
-    minValue: 0,
-    step: 1,
     info: {
       header: {
         fi:
@@ -84,7 +79,41 @@ export const searchParameters = {
           "price",
       }
     },
+    0: {
+      maxDefault: 1000,
+      minDefault: 0,
+      maxValue: 1000,
+      minValue: 0,
+      step: 1,
+    },
   },
+/*   slider: {
+    type: "slider",
+    isActive: true,
+    static: false,
+    info: {
+      header: {
+        fi:
+          "hinta",
+        en:
+          "price",
+      }
+    },
+    0: {
+      maxDefault: 1000,
+      minDefault: 0,
+      maxValue: 1000,
+      minValue: 0,
+      step: 1,
+    },
+    1: {
+      maxDefault: 1000,
+      minDefault: 0,
+      maxValue: 1000,
+      minValue: 0,
+      step: 1,
+    },
+  }, */
   class: {
     type: "checkbox",
     isActive: true,
