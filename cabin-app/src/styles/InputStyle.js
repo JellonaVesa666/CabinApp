@@ -60,18 +60,29 @@ export const SliderBackground = styled.div.attrs(props => ({
     background-color: ${colors.blue};
   }
 `
-export const RangeValue = styled.input`
-  text-align: center;
-  width: ${props => props.width};
-  border-radius: 10px;
-  border: 1.5px solid rgba(0, 0, 0, 0.2);
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  margin-left: ${props => props.marginleft};
-  margin-right: ${props => props.marginright};
-  background-color: rgba(255, 255, 255, 0.7);
-  &:hover {
-    border: 1.5px solid rgba(0, 0, 0, 0.6);
+export const Test = styled.div.attrs(props => ({
+  style: {
+    marginLeft: props.marginleft,
+    marginRight: props.marginright,
+  },
+}))`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  &::after {
+    content: "m";
   }
+`
+
+export const RangeValue = styled.input`
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-align: center;
+  width: 100%;
+  border: none;
+  background: none;
   &::-webkit-inner-spin-button{
     appearance: none;
     -webkit-appearance: none;

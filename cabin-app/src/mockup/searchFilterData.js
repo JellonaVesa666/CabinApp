@@ -67,7 +67,7 @@ export const searchParameters = {
       value: 1,
     },
   },
-  distance: {
+  price: {
     type: "slider",
     isActive: true,
     static: false,
@@ -87,33 +87,74 @@ export const searchParameters = {
       step: 1,
     },
   },
-/*   slider: {
+  remoteness: {
     type: "slider",
     isActive: true,
     static: false,
     info: {
       header: {
         fi:
-          "hinta",
+          "etäisyydet",
         en:
-          "price",
+          "distances",
       }
     },
     0: {
-      maxDefault: 1000,
+      fi:
+        "laskettelukeskus",
+      en:
+        "ski center",
+      maxDefault: 5000,
       minDefault: 0,
-      maxValue: 1000,
+      maxValue: 5000,
       minValue: 0,
-      step: 1,
+      step: 100,
     },
     1: {
-      maxDefault: 1000,
+      fi:
+        "hiihtohissi",
+      en:
+        "ski lift",
+      maxDefault: 5000,
       minDefault: 0,
-      maxValue: 1000,
+      maxValue: 5000,
       minValue: 0,
-      step: 1,
+      step: 100,
     },
-  }, */
+    2: {
+      fi:
+        "hiihtolatu",
+      en:
+        "ski trail",
+      maxDefault: 5000,
+      minDefault: 0,
+      maxValue: 5000,
+      minValue: 0,
+      step: 100,
+    },
+    3: {
+      fi:
+        "ranta",
+      en:
+        "beach",
+      maxDefault: 5000,
+      minDefault: 0,
+      maxValue: 5000,
+      minValue: 0,
+      step: 100,
+    },
+    4: {
+      fi:
+        "golfkenttä",
+      en:
+        "golf course",
+      maxDefault: 5000,
+      minDefault: 0,
+      maxValue: 5000,
+      minValue: 0,
+      step: 100,
+    },
+  },
   class: {
     type: "checkbox",
     isActive: true,
@@ -205,7 +246,7 @@ export const searchParameters = {
     type: "checkbox",
     isActive: true,
     static: false,
-    multiSelect: false,
+    multiSelect: true,
     rows: 2,
     value: 0,
     info: {
