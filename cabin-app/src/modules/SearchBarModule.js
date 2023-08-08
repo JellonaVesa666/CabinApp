@@ -162,8 +162,8 @@ export const SearchBarModule = () => {
           filter={selectedFilter}
           searchFilters={searchFilters}
           SetSearchFilters={setSearchFilters}
-          closeModal={() => setModalActive(false)}
-          //changeState={(newValue, property, index1, index2) => ChangeState(setSearchFilters, newValue, property, index1, index2)}
+          SetModalActive={setModalActive}
+          searchParameters={searchParameters}
         />
       }
 
@@ -197,16 +197,3 @@ export const SearchBarModule = () => {
     </>
   )
 }
-
-
-
-{/*               <div
-                className="d-flex justify-content-center align-items-center"
-                onClick={() => setModalActive(!modalActive)}
-                style={{ height: "40px", width: "40px", backgroundColor: "black", color: "white", fontSize: "12px", borderRadius: " 0px 10px 10px 0px" }}
-              >
-                &equiv;
-              </div> */}
-/* </div> */
-
-{/* {dynamicFilters} */ }

@@ -24,7 +24,6 @@ export const CalendarModule = (props) => {
     }
 
     setRefresh(false);
-    //ClearSelected(true);
     setClicks(3);
   }
 
@@ -38,7 +37,6 @@ export const CalendarModule = (props) => {
     }
 
     setRefresh(false);
-    //ClearSelected(true);
     setClicks(3);
   }
 

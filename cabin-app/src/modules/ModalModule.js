@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
-import { ModalContent, ModalHeader, ModalLinkH4 } from "../styles/ModalStyle";
-import { RangeSlider, OptionSelect, MultiSelect, CheckBox, Counter, Input } from "./InputModules";
+import { ModalContent } from "../styles/ModalStyle";
+import { RangeSlider, CheckBox, Counter } from "./InputModules";
 import { CalendarModule } from "./CalendarModule";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
@@ -15,7 +15,7 @@ export const ModalModule = (props) => {
       // If clicked on outside of element
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
-          props.closeModal();
+          props.SetModalActive(false);
         }
       }
       // Bind the event listener
@@ -30,22 +30,14 @@ export const ModalModule = (props) => {
   const wrapperRef = useRef(null);
   OutsideClick(wrapperRef);
 
-  /*   const Filter = (props) => {
-      if (searchFilters[props.index].hasOwnProperty("isActive")) {
-        return (
-          <ModalHeader
-            className={searchFilters[props.index].isActive ? "true" : ""}
-            width={"80%"}
-            marginbottom={"5%"}
-            margintop={"5%"}
-            onClick={() => props.setActive(props.index)}
-          >
-            {props.index}
-          </ModalHeader >
-        )
+
+  const ResetSearchFilters = () => {
+    Object.keys(props.searchFilters).forEach((item) => {
+      if (!props.searchFilters[item].static) {
+        props.SetSearchFilters(props.searchParameters);
       }
-    }
-   */
+    })
+  }
 
   if (props.filter !== "dynamic") {
     // Add Counter etc. modules under one if statement
@@ -136,31 +128,9 @@ export const ModalModule = (props) => {
             </>
           )
         })}
+        <input type="button" value="RESET" onClick={() => ResetSearchFilters()} />
+        <input type="button" value="CLOSE" onClick={() => props.SetModalActive(false)} />
       </ModalContent>
     )
   }
 };
-
-//changeState={(newValue, index) => ChangeState(setSearchFilters, newValue, index, "searchDate", "value")}
-
-{/*           <CalendarModule  prevMonth={props.options?.[props.filter][0].prevMonth} thisMonth={props.options?.[props.filter][0].thisMonth} nextMonth={props.options?.[props.filter][0].nextMonth}/>
-          <CalendarModule /> */}
-
-{/*       <div style={{ marginTop: "50px" }}>
-        {Object.keys(options).map(key => <Filter key={key} index={key} />)}
-      </div> */}
-{/*       <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        onClick={props.closeModal}
-      >
-        <ModalLinkH4 className="mt-2"
-        >
-          Close
-        </ModalLinkH4>
-      </div> */}
-
-      //<div className="d-flex justify-content-evenly align-items-center ">

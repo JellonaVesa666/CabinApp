@@ -3,7 +3,7 @@ import { colors } from "./Colors";
 
 export const ModalContent = styled.section`
   z-index:10;
-  position: fixed;
+  position: absolute;
   top: 13%;
   left: 50%;
   -ms-transform: translateX(-50%);

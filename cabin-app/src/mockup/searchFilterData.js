@@ -88,7 +88,7 @@ export const searchParameters = {
       suffix: "€",
     },
   },
-  remoteness: {
+  distances: {
     type: "slider",
     isActive: true,
     static: false,
