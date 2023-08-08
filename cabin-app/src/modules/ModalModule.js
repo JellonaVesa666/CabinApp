@@ -99,6 +99,7 @@ export const ModalModule = (props) => {
   else {
     return (
       <ModalContent
+        className="secondaryColor"
         ref={wrapperRef}
         width={"40%"}
       >

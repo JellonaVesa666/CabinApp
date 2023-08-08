@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionItem, MultiSelectInput, CheckInput, CounterButton, RangeWrapper } from "../styles/InputStyle"
 import { colors } from "../styles/Colors";
 import { ChangeState } from "../helpers/HelperFunctions";
@@ -73,7 +71,7 @@ export const RangeSlider = (props) => {
             <>
               {Number(item) === 0 &&
                 <div
-                  className="col-12 d-flex justify-content-start align-items-center mb-3 ps-5 pt-5"
+                  className="col-12 d-flex justify-content-start align-items-center ps-5 pt-3"
                   style={{ fontWeight: 500, letterSpacing: "2px ", fontSize: "1em" }}
                 >
                   {props?.data?.[props.i]?.info?.header?.[props.language].toUpperCase()}
@@ -362,8 +360,8 @@ export const PasswordField = (props) => {
         value={props.data[props.i].value}
         onChange={(event) => props.changeState(event)}
       />
-      {showPassword && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword(false)} style={{ position: "absolute", top: 40, left: 185 }} />}
-      {!showPassword && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword(true)} style={{ position: "absolute", top: 40, left: 185 }} />}
+{/*       {showPassword && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword(false)} style={{ position: "absolute", top: 40, left: 185 }} />}
+      {!showPassword && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword(true)} style={{ position: "absolute", top: 40, left: 185 }} />} */}
     </>
   )
 };
