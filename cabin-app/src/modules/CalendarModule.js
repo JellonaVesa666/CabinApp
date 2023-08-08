@@ -329,7 +329,7 @@ export const CalendarModule = (props) => {
     }
   }
 
-  const ClearSelected = async (forceClear) => {
+  const ClearSelected = (forceClear) => {
 
     if (clicks !== 3 && !forceClear) {
       return false;
