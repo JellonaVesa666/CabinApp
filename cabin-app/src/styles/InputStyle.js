@@ -60,23 +60,22 @@ export const SliderBackground = styled.div.attrs(props => ({
     background-color: ${colors.blue};
   }
 `
-export const RangeWrapper = styled.div`
+export const RangeWrapper = styled.div.attrs(props => ({
+  style: {
+    marginLeft: props.marginleft,
+    marginRight: props.marginright,
+  },
+}))`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10%;
-  margin-left: ${props => (props.marginleft)};
-  margin-right: ${props => (props.marginright)};
+  width: 13%;
   &::after {
     content: ${(props) => ("'" + props.suffix + "'")};
   }
 `
 
 export const RangeValue = styled.input`
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  text-align: center;
   width: 100%;
   border: none;
   background: none;
@@ -221,8 +220,10 @@ export const CheckInput = styled.input`
   -webkit-appearance: none;
   appearance: none;
   outline: none;
-  width: 16px;
-  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  max-width: 16px;
+  max-height: 16px;
   background-color: white;
   border-radius: 0.1rem;
   border: 0.05rem solid rgba(0, 0 ,0, 0.3);

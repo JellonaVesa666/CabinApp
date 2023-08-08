@@ -25,43 +25,42 @@ export const RangeSlider = (props) => {
                 >
                   <RangeInput
                     type="range"
-                    min={props.data?.[props.i]?.[item]?.minDefault}
-                    max={props.data?.[props.i]?.[item]?.maxDefault}
-                    value={props.data?.[props.i]?.[item]?.minValue}
-                    step={props.data?.[props.i]?.[item]?.step}
-                    onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
+                    min={props?.data?.[props.i]?.[item]?.minDefault}
+                    max={props?.data?.[props.i]?.[item]?.maxDefault}
+                    value={props?.data?.[props.i]?.[item]?.minValue}
+                    step={props?.data?.[props.i]?.[item]?.step}
+                    onChange={(event) => ChangeState(props?.SetSearchFilters, Math.max(props?.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxValue)), "minValue", props?.i, item)}
                   />
                   <RangeInput
                     type="range"
-                    min={props.data?.[props.i]?.[item]?.minDefault}
-                    max={props.data?.[props.i]?.[item]?.maxDefault}
-                    value={props.data?.[props.i]?.[item]?.maxValue}
-                    step={props.step}
-                    onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
+                    min={props?.data?.[props.i]?.[item]?.minDefault}
+                    max={props?.data?.[props.i]?.[item]?.maxDefault}
+                    value={props?.data?.[props.i]?.[item]?.maxValue}
+                    step={props?.step}
+                    onChange={(event) => ChangeState(props?.SetSearchFilters, Math.max(props?.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props?.i, item)}
                   />
-                  <SliderBackground left={props.data?.[props.i]?.[item]?.minValue / props.data?.[props.i]?.[item]?.maxDefault * 100} right={props.data?.[props.i]?.[item]?.maxValue / props.data?.[props.i]?.[item]?.maxDefault * 100} className="center" />
+                  <SliderBackground left={props?.data?.[props.i]?.[item]?.minValue / props?.data?.[props.i]?.[item]?.maxDefault * 100} right={props?.data?.[props.i]?.[item]?.maxValue / props?.data?.[props.i]?.[item]?.maxDefault * 100} className="center" />
                   <SliderBackground />
                   <RangeWrapper
                     className="mt-5 mb-3"
                     marginright={"auto"}
-                    suffix={props.data?.[props.i]?.[item]?.suffix}
+                    suffix={props?.data?.[props.i]?.[item]?.suffix}
                   >
                     <RangeValue
                       type="number"
-                      value={props.data?.[props.i]?.[item]?.minValue}
-
-                      onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
+                      value={props?.data?.[props.i]?.[item]?.minValue}
+                      onChange={(event) => ChangeState(props?.SetSearchFilters, Math.max(props?.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
                     />
                   </RangeWrapper>
                   <RangeWrapper
                     className="mt-5 mb-3"
                     marginleft={"auto"}
-                    suffix={props.data?.[props.i]?.[item]?.suffix}
+                    suffix={props?.data?.[props.i]?.[item]?.suffix}
                   >
                     <RangeValue
                       type="number"
-                      value={props.data?.[props.i]?.[item]?.maxValue}
-                      onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
+                      value={props?.data?.[props.i]?.[item]?.maxValue}
+                      onChange={(event) => ChangeState(props?.SetSearchFilters, Math.max(props?.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
                     />
                   </RangeWrapper>
                 </Slider>
@@ -112,7 +111,7 @@ export const RangeSlider = (props) => {
                       <SliderBackground />
                       <RangeWrapper
                         className="mt-5 mb-3"
-                        marginright={"40%"}
+                        marginright={"37%"}
                         suffix={props.data?.[props.i]?.[item]?.suffix}
                       >
                         <RangeValue
@@ -124,7 +123,7 @@ export const RangeSlider = (props) => {
                       </RangeWrapper>
                       <RangeWrapper
                         className="mt-5 mb-3"
-                        marginleft={"40%"}
+                        marginleft={"37%"}
                         suffix={props.data?.[props.i]?.[item]?.suffix}
                       >
                         <RangeValue

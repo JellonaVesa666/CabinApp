@@ -4,6 +4,7 @@ import { RangeSlider, CheckBox, Counter } from "./InputModules";
 import { CalendarModule } from "./CalendarModule";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
+import { ChangeState } from "../helpers/HelperFunctions";
 
 export const ModalModule = (props) => {
 
@@ -32,9 +33,10 @@ export const ModalModule = (props) => {
 
 
   const ResetSearchFilters = () => {
+    // Filter and reset dynamic filters
     Object.keys(props.searchFilters).forEach((item) => {
       if (!props.searchFilters[item].static) {
-        props.SetSearchFilters(props.searchParameters);
+        props.SetSearchFilters(state => ({ ...state, [item]: props.searchParameters[item] }))
       }
     })
   }

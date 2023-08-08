@@ -187,6 +187,8 @@ export const SearchBarModule = () => {
           {/* Button - Advanced Filters */}
           <input
             type="image"
+            alt=""
+            aria-label=""
             src={filterBlack}
             className="text-uppercase d-flex justify-content-center align-items-center"
             style={{ width: "40px", height: "40px", backgroundColor: colors.white }}
