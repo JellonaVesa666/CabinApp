@@ -19,7 +19,7 @@ export const RangeSlider = (props) => {
               >
                 {props.data[props.i].info?.header[props.language].toUpperCase()}
               </div>
-              <div className="col-9 row pe-5 py-3 m-0">
+              <div className="col-9 row pe-5 m-0 py-2">
                 <Slider
                   className="d-flex align-items-center justify-content-center m-0 p-0"
                 >
@@ -88,7 +88,7 @@ export const RangeSlider = (props) => {
                   >
                     {props?.data?.[props.i]?.[item]?.[props.language].toUpperCase()}
                   </div>
-                  <div className="col-9 row pe-5 py-1 m-0">
+                  <div className="col-9 row pe-5 m-0 py-2">
                     <Slider
                       className="d-flex align-items-center justify-content-center m-0 p-0"
                     >
@@ -264,7 +264,7 @@ export const CheckBox = (props) => {
     return (
       <div className="col-12 d-flex justify-content-center align-items-center">
         <div
-          className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5"
+          className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5 pt-3"
           style={{ fontWeight: 500, letterSpacing: "2px" }}
         >
           {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
@@ -299,7 +299,7 @@ export const CheckBox = (props) => {
     return (
       <div className="col-12 d-flex justify-content-center align-items-center">
         <div
-          className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5"
+          className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5 pt-3"
           style={{ fontWeight: 500, letterSpacing: "2px", fontSize: "1em" }}
         >
           {(props.data?.[props.i]?.info?.header?.[props.language])?.toUpperCase()}
