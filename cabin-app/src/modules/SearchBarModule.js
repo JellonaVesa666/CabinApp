@@ -186,6 +186,7 @@ export const SearchBarModule = () => {
 
           {/* Button - Advanced Filters */}
           <input
+            id="modalBtn"
             type="image"
             alt=""
             aria-label=""

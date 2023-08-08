@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { colors } from './Colors';
 
 export const NavbarDropdown = styled.ul`
   min-width: 100% !important;
