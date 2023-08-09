@@ -153,6 +153,7 @@ export const Counter = (props) => {
           return (
             <div
               className="d-flex justify-content-center align-items-center py-2 m-0"
+              key={item}
             >
               <div
                 className="col-6 d-flex justify-content-start align-items-center m-0 p-0"

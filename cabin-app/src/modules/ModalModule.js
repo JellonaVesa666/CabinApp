@@ -65,6 +65,7 @@ export const ModalModule = (props) => {
               if (item === props.filter) {
                 return (
                   <Counter
+                    key={item}
                     language={language}
                     data={props.searchFilters}
                     index1={props.filter}
@@ -84,6 +85,7 @@ export const ModalModule = (props) => {
               if (item === props.filter) {
                 return (
                   <Counter
+                    key={item}
                     language={language}
                     data={props.searchFilters}
                     index1={props.filter}
