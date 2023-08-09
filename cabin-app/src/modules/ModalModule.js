@@ -110,32 +110,32 @@ export const ModalModule = (props) => {
         width={"40%"}
       >
         {Object.keys(props.searchFilters).map(item => {
-          return (
-            <>
-              {
-                !props.searchFilters?.[item]?.static &&
-                props.searchFilters[item].type === "slider" &&
-                <RangeSlider
-                  data={props.searchFilters}
-                  i={item}
-                  language={language}
-                  SetSearchFilters={props.SetSearchFilters}
-                />
-              }
-              {!props.searchFilters?.[item]?.static &&
-                props.searchFilters[item].type === "checkbox" &&
-                <>
-                  <CheckBox
-                    data={props.searchFilters}
-                    i={item}
-                    language={language}
-                    color={colors.blue}
-                    SetSearchFilters={props.SetSearchFilters}
-                  />
-                </>
-              }
-            </>
-          )
+          if (!props.searchFilters?.[item]?.static &&
+            props.searchFilters[item].type === "slider") {
+            return (
+              <RangeSlider
+                key={item}
+                data={props.searchFilters}
+                i={item}
+                language={language}
+                SetSearchFilters={props.SetSearchFilters}
+              />
+            )
+          }
+          if (!props.searchFilters?.[item]?.static &&
+            props.searchFilters[item].type === "checkbox") {
+            return (
+              <CheckBox
+                key={item}
+                data={props.searchFilters}
+                i={item}
+                language={language}
+                color={colors.blue}
+                SetSearchFilters={props.SetSearchFilters}
+              />
+            )
+          }
+          return null;
         })}
         <input type="button" value="RESET" onClick={() => ResetSearchFilters()} />
         <input type="button" value="CLOSE" onClick={() => props.SetModalActive(false)} />

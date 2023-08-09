@@ -6,10 +6,13 @@ import { ChangeState } from "../helpers/HelperFunctions";
 export const RangeSlider = (props) => {
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   return (
-    <div className="col-12 row flex-wrap d-flex justify-content-center align-items-center">
-      {result.map(item => {
-        if (result.length <= 1) {
-          return (
+    result.map(item => {
+      return (
+        <div
+          key={item}
+          className="col-12 row flex-wrap d-flex justify-content-center align-items-center"
+        >
+          {result.length <= 1 &&
             <>
               <div
                 className="col-3 d-flex justify-content-start align-items-center mb-5 ps-5"
@@ -64,11 +67,12 @@ export const RangeSlider = (props) => {
                 </Slider>
               </div>
             </>
-          )
-        }
-        else {
-          return (
-            <>
+          }
+          { result.length > 1 &&
+              <div
+              key={item}
+              className="col-12 row flex-wrap d-flex justify-content-center align-items-center"
+            >
               {Number(item) === 0 &&
                 <div
                   className="col-12 d-flex justify-content-start align-items-center ps-5 pt-3"
@@ -115,7 +119,7 @@ export const RangeSlider = (props) => {
                         <RangeValue
                           type="number"
                           value={props.data?.[props.i]?.[item]?.minValue}
-
+        
                           onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
                         />
                       </RangeWrapper>
@@ -134,11 +138,11 @@ export const RangeSlider = (props) => {
                   </div>
                 </>
               }
-            </>
-          )
-        }
-      })}
-    </div >
+            </div>
+          }
+        </div>
+      )
+    })
   )
 };
 
