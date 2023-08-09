@@ -6,14 +6,14 @@ import { ChangeState } from "../helpers/HelperFunctions";
 export const RangeSlider = (props) => {
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   return (
-    result.map(item => {
-      return (
-        <div
-          key={item}
-          className="col-12 row flex-wrap d-flex justify-content-center align-items-center"
-        >
-          {result.length <= 1 &&
-            <>
+    <div className="col-12 row flex-wrap d-flex justify-content-center align-items-center">
+      {result.map(item => {
+        if (result.length <= 1) {
+          return (
+            <div
+              className="col-12 row d-flex justify-content-start align-items-center m-0 p-0"
+              key={item}
+            >
               <div
                 className="col-3 d-flex justify-content-start align-items-center mb-5 ps-5"
                 style={{ fontWeight: 500, letterSpacing: "2px ", fontSize: "1em" }}
@@ -66,12 +66,14 @@ export const RangeSlider = (props) => {
                   </RangeWrapper>
                 </Slider>
               </div>
-            </>
-          }
-          { result.length > 1 &&
-              <div
+            </div>
+          )
+        }
+        else {
+          return (
+            <div
+              className="col-12 row d-flex justify-content-start align-items-center m-0 p-0"
               key={item}
-              className="col-12 row flex-wrap d-flex justify-content-center align-items-center"
             >
               {Number(item) === 0 &&
                 <div
@@ -113,19 +115,19 @@ export const RangeSlider = (props) => {
                       <SliderBackground />
                       <RangeWrapper
                         className="mt-5 mb-3"
-                        marginright={"37%"}
+                        marginright={"40.5%"}
                         suffix={props.data?.[props.i]?.[item]?.suffix}
                       >
                         <RangeValue
                           type="number"
                           value={props.data?.[props.i]?.[item]?.minValue}
-        
+
                           onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
                         />
                       </RangeWrapper>
                       <RangeWrapper
                         className="mt-5 mb-3"
-                        marginleft={"37%"}
+                        marginleft={"40.5%"}
                         suffix={props.data?.[props.i]?.[item]?.suffix}
                       >
                         <RangeValue
@@ -139,10 +141,10 @@ export const RangeSlider = (props) => {
                 </>
               }
             </div>
-          }
-        </div>
-      )
-    })
+          )
+        }
+      })}
+    </div >
   )
 };
 

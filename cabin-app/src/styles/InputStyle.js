@@ -69,7 +69,7 @@ export const RangeWrapper = styled.div.attrs(props => ({
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 13%;
+  width: 9.5%;
   &::after {
     content: ${(props) => ("'" + props.suffix + "'")};
   }
@@ -192,8 +192,8 @@ export const OptionItem = styled.select`
 `
 
 // Text Input //radius:40px
-export const InputStyle = styled.input.attrs(( props ) => ({
-  id:  props.id
+export const InputStyle = styled.input.attrs((props) => ({
+  id: props.id
 }))`
   width: ${props => (props.width)};
   height: ${props => (props.height)};
