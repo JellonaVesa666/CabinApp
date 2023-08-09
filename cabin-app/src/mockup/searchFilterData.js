@@ -43,31 +43,6 @@ export const searchParameters = {
     },
   },
   price: {
-    type: "counter",
-    isActive: true,
-    static: false,
-    info: {
-      fi:
-        "huoneet",
-      en:
-        "rooms",
-    },
-    0: {
-      fi:
-        "makuuhuoneet",
-      en:
-        "bedrooms",
-      value: 2,
-    },
-    1: {
-      fi:
-        "kylpyhuoneet",
-      en:
-        "bathrooms",
-      value: 1,
-    },
-  },
-  price: {
     type: "slider",
     isActive: true,
     static: false,

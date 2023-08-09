@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React/* , { useState } */ from "react";
 import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionItem, MultiSelectInput, CheckInput, CounterButton, RangeWrapper } from "../styles/InputStyle"
 import { colors } from "../styles/Colors";
 import { ChangeState } from "../helpers/HelperFunctions";
@@ -350,14 +350,14 @@ export const Input = (props) => {
 };
 
 export const PasswordField = (props) => {
-  const [showPassword, setHidePassword] = useState(false);
+  //const [showPassword, setHidePassword] = useState(false);
   return (
     <>
       <InputStyle
         width={props.width}
         height={props.height}
         className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
-        type={showPassword ? "text" : props.data[props.i].type}
+        //type={showPassword ? "text" : props.data[props.i].type}
         value={props.data[props.i].value}
         onChange={(event) => props.changeState(event)}
       />

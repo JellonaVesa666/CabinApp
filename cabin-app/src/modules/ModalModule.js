@@ -4,7 +4,6 @@ import { RangeSlider, CheckBox, Counter } from "./InputModules";
 import { CalendarModule } from "./CalendarModule";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
-import { ChangeState } from "../helpers/HelperFunctions";
 
 export const ModalModule = (props) => {
 
@@ -62,7 +61,7 @@ export const ModalModule = (props) => {
         }
         {props.filter === "persons" &&
           <>
-            {Object.keys(props.searchFilters).map(item => {
+            {Object.keys(props.searchFilters).foreach(item => {
               if (item === props.filter) {
                 return (
                   <Counter
@@ -80,7 +79,7 @@ export const ModalModule = (props) => {
         }
         {props.filter === "rooms" &&
           <>
-            {Object.keys(props.searchFilters).map(item => {
+            {Object.keys(props.searchFilters).foreach(item => {
               if (item === props.filter) {
                 return (
                   <Counter
