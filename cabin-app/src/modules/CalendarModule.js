@@ -385,7 +385,7 @@ export const CalendarModule = (props) => {
     const calendarMonth = calendarInfo?.month;
     const calendarYear = calendarInfo?.year;
     rows.push(
-      <div className="col-6 px-4">
+      <div className="col-6 px-4" key={(i <= 0) ? (i * 1) : (i * 2)}>
         <MonthPanel>
           {props.count > 1 &&
             <>
@@ -416,15 +416,32 @@ export const CalendarModule = (props) => {
           }
         </MonthPanel>
         <WeekGrid>
-          {dayNames.map((item, index) =>
-            <p style={{ fontSize: "12px", color: "black" }} key={index}>{item[language].toUpperCase()}</p>
-          )}
+          <>
+            {i === 0 &&
+              <>
+                {dayNames.map((item, index) => {
+                  return (
+                    <p style={{ fontSize: "12px", color: "black" }} key={index + (i * 7)} >{item[language].toUpperCase()}</p>
+                  )
+                })}
+              </>
+            }
+            {i === 1 &&
+              <>
+                {dayNames.map((item, index) => {
+                  return (
+                    <p style={{ fontSize: "12px", color: "black" }} key={index + (i * 7)} >{item[language].toUpperCase()}</p>
+                  )
+                })}
+              </>
+            }
+          </>
         </WeekGrid>
         <DayGrid>
           {calendarDays && Object.keys(calendarDays).map((item) => {
             return (
               <Days
-                key={item}
+                key={(i * 42) + Number(item)}
                 className={`
                 ${(calendarDays[item].month === calendarMonth && calendarMonth === props.defaultValue[0].month && calendarYear === props.defaultValue[0].year && calendarDays[item].day >= props.defaultValue[0].day)
                     || (calendarDays[item].month > props.defaultValue[0].month && calendarDays[item].month === calendarMonth && calendarYear >= props.defaultValue[0].year) ||
