@@ -68,11 +68,11 @@ export const SearchBarModule = () => {
     }) */
 
   // Static filter items
-  const staticFilters = Object.keys(searchFilters).foreach(item => {
+  const staticFilters = Object.keys(searchFilters).map(item => {
 
     if (searchFilters[item].static) {
       return (
-        <>
+        <div key={item}>
           {searchFilters[item].type === "text" &&
             searchFilters[item].context === "field" &&
             !searchFilters[item].modal &&
@@ -140,9 +140,10 @@ export const SearchBarModule = () => {
               onClick={() => ToggleModal(item)}
             />
           }
-        </>
+        </div>
       )
     }
+    return null;
   })
 
   const ToggleModal = (item) => {

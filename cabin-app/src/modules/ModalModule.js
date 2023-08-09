@@ -61,7 +61,7 @@ export const ModalModule = (props) => {
         }
         {props.filter === "persons" &&
           <>
-            {Object.keys(props.searchFilters).foreach(item => {
+            {Object.keys(props.searchFilters).map(item => {
               if (item === props.filter) {
                 return (
                   <Counter
@@ -73,13 +73,14 @@ export const ModalModule = (props) => {
                   />
                 )
               }
+              return null;
             })
             }
           </>
         }
         {props.filter === "rooms" &&
           <>
-            {Object.keys(props.searchFilters).foreach(item => {
+            {Object.keys(props.searchFilters).map(item => {
               if (item === props.filter) {
                 return (
                   <Counter
@@ -91,6 +92,7 @@ export const ModalModule = (props) => {
                   />
                 )
               }
+              return null;
             })
             }
           </>
