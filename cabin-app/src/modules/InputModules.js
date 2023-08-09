@@ -332,6 +332,7 @@ export const CheckBox = (props) => {
 export const Input = (props) => {
   return (
     <InputStyle
+      id={props.id}
       type={props.type}
       value={props.value}
       width={props.width}
@@ -360,7 +361,7 @@ export const PasswordField = (props) => {
         value={props.data[props.i].value}
         onChange={(event) => props.changeState(event)}
       />
-{/*       {showPassword && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword(false)} style={{ position: "absolute", top: 40, left: 185 }} />}
+      {/*       {showPassword && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword(false)} style={{ position: "absolute", top: 40, left: 185 }} />}
       {!showPassword && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword(true)} style={{ position: "absolute", top: 40, left: 185 }} />} */}
     </>
   )

@@ -16,8 +16,10 @@ export const ModalModule = (props) => {
       // If clicked on outside of element
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
-          if (event.target.id !== "modalBtn")
+          if (event.target.id !== "modalBtn") {
             props.SetModalActive(false);
+            props.SetSelectedFilter("");
+          }
         }
       }
       // Bind the event listener

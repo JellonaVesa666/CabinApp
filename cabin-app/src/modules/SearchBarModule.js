@@ -98,6 +98,7 @@ export const SearchBarModule = () => {
             searchFilters[item].context === "date" &&
             searchFilters[item].modal &&
             <Input
+              id={"modalBtn"}
               type={searchFilters[item].type}
               width={"220px"}
               height={"40px"}
@@ -124,13 +125,14 @@ export const SearchBarModule = () => {
 
 
               }
-              onClick={() => OpenModal(item)}
+              onClick={() => ToggleModal(item)}
             />
           }
           {searchFilters[item].type === "button" &&
             searchFilters[item].context === "counter" &&
             searchFilters[item].modal &&
             <Input
+              id={"modalBtn"}
               type={searchFilters[item].type}
               width={"200px"}
               height={"40px"}
@@ -140,7 +142,7 @@ export const SearchBarModule = () => {
               data={searchFilters}
               value={`${searchFilters[item][0].value} ${searchFilters[item][0][language]} ${"\uD83D\uDF84"} ${searchFilters[item][1].value} ${searchFilters[item][1][language]}`}
               changeState={(value) => ChangeState(setSearchFilters, value, "value", item)}
-              onClick={() => OpenModal(item)}
+              onClick={() => ToggleModal(item)}
             />
           }
         </>
@@ -148,9 +150,16 @@ export const SearchBarModule = () => {
     }
   })
 
-  const OpenModal = (item) => {
-    setModalActive(!modalActive);
-    setSelectedFilter(item);
+  const ToggleModal = (item) => {
+
+    if (item !== selectedFilter) {
+      setSelectedFilter(item);
+      setModalActive(true);
+    }
+    else {
+      setSelectedFilter("");
+      setModalActive(false);
+    }
   }
 
   return (
@@ -163,6 +172,7 @@ export const SearchBarModule = () => {
           searchFilters={searchFilters}
           SetSearchFilters={setSearchFilters}
           SetModalActive={setModalActive}
+          SetSelectedFilter={setSelectedFilter}
           searchParameters={searchParameters}
         />
       }
@@ -193,7 +203,7 @@ export const SearchBarModule = () => {
             src={filterBlack}
             className="text-uppercase d-flex justify-content-center align-items-center"
             style={{ width: "40px", height: "40px", backgroundColor: colors.white }}
-            onClick={() => OpenModal("dynamic")}
+            onClick={() => ToggleModal("dynamic")}
           />
         </div>
       </SearchBar >
