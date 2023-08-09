@@ -4,6 +4,7 @@ export const BASE_URL = "http://localhost:8000/";
 
 export const ENDPOINTS = {
   login: "login",
+  cabin: "cabin",
   register: "register"
 };
 

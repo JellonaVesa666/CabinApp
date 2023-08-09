@@ -33,7 +33,6 @@ export const ModalModule = (props) => {
   const wrapperRef = useRef(null);
   OutsideClick(wrapperRef);
 
-
   const ResetSearchFilters = () => {
     // Filter and reset dynamic filters
     Object.keys(props.searchFilters).forEach((item) => {

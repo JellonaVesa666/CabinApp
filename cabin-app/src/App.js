@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, Route, Routes } from "react-router-dom"
-import { BodyBackground, Logo } from "./styles/BaseStyle"
-import LoginPage from "./pages/LoginPage";
+import { BodyBackground } from "./styles/BaseStyle"
 import NavigationModule from "./modules/NavigationModule";
-import { SearchPage } from './pages/SearchPage';
 import { SearchBarModule } from './modules/SearchBarModule';
+import { ContentModule } from "./modules/ContentModule";
 
 function App() {
 
@@ -13,10 +12,8 @@ function App() {
       <NavigationModule />
       <SearchBarModule />
 
-
-
       <main>
-
+        <ContentModule />
         <section class="py-5 text-center container">
           <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">

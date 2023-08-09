@@ -160,7 +160,6 @@ export const SearchBarModule = () => {
 
   return (
     <>
-
       {/* Modal Component */}
       {modalActive &&
         <ModalModule

@@ -7,7 +7,6 @@ export default function LoginPage() {
   const [show, setShow] = useState(0);
 
   const handleClick = (childProps) => {
-    // 👇️ take the parameter passed from the Child component
     setShow(childProps);
   };
 

@@ -10,7 +10,7 @@
         public string? MapCoordinates { get; set; } = string.Empty;
         public byte IsActive { get; set; } = 0;
         public int Status { get; set; } = 0;
-        public int Capacity { get; set; } = 2;
+        public string? Capacity { get; set; } = string.Empty;
         public int Floors { get; set; } = 1;
         public int Bedrooms { get; set; } = 1;
         public int Bathrooms { get; set; } = 1;

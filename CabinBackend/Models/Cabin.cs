@@ -42,7 +42,7 @@ namespace CabinBackend.Models
 
 
         // -- Size -- /
-        public int Capacity { get; set; }
+        public string? Capacity { get; set; }
         public int Floors { get; set; }
         public int Bedrooms { get; set; }
         public int Bathrooms { get; set; }
