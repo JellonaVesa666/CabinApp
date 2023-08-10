@@ -106,7 +106,7 @@ export const ModalModule = (props) => {
       <ModalContent
         className="secondaryColor"
         ref={wrapperRef}
-        width={"40%"}
+        width={"43.5%"}
       >
         {Object.keys(props.searchFilters).map(item => {
           if (!props.searchFilters?.[item]?.static &&

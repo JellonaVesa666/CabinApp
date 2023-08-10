@@ -197,7 +197,6 @@ export const InputStyle = styled.input.attrs((props) => ({
 }))`
   width: ${props => (props.width)};
   height: ${props => (props.height)};
-  padding: 0px 20px 0px 20px;
   border: ${props => (props.border)};
   border-radius: ${props => (props.radius)};
   background: ${colors.white};
@@ -206,6 +205,7 @@ export const InputStyle = styled.input.attrs((props) => ({
   outline: none;
   font-size: 14px;
   font-weight: 500;
+  text-align: center;
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }

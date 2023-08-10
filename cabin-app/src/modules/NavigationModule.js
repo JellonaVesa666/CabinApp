@@ -5,7 +5,7 @@ import { navigationData } from "../mockup/navigationData";
 import { ButtonInput } from "../styles/InputStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLanguage } from "../reducers/sessionReducer";
-import { colors } from "../styles/Colors";
+import logoBanner from "../images/logo_banner.png";
 
 export default function NavigationModule() {
   const language = useSelector(state => state.session.language);
@@ -15,10 +15,18 @@ export default function NavigationModule() {
 
   return (
     <div
-      className="navbar sticky-top flex-md-nowrap shadow navbar-expand-lg"
-      style={{ height: "60px", backgroundColor: colors.white }}
+      className="navbar sticky-top flex-md-nowrap navbar-expand-lg"
+      style={{ height: "60px" }}
     >
-      <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+      <div
+        style={{ position: "absolute", left: 0, top: 0, width: "7%" }}
+      >
+        <img
+          src={logoBanner}
+          alt=""
+          style={{ position: "absolute", left: 0, top: 0, width: "100%" }}
+        />
+      </div>
       <button className="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>

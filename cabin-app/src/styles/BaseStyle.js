@@ -1,14 +1,15 @@
 import styled from 'styled-components'
-import backgroundGray from "../images/background_gray.png";
+import backgroundForest2 from "../images/background_forest2.jpg";
 import logoLight from "../images/logo_Light.png";
 
 export const BodyBackground = styled.div`
-  background: url(${backgroundGray}) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60%;
+  width: 100%;
+  background-image: url(${backgroundForest2});
   background-size: cover;
-  box-shadow:inset 0px 0px 80vw #333;
 `
 
 export const Logo = styled.div`

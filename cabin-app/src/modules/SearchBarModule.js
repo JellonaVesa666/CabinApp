@@ -95,7 +95,7 @@ export const SearchBarModule = () => {
             <Input
               id={"modalBtn"}
               type={searchFilters[item].type}
-              width={"220px"}
+              width={"240px"}
               height={"40px"}
               radius={"0px"}
               border={"none"}
@@ -129,7 +129,7 @@ export const SearchBarModule = () => {
             <Input
               id={"modalBtn"}
               type={searchFilters[item].type}
-              width={"200px"}
+              width={"240px"}
               height={"40px"}
               radius={"0px"}
               border={"none"}
@@ -175,8 +175,8 @@ export const SearchBarModule = () => {
       {/* Searchbar */}
       <SearchBar>
         <div
-          className="d-flex justify-content-center align-items-center gap-2 bg-warning py-1 px-1 mt-4"
-          style={{ width: "auto" }}
+          className="d-flex justify-content-center align-items-center gap-2 p-1 mt-auto"
+          style={{ width: "auto", backgroundColor: "rgba(0, 0, 0, 0.2)" }}
         >
           {/* Filters - Static Filters */}
           {staticFilters}
