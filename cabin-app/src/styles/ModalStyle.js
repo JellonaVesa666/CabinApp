@@ -17,10 +17,12 @@ export const ModalContent = styled.section`
   align-items: center;
   width: ${props => (props.width)};
   height: auto;
-  border-radius: 50px;
   border-radius: 2px;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  padding-right: 0;
+  padding-left: 0;
+  margin: 0;
   background-color: ${colors.white};
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   &.secondaryColor > :nth-child(even) {

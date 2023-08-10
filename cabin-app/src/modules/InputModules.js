@@ -152,13 +152,13 @@ export const Counter = (props) => {
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   return (
     <div
-      className="row col-12 py-3 m-0"
+      className="row col-12 d-flex justify-content-center align-items-center p-0 m-0"
     >
       {
         result.map(item => {
           return (
             <div
-              className="d-flex justify-content-center align-items-center py-2 m-0"
+              className="d-flex justify-content-center align-items-center py-2 px-0 m-0"
               key={item}
             >
               <div
@@ -172,7 +172,7 @@ export const Counter = (props) => {
               </div>
               <div
                 className="col-6 d-flex justify-content-end align-items-center p-1"
-                style={{ border: "1px solid black" }}
+                style={{ border: "1px solid black", width: "150px" }}
               >
                 <div
                   className="col-5 d-flex justify-content-start align-items-start m-0 p-0"
