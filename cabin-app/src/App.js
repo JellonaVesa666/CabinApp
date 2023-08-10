@@ -10,6 +10,8 @@ import cabin_04 from "../src/images/cabin_07.jpg";
 import cabin_05 from "../src/images/cabin_06.jpg";
 import cabin_06 from "../src/images/cabin_11.jpg";
 import icon_persons from "../src/images/icon_persons.png";
+import iconBed from "../src/images/icon_bed.png";
+import iconTub from "../src/images/icon_tub.png";
 import { colors } from "./styles/Colors";
 
 function App() {
@@ -44,7 +46,7 @@ function App() {
         <div class="row d-flex justify-content-center align-items-center m-0 bg-light">
 
           <div
-            class="row row-cols-3 g-4"
+            class="row row-cols-2 g-4"
             style={{ width: "80%" }}
           >
             <div class="row col px-4 py-5">
@@ -94,10 +96,10 @@ function App() {
                   <img
                     src={icon_persons}
                     alt="Logo"
-                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
+                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
                   />
                   <p
-                    className="m-auto"
+                    className="my-auto"
                   >
                     4 + 2
                   </p>
@@ -106,28 +108,28 @@ function App() {
                   className="col-2 d-flex justify-content-start align-items-center"
                 >
                   <img
-                    src={icon_persons}
+                    src={iconBed}
                     alt="Logo"
-                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
+                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
                   />
                   <p
-                    className="m-auto"
+                    className="my-auto"
                   >
-                    4 + 2
+                    3
                   </p>
                 </div>
                 <div
-                  className="col-2 d-flex justify-content-start align-items-center"
+                  className="col-1 d-flex justify-content-start align-items-center"
                 >
                   <img
-                    src={icon_persons}
+                    src={iconTub}
                     alt="Logo"
-                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
+                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
                   />
                   <p
-                    className="m-auto"
+                    className="my-auto"
                   >
-                    4 + 2
+                    2
                   </p>
                 </div>
               </div>
