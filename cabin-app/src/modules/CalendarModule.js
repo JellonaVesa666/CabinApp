@@ -421,7 +421,12 @@ export const CalendarModule = (props) => {
               <>
                 {dayNames.map((item, index) => {
                   return (
-                    <p style={{ fontSize: "12px", color: "black" }} key={index + (i * 7)} >{item[language].toUpperCase()}</p>
+                    <p
+                      style={{ fontSize: "12px", color: "black", minWidth: "30px" }}
+                      key={index + (i * 7)}
+                    >
+                      {item[language].toUpperCase()}
+                    </p>
                   )
                 })}
               </>
@@ -430,7 +435,12 @@ export const CalendarModule = (props) => {
               <>
                 {dayNames.map((item, index) => {
                   return (
-                    <p style={{ fontSize: "12px", color: "black" }} key={index + (i * 7)} >{item[language].toUpperCase()}</p>
+                    <p
+                      style={{ fontSize: "12px", color: "black", minWidth: "30px" }}
+                      key={index + (i * 7)}
+                    >
+                      {item[language].toUpperCase()}
+                    </p>
                   )
                 })}
               </>
