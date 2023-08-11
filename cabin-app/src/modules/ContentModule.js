@@ -23,241 +23,238 @@ export const ContentModule = (props) => {
   }
 
   return (
-    <>
-      <main>
-        <section
-          class="py-3 text-center container"
-          style={{ height: "540px" }}
+    <main>
+      <section
+        className="d-flex justify-content-center align-items-center m-0 p-0"
+        style={{ height: "540px" }}
+      >
+        <div class="row mb-auto py-3">
+          <p
+            className="my-0"
+            style={{ color: colors.white, fontSize: "2rem", fontWeight: 400, textAlign: "center" }}
+          >
+            Search
+          </p>
+          <p
+            className="my-0"
+            style={{ color: colors.white, fontSize: "1rem", fontWeight: 400, textAlign: "center" }}
+          >
+            1025 CABINS
+          </p>
+        </div>
+      </section>
+      <section
+        className="d-flex justify-content-center align-items-center m-0 py-4 bg-light">
+        <div
+          className="row row-cols-2"
+          style={{ width: "76%" }}
         >
-          <div class="row">
-            <div class="col-lg-6 col-md-8 mx-auto">
-              <p
-                className="my-0"
-                style={{ color: colors.white, fontSize: "2rem", fontWeight: 400 }}
+
+          <div class="col px-4 py-5">
+            <div
+              className="position-relative d-flex"
+            >
+              <img
+                src={cabin_01}
+                alt="Logo"
+                style={{ objectFit: "cover", width: "100%", height: "300px" }}
+              />
+              <CabinPreview>
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{ border: "0.2rem solid white", width: "20%", borderRadius: "0.5rem", height: "20%" }}
+                  onClick={() => props.SetModalState("preview")}
+                >
+                  <p
+                    style={{ color: "white", textAlign: "center", margin: "auto" }}
+                  >
+                    KATSELE
+                  </p>
+                </div>
+              </CabinPreview>
+            </div>
+            <div className="row mt-2">
+              <div
+                className="col-8"
               >
-                Search
-              </p>
-              <p
-                className="my-0"
-                style={{ color: colors.white, fontSize: "1rem", fontWeight: 400 }}
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1.5rem", fontWeight: 400 }}
+                >
+                  Ekin Mesta
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400 }}
+                >
+                  Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
+                </p>
+              </div>
+              <div
+                className="row col-4 d-flex justify-content-center align-items-center mt-3"
               >
-                1025 CABINS
-              </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  &#11088; 4.9
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  Alkaen 500€
+                </p>
+              </div>
+              <div
+                className="col-12 d-flex mt-2"
+              >
+                <div
+                  className="col-8 d-flex justify-content-start align-items-center"
+                >
+                  <img
+                    src={icon_persons}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                  />
+                  <p
+                    className="my-auto px-2"
+                  >
+                    4 + 2
+                  </p>
+                  <img
+                    src={iconBed}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                  />
+                  <p
+                    className="my-auto px-2"
+                  >
+                    3
+                  </p>
+                  <img
+                    src={iconTub}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                  />
+                  <p
+                    className="my-auto px-2"
+                  >
+                    2
+                  </p>
+                </div>
+                <div
+                  className="col-4 d-flex justify-content-end align-items-center"
+                >
+                  <input type="button" name="" value="VARAA" />
+                </div>
+              </div>
             </div>
           </div>
-        </section>
-        <section
-          className="d-flex justify-content-center align-items-center m-0 py-4 bg-light">
-          <div
-            className="row row-cols-2"
-            style={{ width: "76%" }}
-          >
-
-            <div class="col px-4 py-5">
+          <div class="col px-4 py-5">
+            <div
+              className="position-relative d-flex"
+            >
+              <img
+                src={cabin_02}
+                alt="Logo"
+                style={{ objectFit: "cover", width: "100%", height: "300px" }}
+              />
+              <CabinPreview>
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{ border: "0.2rem solid white", width: "20%", borderRadius: "0.5rem", height: "20%" }}
+                  onClick={() => props.SetModalState("preview")}
+                >
+                  <p
+                    style={{ color: "white", textAlign: "center", margin: "auto" }}
+                  >
+                    KATSELE
+                  </p>
+                </div>
+              </CabinPreview>
+            </div>
+            <div className="row mt-2">
               <div
-                className="position-relative d-flex"
+                className="col-8"
               >
-                <img
-                  src={cabin_01}
-                  alt="Logo"
-                  style={{ objectFit: "cover", width: "100%", height: "300px" }}
-                />
-                <CabinPreview>
-                  <div
-                    className="d-flex justify-content-center align-items-center"
-                    style={{ border: "0.2rem solid white", width: "20%", borderRadius: "0.5rem", height: "20%" }}
-                    onClick={() => props.SetModalState("preview")}
-                  >
-                    <p
-                      style={{ color: "white", textAlign: "center", margin: "auto" }}
-                    >
-                      KATSELE
-                    </p>
-                  </div>
-                </CabinPreview>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1.5rem", fontWeight: 400 }}
+                >
+                  Ekin Mesta
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400 }}
+                >
+                  Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
+                </p>
               </div>
-              <div className="row mt-2">
-                <div
-                  className="col-8"
+              <div
+                className="row col-4 d-flex justify-content-center align-items-center mt-3"
+              >
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
                 >
+                  &#11088; 4.9
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  Alkaen 500€
+                </p>
+              </div>
+              <div
+                className="col-12 d-flex mt-2"
+              >
+                <div
+                  className="col-8 d-flex justify-content-start align-items-center"
+                >
+                  <img
+                    src={icon_persons}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                  />
                   <p
-                    className="col-12 m-0 p-0"
-                    style={{ fontSize: "1.5rem", fontWeight: 400 }}
+                    className="my-auto px-2"
                   >
-                    Ekin Mesta
+                    4 + 2
                   </p>
+                  <img
+                    src={iconBed}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                  />
                   <p
-                    className="col-12 m-0 p-0"
-                    style={{ fontSize: "1rem", fontWeight: 400 }}
+                    className="my-auto px-2"
                   >
-                    Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
+                    3
+                  </p>
+                  <img
+                    src={iconTub}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                  />
+                  <p
+                    className="my-auto px-2"
+                  >
+                    2
                   </p>
                 </div>
                 <div
-                  className="row col-4 d-flex justify-content-center align-items-center mt-3"
+                  className="col-4 d-flex justify-content-end align-items-center"
                 >
-                  <p
-                    className="col-12 m-0 p-0"
-                    style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-                  >
-                    &#11088; 4.9
-                  </p>
-                  <p
-                    className="col-12 m-0 p-0"
-                    style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-                  >
-                    Alkaen 500€
-                  </p>
-                </div>
-                <div
-                  className="col-12 d-flex mt-2"
-                >
-                  <div
-                    className="col-8 d-flex justify-content-start align-items-center"
-                  >
-                    <img
-                      src={icon_persons}
-                      alt="Logo"
-                      style={{ objectFit: "cover", width: "32px", height: "100%", }}
-                    />
-                    <p
-                      className="my-auto px-2"
-                    >
-                      4 + 2
-                    </p>
-                    <img
-                      src={iconBed}
-                      alt="Logo"
-                      style={{ objectFit: "cover", width: "32px", height: "100%", }}
-                    />
-                    <p
-                      className="my-auto px-2"
-                    >
-                      3
-                    </p>
-                    <img
-                      src={iconTub}
-                      alt="Logo"
-                      style={{ objectFit: "cover", width: "32px", height: "100%", }}
-                    />
-                    <p
-                      className="my-auto px-2"
-                    >
-                      2
-                    </p>
-                  </div>
-                  <div
-                    className="col-4 d-flex justify-content-end align-items-center"
-                  >
-                    <input type="button" name="" value="VARAA" />
-                  </div>
+                  <input type="button" name="" value="VARAA" />
                 </div>
               </div>
             </div>
-            <div class="col px-4 py-5">
-              <div
-                className="position-relative d-flex"
-              >
-                <img
-                  src={cabin_02}
-                  alt="Logo"
-                  style={{ objectFit: "cover", width: "100%", height: "300px" }}
-                />
-                <CabinPreview>
-                  <div
-                    className="d-flex justify-content-center align-items-center"
-                    style={{ border: "0.2rem solid white", width: "20%", borderRadius: "0.5rem", height: "20%" }}
-                    onClick={() => props.SetModalState("preview")}
-                  >
-                    <p
-                      style={{ color: "white", textAlign: "center", margin: "auto" }}
-                    >
-                      KATSELE
-                    </p>
-                  </div>
-                </CabinPreview>
-              </div>
-              <div className="row mt-2">
-                <div
-                  className="col-8"
-                >
-                  <p
-                    className="col-12 m-0 p-0"
-                    style={{ fontSize: "1.5rem", fontWeight: 400 }}
-                  >
-                    Ekin Mesta
-                  </p>
-                  <p
-                    className="col-12 m-0 p-0"
-                    style={{ fontSize: "1rem", fontWeight: 400 }}
-                  >
-                    Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
-                  </p>
-                </div>
-                <div
-                  className="row col-4 d-flex justify-content-center align-items-center mt-3"
-                >
-                  <p
-                    className="col-12 m-0 p-0"
-                    style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-                  >
-                    &#11088; 4.9
-                  </p>
-                  <p
-                    className="col-12 m-0 p-0"
-                    style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-                  >
-                    Alkaen 500€
-                  </p>
-                </div>
-                <div
-                  className="col-12 d-flex mt-2"
-                >
-                  <div
-                    className="col-8 d-flex justify-content-start align-items-center"
-                  >
-                    <img
-                      src={icon_persons}
-                      alt="Logo"
-                      style={{ objectFit: "cover", width: "32px", height: "100%", }}
-                    />
-                    <p
-                      className="my-auto px-2"
-                    >
-                      4 + 2
-                    </p>
-                    <img
-                      src={iconBed}
-                      alt="Logo"
-                      style={{ objectFit: "cover", width: "32px", height: "100%", }}
-                    />
-                    <p
-                      className="my-auto px-2"
-                    >
-                      3
-                    </p>
-                    <img
-                      src={iconTub}
-                      alt="Logo"
-                      style={{ objectFit: "cover", width: "32px", height: "100%", }}
-                    />
-                    <p
-                      className="my-auto px-2"
-                    >
-                      2
-                    </p>
-                  </div>
-                  <div
-                    className="col-4 d-flex justify-content-end align-items-center"
-                  >
-                    <input type="button" name="" value="VARAA" />
-                  </div>
-                </div>
-              </div>
-            </div>
+          </div>
 
 
-            {/* <div class="row col px-4 py-5">
+          {/* <div class="row col px-4 py-5">
               <img
                 src={cabin_03}
                 alt="Logo"
@@ -577,9 +574,8 @@ export const ContentModule = (props) => {
             </div> */}
 
 
-          </div>
-        </section>
-      </main>
-    </>
+        </div>
+      </section>
+    </main>
   )
 }
