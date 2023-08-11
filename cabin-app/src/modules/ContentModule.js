@@ -46,13 +46,14 @@ export const ContentModule = (props) => {
             </div>
           </div>
         </section>
-        <div
-          className="row d-flex justify-content-center align-items-center m-0 bg-light">
+        <section
+          className="d-flex justify-content-center align-items-center m-0 py-4 bg-light">
           <div
-            className="row row-cols-2 g-4"
-            style={{ width: "80%" }}
+            className="row row-cols-2"
+            style={{ width: "76%" }}
           >
-            <div class="row col px-4 py-5">
+
+            <div class="col px-4 py-5">
               <div
                 className="position-relative d-flex"
               >
@@ -75,156 +76,188 @@ export const ContentModule = (props) => {
                   </div>
                 </CabinPreview>
               </div>
-              <div
-                className="col-8 mt-2"
-              >
-                <p
-                  className="col-12 m-0 p-0"
-                  style={{ fontSize: "1.5rem", fontWeight: 400 }}
-                >
-                  Ekin Mesta
-                </p>
-                <p
-                  className="col-12 m-0 p-0"
-                  style={{ fontSize: "1rem", fontWeight: 400 }}
-                >
-                  Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
-                </p>
-              </div>
-              <div
-                className="row col-4 d-flex justify-content-center align-items-center mt-3"
-              >
-                <p
-                  className="col-12 m-0 p-0"
-                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-                >
-                  &#11088; 4.9
-                </p>
-                <p
-                  className="col-12 m-0 p-0"
-                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-                >
-                  Alkaen 500€
-                </p>
-              </div>
-              <div
-                className="col-12 d-flex mt-2"
-              >
+              <div className="row mt-2">
                 <div
-                  className="col-8 d-flex justify-content-start align-items-center"
+                  className="col-8"
                 >
-                  <img
-                    src={icon_persons}
-                    alt="Logo"
-                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
-                  />
                   <p
-                    className="my-auto px-2"
+                    className="col-12 m-0 p-0"
+                    style={{ fontSize: "1.5rem", fontWeight: 400 }}
                   >
-                    4 + 2
+                    Ekin Mesta
                   </p>
-                  <img
-                    src={iconBed}
-                    alt="Logo"
-                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
-                  />
                   <p
-                    className="my-auto px-2"
+                    className="col-12 m-0 p-0"
+                    style={{ fontSize: "1rem", fontWeight: 400 }}
                   >
-                    3
-                  </p>
-                  <img
-                    src={iconTub}
-                    alt="Logo"
-                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
-                  />
-                  <p
-                    className="my-auto px-2"
-                  >
-                    2
+                    Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
                   </p>
                 </div>
                 <div
-                  className="col-4 d-flex justify-content-end align-items-center"
+                  className="row col-4 d-flex justify-content-center align-items-center mt-3"
                 >
-                  <input type="button" name="" value="VARAA" />
+                  <p
+                    className="col-12 m-0 p-0"
+                    style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                  >
+                    &#11088; 4.9
+                  </p>
+                  <p
+                    className="col-12 m-0 p-0"
+                    style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                  >
+                    Alkaen 500€
+                  </p>
+                </div>
+                <div
+                  className="col-12 d-flex mt-2"
+                >
+                  <div
+                    className="col-8 d-flex justify-content-start align-items-center"
+                  >
+                    <img
+                      src={icon_persons}
+                      alt="Logo"
+                      style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                    />
+                    <p
+                      className="my-auto px-2"
+                    >
+                      4 + 2
+                    </p>
+                    <img
+                      src={iconBed}
+                      alt="Logo"
+                      style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                    />
+                    <p
+                      className="my-auto px-2"
+                    >
+                      3
+                    </p>
+                    <img
+                      src={iconTub}
+                      alt="Logo"
+                      style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                    />
+                    <p
+                      className="my-auto px-2"
+                    >
+                      2
+                    </p>
+                  </div>
+                  <div
+                    className="col-4 d-flex justify-content-end align-items-center"
+                  >
+                    <input type="button" name="" value="VARAA" />
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="row col px-4 py-5">
-              <img
-                src={cabin_02}
-                alt="Logo"
-                style={{ objectFit: "cover", width: "100%", height: "300px", }}
-              />
+            <div class="col px-4 py-5">
               <div
-                className="col-8 mt-2"
+                className="position-relative d-flex"
               >
-                <p
-                  className="col-12 m-0 p-0"
-                  style={{ fontSize: "1.5rem", fontWeight: 400 }}
-                >
-                  Ekin Mesta
-                </p>
-                <p
-                  className="col-12 m-0 p-0"
-                  style={{ fontSize: "1rem", fontWeight: 400 }}
-                >
-                  Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
-                </p>
+                <img
+                  src={cabin_02}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "100%", height: "300px" }}
+                />
+                <CabinPreview>
+                  <div
+                    className="d-flex justify-content-center align-items-center"
+                    style={{ border: "0.2rem solid white", width: "20%", borderRadius: "0.5rem", height: "20%" }}
+                    onClick={() => props.SetModalState("preview")}
+                  >
+                    <p
+                      style={{ color: "white", textAlign: "center", margin: "auto" }}
+                    >
+                      KATSELE
+                    </p>
+                  </div>
+                </CabinPreview>
               </div>
-              <div
-                className="row col-4 d-flex justify-content-center align-items-center mt-3"
-              >
-                <p
-                  className="col-12 m-0 p-0"
-                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+              <div className="row mt-2">
+                <div
+                  className="col-8"
                 >
-                  &#11088; 4.9
-                </p>
-                <p
-                  className="col-12 m-0 p-0"
-                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                  <p
+                    className="col-12 m-0 p-0"
+                    style={{ fontSize: "1.5rem", fontWeight: 400 }}
+                  >
+                    Ekin Mesta
+                  </p>
+                  <p
+                    className="col-12 m-0 p-0"
+                    style={{ fontSize: "1rem", fontWeight: 400 }}
+                  >
+                    Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
+                  </p>
+                </div>
+                <div
+                  className="row col-4 d-flex justify-content-center align-items-center mt-3"
                 >
-                  Alkaen 500€
-                </p>
-              </div>
-              <div
-                className="col-12 d-flex mt-2"
-              >
-                <img
-                  src={icon_persons}
-                  alt="Logo"
-                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
-                />
-                <p
-                  className="my-auto px-2"
+                  <p
+                    className="col-12 m-0 p-0"
+                    style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                  >
+                    &#11088; 4.9
+                  </p>
+                  <p
+                    className="col-12 m-0 p-0"
+                    style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                  >
+                    Alkaen 500€
+                  </p>
+                </div>
+                <div
+                  className="col-12 d-flex mt-2"
                 >
-                  4 + 2
-                </p>
-                <img
-                  src={iconBed}
-                  alt="Logo"
-                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
-                />
-                <p
-                  className="my-auto px-2"
-                >
-                  3
-                </p>
-                <img
-                  src={iconTub}
-                  alt="Logo"
-                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
-                />
-                <p
-                  className="my-auto px-2"
-                >
-                  2
-                </p>
+                  <div
+                    className="col-8 d-flex justify-content-start align-items-center"
+                  >
+                    <img
+                      src={icon_persons}
+                      alt="Logo"
+                      style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                    />
+                    <p
+                      className="my-auto px-2"
+                    >
+                      4 + 2
+                    </p>
+                    <img
+                      src={iconBed}
+                      alt="Logo"
+                      style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                    />
+                    <p
+                      className="my-auto px-2"
+                    >
+                      3
+                    </p>
+                    <img
+                      src={iconTub}
+                      alt="Logo"
+                      style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                    />
+                    <p
+                      className="my-auto px-2"
+                    >
+                      2
+                    </p>
+                  </div>
+                  <div
+                    className="col-4 d-flex justify-content-end align-items-center"
+                  >
+                    <input type="button" name="" value="VARAA" />
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="row col px-4 py-5">
+
+
+            {/* <div class="row col px-4 py-5">
               <img
                 src={cabin_03}
                 alt="Logo"
@@ -541,11 +574,11 @@ export const ContentModule = (props) => {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
 
 
           </div>
-        </div>
+        </section>
       </main>
     </>
   )

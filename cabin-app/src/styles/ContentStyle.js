@@ -7,7 +7,7 @@ export const CabinPreview = styled.div`
   justify-content: center;
   align-items: center;
   top: 0;
-  width: calc(100% - 1.5rem);
+  width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
