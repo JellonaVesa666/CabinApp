@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { ENDPOINTS, createAPIEndpoint } from "../api";
+import { ModalModule } from "./ModalModule"
 import cabin_01 from "../images/cabin_05.jpg";
 import cabin_02 from "../images/cabin_08.jpg";
 import cabin_03 from "../images/cabin_10.jpg";
@@ -12,7 +13,7 @@ import iconTub from "../images/icon_tub.png";
 import { colors } from "../styles/Colors";
 import { CabinPreview } from "../styles/ContentStyle";
 
-export const ContentModule = () => {
+export const ContentModule = (props) => {
 
   const GetCabins = () => {
     createAPIEndpoint(ENDPOINTS.cabin)
@@ -21,98 +22,175 @@ export const ContentModule = () => {
       .catch(error => console.log(error));
   }
 
-  useEffect(() => {
-    //GetCabins();
-  }, []);
-
   return (
-    <main>
-      <section
-        class="py-3 text-center container"
-        style={{ height: "540px" }}
-      >
-        <div class="row">
-          <div class="col-lg-6 col-md-8 mx-auto">
-            <p
-              className="my-0"
-              style={{ color: colors.white, fontSize: "2rem", fontWeight: 400 }}
-            >
-              Search
-            </p>
-            <p
-              className="my-0"
-              style={{ color: colors.white, fontSize: "1rem", fontWeight: 400 }}
-            >
-              1025 CABINS
-            </p>
-          </div>
-        </div>
-      </section>
-      <div
-        className="row d-flex justify-content-center align-items-center m-0 bg-light">
-        <div
-          className="row row-cols-2 g-4"
-          style={{ width: "80%" }}
+    <>
+      <main>
+        <section
+          class="py-3 text-center container"
+          style={{ height: "540px" }}
         >
-          <div class="row col px-4 py-5">
-            <div
-              className="position-relative d-flex"
-            >
-              <img
-                src={cabin_01}
-                alt="Logo"
-                style={{ objectFit: "cover", width: "100%", height: "300px" }}
-              />
-              <CabinPreview>
-                <div
-                  className="d-flex justify-content-center align-items-center"
-                  style={{border: "0.2rem solid white", width: "20%", borderRadius: "0.5rem", height: "20%"}}
-                >
-                  <p
-                    style={{ color: "white", textAlign: "center", margin: "auto" }}
+          <div class="row">
+            <div class="col-lg-6 col-md-8 mx-auto">
+              <p
+                className="my-0"
+                style={{ color: colors.white, fontSize: "2rem", fontWeight: 400 }}
+              >
+                Search
+              </p>
+              <p
+                className="my-0"
+                style={{ color: colors.white, fontSize: "1rem", fontWeight: 400 }}
+              >
+                1025 CABINS
+              </p>
+            </div>
+          </div>
+        </section>
+        <div
+          className="row d-flex justify-content-center align-items-center m-0 bg-light">
+          <div
+            className="row row-cols-2 g-4"
+            style={{ width: "80%" }}
+          >
+            <div class="row col px-4 py-5">
+              <div
+                className="position-relative d-flex"
+              >
+                <img
+                  src={cabin_01}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "100%", height: "300px" }}
+                />
+                <CabinPreview>
+                  <div
+                    className="d-flex justify-content-center align-items-center"
+                    style={{ border: "0.2rem solid white", width: "20%", borderRadius: "0.5rem", height: "20%" }}
+                    onClick={() => props.SetModalState("preview")}
                   >
-                    KATSELE
+                    <p
+                      style={{ color: "white", textAlign: "center", margin: "auto" }}
+                    >
+                      KATSELE
+                    </p>
+                  </div>
+                </CabinPreview>
+              </div>
+              <div
+                className="col-8 mt-2"
+              >
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1.5rem", fontWeight: 400 }}
+                >
+                  Ekin Mesta
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400 }}
+                >
+                  Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
+                </p>
+              </div>
+              <div
+                className="row col-4 d-flex justify-content-center align-items-center mt-3"
+              >
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  &#11088; 4.9
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  Alkaen 500€
+                </p>
+              </div>
+              <div
+                className="col-12 d-flex mt-2"
+              >
+                <div
+                  className="col-8 d-flex justify-content-start align-items-center"
+                >
+                  <img
+                    src={icon_persons}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                  />
+                  <p
+                    className="my-auto px-2"
+                  >
+                    4 + 2
+                  </p>
+                  <img
+                    src={iconBed}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                  />
+                  <p
+                    className="my-auto px-2"
+                  >
+                    3
+                  </p>
+                  <img
+                    src={iconTub}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                  />
+                  <p
+                    className="my-auto px-2"
+                  >
+                    2
                   </p>
                 </div>
-              </CabinPreview>
+                <div
+                  className="col-4 d-flex justify-content-end align-items-center"
+                >
+                  <input type="button" name="" value="VARAA" />
+                </div>
+              </div>
             </div>
-            <div
-              className="col-8 mt-2"
-            >
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1.5rem", fontWeight: 400 }}
-              >
-                Ekin Mesta
-              </p>
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400 }}
-              >
-                Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
-              </p>
-            </div>
-            <div
-              className="row col-4 d-flex justify-content-center align-items-center mt-3"
-            >
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-              >
-                &#11088; 4.9
-              </p>
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-              >
-                Alkaen 500€
-              </p>
-            </div>
-            <div
-              className="col-12 d-flex mt-2"
-            >
+            <div class="row col px-4 py-5">
+              <img
+                src={cabin_02}
+                alt="Logo"
+                style={{ objectFit: "cover", width: "100%", height: "300px", }}
+              />
               <div
-                className="col-8 d-flex justify-content-start align-items-center"
+                className="col-8 mt-2"
+              >
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1.5rem", fontWeight: 400 }}
+                >
+                  Ekin Mesta
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400 }}
+                >
+                  Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
+                </p>
+              </div>
+              <div
+                className="row col-4 d-flex justify-content-center align-items-center mt-3"
+              >
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  &#11088; 4.9
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  Alkaen 500€
+                </p>
+              </div>
+              <div
+                className="col-12 d-flex mt-2"
               >
                 <img
                   src={icon_persons}
@@ -145,408 +223,330 @@ export const ContentModule = () => {
                   2
                 </p>
               </div>
+            </div>
+            <div class="row col px-4 py-5">
+              <img
+                src={cabin_03}
+                alt="Logo"
+                style={{ objectFit: "cover", width: "100%", height: "300px", }}
+              />
               <div
-                className="col-4 d-flex justify-content-end align-items-center"
+                className="col-8 mt-2"
               >
-                <input type="button" name="" value="VARAA" />
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1.5rem", fontWeight: 400 }}
+                >
+                  Ekin Mesta
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400 }}
+                >
+                  Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
+                </p>
+              </div>
+              <div
+                className="row col-4 d-flex justify-content-center align-items-center mt-3"
+              >
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  &#11088; 4.9
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  Alkaen 500€
+                </p>
+              </div>
+              <div
+                className="col-12 d-flex mt-2"
+              >
+                <img
+                  src={icon_persons}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
+                >
+                  4 + 2
+                </p>
+                <img
+                  src={iconBed}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
+                >
+                  3
+                </p>
+                <img
+                  src={iconTub}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
+                >
+                  2
+                </p>
               </div>
             </div>
-          </div>
-          <div class="row col px-4 py-5">
-            <img
-              src={cabin_02}
-              alt="Logo"
-              style={{ objectFit: "cover", width: "100%", height: "300px", }}
-            />
-            <div
-              className="col-8 mt-2"
-            >
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1.5rem", fontWeight: 400 }}
-              >
-                Ekin Mesta
-              </p>
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400 }}
-              >
-                Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
-              </p>
-            </div>
-            <div
-              className="row col-4 d-flex justify-content-center align-items-center mt-3"
-            >
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-              >
-                &#11088; 4.9
-              </p>
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-              >
-                Alkaen 500€
-              </p>
-            </div>
-            <div
-              className="col-12 d-flex mt-2"
-            >
-              <img
-                src={icon_persons}
-                alt="Logo"
-                style={{ objectFit: "cover", width: "32px", height: "100%", }}
-              />
-              <p
-                className="my-auto px-2"
-              >
-                4 + 2
-              </p>
-              <img
-                src={iconBed}
-                alt="Logo"
-                style={{ objectFit: "cover", width: "32px", height: "100%", }}
-              />
-              <p
-                className="my-auto px-2"
-              >
-                3
-              </p>
-              <img
-                src={iconTub}
-                alt="Logo"
-                style={{ objectFit: "cover", width: "32px", height: "100%", }}
-              />
-              <p
-                className="my-auto px-2"
-              >
-                2
-              </p>
-            </div>
-          </div>
-          <div class="row col px-4 py-5">
-            <img
-              src={cabin_03}
-              alt="Logo"
-              style={{ objectFit: "cover", width: "100%", height: "300px", }}
-            />
-            <div
-              className="col-8 mt-2"
-            >
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1.5rem", fontWeight: 400 }}
-              >
-                Ekin Mesta
-              </p>
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400 }}
-              >
-                Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
-              </p>
-            </div>
-            <div
-              className="row col-4 d-flex justify-content-center align-items-center mt-3"
-            >
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-              >
-                &#11088; 4.9
-              </p>
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-              >
-                Alkaen 500€
-              </p>
-            </div>
-            <div
-              className="col-12 d-flex mt-2"
-            >
-              <img
-                src={icon_persons}
-                alt="Logo"
-                style={{ objectFit: "cover", width: "32px", height: "100%", }}
-              />
-              <p
-                className="my-auto px-2"
-              >
-                4 + 2
-              </p>
-              <img
-                src={iconBed}
-                alt="Logo"
-                style={{ objectFit: "cover", width: "32px", height: "100%", }}
-              />
-              <p
-                className="my-auto px-2"
-              >
-                3
-              </p>
-              <img
-                src={iconTub}
-                alt="Logo"
-                style={{ objectFit: "cover", width: "32px", height: "100%", }}
-              />
-              <p
-                className="my-auto px-2"
-              >
-                2
-              </p>
-            </div>
-          </div>
 
 
-          <div class="row col px-4 py-5">
-            <img
-              src={cabin_04}
-              alt="Logo"
-              style={{ objectFit: "cover", width: "100%", height: "300px", }}
-            />
-            <div
-              className="col-8 mt-2"
-            >
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1.5rem", fontWeight: 400 }}
-              >
-                Ekin Mesta
-              </p>
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400 }}
-              >
-                Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
-              </p>
-            </div>
-            <div
-              className="row col-4 d-flex justify-content-center align-items-center mt-3"
-            >
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-              >
-                &#11088; 4.9
-              </p>
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-              >
-                Alkaen 500€
-              </p>
-            </div>
-            <div
-              className="col-12 d-flex mt-2"
-            >
+            <div class="row col px-4 py-5">
               <img
-                src={icon_persons}
+                src={cabin_04}
                 alt="Logo"
-                style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                style={{ objectFit: "cover", width: "100%", height: "300px", }}
               />
-              <p
-                className="my-auto px-2"
+              <div
+                className="col-8 mt-2"
               >
-                4 + 2
-              </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1.5rem", fontWeight: 400 }}
+                >
+                  Ekin Mesta
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400 }}
+                >
+                  Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
+                </p>
+              </div>
+              <div
+                className="row col-4 d-flex justify-content-center align-items-center mt-3"
+              >
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  &#11088; 4.9
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  Alkaen 500€
+                </p>
+              </div>
+              <div
+                className="col-12 d-flex mt-2"
+              >
+                <img
+                  src={icon_persons}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
+                >
+                  4 + 2
+                </p>
+                <img
+                  src={iconBed}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
+                >
+                  3
+                </p>
+                <img
+                  src={iconTub}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
+                >
+                  2
+                </p>
+              </div>
+            </div>
+            <div class="row col px-4 py-5">
               <img
-                src={iconBed}
+                src={cabin_05}
                 alt="Logo"
-                style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                style={{ objectFit: "cover", width: "100%", height: "300px", }}
               />
-              <p
-                className="my-auto px-2"
+              <div
+                className="col-8 mt-2"
               >
-                3
-              </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1.5rem", fontWeight: 400 }}
+                >
+                  Ekin Mesta
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400 }}
+                >
+                  Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
+                </p>
+              </div>
+              <div
+                className="row col-4 d-flex justify-content-center align-items-center mt-3"
+              >
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  &#11088; 4.9
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  Alkaen 500€
+                </p>
+              </div>
+              <div
+                className="col-12 d-flex mt-2"
+              >
+                <div
+                  className="col-2 d-flex justify-content-start align-items-center"
+                >
+                  <img
+                    src={icon_persons}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
+                  />
+                  <p
+                    className="m-auto"
+                  >
+                    4 + 2
+                  </p>
+                </div>
+                <div
+                  className="col-2 d-flex justify-content-start align-items-center"
+                >
+                  <img
+                    src={icon_persons}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
+                  />
+                  <p
+                    className="m-auto"
+                  >
+                    4 + 2
+                  </p>
+                </div>
+                <div
+                  className="col-2 d-flex justify-content-start align-items-center"
+                >
+                  <img
+                    src={icon_persons}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
+                  />
+                  <p
+                    className="m-auto"
+                  >
+                    4 + 2
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="row col px-4 py-5">
               <img
-                src={iconTub}
+                src={cabin_06}
                 alt="Logo"
-                style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                style={{ objectFit: "cover", width: "100%", height: "300px", }}
               />
-              <p
-                className="my-auto px-2"
-              >
-                2
-              </p>
-            </div>
-          </div>
-          <div class="row col px-4 py-5">
-            <img
-              src={cabin_05}
-              alt="Logo"
-              style={{ objectFit: "cover", width: "100%", height: "300px", }}
-            />
-            <div
-              className="col-8 mt-2"
-            >
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1.5rem", fontWeight: 400 }}
-              >
-                Ekin Mesta
-              </p>
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400 }}
-              >
-                Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
-              </p>
-            </div>
-            <div
-              className="row col-4 d-flex justify-content-center align-items-center mt-3"
-            >
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-              >
-                &#11088; 4.9
-              </p>
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-              >
-                Alkaen 500€
-              </p>
-            </div>
-            <div
-              className="col-12 d-flex mt-2"
-            >
               <div
-                className="col-2 d-flex justify-content-start align-items-center"
+                className="col-8 mt-2"
               >
-                <img
-                  src={icon_persons}
-                  alt="Logo"
-                  style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                />
                 <p
-                  className="m-auto"
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1.5rem", fontWeight: 400 }}
                 >
-                  4 + 2
+                  Ekin Mesta
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400 }}
+                >
+                  Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
                 </p>
               </div>
               <div
-                className="col-2 d-flex justify-content-start align-items-center"
+                className="row col-4 d-flex justify-content-center align-items-center mt-3"
               >
-                <img
-                  src={icon_persons}
-                  alt="Logo"
-                  style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                />
                 <p
-                  className="m-auto"
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
                 >
-                  4 + 2
+                  &#11088; 4.9
+                </p>
+                <p
+                  className="col-12 m-0 p-0"
+                  style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+                >
+                  Alkaen 500€
                 </p>
               </div>
               <div
-                className="col-2 d-flex justify-content-start align-items-center"
+                className="col-12 d-flex mt-2"
               >
-                <img
-                  src={icon_persons}
-                  alt="Logo"
-                  style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                />
-                <p
-                  className="m-auto"
+                <div
+                  className="col-2 d-flex justify-content-start align-items-center"
                 >
-                  4 + 2
-                </p>
+                  <img
+                    src={icon_persons}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
+                  />
+                  <p
+                    className="m-auto"
+                  >
+                    4 + 2
+                  </p>
+                </div>
+                <div
+                  className="col-2 d-flex justify-content-start align-items-center"
+                >
+                  <img
+                    src={icon_persons}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
+                  />
+                  <p
+                    className="m-auto"
+                  >
+                    4 + 2
+                  </p>
+                </div>
+                <div
+                  className="col-2 d-flex justify-content-start align-items-center"
+                >
+                  <img
+                    src={icon_persons}
+                    alt="Logo"
+                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
+                  />
+                  <p
+                    className="m-auto"
+                  >
+                    4 + 2
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row col px-4 py-5">
-            <img
-              src={cabin_06}
-              alt="Logo"
-              style={{ objectFit: "cover", width: "100%", height: "300px", }}
-            />
-            <div
-              className="col-8 mt-2"
-            >
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1.5rem", fontWeight: 400 }}
-              >
-                Ekin Mesta
-              </p>
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400 }}
-              >
-                Pohjois-Suomi / Oulu, Pohjois-Pohjanmaa
-              </p>
-            </div>
-            <div
-              className="row col-4 d-flex justify-content-center align-items-center mt-3"
-            >
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-              >
-                &#11088; 4.9
-              </p>
-              <p
-                className="col-12 m-0 p-0"
-                style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-              >
-                Alkaen 500€
-              </p>
-            </div>
-            <div
-              className="col-12 d-flex mt-2"
-            >
-              <div
-                className="col-2 d-flex justify-content-start align-items-center"
-              >
-                <img
-                  src={icon_persons}
-                  alt="Logo"
-                  style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                />
-                <p
-                  className="m-auto"
-                >
-                  4 + 2
-                </p>
-              </div>
-              <div
-                className="col-2 d-flex justify-content-start align-items-center"
-              >
-                <img
-                  src={icon_persons}
-                  alt="Logo"
-                  style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                />
-                <p
-                  className="m-auto"
-                >
-                  4 + 2
-                </p>
-              </div>
-              <div
-                className="col-2 d-flex justify-content-start align-items-center"
-              >
-                <img
-                  src={icon_persons}
-                  alt="Logo"
-                  style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                />
-                <p
-                  className="m-auto"
-                >
-                  4 + 2
-                </p>
-              </div>
-            </div>
-          </div>
 
 
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   )
 }

@@ -16,8 +16,7 @@ export const ModalModule = (props) => {
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
           if (event.target.id !== "modalBtn") {
-            props.SetModalActive(false);
-            props.SetSelectedFilter("");
+              props.SetModalState("");
           }
         }
       }
@@ -42,66 +41,75 @@ export const ModalModule = (props) => {
     })
   }
 
-  if (props.filter !== "dynamic") {
-    // Add Counter etc. modules under one if statement
+  console.log(props);
+
+  if (props.state === "searchDate") {
     return (
       <ModalContent
         ref={wrapperRef}
         width={"auto"}
       >
-        {props.filter === "searchDate" &&
-          <CalendarModule
-            defaultValue={props.searchFilters[props.filter].defaultValue}
-            value={props.searchFilters[props.filter].value}
-            reservations={props.searchFilters[props.filter].reservations}
-            count={props.searchFilters[props.filter].count}
-            SetSearchFilters={props.SetSearchFilters}
-          />
-        }
-        {props.filter === "persons" &&
-          <>
-            {Object.keys(props.searchFilters).map(item => {
-              if (item === props.filter) {
-                return (
-                  <Counter
-                    key={item}
-                    language={language}
-                    data={props.searchFilters}
-                    index1={props.filter}
-                    i={item}
-                    SetSearchFilters={props.SetSearchFilters}
-                  />
-                )
-              }
-              return null;
-            })
-            }
-          </>
-        }
-        {props.filter === "rooms" &&
-          <>
-            {Object.keys(props.searchFilters).map(item => {
-              if (item === props.filter) {
-                return (
-                  <Counter
-                    key={item}
-                    language={language}
-                    data={props.searchFilters}
-                    index1={props.filter}
-                    i={item}
-                    SetSearchFilters={props.SetSearchFilters}
-                  />
-                )
-              }
-              return null;
-            })
-            }
-          </>
+        <CalendarModule
+          defaultValue={props.searchFilters[props.state].defaultValue}
+          value={props.searchFilters[props.state].value}
+          reservations={props.searchFilters[props.state].reservations}
+          count={props.searchFilters[props.state].count}
+          SetSearchFilters={props.SetSearchFilters}
+        />
+      </ModalContent>
+    )
+  }
+  else if (props.state === "persons") {
+    return (
+      <ModalContent
+        ref={wrapperRef}
+        width={"auto"}
+      >
+        {Object.keys(props.searchFilters).map(item => {
+          if (item === props.state) {
+            return (
+              <Counter
+                key={item}
+                language={language}
+                data={props.searchFilters}
+                index1={props.state}
+                i={item}
+                SetSearchFilters={props.SetSearchFilters}
+              />
+            )
+          }
+          return null;
+        })
         }
       </ModalContent>
     )
   }
-  else {
+  else if (props.state === "rooms") {
+    return (
+      <ModalContent
+        ref={wrapperRef}
+        width={"auto"}
+      >
+        {Object.keys(props.searchFilters).map(item => {
+          if (item === props.state) {
+            return (
+              <Counter
+                key={item}
+                language={language}
+                data={props.searchFilters}
+                index1={props.state}
+                i={item}
+                SetSearchFilters={props.SetSearchFilters}
+              />
+            )
+          }
+          return null;
+        })
+        }
+      </ModalContent>
+    )
+  }
+  else if (props.state === "advanced") {
     return (
       <ModalContent
         className="secondaryColor"
@@ -137,7 +145,22 @@ export const ModalModule = (props) => {
           return null;
         })}
         <input type="button" value="RESET" onClick={() => ResetSearchFilters()} />
-        <input type="button" value="CLOSE" onClick={() => props.SetModalActive(false)} />
+        <input type="button" value="CLOSE" onClick={() => props.SetModalState("")} />
+      </ModalContent>
+    )
+  }
+  else if (props.state === "preview") {
+    console.log("true")
+    return (
+      <ModalContent
+        ref={wrapperRef}
+        width={"auto"}
+      >
+        <div className="col-12 row flex-wrap d-flex justify-content-center align-items-center">
+          aldöaldaldöäaldäöaläödlaäöaldäö
+        </div>
+        <input type="button" value="RESET" onClick={() => ResetSearchFilters()} />
+        <input type="button" value="CLOSE" onClick={() => props.SetModalState("")} />
       </ModalContent>
     )
   }
