@@ -91,7 +91,7 @@ function App() {
                 className="col-12 d-flex mt-2"
               >
                 <div
-                  className="col-2 d-flex justify-content-start align-items-center"
+                  className="col-8 d-flex justify-content-start align-items-center"
                 >
                   <img
                     src={icon_persons}
@@ -99,38 +99,35 @@ function App() {
                     style={{ objectFit: "cover", width: "32px", height: "100%", }}
                   />
                   <p
-                    className="my-auto"
+                    className="my-auto px-2"
                   >
                     4 + 2
                   </p>
-                </div>
-                <div
-                  className="col-2 d-flex justify-content-start align-items-center"
-                >
                   <img
                     src={iconBed}
                     alt="Logo"
                     style={{ objectFit: "cover", width: "32px", height: "100%", }}
                   />
                   <p
-                    className="my-auto"
+                    className="my-auto px-2"
                   >
                     3
                   </p>
-                </div>
-                <div
-                  className="col-1 d-flex justify-content-start align-items-center"
-                >
                   <img
                     src={iconTub}
                     alt="Logo"
                     style={{ objectFit: "cover", width: "32px", height: "100%", }}
                   />
                   <p
-                    className="my-auto"
+                    className="my-auto px-2"
                   >
                     2
                   </p>
+                </div>
+                <div
+                  className="col-4 d-flex justify-content-end align-items-center"
+                >
+                  <input type="button" name="" value="VARAA"/>
                 </div>
               </div>
             </div>
@@ -175,48 +172,36 @@ function App() {
               <div
                 className="col-12 d-flex mt-2"
               >
-                <div
-                  className="col-2 d-flex justify-content-start align-items-center"
+                <img
+                  src={icon_persons}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
                 >
-                  <img
-                    src={icon_persons}
-                    alt="Logo"
-                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                  />
-                  <p
-                    className="m-auto"
-                  >
-                    4 + 2
-                  </p>
-                </div>
-                <div
-                  className="col-2 d-flex justify-content-start align-items-center"
+                  4 + 2
+                </p>
+                <img
+                  src={iconBed}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
                 >
-                  <img
-                    src={icon_persons}
-                    alt="Logo"
-                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                  />
-                  <p
-                    className="m-auto"
-                  >
-                    4 + 2
-                  </p>
-                </div>
-                <div
-                  className="col-2 d-flex justify-content-start align-items-center"
+                  3
+                </p>
+                <img
+                  src={iconTub}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
                 >
-                  <img
-                    src={icon_persons}
-                    alt="Logo"
-                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                  />
-                  <p
-                    className="m-auto"
-                  >
-                    4 + 2
-                  </p>
-                </div>
+                  2
+                </p>
               </div>
             </div>
             <div class="row col px-4 py-5">
@@ -260,48 +245,36 @@ function App() {
               <div
                 className="col-12 d-flex mt-2"
               >
-                <div
-                  className="col-2 d-flex justify-content-start align-items-center"
+                <img
+                  src={icon_persons}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
                 >
-                  <img
-                    src={icon_persons}
-                    alt="Logo"
-                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                  />
-                  <p
-                    className="m-auto"
-                  >
-                    4 + 2
-                  </p>
-                </div>
-                <div
-                  className="col-2 d-flex justify-content-start align-items-center"
+                  4 + 2
+                </p>
+                <img
+                  src={iconBed}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
                 >
-                  <img
-                    src={icon_persons}
-                    alt="Logo"
-                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                  />
-                  <p
-                    className="m-auto"
-                  >
-                    4 + 2
-                  </p>
-                </div>
-                <div
-                  className="col-2 d-flex justify-content-start align-items-center"
+                  3
+                </p>
+                <img
+                  src={iconTub}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
                 >
-                  <img
-                    src={icon_persons}
-                    alt="Logo"
-                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                  />
-                  <p
-                    className="m-auto"
-                  >
-                    4 + 2
-                  </p>
-                </div>
+                  2
+                </p>
               </div>
             </div>
 
@@ -347,48 +320,36 @@ function App() {
               <div
                 className="col-12 d-flex mt-2"
               >
-                <div
-                  className="col-2 d-flex justify-content-start align-items-center"
+                <img
+                  src={icon_persons}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
                 >
-                  <img
-                    src={icon_persons}
-                    alt="Logo"
-                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                  />
-                  <p
-                    className="m-auto"
-                  >
-                    4 + 2
-                  </p>
-                </div>
-                <div
-                  className="col-2 d-flex justify-content-start align-items-center"
+                  4 + 2
+                </p>
+                <img
+                  src={iconBed}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
                 >
-                  <img
-                    src={icon_persons}
-                    alt="Logo"
-                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                  />
-                  <p
-                    className="m-auto"
-                  >
-                    4 + 2
-                  </p>
-                </div>
-                <div
-                  className="col-2 d-flex justify-content-start align-items-center"
+                  3
+                </p>
+                <img
+                  src={iconTub}
+                  alt="Logo"
+                  style={{ objectFit: "cover", width: "32px", height: "100%", }}
+                />
+                <p
+                  className="my-auto px-2"
                 >
-                  <img
-                    src={icon_persons}
-                    alt="Logo"
-                    style={{ objectFit: "cover", width: "30px", height: "100%", }}
-                  />
-                  <p
-                    className="m-auto"
-                  >
-                    4 + 2
-                  </p>
-                </div>
+                  2
+                </p>
               </div>
             </div>
             <div class="row col px-4 py-5">
