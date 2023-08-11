@@ -10,6 +10,7 @@ import icon_persons from "../images/icon_persons.png";
 import iconBed from "../images/icon_bed.png";
 import iconTub from "../images/icon_tub.png";
 import { colors } from "../styles/Colors";
+import { CabinPreview } from "../styles/ContentStyle";
 
 export const ContentModule = () => {
 
@@ -62,16 +63,18 @@ export const ContentModule = () => {
                 alt="Logo"
                 style={{ objectFit: "cover", width: "100%", height: "300px" }}
               />
-              <div
-                className="d-flex justify-content-center align-items-center"
-                style={{ position: "absolute", top: "0", width: "calc(((100% - 1.5rem)", height: "100%", backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-              >
-                <p
-                  style={{ color: "white" }}
+              <CabinPreview>
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{border: "0.2rem solid white", width: "20%", borderRadius: "0.5rem", height: "20%"}}
                 >
-                  KATSELE
-                </p>
-              </div>
+                  <p
+                    style={{ color: "white", textAlign: "center", margin: "auto" }}
+                  >
+                    KATSELE
+                  </p>
+                </div>
+              </CabinPreview>
             </div>
             <div
               className="col-8 mt-2"
