@@ -282,7 +282,6 @@ export const CheckBox = (props) => {
                   className={`d-flex col-${result.length <= 3 ? (12 / result.length) : 12} justify-content-start my-1`}
                 >
                   <CheckInput
-                    className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
                     type="checkbox"
                     color={props.color}
                     checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
@@ -317,7 +316,6 @@ export const CheckBox = (props) => {
                   className={`d-flex col-${12 / props.data[props.i].rows} justify-content-start my-1`}
                 >
                   <CheckInput
-                    className={props.data[props.i].errors && props.data[props.i].errors.length > 0 ? "invalid" : ""}
                     type="checkbox"
                     color={props.color}
                     checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
@@ -349,7 +347,6 @@ export const Input = (props) => {
       margintop={props.margintop}
       marginbottom={props.marginbottom}
       placeholder={props.placeholder}
-      className={props.data[props.i]?.errors?.length > 0 ? "invalid" : ""}
       onChange={(event) => props.changeState(event.target.value)}
       onClick={props.onClick}
     />
@@ -363,7 +360,6 @@ export const PasswordField = (props) => {
       <InputStyle
         width={props.width}
         height={props.height}
-        className={props.data[props.i].errors.length > 0 ? "invalid" : ""}
         //type={showPassword ? "text" : props.data[props.i].type}
         value={props.data[props.i].value}
         onChange={(event) => props.changeState(event)}

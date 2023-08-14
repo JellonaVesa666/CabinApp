@@ -49,6 +49,33 @@ export const cabinData = {
     },
     2: {
       src: "../images/icon_preview"
+    },
+    3: {
+      src: "../images/icon_preview"
+    },
+    4: {
+      src: "../images/icon_preview"
+    },
+    5: {
+      src: "../images/icon_preview"
+    },
+    6: {
+      src: "../images/icon_preview"
+    },
+    7: {
+      src: "../images/icon_preview"
+    },
+    8: {
+      src: "../images/icon_preview"
+    },
+    9: {
+      src: "../images/icon_preview"
+    },
+    10: {
+      src: "../images/icon_preview"
+    },
+    11: {
+      src: "../images/icon_preview"
     }
   }
 }

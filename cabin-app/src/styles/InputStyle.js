@@ -209,12 +209,6 @@ export const InputStyle = styled.input.attrs((props) => ({
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }
-  &.invalid {
-    border: ${props => (props.border)};
-  }
-  &:focus {
-    border: ${props => (props.border)};
-  }
 `
 
 // Check Input
