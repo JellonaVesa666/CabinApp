@@ -4,6 +4,7 @@ import { RangeSlider, CheckBox, Counter } from "./InputModules";
 import { CalendarModule } from "./CalendarModule";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
+import { CabinCardModule } from "./CabinCardModule";
 
 export const ModalModule = (props) => {
 
@@ -16,7 +17,7 @@ export const ModalModule = (props) => {
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
           if (event.target.id !== "modalBtn") {
-              props.SetModalState("");
+            props.SetModalState("");
           }
         }
       }
@@ -150,17 +151,14 @@ export const ModalModule = (props) => {
     )
   }
   else if (props.state === "preview") {
-    console.log("true")
     return (
       <ModalContent
         ref={wrapperRef}
-        width={"auto"}
+        width={"50%"}
       >
-        <div className="col-12 row flex-wrap d-flex justify-content-center align-items-center">
-          aldöaldaldöäaldäöaläödlaäöaldäö
-        </div>
-        <input type="button" value="RESET" onClick={() => ResetSearchFilters()} />
-        <input type="button" value="CLOSE" onClick={() => props.SetModalState("")} />
+        <CabinCardModule />
+{/*         <input type="button" value="RESET" onClick={() => ResetSearchFilters()} />
+        <input type="button" value="CLOSE" onClick={() => props.SetModalState("")} /> */}
       </ModalContent>
     )
   }
