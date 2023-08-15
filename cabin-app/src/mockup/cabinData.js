@@ -12,7 +12,7 @@ export const cabinFeatures = {
     fi: "liesi",
   },
   4: {
-    fi:"takka",
+    fi: "takka",
   },
   5: {
     fi: "sähkösauna",
@@ -99,7 +99,7 @@ export const cabinFeatures = {
     fi: "laituri",
   },
   33: {
-    fi: "vene",
+    fi: "soutuvene",
   },
   34: {
     fi: "kanootti / kajakki",
@@ -125,8 +125,7 @@ export const cabinData = {
   discountMultiplier: 150,
   name: "Ekin Mesta",
   location: "Etelä-Suomi / Vihti, Uusimaa",
-  features: `Pinnasänky(Pyynnöstä), Astianpesukone, Pakastin, Syöttötuoli, Sauna, BBQ-Grilli, Soutuvene
-    , Kahvinkeitin, Takka, Jääkaappi, Mikroaaltouuni, TV, Yksityinen ranta`,
+  features: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
   description: `Mökin tilavat makuuhuoneet on sisustettu rauhallisesti ja sopusoinnussa hirsiseinien kanssa.
     Täällä nukut hyvät yöunet ja heräät virkeänä aamuun. Hirsimökissä on upea sauna, jonka järeät lauteet
     on tehty tervaleppä lankusta ja kokonaisuuden kruunaa Veto -kiuas.

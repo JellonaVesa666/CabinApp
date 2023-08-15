@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { cabinData } from "../mockup/cabinData";
+import { cabinData, cabinFeatures } from "../mockup/cabinData";
 import checked from "../images/icon_checked.png";
 import restricted from "../images/icon_restricted.png";
 
@@ -242,51 +242,27 @@ export const CabinCardModule = () => {
             Varustelu
           </p>
           <div className="row row-cols-3 justify-content-center align-items-center">
-            <div
-              className="col d-flex"
-            >
-              <img
-                src={checked}
-                alt=""
-                style={{ objectFit: "cover", width: "26px", height: "100%" }}
-              />
-              <p
-                className="px-3"
-                style={{ fontSize: "1", fontWeight: 400, textAlign: "center" }}
-              >
-                Varustelu
-              </p>
-            </div>
-            <div
-              className="col d-flex"
-            >
-              <img
-                src={restricted}
-                alt=""
-                style={{ objectFit: "cover", width: "26px", height: "100%" }}
-              />
-              <p
-                className="px-3"
-                style={{ fontSize: "1", fontWeight: 400, textAlign: "center" }}
-              >
-                Varustelu
-              </p>
-            </div>
-            <div
-              className="col d-flex"
-            >
-              <img
-                src={checked}
-                alt=""
-                style={{ objectFit: "cover", width: "26px", height: "100%" }}
-              />
-              <p
-                className="px-3"
-                style={{ fontSize: "1", fontWeight: 400, textAlign: "center" }}
-              >
-                Varustelu
-              </p>
-            </div>
+            {
+              Object.keys(cabinFeatures).map((item) => {
+                return (
+                  <div
+                    className="col d-flex"
+                  >
+                    <img
+                      src={cabinData["features"].includes(Number(item)) ? checked : restricted}
+                      alt=""
+                      style={{ objectFit: "cover", width: "26px", height: "100%" }}
+                    />
+                    <p
+                      className="px-3"
+                      style={{ fontSize: "1", fontWeight: 400, textAlign: "center" }}
+                    >
+                      {cabinFeatures[item]["fi"]}
+                    </p>
+                  </div>
+                )
+              })
+            }
           </div>
         </div>
       </div>
