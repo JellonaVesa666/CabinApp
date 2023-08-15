@@ -1,3 +1,114 @@
+export const cabinFeatures = {
+  0: {
+    fi: "astianpesukone",
+  },
+  1: {
+    fi: "mikroaaltouuni",
+  },
+  2: {
+    fi: "uuni",
+  },
+  3: {
+    fi: "liesi",
+  },
+  4: {
+    fi:"takka",
+  },
+  5: {
+    fi: "sähkösauna",
+  },
+  6: {
+    fi: "savusauna",
+  },
+  7: {
+    fi: "puusauna",
+  },
+  8: {
+    fi: "kuivausrumpu",
+  },
+  9: {
+    fi: "kuivauskaappi",
+  },
+  10: {
+    fi: "jääkaappi",
+  },
+  11: {
+    fi: "pakastin",
+  },
+  12: {
+    fi: "sisä-wc",
+  },
+  13: {
+    fi: "ulko-wc",
+  },
+  14: {
+    fi: "televisio",
+  },
+  15: {
+    fi: "internet",
+  },
+  16: {
+    fi: "pyykinpesukone",
+  },
+  17: {
+    fi: "kahvinkeitin",
+  },
+  18: {
+    fi: "ilmanlämpöpumppu",
+  },
+  19: {
+    fi: "syöttötuoli",
+  },
+  20: {
+    fi: "vauvasänky",
+  },
+  21: {
+    fi: "parvi",
+  },
+  22: {
+    fi: "suihku",
+  },
+  23: {
+    fi: "ulkoporeallas",
+  },
+  24: {
+    fi: "poreamme",
+  },
+  25: {
+    fi: "uima-allas",
+  },
+  26: {
+    fi: "palju",
+  },
+  27: {
+    fi: "kantovesi",
+  },
+  28: {
+    fi: "pyörätuolisopivuus",
+  },
+  29: {
+    fi: "lemmikit sallittu",
+  },
+  30: {
+    fi: "mökissä ei sähköjä",
+  },
+  31: {
+    fi: "sähköauton latausmahdollisuus",
+  },
+  32: {
+    fi: "laituri",
+  },
+  33: {
+    fi: "vene",
+  },
+  34: {
+    fi: "kanootti / kajakki",
+  },
+  35: {
+    fi: "grillikota",
+  }
+}
+
 export const cabinData = {
   type: 1,
   reserved: {
