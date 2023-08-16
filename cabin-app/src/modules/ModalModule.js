@@ -51,10 +51,10 @@ export const ModalModule = (props) => {
         width={"auto"}
       >
         <CalendarModule
-          defaultValue={props.searchFilters[props.state].defaultValue}
-          value={props.searchFilters[props.state].value}
-          reservations={props.searchFilters[props.state].reservations}
-          count={props.searchFilters[props.state].count}
+          defaultValue={props.searchFilters["searchDate"].defaultValue}
+          value={props.searchFilters["searchDate"].value}
+          reservations={props.searchFilters["searchDate"].reservations}
+          count={props.searchFilters["searchDate"].count}
           SetSearchFilters={props.SetSearchFilters}
         />
       </ModalContent>
@@ -73,7 +73,7 @@ export const ModalModule = (props) => {
                 key={item}
                 language={language}
                 data={props.searchFilters}
-                index1={props.state}
+                index1={"persons"}
                 i={item}
                 SetSearchFilters={props.SetSearchFilters}
               />
@@ -98,7 +98,7 @@ export const ModalModule = (props) => {
                 key={item}
                 language={language}
                 data={props.searchFilters}
-                index1={props.state}
+                index1={"rooms"}
                 i={item}
                 SetSearchFilters={props.SetSearchFilters}
               />
@@ -156,8 +156,23 @@ export const ModalModule = (props) => {
         ref={wrapperRef}
         width={"50%"}
       >
-        <CabinCardModule />
-{/*         <input type="button" value="RESET" onClick={() => ResetSearchFilters()} />
+        <div className="col-12 d-flex justify-content-center align-items-center">
+          <div className="row col-7 d-flex justify-content-center align-items-center m-0 p-0">
+            <CabinCardModule />
+          </div>
+          <div
+            className="col-5"
+          >
+            <CalendarModule
+              defaultValue={props.searchFilters["searchDate"].defaultValue}
+              value={props.searchFilters["searchDate"].value}
+              reservations={props.searchFilters["searchDate"].reservations}
+              count={props.searchFilters["searchDate"].count}
+              SetSearchFilters={props.SetSearchFilters}
+            />
+          </div>
+        </div>
+        {/*         <input type="button" value="RESET" onClick={() => ResetSearchFilters()} />
         <input type="button" value="CLOSE" onClick={() => props.SetModalState("")} /> */}
       </ModalContent>
     )
