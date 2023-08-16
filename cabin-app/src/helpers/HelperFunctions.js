@@ -54,3 +54,12 @@ export const GetCurrentDate = (add) => {
 
   return ({ dayName, day, month, monthName, year })
 }
+
+export const GetDatesBetween = (startDate, endDate) => {
+  const dates = [];
+  while (startDate <= endDate) {
+    dates.push(new Date(startDate));
+    startDate.setDate(startDate.getDate() + 1);
+  }
+  return dates;
+}

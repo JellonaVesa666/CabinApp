@@ -1,6 +1,6 @@
 import { GetCurrentDate } from "../helpers/HelperFunctions";
 
-export const searchParameters = {
+export const defaultSearchFilters = {
   multiSelect: {
     type: "multiSelect",
     isActive: true,

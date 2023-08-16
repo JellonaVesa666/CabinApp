@@ -5,6 +5,8 @@ import { CalendarModule } from "./CalendarModule";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
 import { CabinCardModule } from "./CabinCardModule";
+import { cabinData } from "../mockup/cabinData";
+import { GetDatesBetween } from "../helpers/HelperFunctions";
 
 export const ModalModule = (props) => {
 
@@ -37,12 +39,38 @@ export const ModalModule = (props) => {
     // Filter and reset dynamic filters
     Object.keys(props.searchFilters).forEach((item) => {
       if (!props.searchFilters[item].static) {
-        props.SetSearchFilters(state => ({ ...state, [item]: props.searchParameters[item] }))
+        props.SetSearchFilters(state => ({ ...state, [item]: props.defaultSearchFilters[item] }))
       }
     })
   }
 
-  console.log(props);
+  const GetTotalPrice = (range) => {
+    let price = 0;
+
+    // Weekend Price
+    if (range.length === 3 && cabinData?.weekendPrice && cabinData?.weekendPrice > 0) {
+      if (range[0].getDay() === 5 && range[2].getDay() === 0) {
+        console.log(cabinData.weekendPrice)
+        price = cabinData.weekendPrice;
+      }
+    }
+    //Week Price
+    else if (range.length === 7 &&
+      range[0].getDay() === 1 &&
+      range[6].getDay() === 0 &&
+      cabinData?.weekPrice &&
+      cabinData?.weekPrice > 0) {
+      price = cabinData.weekPrice;
+    }
+    // Day Price
+    else {
+      if (cabinData?.dayPrice && cabinData?.dayPrice > 0) {
+        price = (range.length - 1) * cabinData.dayPrice;
+      }
+    }
+
+    return price;
+  }
 
   if (props.state === "searchDate") {
     return (
@@ -151,6 +179,33 @@ export const ModalModule = (props) => {
     )
   }
   else if (props.state === "preview") {
+
+    const startDate = new Date(props.searchFilters["searchDate"].value[0].year, props.searchFilters["searchDate"].value[0].month - 1, props.searchFilters["searchDate"].value[0].day);
+    const endDate = new Date(props.searchFilters["searchDate"].value[1].year, props.searchFilters["searchDate"].value[1].month - 1, props.searchFilters["searchDate"].value[1].day);
+    const reservationRange = GetDatesBetween(startDate, endDate);
+
+    const totalPrice = GetTotalPrice(reservationRange);
+
+
+    console.log(totalPrice);
+
+    /*     if (cabinData?.weekPrice) {
+          // Get weekends
+          for (let i = 0; i < reservationRange.length; i++) {
+            if (reservationRange[i].getDay() === 6 || reservationRange[i].getDay() === 0)
+              console.log(reservationRange[i])
+          }
+        } */
+
+    /*     for (let index = 0; index < delta.days + 1; index++) {
+          const element = array[index];
+          
+        } */
+    /* 
+        for i in range(delta.days + 1):
+          day = start_date + timedelta(days = i)
+        print(day) */
+
     return (
       <ModalContent
         ref={wrapperRef}

@@ -5,11 +5,12 @@ import NavigationModule from "./modules/NavigationModule";
 import { SearchBarModule } from './modules/SearchBarModule';
 import { ContentModule } from "./modules/ContentModule";
 import { ModalModule } from "./modules/ModalModule";
-import { searchParameters } from "./mockup/searchFilterData";
+import { defaultSearchFilters } from "./mockup/searchFilterData";
 
 function App() {
   const [modalState, setModalState] = useState("");
-  const [searchFilters, setSearchFilters] = useState(searchParameters);
+  const [searchFilters, setSearchFilters] = useState(defaultSearchFilters);
+  const [reservationDetails, setReservationDetails] = useState();
 
   const ToggleModal = (item) => {
     if (item !== modalState) {
@@ -24,11 +25,12 @@ function App() {
     <BodyBackground>
       {modalState !== "" &&
         <ModalModule
-          searchParameters={searchParameters}
+          defaultSearchFilters={defaultSearchFilters}
           searchFilters={searchFilters}
           SetSearchFilters={setSearchFilters}
           state={modalState}
           SetModalState={setModalState}
+          setReservationDetails={setReservationDetails}
         />
       }
       <NavigationModule />
