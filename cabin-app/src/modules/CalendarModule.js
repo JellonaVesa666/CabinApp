@@ -468,18 +468,38 @@ export const CalendarModule = (props) => {
                     ${!props.reservations && calendarDays[item].active && calendarDays[item].year >= props.defaultValue[0].year ? "active" : ""}
                   `}
                 onClick={() => {
-                  if
-                    ((calendarDays[item].year === props.defaultValue[0].year &&
-                      calendarDays[item].month === props.defaultValue[0].month &&
-                      calendarDays[item].day >= props.defaultValue[0].day)
-                    ||
+                  if (
                     (
-                      calendarDays[item].year === props.defaultValue[0].year &&
-                      calendarDays[item].month > props.defaultValue[0].month
+                      (calendarDays[item].year === props.defaultValue[0].year &&
+                        calendarDays[item].month === props.defaultValue[0].month &&
+                        calendarDays[item].day >= props.defaultValue[0].day &&
+                        !props.reservations)
+                      ||
+                      (calendarDays[item].year === props.defaultValue[0].year &&
+                        calendarDays[item].month === props.defaultValue[0].month &&
+                        calendarDays[item].day >= props.defaultValue[0].day &&
+                        props.reservations &&
+                        !calendarDays[item].reserved)
                     )
                     ||
                     (
-                      calendarDays[item].year > props.defaultValue[0].year
+                      (calendarDays[item].year === props.defaultValue[0].year &&
+                        calendarDays[item].month > props.defaultValue[0].month &&
+                        !props.reservations)
+                      ||
+                      (calendarDays[item].year === props.defaultValue[0].year &&
+                        calendarDays[item].month > props.defaultValue[0].month &&
+                        props.reservations &&
+                        !calendarDays[item].reserved)
+                    )
+                    ||
+                    (
+                      (calendarDays[item].year > props.defaultValue[0].year &&
+                        !props.reservations)
+                      ||
+                      (calendarDays[item].year > props.defaultValue[0].year &&
+                        props.reservations &&
+                        !calendarDays[item].reserved)
                     )
                   )
                     SelectDate(item, calendarDays[item].month)

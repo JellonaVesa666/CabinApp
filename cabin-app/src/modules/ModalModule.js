@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { ModalContent } from "../styles/ModalStyle";
-import { RangeSlider, CheckBox, Counter } from "./InputModules";
+import { RangeSlider, CheckBox, Counter, Input } from "./InputModules";
 import { CalendarModule } from "./CalendarModule";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
@@ -187,24 +187,7 @@ export const ModalModule = (props) => {
     const totalPrice = GetTotalPrice(reservationRange);
 
 
-    console.log(totalPrice);
-
-    /*     if (cabinData?.weekPrice) {
-          // Get weekends
-          for (let i = 0; i < reservationRange.length; i++) {
-            if (reservationRange[i].getDay() === 6 || reservationRange[i].getDay() === 0)
-              console.log(reservationRange[i])
-          }
-        } */
-
-    /*     for (let index = 0; index < delta.days + 1; index++) {
-          const element = array[index];
-          
-        } */
-    /* 
-        for i in range(delta.days + 1):
-          day = start_date + timedelta(days = i)
-        print(day) */
+    console.log(props);
 
     return (
       <ModalContent
@@ -212,19 +195,53 @@ export const ModalModule = (props) => {
         width={"50%"}
       >
         <div className="col-12 d-flex justify-content-center align-items-center">
-          <div className="row col-7 d-flex justify-content-center align-items-center m-0 p-0">
+          <div className="row col-7 d-flex justify-content-center align-items-center m-0  py-0 px-2">
             <CabinCardModule />
           </div>
           <div
-            className="col-5"
+            className="row col-5 d-flex justify-content-center align-items-center m-0 mb-auto py-0 px-2"
           >
-            <CalendarModule
-              defaultValue={props.searchFilters["searchDate"].defaultValue}
-              value={props.searchFilters["searchDate"].value}
-              reservations={props.searchFilters["searchDate"].reservations}
-              count={props.searchFilters["searchDate"].count}
-              SetSearchFilters={props.SetSearchFilters}
+            <p
+              className="mt-2"
+              style={{ fontSize: "1.5rem", fontWeight: 400 }}
+            >
+              Tee varaus
+            </p>
+            <Input
+              type={"field"}
+              changeState={(value) => console.log(value)}
             />
+            <p
+              style={{ fontSize: "1rem", fontWeight: 500 }}
+            >
+              Hinnoitelu
+            </p>
+            {cabinData?.dayPrice &&
+              <p>
+                Vuorokausi: {cabinData.dayPrice}€
+              </p>
+            }
+            <br />
+            {cabinData?.weekendPrice &&
+              <p>
+                Viikonloppu, pe-su: {cabinData.weekendPrice}€
+              </p>
+            }
+            <br />
+            {cabinData?.weekPrice &&
+              <p>
+                Viikko: {cabinData.weekPrice}€
+              </p>
+            }
+            <div className="row col-12 shadow m-0 p-0">
+              <CalendarModule
+                defaultValue={props.searchFilters["searchDate"].defaultValue}
+                value={props.searchFilters["searchDate"].value}
+                reservations={true}
+                count={props.searchFilters["searchDate"].count}
+                SetSearchFilters={props.SetSearchFilters}
+              />
+            </div>
           </div>
         </div>
         {/*         <input type="button" value="RESET" onClick={() => ResetSearchFilters()} />

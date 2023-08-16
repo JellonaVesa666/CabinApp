@@ -6,11 +6,11 @@ import { CalendarModule } from "./CalendarModule";
 import { GetCurrentDate } from "../helpers/HelperFunctions";
 
 export const CabinCardModule = () => {
-  const [previewImage, setPreviewImage] = useState(0);
+  const [previewImgID, setPreviewImgID] = useState(0);
 
   return (
     <>
-      <div className="row mt-2">
+      <div className="row mt-2 mx-0">
         <p
           className="col-12 m-0 p-0"
           style={{ fontSize: "1.5rem", fontWeight: 400 }}
@@ -36,42 +36,31 @@ export const CabinCardModule = () => {
           Alkaen 500€ / vrk
         </p>
       </div>
-      {previewImage}
       <div
-        className="d-flex justify-content-start align-items-center m-0 p-0"
-        style={{ fontSize: "1.4rem", width: "10%" }}
+        className="d-flex justify-content-center align-items-center m-0 p-0"
+        style={{ width: "100%", backgroundColor: "#e1e1e1" }}
       >
         <div
-          className="d-flex justify-content-center align-items-center bg-success"
-          style={{ fontSize: "1.4rem", width: "50%", color: "white" }}
-          onClick={() => (previewImage >= 1 ? setPreviewImage(previewImage - 1) : 0)}
+          className="d-flex justify-content-center align-items-center me-auto bg-success"
+          style={{ fontSize: "1.4rem", width: "5%", color: "white" }}
+          onClick={() => (previewImgID >= 1 ? setPreviewImgID(previewImgID - 1) : 0)}
         >
           {"<"}
         </div>
-      </div>
-      <div
-        className="d-flex justify-content-center align-items-center m-0 p-0 bg-light"
-        style={{ width: "80%" }}
-      >
         {Object.keys(cabinData["images"]).map((item) => {
           return (
             <img
               key={item}
               src={require('../images/icon_preview.png')}
               alt=""
-              style={{ objectFit: "cover", width: "100%", height: "100%", display: previewImage === Number(item) ? "flex" : "none" }}
+              style={{ objectFit: "cover", width: "80%", height: "100%", display: previewImgID === Number(item) ? "flex" : "none" }}
             />
           )
         })}
-      </div>
-      <div
-        className="d-flex justify-content-end align-items-center m-0 p-0"
-        style={{ fontSize: "1.4rem", width: "10%" }}
-      >
         <div
-          className="d-flex justify-content-center align-items-center bg-success"
-          style={{ fontSize: "1.4rem", width: "50%", color: "white" }}
-          onClick={() => (previewImage + 7) <= Object.keys(cabinData["images"]).length ? setPreviewImage(previewImage + 1) : ""}
+          className="d-flex justify-content-center align-items-center ms-auto bg-success"
+          style={{ fontSize: "1.4rem", width: "5%", color: "white" }}
+          onClick={() => (previewImgID + 7) <= Object.keys(cabinData["images"]).length ? setPreviewImgID(previewImgID + 1) : ""}
         >
           {">"}
         </div>
@@ -80,8 +69,8 @@ export const CabinCardModule = () => {
         {Object.keys(cabinData["images"]).map((item) => {
           return (
             <div
-              className="col"
-              style={{ display: (Number(item) >= previewImage && Number(item) <= previewImage + 5) ? "flex" : "none" }}
+              className="col justify-content-center align-items-center"
+              style={{ display: (Number(item) >= previewImgID && Number(item) <= previewImgID + 5) ? "flex" : "none" }}
             >
               <img
                 key={item}
@@ -117,7 +106,7 @@ export const CabinCardModule = () => {
         </p>
         <p
           className="col-7 justify-content-start align-items-center"
-          style={{ fontSize: "1rem", fontWeight: 500 }}
+          style={{ fontSize: "1rem", fontWeight: 400 }}
         >
           Hirsimökki
         </p>
@@ -129,7 +118,7 @@ export const CabinCardModule = () => {
         </p>
         <p
           className="col-7 justify-content-start align-items-center"
-          style={{ fontSize: "1rem", fontWeight: 500 }}
+          style={{ fontSize: "1rem", fontWeight: 400 }}
         >
           60 m
         </p>
@@ -141,7 +130,7 @@ export const CabinCardModule = () => {
         </p>
         <p
           className="col-7 justify-content-start align-items-center"
-          style={{ fontSize: "1rem", fontWeight: 500 }}
+          style={{ fontSize: "1rem", fontWeight: 400 }}
         >
           2
         </p>
@@ -153,7 +142,7 @@ export const CabinCardModule = () => {
         </p>
         <p
           className="col-7 justify-content-start align-items-center"
-          style={{ fontSize: "1rem", fontWeight: 500 }}
+          style={{ fontSize: "1rem", fontWeight: 400 }}
         >
           1
         </p>
@@ -171,7 +160,7 @@ export const CabinCardModule = () => {
         </p>
         <p
           className="col-7 justify-content-start align-items-center"
-          style={{ fontSize: "1rem", fontWeight: 500 }}
+          style={{ fontSize: "1rem", fontWeight: 400 }}
         >
           60 m
         </p>
@@ -184,7 +173,7 @@ export const CabinCardModule = () => {
         </p>
         <p
           className="col-7 justify-content-start align-items-center"
-          style={{ fontSize: "1rem", fontWeight: 500 }}
+          style={{ fontSize: "1rem", fontWeight: 400 }}
         >
           Kyllä
         </p>
@@ -196,7 +185,7 @@ export const CabinCardModule = () => {
         </p>
         <p
           className="col-7 justify-content-start align-items-center"
-          style={{ fontSize: "1rem", fontWeight: 500 }}
+          style={{ fontSize: "1rem", fontWeight: 400 }}
         >
           Kyllä
         </p>
@@ -208,7 +197,7 @@ export const CabinCardModule = () => {
         </p>
         <p
           className="col-7 justify-content-start align-items-center"
-          style={{ fontSize: "1rem", fontWeight: 500 }}
+          style={{ fontSize: "1rem", fontWeight: 400 }}
         >
           Ei
         </p>
@@ -220,7 +209,7 @@ export const CabinCardModule = () => {
         </p>
         <p
           className="col-7 justify-content-start align-items-center"
-          style={{ fontSize: "1rem", fontWeight: 500 }}
+          style={{ fontSize: "1rem", fontWeight: 400 }}
         >
           Kyllä
         </p>
@@ -232,7 +221,7 @@ export const CabinCardModule = () => {
         </p>
         <p
           className="col-7 justify-content-start align-items-center"
-          style={{ fontSize: "1rem", fontWeight: 500 }}
+          style={{ fontSize: "1rem", fontWeight: 400 }}
         >
           Kyllä
         </p>
