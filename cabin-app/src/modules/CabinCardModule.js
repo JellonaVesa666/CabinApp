@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { cabinData, cabinFeatures } from "../mockup/cabinData";
 import checked from "../images/icon_checked.png";
 import restricted from "../images/icon_restricted.png";
+import { CalendarModule } from "./CalendarModule";
+import { GetCurrentDate } from "../helpers/HelperFunctions";
 
 export const CabinCardModule = () => {
   const [previewImage, setPreviewImage] = useState(0);
@@ -104,7 +106,7 @@ export const CabinCardModule = () => {
         >
           <p
             className="col-12"
-            style={{ fontSize: "1.2rem", fontWeight: 500, letterSpacing: "2px" }}
+            style={{ fontSize: "1.2rem", fontWeight: 500 }}
           >
             Kohteen Tiedot
           </p>
@@ -158,7 +160,7 @@ export const CabinCardModule = () => {
           </p>
           <p
             className="col-12 mt-3"
-            style={{ fontSize: "1.2rem", fontWeight: 500, letterSpacing: "2px" }}
+            style={{ fontSize: "1.2rem", fontWeight: 500 }}
           >
             Palsta
           </p>
@@ -246,7 +248,7 @@ export const CabinCardModule = () => {
               Object.keys(cabinFeatures).map((item) => {
                 return (
                   <div
-                    className="col d-flex"
+                    className="col-4 d-flex"
                   >
                     <img
                       src={cabinData["features"].includes(Number(item)) ? checked : restricted}
@@ -255,7 +257,7 @@ export const CabinCardModule = () => {
                     />
                     <p
                       className="px-3"
-                      style={{ fontSize: "1", fontWeight: 400, textAlign: "center" }}
+                      style={{ fontSize: "1", fontWeight: 400, textAlign: "left" }}
                     >
                       {cabinFeatures[item]["fi"]}
                     </p>
@@ -269,7 +271,6 @@ export const CabinCardModule = () => {
       <div
         className="col-5"
       >
-        adsad
       </div>
     </div >
   )

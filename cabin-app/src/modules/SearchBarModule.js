@@ -113,8 +113,6 @@ export const SearchBarModule = (props) => {
                 props.searchFilters?.[item]?.value?.[1]?.["day"] + '\x20' +
                 props.searchFilters?.[item]?.value?.[1]?.["monthName"]?.[language]
                 }`
-
-
               }
               onClick={() => props.toggleModal(item)}
             />
