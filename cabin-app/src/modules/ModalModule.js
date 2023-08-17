@@ -201,21 +201,17 @@ export const ModalModule = (props) => {
             <CabinCardModule />
           </div>
           <div
-            className="row col-5 d-flex justify-content-center align-items-center mb-auto m-0 py-3 pe-4"
+            className="row col-5 d-flex justify-content-center align-items-center m-0 mb-auto py-3 pe-4"
           >
             <p
-              className="mt-2"
               style={{ fontSize: "1.5rem", fontWeight: 400 }}
             >
               Tee varaus
             </p>
-            <p
-              style={{ fontSize: "1rem", fontWeight: 500 }}
-            >
-              Hinnoitelu
-            </p>
             {cabinData?.dayPrice &&
-              <p>
+              <p
+                className="mt-4"
+              >
                 Vuorokausi: {cabinData.dayPrice}€
               </p>
             }
@@ -232,7 +228,7 @@ export const ModalModule = (props) => {
               </p>
             }
             <div
-              className="row col-12 d-flex justify-content-center align-items-center mt-3 mb-5"
+              className="row col-12 d-flex justify-content-center align-items-center mb-3"
               style={{ border: "0.1rem solid rgba(0, 0, 0, 0.2)", borderRadius: "0.5rem" }}
             >
               <div className="row col-12 m-0">
@@ -247,59 +243,7 @@ export const ModalModule = (props) => {
               </div>
             </div>
             <div
-              className="row col-12 d-flex justify-content-center align-items-center mb-5"
-              style={{ border: "0.1rem solid rgba(0, 0, 0, 0.2)", borderRadius: "0.5rem" }}
-            >
-              <div
-                className="col-12 d-flex justify-content-start align-items-center ps-4 mt-3"
-                style={{
-                  fontSize: "1.5rem",
-                  fontWeight: 400,
-                }}
-              >
-                Omistaja
-              </div>
-              <div
-                className="col-2 d-flex justify-content-center align-items-center mb-auto mt-3"
-              >
-                <img
-                  src={iconUser}
-                  alt=""
-                  style={{ objectFit: "cover", width: "40px", height: "100%" }}
-                />
-              </div>
-              <div
-                className="row col-10 d-flex justify-content-start align-items-center ps-4 mt-2"
-              >
-                <div
-                  className="col-12 d-flex justify-content-start align-items-center"
-                  style={{
-                    height: "50px",
-                    width: "240px",
-                    fontSize: "1rem",
-                    fontWeight: 500,
-                  }}
-                >
-                  Test User
-                </div>
-                <div
-                  className="col-12 d-flex justify-content-center align-items-center mb-4"
-                  style={{
-                    height: "50px",
-                    width: "240px",
-                    borderRadius: "1rem",
-                    backgroundColor: colors.green,
-                    color: "white",
-                    fontSize: "1.25rem",
-                    fontWeight: 500,
-                  }}
-                >
-                  045 2266670
-                </div>
-              </div>
-            </div>
-            <div
-              className="row col-12 d-flex justify-content-center align-items-center px-4"
+              className="row col-12 d-flex justify-content-center align-items-center px-4 mb-3"
               style={{ border: "0.1rem solid rgba(0, 0, 0, 0.2)", borderRadius: "0.5rem" }}
             >
               <p
@@ -387,6 +331,122 @@ export const ModalModule = (props) => {
                   backgroundColor={colors.green}
                 />
               </div>
+            </div>
+            <div
+              className="row col-12 d-flex justify-content-center align-items-center mb-4"
+              style={{ border: "0.1rem solid rgba(0, 0, 0, 0.2)", borderRadius: "0.5rem" }}
+            >
+
+              <div
+                className="col-3 d-flex justify-content-end align-items-center mb-auto mt-3"
+              >
+                <img
+                  src={iconUser}
+                  alt=""
+                  style={{ objectFit: "cover", width: "40px", height: "100%" }}
+                />
+              </div>
+              <div
+                className="row col-9 d-flex justify-content-start align-items-center mt-2"
+              >
+                <div
+                  className="col-12 d-flex justify-content-start align-items-center"
+                  style={{
+                    height: "50px",
+                    width: "240px",
+                    fontSize: "1rem",
+                    fontWeight: 500,
+                  }}
+                >
+                  Test User
+                </div>
+                <div
+                  className="col-12 d-flex justify-content-center align-items-center mb-3"
+                  style={{
+                    height: "40px",
+                    width: "240px",
+                    borderRadius: "0.5rem",
+                    backgroundColor: colors.green,
+                    color: "white",
+                    fontSize: "1.25rem",
+                    fontWeight: 500,
+                  }}
+                >
+                  045 2266670
+                </div>
+              </div>
+            </div>
+            <div
+              className="row col-12 d-flex justify-content-center align-items-center mt-5 mb-5"
+            >
+              <div
+                className="col-12 d-flex justify-content-start align-items-center ps-4 mt-3"
+                style={{
+                  fontSize: "1.5rem",
+                  fontWeight: 400,
+                }}
+              >
+                Arvostelut
+              </div>
+              <div
+                className="col-12 d-flex justify-content-start align-items-center ps-4"
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: 400,
+                }}
+              >
+                (6 arvostelua)
+              </div>
+              <div
+                className="col-6 d-flex justify-content-start align-items-center ps-4 mt-3"
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: 400,
+                }}
+              >
+                Siisteys
+              </div>
+              <div
+                className="col-6 d-flex justify-content-center align-items-center mt-3"
+              >
+                <img
+                  src={iconUser}
+                  alt=""
+                  style={{ objectFit: "cover", width: "40px", height: "100%" }}
+                />
+              </div>
+              <div
+                className="col-6 d-flex justify-content-start align-items-center ps-4"
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: 400,
+                }}
+              >
+                Kunto
+              </div>
+              <div
+                className="col-6 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src={iconUser}
+                  alt=""
+                  style={{ objectFit: "cover", width: "40px", height: "100%" }}
+                />
+              </div>
+            </div>
+            <div
+              className="col-12"
+              style={{ marginTop: "17.5rem" }}
+            >
+              <iframe
+                id="iframeId"
+                width="100%"
+                height="450px"
+                loading="lazy"
+                allowFullscreen=""
+                referrerPolicy="no-referrer-when-downgrade"
+                src={`https://www.google.com/maps/embed/v1/place?q=${65.045490},${25.352965}&key=AIzaSyBNybM4XtlOILBxKTD6oxYhwML8cA1SQpI`}>
+              </iframe>
             </div>
           </div>
         </div>
