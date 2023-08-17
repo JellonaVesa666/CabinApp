@@ -185,9 +185,18 @@ export const ModalModule = (props) => {
     let startDate;
     let endDate;
 
-    startDate = new Date(props.searchFilters["searchDate"]?.value?.[0]?.year, props.searchFilters["searchDate"]?.value?.[0]?.month - 1, props.searchFilters["searchDate"]?.value?.[0]?.day);
-    endDate = new Date(props.searchFilters["searchDate"]?.value?.[1]?.year, props.searchFilters["searchDate"]?.value?.[1]?.month - 1, props.searchFilters["searchDate"]?.value?.[1]?.day);
-    reservationRange = GetDatesBetween(startDate, endDate);
+    if (props.searchFilters["searchDate"]?.value?.[0]?.day !== undefined && props.searchFilters["searchDate"]?.value?.[1]?.day !== undefined) {
+      startDate = new Date(props.searchFilters["searchDate"]?.value?.[0]?.year, props.searchFilters["searchDate"]?.value?.[0]?.month - 1, props.searchFilters["searchDate"]?.value?.[0]?.day);
+      endDate = new Date(props.searchFilters["searchDate"]?.value?.[1]?.year, props.searchFilters["searchDate"]?.value?.[1]?.month - 1, props.searchFilters["searchDate"]?.value?.[1]?.day);
+      reservationRange = GetDatesBetween(startDate, endDate);
+    }
+    else {
+      startDate = new Date(props.searchFilters["searchDate"]?.defaultValue?.[0]?.year, props.searchFilters["searchDate"]?.defaultValue?.[0]?.month - 1, props.searchFilters["searchDate"]?.defaultValue?.[0]?.day);
+      endDate = new Date(props.searchFilters["searchDate"]?.defaultValue?.[1]?.year, props.searchFilters["searchDate"]?.defaultValue?.[1]?.month - 1, props.searchFilters["searchDate"]?.defaultValue?.[1]?.day);
+      reservationRange = GetDatesBetween(startDate, endDate);
+    }
+
+    console.log(reservationRange);
 
     const totalPrice = GetTotalPrice(reservationRange);
 
@@ -278,7 +287,7 @@ export const ModalModule = (props) => {
                   `${props.searchFilters["searchDate"].value[1].day}.${props.searchFilters["searchDate"].value[1].month}.${props.searchFilters["searchDate"].value[1].year}`
                 }
                 {props.searchFilters["searchDate"]?.value?.[1].day === undefined &&
-                  "----------"
+                  `${props.searchFilters["searchDate"].defaultValue[1].day}.${props.searchFilters["searchDate"].defaultValue[1].month}.${props.searchFilters["searchDate"].defaultValue[1].year}`
                 }
               </p>
               <div style={{ width: "95%", height: "2px", backgroundColor: "rgba(0, 0, 0, 0.2)" }} />
@@ -293,12 +302,7 @@ export const ModalModule = (props) => {
                 className="col-6 mt-2"
                 style={{ fontSize: "1rem", fontWeight: 500, textAlign: "right" }}
               >
-                {props.searchFilters["searchDate"]?.value?.[1].day !== undefined && props.searchFilters["searchDate"]?.value?.[0].day !== undefined &&
-                  `${totalPrice}€`
-                }
-                {props.searchFilters["searchDate"]?.value?.[1].day === undefined &&
-                  "----------"
-                }
+                {totalPrice}€
               </p>
               <div
                 className="col-6"
@@ -433,20 +437,72 @@ export const ModalModule = (props) => {
                   style={{ objectFit: "cover", width: "40px", height: "100%" }}
                 />
               </div>
+              <div
+                className="col-6 d-flex justify-content-start align-items-center ps-4"
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: 400,
+                }}
+              >
+                Varustelu
+              </div>
+              <div
+                className="col-6 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src={iconUser}
+                  alt=""
+                  style={{ objectFit: "cover", width: "40px", height: "100%" }}
+                />
+              </div>
+              <div
+                className="col-6 d-flex justify-content-start align-items-center ps-4"
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: 400,
+                }}
+              >
+                Sijainti
+              </div>
+              <div
+                className="col-6 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src={iconUser}
+                  alt=""
+                  style={{ objectFit: "cover", width: "40px", height: "100%" }}
+                />
+              </div>
+              <div
+                className="col-6 d-flex justify-content-start align-items-center ps-4"
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: 400,
+                }}
+              >
+                Luotettavuus
+              </div>
+              <div
+                className="col-6 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src={iconUser}
+                  alt=""
+                  style={{ objectFit: "cover", width: "40px", height: "100%" }}
+                />
+              </div>
             </div>
             <div
               className="col-12"
-              style={{ marginTop: "17.5rem" }}
+              style={{ marginTop: "10rem" }}
             >
               <iframe
-                id="iframeId"
                 width="100%"
                 height="450px"
                 loading="lazy"
                 allowFullscreen=""
                 referrerPolicy="no-referrer-when-downgrade"
-                src={`https://www.google.com/maps/embed/v1/place?q=${65.045490},${25.352965}&key=AIzaSyBNybM4XtlOILBxKTD6oxYhwML8cA1SQpI`}>
-              </iframe>
+                src={`https://www.google.com/maps/embed/v1/place?q=${65.045490},${25.352965}&key=AIzaSyBNybM4XtlOILBxKTD6oxYhwML8cA1SQpI`} />
             </div>
           </div>
         </div>

@@ -44,9 +44,15 @@ export const CalendarModule = (props) => {
     // If searchFilter values are empty
     if (props.value[0] === "" && props.value[1] === "") {
       for (let i = 0; i < 42; i++) {
-        if (merged[i].year === props.defaultValue[0].year &&
-          merged[i].month === props.defaultValue[0].month &&
-          merged[i].day === props.defaultValue[0].day) {
+        if (
+          (merged[i].year === props.defaultValue[0].year &&
+            merged[i].month === props.defaultValue[0].month &&
+            merged[i].day === props.defaultValue[0].day)
+          ||
+          (merged[i].year === props.defaultValue[1].year &&
+            merged[i].month === props.defaultValue[1].month &&
+            merged[i].day === props.defaultValue[1].day)
+        ) {
           merged[i].active = true;
         }
       }
@@ -307,6 +313,8 @@ export const CalendarModule = (props) => {
 
   }, [Range, FindActiveRange, SetActiveDaysByRange, refresh, clicks, currentMonthDays, nextMonthDays, currentMonth, props]);
 
+  console.log(clicks);
+
 
   const SelectDate = async (item, month) => {
 
@@ -376,6 +384,8 @@ export const CalendarModule = (props) => {
       return 0;
     });
   }
+
+  console.log(props);
 
   const rows = [];
   for (let i = 0; i < props.count; i++) {
