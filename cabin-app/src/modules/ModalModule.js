@@ -9,6 +9,7 @@ import { cabinData } from "../mockup/cabinData";
 import { GetDatesBetween } from "../helpers/HelperFunctions";
 import { InputStyle } from "../styles/InputStyle";
 import iconUser from "../images/icon_user.png";
+import starGrey from "../images/icon_star_grey.png";
 
 export const ModalModule = (props) => {
 
@@ -200,17 +201,33 @@ export const ModalModule = (props) => {
 
     const totalPrice = GetTotalPrice(reservationRange);
 
+
+    const renderList = () => {
+      let listItems = [];
+      for (let i = 0; i < 5; i++) {
+        listItems.push(
+          <img
+            src={starGrey}
+            alt=""
+            style={{ objectFit: "cover", width: "20px", height: "100%" }}
+          />
+        );
+      }
+      return listItems;
+    };
+
+
     return (
       <ModalContent
         ref={wrapperRef}
         width={"55%"}
       >
         <div className="row col-12 m-0 p-0">
-          <div className=" row col-7 d-flex justify-content-center align-items-center mb-auto m-0 py-3 ps-4">
+          <div className=" row col-7 d-flex justify-content-center align-items-center m-0 mb-auto py-3 ps-5">
             <CabinCardModule />
           </div>
           <div
-            className="row col-5 d-flex justify-content-center align-items-center m-0 mb-auto py-3 pe-4"
+            className="row col-5 d-flex justify-content-center align-items-center m-0 mb-auto py-3 pe-5"
           >
             <p
               style={{ fontSize: "1.5rem", fontWeight: 400 }}
@@ -381,10 +398,10 @@ export const ModalModule = (props) => {
               </div>
             </div>
             <div
-              className="row col-12 d-flex justify-content-center align-items-center mt-5 mb-5"
+              className="row col-12 d-flex justify-content-center align-items-center mt-5"
             >
               <div
-                className="col-12 d-flex justify-content-start align-items-center ps-4 mt-3"
+                className="col-6 d-flex justify-content-start align-items-center ps-4"
                 style={{
                   fontSize: "1.5rem",
                   fontWeight: 400,
@@ -393,7 +410,16 @@ export const ModalModule = (props) => {
                 Arvostelut
               </div>
               <div
-                className="col-12 d-flex justify-content-start align-items-center ps-4"
+                className="col-6 d-flex justify-content-end align-items-center pe-5"
+                style={{
+                  fontSize: "1.5rem",
+                  fontWeight: 400,
+                }}
+              >
+                0/5
+              </div>
+              <div
+                className="col-12 d-flex justify-content-start align-items-center ps-4 mb-4"
                 style={{
                   fontSize: "1rem",
                   fontWeight: 400,
@@ -402,7 +428,7 @@ export const ModalModule = (props) => {
                 (6 arvostelua)
               </div>
               <div
-                className="col-6 d-flex justify-content-start align-items-center ps-4 mt-3"
+                className="col-6 d-flex justify-content-start align-items-center ps-4"
                 style={{
                   fontSize: "1rem",
                   fontWeight: 400,
@@ -411,16 +437,12 @@ export const ModalModule = (props) => {
                 Siisteys
               </div>
               <div
-                className="col-6 d-flex justify-content-center align-items-center mt-3"
+                className="col-6 d-flex justify-content-end align-items-center pe-5 mb-1"
               >
-                <img
-                  src={iconUser}
-                  alt=""
-                  style={{ objectFit: "cover", width: "40px", height: "100%" }}
-                />
+                {renderList()}
               </div>
               <div
-                className="col-6 d-flex justify-content-start align-items-center ps-4"
+                className="col-6 d-flex justify-content-start align-items-center ps-4 mb-1"
                 style={{
                   fontSize: "1rem",
                   fontWeight: 400,
@@ -429,16 +451,12 @@ export const ModalModule = (props) => {
                 Kunto
               </div>
               <div
-                className="col-6 d-flex justify-content-center align-items-center"
+                className="col-6 d-flex justify-content-end align-items-center pe-5 mb-1"
               >
-                <img
-                  src={iconUser}
-                  alt=""
-                  style={{ objectFit: "cover", width: "40px", height: "100%" }}
-                />
+                {renderList()}
               </div>
               <div
-                className="col-6 d-flex justify-content-start align-items-center ps-4"
+                className="col-6 d-flex justify-content-start align-items-center ps-4 mb-1"
                 style={{
                   fontSize: "1rem",
                   fontWeight: 400,
@@ -447,16 +465,12 @@ export const ModalModule = (props) => {
                 Varustelu
               </div>
               <div
-                className="col-6 d-flex justify-content-center align-items-center"
+                className="col-6 d-flex justify-content-end align-items-center pe-5 mb-1"
               >
-                <img
-                  src={iconUser}
-                  alt=""
-                  style={{ objectFit: "cover", width: "40px", height: "100%" }}
-                />
+                {renderList()}
               </div>
               <div
-                className="col-6 d-flex justify-content-start align-items-center ps-4"
+                className="col-6 d-flex justify-content-start align-items-center ps-4 mb-1"
                 style={{
                   fontSize: "1rem",
                   fontWeight: 400,
@@ -465,16 +479,12 @@ export const ModalModule = (props) => {
                 Sijainti
               </div>
               <div
-                className="col-6 d-flex justify-content-center align-items-center"
+                className="col-6 d-flex justify-content-end align-items-center pe-5 mb-1"
               >
-                <img
-                  src={iconUser}
-                  alt=""
-                  style={{ objectFit: "cover", width: "40px", height: "100%" }}
-                />
+                {renderList()}
               </div>
               <div
-                className="col-6 d-flex justify-content-start align-items-center ps-4"
+                className="col-6 d-flex justify-content-start align-items-center ps-4 mb-1"
                 style={{
                   fontSize: "1rem",
                   fontWeight: 400,
@@ -483,18 +493,14 @@ export const ModalModule = (props) => {
                 Luotettavuus
               </div>
               <div
-                className="col-6 d-flex justify-content-center align-items-center"
+                className="col-6 d-flex justify-content-end align-items-center pe-5 mb-1"
               >
-                <img
-                  src={iconUser}
-                  alt=""
-                  style={{ objectFit: "cover", width: "40px", height: "100%" }}
-                />
+                {renderList()}
               </div>
             </div>
             <div
               className="col-12"
-              style={{ marginTop: "10rem" }}
+              style={{ marginTop: "17.5rem" }}
             >
               <iframe
                 width="100%"
