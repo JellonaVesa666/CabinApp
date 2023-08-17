@@ -334,25 +334,6 @@ export const CheckBox = (props) => {
   }
 };
 
-export const Input = (props) => {
-  return (
-    <InputStyle
-      id={props.id}
-      type={props.type}
-      value={props.value}
-      width={props.width}
-      height={props.height}
-      radius={props.radius}
-      border={props.border}
-      margintop={props.margintop}
-      marginbottom={props.marginbottom}
-      placeholder={props.placeholder}
-      onChange={(event) => props.changeState(event.target.value)}
-      onClick={props.onClick}
-    />
-  )
-};
-
 export const PasswordField = (props) => {
   //const [showPassword, setHidePassword] = useState(false);
   return (
@@ -373,7 +354,7 @@ export const PasswordField = (props) => {
 export const Date = (props) => {
   return (
     <>
-      <input
+      <InputStyle
         className="px-2"
         style={{ borderRadius: "6px", border: "1px solid grey", width: "45%", fontSize: "14px" }}
         type="date"

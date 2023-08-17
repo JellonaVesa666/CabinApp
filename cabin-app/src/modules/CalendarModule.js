@@ -385,7 +385,7 @@ export const CalendarModule = (props) => {
     const calendarMonth = calendarInfo?.month;
     const calendarYear = calendarInfo?.year;
     rows.push(
-      <div className="col-6 px-4" key={(i <= 0) ? (i * 1) : (i * 2)}>
+      <div className="col-6 px-4 mb-3" key={(i <= 0) ? (i * 1) : (i * 2)}>
         <MonthPanel>
           {props.count > 1 &&
             <>
@@ -518,10 +518,12 @@ export const CalendarModule = (props) => {
   return (
     <>
       {rows}
-      <input type="button" name="" value="Clear"
-        style={{ width: "20%" }}
-        onClick={() => { ClearSelected(true) }}
-      />
+      {props.clearButton &&
+        <input type="button" name="" value="Clear"
+          style={{ width: "20%" }}
+          onClick={() => { ClearSelected(true) }}
+        />
+      }
     </>
   )
 }

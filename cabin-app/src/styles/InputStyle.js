@@ -193,19 +193,21 @@ export const OptionItem = styled.select`
 
 // Text Input //radius:40px
 export const InputStyle = styled.input.attrs((props) => ({
-  id: props.id
+  id: props.id,
+  type: props.type
 }))`
   width: ${props => (props.width)};
   height: ${props => (props.height)};
   border: ${props => (props.border)};
-  border-radius: ${props => (props.radius)};
-  background: ${colors.white};
-  margin-top: ${props => (props.margintop)};
-  margin-bottom: ${props => (props.marginbottom)};
+  border-radius: ${props => (props.borderRadius)};
+  background: ${props => (props.backgroundColor ? props.backgroundColor : colors.white)};
+  color: ${props => (props.color ? props.color : colors.black)};
+  margin: ${props => (props.margin)};
+  padding: ${props => (props.padding)};
   outline: none;
   font-size: 14px;
   font-weight: 500;
-  text-align: center;
+  text-align: ${props => (props.textAlign ? props.textAlign : "center")};
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }

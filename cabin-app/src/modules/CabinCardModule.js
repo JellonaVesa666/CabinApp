@@ -10,32 +10,31 @@ export const CabinCardModule = () => {
 
   return (
     <>
-      <div className="row mt-2 mx-0">
-        <p
-          className="col-12 m-0 p-0"
-          style={{ fontSize: "1.5rem", fontWeight: 400 }}
-        >
-          Ekin Mesta
-        </p>
-        <p
-          className="col-12 d-flex justify-content-start align-items-center m-0 p-0"
-          style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-        >
-          &#11088; 4.9 ( 6 arvostelua)
-        </p>
-        <p
-          className="col-8 d-flex justify-content-start align-items-center m-0 p-0"
-          style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
-        >
-          HattiWattikuja 1, 90500 Pohjois-Pohjanmaa
-        </p>
-        <p
-          className="col-4 d-flex justify-content-end align-items-center m-0 p-0"
-          style={{ fontSize: "1.2rem", fontWeight: 500, textAlign: "right" }}
-        >
-          Alkaen 500€ / vrk
-        </p>
-      </div>
+      <p
+        className="col-12 m-0 p-0"
+        style={{ fontSize: "1.5rem", fontWeight: 400 }}
+      >
+        Ekin Mesta
+      </p>
+      <p
+        className="col-12 d-flex justify-content-start align-items-center m-0 mt-3 p-0"
+        style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+      >
+        &#11088; 4.9 ( 6 arvostelua)
+      </p>
+      <p
+        className="col-8 d-flex justify-content-start align-items-center m-0 p-0"
+        style={{ fontSize: "1rem", fontWeight: 400, textAlign: "right" }}
+      >
+        HattiWattikuja 1, 90500 Pohjois-Pohjanmaa
+      </p>
+      <p
+        className="col-4 d-flex justify-content-end align-items-center m-0 p-0"
+        style={{ fontSize: "1.2rem", fontWeight: 500, textAlign: "right" }}
+      >
+        Alkaen 500€ / vrk
+      </p>
+
       <div
         className="d-flex justify-content-center align-items-center m-0 p-0"
         style={{ width: "100%", backgroundColor: "#e1e1e1" }}

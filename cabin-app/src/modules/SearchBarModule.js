@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import { ModalModule } from "./ModalModule"
+import React from "react";
 import { ChangeState } from "../helpers/HelperFunctions";
-import { Input } from "./InputModules";
 import { SearchBar } from "../styles/SearchBarStyle";
-import { searchParameters } from "../mockup/searchFilterData";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
 import filterBlack from "../images/icon_filter_black.png"
+import { InputStyle } from "../styles/InputStyle";
 
 export const SearchBarModule = (props) => {
   const language = useSelector(state => state.session.language);
@@ -20,7 +18,7 @@ export const SearchBarModule = (props) => {
           {props.searchFilters[item].type === "text" &&
             props.searchFilters[item].context === "field" &&
             !props.searchFilters[item].modal &&
-            < Input
+            < InputStyle
               type={props.searchFilters[item].type}
               width={"200px"}
               height={"40px"}
@@ -36,7 +34,7 @@ export const SearchBarModule = (props) => {
           {props.searchFilters[item].type === "button" &&
             props.searchFilters[item].context === "date" &&
             props.searchFilters[item].modal &&
-            <Input
+            < InputStyle
               id={"modalBtn"}
               type={props.searchFilters[item].type}
               width={"240px"}
@@ -68,7 +66,7 @@ export const SearchBarModule = (props) => {
           {props.searchFilters[item].type === "button" &&
             props.searchFilters[item].context === "counter" &&
             props.searchFilters[item].modal &&
-            <Input
+            <InputStyle
               id={"modalBtn"}
               type={props.searchFilters[item].type}
               width={"240px"}

@@ -1,12 +1,14 @@
 import React, { useRef, useEffect } from "react";
 import { ModalContent } from "../styles/ModalStyle";
-import { RangeSlider, CheckBox, Counter, Input } from "./InputModules";
+import { RangeSlider, CheckBox, Counter } from "./InputModules";
 import { CalendarModule } from "./CalendarModule";
 import { colors } from "../styles/Colors";
 import { useSelector } from "react-redux";
 import { CabinCardModule } from "./CabinCardModule";
 import { cabinData } from "../mockup/cabinData";
 import { GetDatesBetween } from "../helpers/HelperFunctions";
+import { InputStyle } from "../styles/InputStyle";
+import iconUser from "../images/icon_user.png";
 
 export const ModalModule = (props) => {
 
@@ -48,11 +50,9 @@ export const ModalModule = (props) => {
     let price = 0;
 
     // Weekend Price
-    if (range.length === 3 && cabinData?.weekendPrice && cabinData?.weekendPrice > 0) {
-      if (range[0].getDay() === 5 && range[2].getDay() === 0) {
-        console.log(cabinData.weekendPrice)
-        price = cabinData.weekendPrice;
-      }
+    if (range.length === 3 && cabinData?.weekendPrice && cabinData?.weekendPrice > 0 &&
+      range[0].getDay() === 5 && range[2].getDay() === 0) {
+      price = cabinData.weekendPrice;
     }
     //Week Price
     else if (range.length === 7 &&
@@ -84,6 +84,7 @@ export const ModalModule = (props) => {
           reservations={props.searchFilters["searchDate"].reservations}
           count={props.searchFilters["searchDate"].count}
           SetSearchFilters={props.SetSearchFilters}
+          clearButton={true}
         />
       </ModalContent>
     )
@@ -180,26 +181,27 @@ export const ModalModule = (props) => {
   }
   else if (props.state === "preview") {
 
-    const startDate = new Date(props.searchFilters["searchDate"].value[0].year, props.searchFilters["searchDate"].value[0].month - 1, props.searchFilters["searchDate"].value[0].day);
-    const endDate = new Date(props.searchFilters["searchDate"].value[1].year, props.searchFilters["searchDate"].value[1].month - 1, props.searchFilters["searchDate"].value[1].day);
-    const reservationRange = GetDatesBetween(startDate, endDate);
+    let reservationRange;
+    let startDate;
+    let endDate;
+
+    startDate = new Date(props.searchFilters["searchDate"]?.value?.[0]?.year, props.searchFilters["searchDate"]?.value?.[0]?.month - 1, props.searchFilters["searchDate"]?.value?.[0]?.day);
+    endDate = new Date(props.searchFilters["searchDate"]?.value?.[1]?.year, props.searchFilters["searchDate"]?.value?.[1]?.month - 1, props.searchFilters["searchDate"]?.value?.[1]?.day);
+    reservationRange = GetDatesBetween(startDate, endDate);
 
     const totalPrice = GetTotalPrice(reservationRange);
-
-
-    console.log(props);
 
     return (
       <ModalContent
         ref={wrapperRef}
-        width={"50%"}
+        width={"55%"}
       >
-        <div className="col-12 d-flex justify-content-center align-items-center">
-          <div className="row col-7 d-flex justify-content-center align-items-center m-0  py-0 px-2">
+        <div className="row col-12 m-0 p-0">
+          <div className=" row col-7 d-flex justify-content-center align-items-center mb-auto m-0 py-3 ps-4">
             <CabinCardModule />
           </div>
           <div
-            className="row col-5 d-flex justify-content-center align-items-center m-0 mb-auto py-0 px-2"
+            className="row col-5 d-flex justify-content-center align-items-center mb-auto m-0 py-3 pe-4"
           >
             <p
               className="mt-2"
@@ -207,10 +209,6 @@ export const ModalModule = (props) => {
             >
               Tee varaus
             </p>
-            <Input
-              type={"field"}
-              changeState={(value) => console.log(value)}
-            />
             <p
               style={{ fontSize: "1rem", fontWeight: 500 }}
             >
@@ -233,20 +231,168 @@ export const ModalModule = (props) => {
                 Viikko: {cabinData.weekPrice}€
               </p>
             }
-            <div className="row col-12 shadow m-0 p-0">
-              <CalendarModule
-                defaultValue={props.searchFilters["searchDate"].defaultValue}
-                value={props.searchFilters["searchDate"].value}
-                reservations={true}
-                count={props.searchFilters["searchDate"].count}
-                SetSearchFilters={props.SetSearchFilters}
-              />
+            <div
+              className="row col-12 d-flex justify-content-center align-items-center mt-3 mb-5"
+              style={{ border: "0.1rem solid rgba(0, 0, 0, 0.2)", borderRadius: "0.5rem" }}
+            >
+              <div className="row col-12 m-0">
+                <CalendarModule
+                  defaultValue={props.searchFilters["searchDate"].defaultValue}
+                  value={props.searchFilters["searchDate"].value}
+                  reservations={true}
+                  count={props.searchFilters["searchDate"].count}
+                  SetSearchFilters={props.SetSearchFilters}
+                  clearButtton={false}
+                />
+              </div>
+            </div>
+            <div
+              className="row col-12 d-flex justify-content-center align-items-center mb-5"
+              style={{ border: "0.1rem solid rgba(0, 0, 0, 0.2)", borderRadius: "0.5rem" }}
+            >
+              <div
+                className="col-12 d-flex justify-content-start align-items-center ps-4 mt-3"
+                style={{
+                  fontSize: "1.5rem",
+                  fontWeight: 400,
+                }}
+              >
+                Omistaja
+              </div>
+              <div
+                className="col-2 d-flex justify-content-center align-items-center mb-auto mt-3"
+              >
+                <img
+                  src={iconUser}
+                  alt=""
+                  style={{ objectFit: "cover", width: "40px", height: "100%" }}
+                />
+              </div>
+              <div
+                className="row col-10 d-flex justify-content-start align-items-center ps-4 mt-2"
+              >
+                <div
+                  className="col-12 d-flex justify-content-start align-items-center"
+                  style={{
+                    height: "50px",
+                    width: "240px",
+                    fontSize: "1rem",
+                    fontWeight: 500,
+                  }}
+                >
+                  Test User
+                </div>
+                <div
+                  className="col-12 d-flex justify-content-center align-items-center mb-4"
+                  style={{
+                    height: "50px",
+                    width: "240px",
+                    borderRadius: "1rem",
+                    backgroundColor: colors.green,
+                    color: "white",
+                    fontSize: "1.25rem",
+                    fontWeight: 500,
+                  }}
+                >
+                  045 2266670
+                </div>
+              </div>
+            </div>
+            <div
+              className="row col-12 d-flex justify-content-center align-items-center px-4"
+              style={{ border: "0.1rem solid rgba(0, 0, 0, 0.2)", borderRadius: "0.5rem" }}
+            >
+              <p
+                className="col-6 mt-3"
+                style={{ fontSize: "1rem", fontWeight: 500, textAlign: "left" }}
+              >
+                alkupäivä
+              </p>
+              <p
+                className="col-6 mt-3"
+                style={{ fontSize: "1rem", fontWeight: 500, textAlign: "right" }}
+              >
+                {props.searchFilters["searchDate"]?.value?.[0].day !== undefined &&
+                  `${props.searchFilters["searchDate"].value[0].day}.${props.searchFilters["searchDate"].value[0].month}.${props.searchFilters["searchDate"].value[0].year}`
+                }
+                {props.searchFilters["searchDate"]?.value?.[0].day === undefined &&
+                  `${props.searchFilters["searchDate"].defaultValue[0].day}.${props.searchFilters["searchDate"].defaultValue[0].month}.${props.searchFilters["searchDate"].defaultValue[0].year}`
+                }
+              </p>
+              <div style={{ width: "95%", height: "2px", backgroundColor: "rgba(0, 0, 0, 0.2)" }} />
+              <p
+                className="col-6 mt-3"
+                style={{ fontSize: "1rem", fontWeight: 500, textAlign: "left" }}
+              >
+                loppupäivä
+              </p>
+              <p
+                className="col-6 mt-3"
+                style={{ fontSize: "1rem", fontWeight: 500, textAlign: "right" }}
+              >
+                {props.searchFilters["searchDate"]?.value?.[1].day !== undefined &&
+                  `${props.searchFilters["searchDate"].value[1].day}.${props.searchFilters["searchDate"].value[1].month}.${props.searchFilters["searchDate"].value[1].year}`
+                }
+                {props.searchFilters["searchDate"]?.value?.[1].day === undefined &&
+                  "----------"
+                }
+              </p>
+              <div style={{ width: "95%", height: "2px", backgroundColor: "rgba(0, 0, 0, 0.2)" }} />
+
+              <p
+                className="col-6 mt-3"
+                style={{ fontSize: "1rem", fontWeight: 500, textAlign: "left" }}
+              >
+                hinta
+              </p>
+              <p
+                className="col-6 mt-2"
+                style={{ fontSize: "1rem", fontWeight: 500, textAlign: "right" }}
+              >
+                {props.searchFilters["searchDate"]?.value?.[1].day !== undefined && props.searchFilters["searchDate"]?.value?.[0].day !== undefined &&
+                  `${totalPrice}€`
+                }
+                {props.searchFilters["searchDate"]?.value?.[1].day === undefined &&
+                  "----------"
+                }
+              </p>
+              <div
+                className="col-6"
+              >
+                <InputStyle
+                  type={"field"}
+                  changeState={(value) => console.log(value)}
+                  width={"80%"}
+                  height={"40px"}
+                  borderRadius={"0.4rem"}
+                  margin={"1rem 0rem 1.5rem 0rem"}
+                  padding={"0rem 1rem 0rem 1rem"}
+                  textAlign={"left"}
+                  placeholder="Alennus koodi"
+                  border={"0.1rem solid rgba(0, 0, 0, 0.2)"}
+                />
+              </div>
+              <div
+                className="col-6"
+              >
+                <InputStyle
+                  type={"button"}
+                  width={"100%"}
+                  height={"40px"}
+                  borderRadius={"0.4rem"}
+                  margin={"1rem 0rem 1.5rem 0rem"}
+                  border={"none"}
+                  value="Varaa"
+                  color={colors.white}
+                  backgroundColor={colors.green}
+                />
+              </div>
             </div>
           </div>
         </div>
         {/*         <input type="button" value="RESET" onClick={() => ResetSearchFilters()} />
         <input type="button" value="CLOSE" onClick={() => props.SetModalState("")} /> */}
-      </ModalContent>
+      </ModalContent >
     )
   }
 };
