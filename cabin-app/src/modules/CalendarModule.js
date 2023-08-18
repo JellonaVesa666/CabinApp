@@ -313,9 +313,6 @@ export const CalendarModule = (props) => {
 
   }, [Range, FindActiveRange, SetActiveDaysByRange, refresh, clicks, currentMonthDays, nextMonthDays, currentMonth, props]);
 
-  console.log(clicks);
-
-
   const SelectDate = async (item, month) => {
 
     const result = await ClearSelected();
@@ -384,8 +381,6 @@ export const CalendarModule = (props) => {
       return 0;
     });
   }
-
-  console.log(props);
 
   const rows = [];
   for (let i = 0; i < props.count; i++) {

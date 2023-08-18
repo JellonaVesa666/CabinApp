@@ -10,6 +10,8 @@ import { GetDatesBetween } from "../helpers/HelperFunctions";
 import { InputStyle } from "../styles/InputStyle";
 import iconUser from "../images/icon_user.png";
 import starGrey from "../images/icon_star_grey.png";
+import starYellow from "../images/icon_star_yellow.png";
+import starHalftone from "../images/icon_star_halftone.png";
 
 export const ModalModule = (props) => {
 
@@ -47,18 +49,34 @@ export const ModalModule = (props) => {
     })
   }
 
-  const GetTotalPrice = (range) => {
+  const GetTotalPrice = () => {
+
+    let reservationRange;
+    let startDate;
+    let endDate;
+
+    if (props.searchFilters["searchDate"]?.value?.[0]?.day !== undefined && props.searchFilters["searchDate"]?.value?.[1]?.day !== undefined) {
+      startDate = new Date(props.searchFilters["searchDate"]?.value?.[0]?.year, props.searchFilters["searchDate"]?.value?.[0]?.month - 1, props.searchFilters["searchDate"]?.value?.[0]?.day);
+      endDate = new Date(props.searchFilters["searchDate"]?.value?.[1]?.year, props.searchFilters["searchDate"]?.value?.[1]?.month - 1, props.searchFilters["searchDate"]?.value?.[1]?.day);
+      reservationRange = GetDatesBetween(startDate, endDate);
+    }
+    else {
+      startDate = new Date(props.searchFilters["searchDate"]?.defaultValue?.[0]?.year, props.searchFilters["searchDate"]?.defaultValue?.[0]?.month - 1, props.searchFilters["searchDate"]?.defaultValue?.[0]?.day);
+      endDate = new Date(props.searchFilters["searchDate"]?.defaultValue?.[1]?.year, props.searchFilters["searchDate"]?.defaultValue?.[1]?.month - 1, props.searchFilters["searchDate"]?.defaultValue?.[1]?.day);
+      reservationRange = GetDatesBetween(startDate, endDate);
+    }
+
     let price = 0;
 
     // Weekend Price
-    if (range.length === 3 && cabinData?.weekendPrice && cabinData?.weekendPrice > 0 &&
-      range[0].getDay() === 5 && range[2].getDay() === 0) {
+    if (reservationRange.length === 3 && cabinData?.weekendPrice && cabinData?.weekendPrice > 0 &&
+      reservationRange[0].getDay() === 5 && reservationRange[2].getDay() === 0) {
       price = cabinData.weekendPrice;
     }
     //Week Price
-    else if (range.length === 7 &&
-      range[0].getDay() === 1 &&
-      range[6].getDay() === 0 &&
+    else if (reservationRange.length === 7 &&
+      reservationRange[0].getDay() === 1 &&
+      reservationRange[6].getDay() === 0 &&
       cabinData?.weekPrice &&
       cabinData?.weekPrice > 0) {
       price = cabinData.weekPrice;
@@ -66,11 +84,49 @@ export const ModalModule = (props) => {
     // Day Price
     else {
       if (cabinData?.dayPrice && cabinData?.dayPrice > 0) {
-        price = (range.length - 1) * cabinData.dayPrice;
+        price = (reservationRange.length - 1) * cabinData.dayPrice;
       }
     }
 
     return price;
+  }
+
+
+  const GetRatings = () => {
+    let rating = {
+      count: 0,
+      average: 0,
+      tidiness: 0,
+      condition: 0,
+      furnishing: 0,
+      location: 0,
+      reliability: 0,
+    }
+
+    Object.keys(cabinData.ratings).forEach((item) => {
+      rating.count++;
+      rating.tidiness += cabinData.ratings[item].tidiness;
+      rating.condition += cabinData.ratings[item].condition;
+      rating.furnishing += cabinData.ratings[item].furnishing;
+      rating.location += cabinData.ratings[item].location;
+      rating.reliability += cabinData.ratings[item].reliability;
+    })
+
+    rating.average += rating.tidiness;
+    rating.average += rating.condition;
+    rating.average += rating.furnishing;
+    rating.average += rating.location;
+    rating.average += rating.reliability;
+    rating.average = (rating.average / (rating.count * (5 * 5))) * 5;
+    rating.average = rating.average.toFixed(1);
+
+    rating.tidiness = (Math.round(rating.tidiness / rating.count * 2) / 2).toFixed(1);
+    rating.condition = (Math.round(rating.condition / rating.count * 2) / 2).toFixed(1);
+    rating.furnishing = (Math.round(rating.furnishing / rating.count * 2) / 2).toFixed(1);
+    rating.location = (Math.round(rating.location / rating.count * 2) / 2).toFixed(1);
+    rating.reliability = (Math.round(rating.reliability / rating.count * 2) / 2).toFixed(1);
+
+    return rating;
   }
 
   if (props.state === "searchDate") {
@@ -182,36 +238,46 @@ export const ModalModule = (props) => {
   }
   else if (props.state === "preview") {
 
-    let reservationRange;
-    let startDate;
-    let endDate;
+    const totalPrice = GetTotalPrice();
+    const rating = GetRatings();
 
-    if (props.searchFilters["searchDate"]?.value?.[0]?.day !== undefined && props.searchFilters["searchDate"]?.value?.[1]?.day !== undefined) {
-      startDate = new Date(props.searchFilters["searchDate"]?.value?.[0]?.year, props.searchFilters["searchDate"]?.value?.[0]?.month - 1, props.searchFilters["searchDate"]?.value?.[0]?.day);
-      endDate = new Date(props.searchFilters["searchDate"]?.value?.[1]?.year, props.searchFilters["searchDate"]?.value?.[1]?.month - 1, props.searchFilters["searchDate"]?.value?.[1]?.day);
-      reservationRange = GetDatesBetween(startDate, endDate);
-    }
-    else {
-      startDate = new Date(props.searchFilters["searchDate"]?.defaultValue?.[0]?.year, props.searchFilters["searchDate"]?.defaultValue?.[0]?.month - 1, props.searchFilters["searchDate"]?.defaultValue?.[0]?.day);
-      endDate = new Date(props.searchFilters["searchDate"]?.defaultValue?.[1]?.year, props.searchFilters["searchDate"]?.defaultValue?.[1]?.month - 1, props.searchFilters["searchDate"]?.defaultValue?.[1]?.day);
-      reservationRange = GetDatesBetween(startDate, endDate);
-    }
-
-    console.log(reservationRange);
-
-    const totalPrice = GetTotalPrice(reservationRange);
+    console.log(rating);
 
 
-    const renderList = () => {
+    const renderList = (stars) => {
+
       let listItems = [];
       for (let i = 0; i < 5; i++) {
-        listItems.push(
-          <img
-            src={starGrey}
-            alt=""
-            style={{ objectFit: "cover", width: "20px", height: "100%" }}
-          />
-        );
+
+        stars -= 1;
+
+        if (stars >= 0) {
+          listItems.push(
+            <img
+              src={starYellow}
+              alt=""
+              style={{ objectFit: "cover", width: "20px", height: "100%" }}
+            />
+          );
+        }
+        else if (stars === -0.5) {
+          listItems.push(
+            <img
+              src={starHalftone}
+              alt=""
+              style={{ objectFit: "cover", width: "20px", height: "100%" }}
+            />
+          );
+        }
+        else {
+          listItems.push(
+            <img
+              src={starGrey}
+              alt=""
+              style={{ objectFit: "cover", width: "20px", height: "100%" }}
+            />
+          );
+        }
       }
       return listItems;
     };
@@ -416,7 +482,7 @@ export const ModalModule = (props) => {
                   fontWeight: 400,
                 }}
               >
-                0/5
+                {rating.average}/5
               </div>
               <div
                 className="col-12 d-flex justify-content-start align-items-center ps-4 mb-4"
@@ -439,7 +505,7 @@ export const ModalModule = (props) => {
               <div
                 className="col-6 d-flex justify-content-end align-items-center pe-5 mb-1"
               >
-                {renderList()}
+                {renderList(rating.tidiness)}{'\xa0'}{rating.tidiness}
               </div>
               <div
                 className="col-6 d-flex justify-content-start align-items-center ps-4 mb-1"
@@ -453,7 +519,7 @@ export const ModalModule = (props) => {
               <div
                 className="col-6 d-flex justify-content-end align-items-center pe-5 mb-1"
               >
-                {renderList()}
+                {renderList(rating.condition)}{'\xa0'}{rating.condition}
               </div>
               <div
                 className="col-6 d-flex justify-content-start align-items-center ps-4 mb-1"
@@ -467,7 +533,7 @@ export const ModalModule = (props) => {
               <div
                 className="col-6 d-flex justify-content-end align-items-center pe-5 mb-1"
               >
-                {renderList()}
+                {renderList(rating.furnishing)}{'\xa0'}{rating.furnishing}
               </div>
               <div
                 className="col-6 d-flex justify-content-start align-items-center ps-4 mb-1"
@@ -481,7 +547,7 @@ export const ModalModule = (props) => {
               <div
                 className="col-6 d-flex justify-content-end align-items-center pe-5 mb-1"
               >
-                {renderList()}
+                {renderList(rating.location)}{'\xa0'}{rating.location}
               </div>
               <div
                 className="col-6 d-flex justify-content-start align-items-center ps-4 mb-1"
@@ -495,7 +561,7 @@ export const ModalModule = (props) => {
               <div
                 className="col-6 d-flex justify-content-end align-items-center pe-5 mb-1"
               >
-                {renderList()}
+                {renderList(rating.reliability)}{'\xa0'}{rating.reliability}
               </div>
             </div>
             <div

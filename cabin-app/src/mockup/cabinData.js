@@ -140,6 +140,55 @@ export const cabinData = {
     vaikka illallisen ympäri vuoden luonnosta nauttien. Mökin omasta rannasta pääset rauhassa uimaan tai
     soutelemaan järvelle. Villa Einon nuotiopaikka on aivan järven rannalla. Siinä keität mukavasti 
     nokipannukahvit, paistat makkarat tai vaikka muurinpohjalettuja. Nuotiopaikalle mahtuu kahdeksan henkeä.`,
+  ratings: {
+    0: {
+      id: "",
+      tidiness: 4.5,
+      condition: 2,
+      furnishing: 4,
+      location: 2.5,
+      reliability: 5,
+    },
+    1: {
+      id: "",
+      tidiness: 4.5,
+      condition: 3,
+      furnishing: 4,
+      location: 5,
+      reliability: 5,
+    },
+    2: {
+      id: "",
+      tidiness: 2.5,
+      condition: 3,
+      furnishing: 4,
+      location: 4,
+      reliability: 5,
+    },
+    3: {
+      id: "",
+      tidiness: 4.5,
+      condition: 3,
+      furnishing: 4,
+      location: 4,
+      reliability: 5,
+    },
+    4: {
+      id: "",
+      tidiness: 4.5,
+      condition: 3,
+      furnishing: 4,
+      location: 4,
+      reliability: 5,
+    },
+    5: {
+      tidiness: 4.5,
+      condition: 3.5,
+      furnishing: 4,
+      location: 1,
+      reliability: 5,
+    },
+  },
   images: {
     0: {
       src: "../images/icon_preview"
