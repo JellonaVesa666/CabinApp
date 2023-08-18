@@ -127,8 +127,9 @@ export const cabinData = {
   discountFromDays: 5,
   discountExpriration: "2023-07-04T13:33:03.969Z",
   discountMultiplier: 150,
-  cuponCode: "",
-  cuponDiscount: 0,
+  cuponCode: "Alennus koodi",
+  discountValue: 50,
+  discountPercent: 50,
   name: "Ekin Mesta",
   location: "Etelä-Suomi / Vihti, Uusimaa",
   features: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -140,6 +141,9 @@ export const cabinData = {
     vaikka illallisen ympäri vuoden luonnosta nauttien. Mökin omasta rannasta pääset rauhassa uimaan tai
     soutelemaan järvelle. Villa Einon nuotiopaikka on aivan järven rannalla. Siinä keität mukavasti 
     nokipannukahvit, paistat makkarat tai vaikka muurinpohjalettuja. Nuotiopaikalle mahtuu kahdeksan henkeä.`,
+  distances: {
+
+  },
   ratings: {
     0: {
       id: "",

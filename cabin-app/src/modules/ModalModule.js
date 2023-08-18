@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { ModalContent } from "../styles/ModalStyle";
 import { RangeSlider, CheckBox, Counter } from "./InputModules";
 import { CalendarModule } from "./CalendarModule";
@@ -16,6 +16,7 @@ import starHalftone from "../images/icon_star_halftone.png";
 export const ModalModule = (props) => {
 
   const language = useSelector(state => state.session.language);
+  const [cuponCode, setCuponCode] = useState("");
 
   const OutsideClick = (ref) => {
     useEffect(() => {
@@ -54,7 +55,9 @@ export const ModalModule = (props) => {
     let reservationRange;
     let startDate;
     let endDate;
+    let price = 0;
 
+    // Calculate reservation range
     if (props.searchFilters["searchDate"]?.value?.[0]?.day !== undefined && props.searchFilters["searchDate"]?.value?.[1]?.day !== undefined) {
       startDate = new Date(props.searchFilters["searchDate"]?.value?.[0]?.year, props.searchFilters["searchDate"]?.value?.[0]?.month - 1, props.searchFilters["searchDate"]?.value?.[0]?.day);
       endDate = new Date(props.searchFilters["searchDate"]?.value?.[1]?.year, props.searchFilters["searchDate"]?.value?.[1]?.month - 1, props.searchFilters["searchDate"]?.value?.[1]?.day);
@@ -66,8 +69,7 @@ export const ModalModule = (props) => {
       reservationRange = GetDatesBetween(startDate, endDate);
     }
 
-    let price = 0;
-
+    //Calculate Price
     // Weekend Price
     if (reservationRange.length === 3 && cabinData?.weekendPrice && cabinData?.weekendPrice > 0 &&
       reservationRange[0].getDay() === 5 && reservationRange[2].getDay() === 0) {
@@ -88,9 +90,12 @@ export const ModalModule = (props) => {
       }
     }
 
+    // Cupon Discount
+    if (cuponCode === cabinData.cuponCode)
+      price -= cabinData.discountValue;
+
     return price;
   }
-
 
   const GetRatings = () => {
     let rating = {
@@ -241,9 +246,6 @@ export const ModalModule = (props) => {
     const totalPrice = GetTotalPrice();
     const rating = GetRatings();
 
-    console.log(rating);
-
-
     const renderList = (stars) => {
 
       let listItems = [];
@@ -392,12 +394,13 @@ export const ModalModule = (props) => {
               >
                 <InputStyle
                   type={"field"}
-                  changeState={(value) => console.log(value)}
+                  onChange={(event) => setCuponCode(event.target.value)}
+                  value={cuponCode}
                   width={"80%"}
                   height={"40px"}
                   borderRadius={"0.4rem"}
                   margin={"1rem 0rem 1.5rem 0rem"}
-                  padding={"0rem 1rem 0rem 1rem"}
+                  padding={"0rem 0rem 0rem 2rem"}
                   textAlign={"left"}
                   placeholder="Alennus koodi"
                   border={"0.1rem solid rgba(0, 0, 0, 0.2)"}
