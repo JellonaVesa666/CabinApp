@@ -1,14 +1,6 @@
 import styled from 'styled-components';
 import { colors } from './Colors';
 
-export const RegisterBody = styled.div`
-  position: absolute;
-  width: 35rem;
-  border-radius: 16px;
-  transition: 1s ease-in-out;
-  top: ${props => (props.show === 1 ? "8rem" : "-100vh")};
-`
-
 export const LinkH4 = styled.h4`
   color: rgba(0, 0, 0, 0.5);
   font-weight: 300;

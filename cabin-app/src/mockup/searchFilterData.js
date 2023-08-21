@@ -156,14 +156,12 @@ export const defaultSearchFilters = {
         "basic",
       en:
         "basic",
-      value: 0,
     },
     1: {
       fi:
         "premium",
       en:
         "premium",
-      value: 0,
     },
   },
   housing: {

@@ -1,17 +1,30 @@
+/* React */
 import React, { useRef, useEffect, useState } from "react";
+
+/* Redux */
+import { useSelector } from "react-redux";
+
+/* Modules */
 import { ModalContent } from "../styles/ModalStyle";
 import { RangeSlider, CheckBox, Counter } from "./InputModules";
 import { CalendarModule } from "./CalendarModule";
 import { colors } from "../styles/Colors";
-import { useSelector } from "react-redux";
 import { CabinCardModule } from "./CabinCardModule";
 import { cabinData } from "../mockup/cabinData";
+import RegisterComponent from "./RegisterComponent";
+
+/* Helpers */
 import { GetDatesBetween } from "../helpers/HelperFunctions";
+
+/* Styles */
 import { InputStyle } from "../styles/InputStyle";
+
+/* Images */
 import iconUser from "../images/icon_user.png";
 import starGrey from "../images/icon_star_grey.png";
 import starYellow from "../images/icon_star_yellow.png";
 import starHalftone from "../images/icon_star_halftone.png";
+import logoDark from "../images/logo_Dark.png"
 
 export const ModalModule = (props) => {
 
@@ -212,32 +225,93 @@ export const ModalModule = (props) => {
           if (!props.searchFilters?.[item]?.static &&
             props.searchFilters[item].type === "slider") {
             return (
-              <RangeSlider
-                key={item}
-                data={props.searchFilters}
-                i={item}
-                language={language}
-                SetSearchFilters={props.SetSearchFilters}
-              />
+              <div
+                className=" row col-12 d-flex justify-content-center align-items-center py-3 m-0"
+              >
+                <div
+                  className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5 pt-3"
+                  style={{ fontWeight: 500, letterSpacing: "2px", fontSize: "1em" }}
+                >
+                  {(props.searchFilters?.[item]?.info?.header?.[language])?.toUpperCase()}
+                </div>
+                <RangeSlider
+                  key={item}
+                  data={props.searchFilters}
+                  i={item}
+                  language={language}
+                  SetSearchFilters={props.SetSearchFilters}
+                />
+              </div>
             )
           }
           if (!props.searchFilters?.[item]?.static &&
             props.searchFilters[item].type === "checkbox") {
             return (
-              <CheckBox
-                key={item}
-                data={props.searchFilters}
-                i={item}
-                language={language}
-                color={colors.blue}
-                SetSearchFilters={props.SetSearchFilters}
-              />
+              <div className=" row col-12 d-flex justify-content-center align-items-center py-3 m-0">
+                <div
+                  className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5 pt-3"
+                  style={{ fontWeight: 500, letterSpacing: "2px", fontSize: "1em" }}
+                >
+                  {(props.searchFilters?.[item]?.info?.header?.[language])?.toUpperCase()}
+                </div>
+                <CheckBox
+                  key={item}
+                  data={props.searchFilters}
+                  i={item}
+                  language={language}
+                  color={colors.blue}
+                  SetSearchFilters={props.SetSearchFilters}
+                />
+              </div>
             )
           }
           return null;
         })}
         <input type="button" value="RESET" onClick={() => ResetSearchFilters()} />
         <input type="button" value="CLOSE" onClick={() => props.SetModalState("")} />
+      </ModalContent>
+    )
+  }
+  else if (props.state === "login") {
+    return (
+      <ModalContent
+        ref={wrapperRef}
+        width={"25%"}
+        top={"8%"}
+      >
+        <div
+          className="row d-flex justify-content-center align-items-center m-0 p-0"
+          style={{ width: "100%", height: "100%" }}
+        >
+          <img
+            alt=""
+            src={logoDark}
+            style={{ height: "120px", width: "auto" }}
+          />
+          <p
+            className="m-0 pt-4"
+            style={{ textAlign: "center", fontSize: "1.2rem", fontWeight: 500 }}
+          >
+            Rekisteröi Lapland Camping Tunnus
+          </p>
+          <p
+            className="m-0 pt-1"
+            style={{ textAlign: "center", fontSize: "1rem", fontWeight: 400, width: "50%" }}
+          >
+            Tunnuksella voit luoda kohteita ja hallita kohteiden tiloja, varauksia sekä käyttäjätunnuksia.
+          </p>
+          <RegisterComponent />
+          <div
+            className="row col-12 d-flex justify-content-center align-items-center pt-4"
+          >
+            <div
+              className="col-4 d-flex justify-content-center align-items-center ms-3"
+              style={{ height: "60px", fontSize: "1.2rem", fontWeight: 500, border: "1px solid grey" }}
+            >
+              Register
+            </div>
+          </div>
+        </div>
       </ModalContent>
     )
   }
@@ -581,8 +655,6 @@ export const ModalModule = (props) => {
             </div>
           </div>
         </div>
-        {/*         <input type="button" value="RESET" onClick={() => ResetSearchFilters()} />
-        <input type="button" value="CLOSE" onClick={() => props.SetModalState("")} /> */}
       </ModalContent >
     )
   }

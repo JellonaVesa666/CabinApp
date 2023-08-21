@@ -4,7 +4,7 @@ import { colors } from "./Colors";
 export const ModalContent = styled.section`
   z-index:10;
   position: absolute;
-  top: 27.5%;
+  top: ${props => (props.top ? props.top : "27.5%")};
   left: 50%;
   -ms-transform: translateX(-50%);
   -moz-transform: translateX(-50%);

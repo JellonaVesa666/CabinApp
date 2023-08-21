@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeLanguage } from "../reducers/sessionReducer";
 import logoBanner from "../images/logo_banner.png";
 
-export default function NavigationModule(props) {
+export const NavigationModule = (props) => {
   const language = useSelector(state => state.session.language);
   const dispatch = useDispatch();
 

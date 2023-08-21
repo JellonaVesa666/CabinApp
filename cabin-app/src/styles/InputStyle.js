@@ -172,8 +172,7 @@ export const MultiSelectInput = styled.li.attrs({
   }
 `
 
-// Option Select
-export const OptionItem = styled.select`
+export const OptionStyle = styled.select`
   width: ${props => (props.width)};
   border-radius: ${props => (props.radius)};
   border: 1.5px solid rgba(0, 0, 0, 0.2);
@@ -196,8 +195,8 @@ export const InputStyle = styled.input.attrs((props) => ({
   id: props.id,
   type: props.type
 }))`
-  width: ${props => (props.width)};
-  height: ${props => (props.height)};
+  width: ${props => (props.width ? props.width : "100%")};
+  height: ${props => (props.height ? props.height : "100%")};
   border: ${props => (props.border)};
   border-radius: ${props => (props.borderRadius)};
   background: ${props => (props.backgroundColor ? props.backgroundColor : colors.white)};

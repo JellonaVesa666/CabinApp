@@ -1,16 +1,27 @@
 import styled from 'styled-components'
-import backgroundForest2 from "../images/background_forest2.jpg";
+import backgroundForest from "../images/background_forest.jpg";
+import backgroungCabin from "../images/background_cabin.jpg";
 import logoLight from "../images/logo_Light.png";
 
 export const BodyBackground = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 80%;
+  height: 100%;
   width: 100%;
-  background-image: url(${backgroundForest2});
+  background-image: url(${backgroungCabin});
   background-size: cover;
 `
+
+/* export const BodyBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 80%;
+  width: 100%;
+  background-image: url(${backgroundForest});
+  background-size: cover;
+` */
 
 export const Logo = styled.div`
   background: url(${logoLight}) no-repeat;

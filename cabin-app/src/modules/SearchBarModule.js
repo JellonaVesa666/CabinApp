@@ -1,17 +1,22 @@
+/* React */
 import React from "react";
+/* Helpers */
 import { ChangeState } from "../helpers/HelperFunctions";
-import { SearchBar } from "../styles/SearchBarStyle";
-import { colors } from "../styles/Colors";
+/* Redux */
 import { useSelector } from "react-redux";
-import filterBlack from "../images/icon_filter_black.png"
+/* Styles */
+import { SearchBar } from "../styles/SearchBarStyle";
 import { InputStyle } from "../styles/InputStyle";
+import { colors } from "../styles/Colors";
+/* Images */
+import filterBlack from "../images/icon_filter_black.png"
+
 
 export const SearchBarModule = (props) => {
   const language = useSelector(state => state.session.language);
 
   // Static filter items
   const staticFilters = Object.keys(props.searchFilters).map(item => {
-
     if (props.searchFilters[item].static) {
       return (
         <div key={item}>
@@ -28,7 +33,7 @@ export const SearchBarModule = (props) => {
               data={props.searchFilters}
               placeholder={props.searchFilters[item].placeholder[language]}
               value={props.searchFilters[item].value}
-              changeState={(value) => ChangeState(props.SetSearchFilters, value, "value", item)}
+              onChange={(event) => ChangeState(props.SetSearchFilters, event.target.value, "value", item)}
             />
           }
           {props.searchFilters[item].type === "button" &&
