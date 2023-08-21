@@ -24,13 +24,11 @@ export default function App() {
     <BodyBackground>
       <div
         style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "26.75%", backgroundColor: "white" }}
-      >
-      </div>
+      />
       <div
         className="m-auto"
         style={{ position: "absolute", top: "63.5%", left: 0, right: 0, width: "60%", height: "50%", backgroundColor: "white", borderRadius: "80%" }}
-      >
-      </div>
+      />
       {modalState !== "" &&
         <ModalModule
           defaultSearchFilters={defaultSearchFilters}
