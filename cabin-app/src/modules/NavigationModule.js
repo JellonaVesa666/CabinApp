@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeLanguage } from "../reducers/sessionReducer";
 import logoBanner from "../images/logo_banner.png";
 
-export default function NavigationModule() {
+export default function NavigationModule(props) {
   const language = useSelector(state => state.session.language);
   const dispatch = useDispatch();
 
@@ -63,7 +63,11 @@ export default function NavigationModule() {
                     Object.keys(navigationData[type][item]).map((child) => {
                       if (child === language) {
                         return (
-                          <ButtonInput id={navigationData[type][item].route} onClick={(event) => navigate(event.target.id)} key={item}>
+                          <ButtonInput
+                            key={item}
+                            id={navigationData[type][item].route}
+                            onClick={(event) => (navigate(event.target.id), props.SetModalState(""))}
+                          >
                             {navigationData[type][item][child].name.toUpperCase()}
                           </ButtonInput>
                         )

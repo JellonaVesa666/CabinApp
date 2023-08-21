@@ -20,7 +20,7 @@ export const SearchBarModule = (props) => {
             !props.searchFilters[item].modal &&
             < InputStyle
               type={props.searchFilters[item].type}
-              width={"200px"}
+              width={"auto"}
               height={"40px"}
               radius={"0px"}
               border={"none"}
@@ -37,7 +37,7 @@ export const SearchBarModule = (props) => {
             < InputStyle
               id={"modalBtn"}
               type={props.searchFilters[item].type}
-              width={"240px"}
+              width={"auto"}
               height={"40px"}
               radius={"0px"}
               border={"none"}
@@ -69,7 +69,7 @@ export const SearchBarModule = (props) => {
             <InputStyle
               id={"modalBtn"}
               type={props.searchFilters[item].type}
-              width={"240px"}
+              width={"auto"}
               height={"40px"}
               radius={"0px"}
               border={"none"}

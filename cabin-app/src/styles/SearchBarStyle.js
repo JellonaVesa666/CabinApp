@@ -107,6 +107,8 @@ export const SearchBar = styled.div`
   justify-content: space-evenly;
   flex-direction: row;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
   flex-wrap: wrap;
   height: 152px;
   width: 100%;

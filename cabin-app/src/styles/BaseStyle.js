@@ -6,7 +6,7 @@ export const BodyBackground = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 60%;
+  height: 80%;
   width: 100%;
   background-image: url(${backgroundForest2});
   background-size: cover;

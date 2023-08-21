@@ -25,7 +25,7 @@ export const ContentModule = (props) => {
     <main>
       <section
         className="d-flex justify-content-center align-items-center m-0 p-0"
-        style={{ height: "540px" }}
+        style={{ height: "42vh" }}
       >
         <div class="row mb-auto py-3">
           <p
@@ -43,13 +43,15 @@ export const ContentModule = (props) => {
         </div>
       </section>
       <section
-        className="d-flex justify-content-center align-items-center m-0 py-4 bg-light">
+        className="d-flex position-absolute justify-content-center align-items-center m-auto p-0"
+        style={{ top: "73.25%", left: 0, right: 0 }}
+      >
         <div
           className="row row-cols-2"
-          style={{ width: "76%" }}
+          style={{ width: "76%", paddingTop: "5rem" }}
         >
 
-          <div class="col px-4 py-5">
+          <div class="col px-4">
             <div
               className="position-relative d-flex"
             >
@@ -150,7 +152,7 @@ export const ContentModule = (props) => {
               </div>
             </div>
           </div>
-          <div class="col px-4 py-5">
+          <div class="col px-4">
             <div
               className="position-relative d-flex"
             >
