@@ -131,28 +131,6 @@ export const registerDO = {
     },
     errors: "",
   },
-  countryCode: {
-    type: "tel",
-    context: "field",
-    static: true,
-    modal: false,
-    value: "",
-    info: {
-      header: {
-        fi:
-          "Maa koodi",
-        en:
-          "Country code",
-      },
-    },
-    placeholder: {
-      fi:
-        "+358",
-      en:
-        "+358",
-    },
-    errors: "",
-  },
   phone: {
     type: "tel",
     context: "field",
@@ -172,6 +150,12 @@ export const registerDO = {
         "xxxxxxxxx",
       en:
         "xxxxxxxxx",
+    },
+    0: {
+      value: "358"
+    },
+    1: {
+      value: ""
     },
     errors: "",
   },

@@ -388,7 +388,7 @@ export default function RegisterComponent(props) {
           {formData[item]?.info?.header?.[language]}
         </div>
         {formData[item].static &&
-          (formData[item].type === "text" || formData[item].type === "tel" || formData[item].type === "password" || formData[item].type === "email") &&
+          (formData[item].type === "text" || formData[item].type === "email") &&
           formData[item].context === "field" &&
           !formData[item].modal &&
           <div
@@ -407,6 +407,43 @@ export default function RegisterComponent(props) {
               placeholder={formData[item]?.placeholder[language]}
               value={formData[item].value}
               onChange={(event) => ChangeState(setFormData, event.target.value, "value", item)}
+            />
+          </div>
+        }
+        {formData[item].static &&
+          formData[item].type === "tel" &&
+          formData[item].context === "field" &&
+          !formData[item].modal &&
+          <div
+            className="col-8 d-flex justify-content-center align-items-center m-0 p-0"
+          >
+            < InputStyle
+              type={formData[item].type}
+              width={"30%"}
+              height={"50px"}
+              radius={"0px"}
+              border={"1px solid grey"}
+              padding={"0rem 0rem 0rem 2rem"}
+              textAlign={"left"}
+              i={item}
+              data={formData}
+              placeholder={formData[item]?.placeholder[language]}
+              value={`+${formData[item][0].value}`}
+              onChange={(event) => ChangeState(setFormData, event.target.value, "value", item, 0)}
+            />
+            < InputStyle
+              type={formData[item].type}
+              width={"70%"}
+              height={"50px"}
+              radius={"0px"}
+              border={"1px solid grey"}
+              padding={"0rem 0rem 0rem 2rem"}
+              textAlign={"left"}
+              i={item}
+              data={formData}
+              placeholder={formData[item]?.placeholder[language]}
+              value={formData[item][1].value}
+              onChange={(event) => ChangeState(setFormData, event.target.value, "value", item, 1)}
             />
           </div>
         }
