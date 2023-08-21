@@ -25,7 +25,7 @@ export const RangeSlider = (props) => {
                   max={props?.data?.[props.i]?.[item]?.maxDefault}
                   value={props?.data?.[props.i]?.[item]?.minValue}
                   step={props?.data?.[props.i]?.[item]?.step}
-                  onChange={(event) => ChangeState(props?.SetSearchFilters, Math.max(props?.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxValue)), "minValue", props?.i, item)}
+                  onChange={(event) => ChangeState(props?.changeState, Math.max(props?.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxValue)), "minValue", props?.i, item)}
                 />
                 <RangeInput
                   type="range"
@@ -33,7 +33,7 @@ export const RangeSlider = (props) => {
                   max={props?.data?.[props.i]?.[item]?.maxDefault}
                   value={props?.data?.[props.i]?.[item]?.maxValue}
                   step={props?.step}
-                  onChange={(event) => ChangeState(props?.SetSearchFilters, Math.max(props?.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props?.i, item)}
+                  onChange={(event) => ChangeState(props?.changeState, Math.max(props?.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props?.i, item)}
                 />
                 <SliderBackground left={props?.data?.[props.i]?.[item]?.minValue / props?.data?.[props.i]?.[item]?.maxDefault * 100} right={props?.data?.[props.i]?.[item]?.maxValue / props?.data?.[props.i]?.[item]?.maxDefault * 100} className="center" />
                 <SliderBackground />
@@ -45,7 +45,7 @@ export const RangeSlider = (props) => {
                   <RangeValue
                     type="number"
                     value={props?.data?.[props.i]?.[item]?.minValue}
-                    onChange={(event) => ChangeState(props?.SetSearchFilters, Math.max(props?.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
+                    onChange={(event) => ChangeState(props?.changeState, Math.max(props?.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
                   />
                 </RangeWrapper>
                 <RangeWrapper
@@ -56,7 +56,7 @@ export const RangeSlider = (props) => {
                   <RangeValue
                     type="number"
                     value={props?.data?.[props.i]?.[item]?.maxValue}
-                    onChange={(event) => ChangeState(props?.SetSearchFilters, Math.max(props?.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
+                    onChange={(event) => ChangeState(props?.changeState, Math.max(props?.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
                   />
                 </RangeWrapper>
               </Slider>
@@ -92,7 +92,7 @@ export const RangeSlider = (props) => {
                       max={props.data?.[props.i]?.[item]?.maxDefault}
                       value={props.data?.[props.i]?.[item]?.minValue}
                       step={props.data?.[props.i]?.[item]?.step}
-                      onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
+                      onChange={(event) => ChangeState(props.changeState, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
                     />
                     <RangeInput
                       type="range"
@@ -100,7 +100,7 @@ export const RangeSlider = (props) => {
                       max={props.data?.[props.i]?.[item]?.maxDefault}
                       value={props.data?.[props.i]?.[item]?.maxValue}
                       step={props.data?.[props.i]?.[item]?.step}
-                      onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
+                      onChange={(event) => ChangeState(props.changeState, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
                     />
                     <SliderBackground left={props.data?.[props.i]?.[item]?.minValue / props.data?.[props.i]?.[item]?.maxDefault * 100} right={props.data?.[props.i]?.[item]?.maxValue / props.data?.[props.i]?.[item]?.maxDefault * 100} className="center" />
                     <SliderBackground />
@@ -113,7 +113,7 @@ export const RangeSlider = (props) => {
                         type="number"
                         value={props.data?.[props.i]?.[item]?.minValue}
 
-                        onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
+                        onChange={(event) => ChangeState(props.changeState, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
                       />
                     </RangeWrapper>
                     <RangeWrapper
@@ -124,7 +124,7 @@ export const RangeSlider = (props) => {
                       <RangeValue
                         type="number"
                         value={props.data?.[props.i]?.[item]?.maxValue}
-                        onChange={(event) => ChangeState(props.SetSearchFilters, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
+                        onChange={(event) => ChangeState(props.changeState, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
                       />
                     </RangeWrapper>
                   </Slider>
@@ -172,7 +172,7 @@ export const Counter = (props) => {
                     value="-"
                     className=""
                     style={{ borderRadius: "4px", outline: 0, border: "none", width: "32px", height: "32px", color: "black", fontSize: "16px" }}
-                    onClick={() => { ChangeState(props.SetSearchFilters, (Number(props.data[props.i][item].value) > 0 ? Number(props.data[props.i][item].value) - 1 : 0), "value", props.index1, item) }}
+                    onClick={() => { ChangeState(props.changeState, (Number(props.data[props.i][item].value) > 0 ? Number(props.data[props.i][item].value) - 1 : 0), "value", props.index1, item) }}
                   />
                 </div>
                 <div
@@ -187,7 +187,7 @@ export const Counter = (props) => {
                   <CounterButton
                     type="button"
                     value="+"
-                    onClick={() => { ChangeState(props.SetSearchFilters, (Number(props.data[props.i][item].value) + 1), "value", props.index1, item) }}
+                    onClick={() => { ChangeState(props.changeState, (Number(props.data[props.i][item].value) + 1), "value", props.index1, item) }}
                   />
                 </div>
               </div>
@@ -270,7 +270,7 @@ export const CheckBox = (props) => {
                   type="checkbox"
                   color={props.color}
                   checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
-                  onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.SetSearchFilters, Number(item), "value", props.i)}
+                  onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.changeState, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.changeState, Number(item), "value", props.i)}
                 />
                 <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: "2px", fontSize: "0.75em", paddingLeft: "15px" }}>
                   {props.data[props.i][item]?.[props.language] !== undefined ? props.data[props.i][item][props.language].toUpperCase() : "ERROR"}
@@ -296,7 +296,7 @@ export const CheckBox = (props) => {
                   type="checkbox"
                   color={props.color}
                   checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
-                  onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.SetSearchFilters, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.SetSearchFilters, Number(item), "value", props.i)}
+                  onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.changeState, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.changeState, Number(item), "value", props.i)}
                 />
                 <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: "2px", fontSize: "0.75em", paddingLeft: "15px" }}>
                   {(props.data[props.i][item]?.[props.language])?.toUpperCase()}

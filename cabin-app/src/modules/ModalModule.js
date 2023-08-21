@@ -158,7 +158,7 @@ export const ModalModule = (props) => {
           value={props.searchFilters["searchDate"].value}
           reservations={props.searchFilters["searchDate"].reservations}
           count={props.searchFilters["searchDate"].count}
-          SetSearchFilters={props.SetSearchFilters}
+          changeState={props.SetSearchFilters}
           clearButton={true}
         />
       </ModalContent>
@@ -179,7 +179,7 @@ export const ModalModule = (props) => {
                 data={props.searchFilters}
                 index1={"persons"}
                 i={item}
-                SetSearchFilters={props.SetSearchFilters}
+                changeState={props.SetSearchFilters}
               />
             )
           }
@@ -204,7 +204,7 @@ export const ModalModule = (props) => {
                 data={props.searchFilters}
                 index1={"rooms"}
                 i={item}
-                SetSearchFilters={props.SetSearchFilters}
+                changeState={props.SetSearchFilters}
               />
             )
           }
@@ -239,7 +239,7 @@ export const ModalModule = (props) => {
                   data={props.searchFilters}
                   i={item}
                   language={language}
-                  SetSearchFilters={props.SetSearchFilters}
+                  changeState={props.SetSearchFilters}
                 />
               </div>
             )
@@ -260,7 +260,7 @@ export const ModalModule = (props) => {
                   i={item}
                   language={language}
                   color={colors.blue}
-                  SetSearchFilters={props.SetSearchFilters}
+                  changeState={props.SetSearchFilters}
                 />
               </div>
             )
@@ -405,7 +405,7 @@ export const ModalModule = (props) => {
                   value={props.searchFilters["searchDate"].value}
                   reservations={true}
                   count={props.searchFilters["searchDate"].count}
-                  SetSearchFilters={props.SetSearchFilters}
+                  changeState={props.SetSearchFilters}
                   clearButtton={false}
                 />
               </div>

@@ -476,7 +476,7 @@ export default function RegisterComponent(props) {
               i={item}
               data={formData}
               language={language}
-            //SetSearchFilters={props.SetSearchFilters}
+              changeState={setFormData}
             />
           </div>
         }
