@@ -267,7 +267,7 @@ export const registerDO = {
     },
     errors: "",
   },
-  companyId: {
+  businessID: {
     type: "text",
     context: "field",
     static: true,

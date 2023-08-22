@@ -58,7 +58,7 @@ namespace CabinBackend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != user.Id)
+            if (id != user.ID)
             {
                 return BadRequest();
             }
@@ -96,7 +96,7 @@ namespace CabinBackend.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction("GetUser", new { id = user.ID }, user);
         }
 
         // DELETE: api/Users
@@ -121,7 +121,7 @@ namespace CabinBackend.Controllers
 
         private bool UserExists(int id)
         {
-            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Users?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

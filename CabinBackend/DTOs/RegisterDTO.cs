@@ -10,6 +10,9 @@
         public string Address { get; set; } = string.Empty;
         public string PostalCode { get; set; } = string.Empty;
         public int Role { get; set; } = 0;
+        public int CompanyForm { get; set; } = 0;
+        public string Company { get; set; } = string.Empty;
+        public string BusinessID { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime ModifiedDate { get; set; } = DateTime.Now;
         public byte IsActive { get; set; } = 0;

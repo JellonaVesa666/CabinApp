@@ -6,7 +6,7 @@ namespace CabinBackend.Models
     public class User
     {
         [Key]
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         [StringLength(50)]
         [Required]
@@ -39,6 +39,17 @@ namespace CabinBackend.Models
 
         [Required]
         public int Role { get; set; }
+
+        [Required]
+        public int CompanyForm { get; set; }
+
+        [StringLength(255)]
+        [Required]
+        public string? Company { get; set; }
+
+        [StringLength(255)]
+        [Required]
+        public string? BusinessID { get; set; }
 
         [Required]
         public DateTime CreatedDate { get; set; }

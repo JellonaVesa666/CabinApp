@@ -1,48 +1,47 @@
+/* React */
 import React, { useState } from "react";
+/* API */
 import { ENDPOINTS, createAPIEndpoint } from "../api";
-
 /* Redux */
 import { useSelector } from "react-redux";
-
+/* Helpers */
 import { ChangeState } from "../helpers/HelperFunctions";
-import { Input, OptionSelect, CheckBox, PasswordField } from "./InputModules";
-import { CardHeader } from "../styles/SearchBarStyle";
-import { RegisterBody, CloseBtn, SubmitBtn, LinkH4 } from "../styles/RegisterStyle";
-import { registerDO, registerDTO } from "../DTO/RegisterDTO";
+/* Modules */
+import { CheckBox, Option, Password } from "./InputModules";
+/* Styles */
 import { colors } from "../styles/Colors";
-import { Option, Password } from "./InputModules";
 import { InputStyle } from "../styles/InputStyle";
-
+/* Data */
+import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 
 export const RegisterModule = (props) => {
   const language = useSelector(state => state.session.language);
   const [formData, setFormData] = useState(registerDO);
 
-  const register = async () => {
-    let isValid = validateForm();
-
-    if (isValid) {
-      // Create post formData for request
-      registerDTO.fullName = formData.fullName.value;
-      registerDTO.username = formData.username.value;
-      registerDTO.email = formData.email.value;
-      registerDTO.emailConfirm = formData.emailConfirm.value;
-      registerDTO.password = formData.password.value;
-      registerDTO.passwordConfirm = formData.passwordConfirm.value;
-      registerDTO.phone = formData.countryCode.value + formData.phone.value;
-      registerDTO.address = formData.address.value;
-      registerDTO.postalCode = formData.postalCode.value;
-      registerDTO.role = formData.role.value;
-      registerDTO.createdDate = Date.now;
-      registerDTO.modifiedDate = Date.now;
-      registerDTO.isActive = 1;
-
-
-      createAPIEndpoint(ENDPOINTS.register)
-        .post(registerDTO)
-        .then(response => console.log(response))
-        .catch(error => console.log(error));
-    }
+  const Register = async () => {
+    console.log("register");
+    /*     if (isValid) {
+          // Create post formData for request
+          registerDTO.fullName = formData.fullName.value;
+          registerDTO.username = formData.username.value;
+          registerDTO.email = formData.email.value;
+          registerDTO.emailConfirm = formData.emailConfirm.value;
+          registerDTO.password = formData.password.value;
+          registerDTO.passwordConfirm = formData.passwordConfirm.value;
+          registerDTO.phone = formData.countryCode.value + formData.phone.value;
+          registerDTO.address = formData.address.value;
+          registerDTO.postalCode = formData.postalCode.value;
+          registerDTO.role = formData.role.value;
+          registerDTO.createdDate = Date.now;
+          registerDTO.modifiedDate = Date.now;
+          registerDTO.isActive = 1;
+    
+    
+          createAPIEndpoint(ENDPOINTS.register)
+            .post(registerDTO)
+            .then(response => console.log(response))
+            .catch(error => console.log(error));
+        } */
   }
 
   const validateForm = () => {
@@ -118,7 +117,6 @@ export const RegisterModule = (props) => {
     }
     else {
       const phoneRegex = /^\+?[1-9][0-9]{7,14}$/;
-      console.log((formData.phone[0].value + formData.phone[1].value).length);
       if (!phoneRegex.test(`${formData.phone[0].value}${formData.phone[1].value}`)) {
         ChangeState(setFormData, "Invalid phone number", "errors", "phone");
         isValid = false;
@@ -185,13 +183,26 @@ export const RegisterModule = (props) => {
       ChangeState(setFormData, "Please agree the terms of Service", "errors", "termsOfService");
       isValid = false;
     }
+    // Company name 
+    if (formData.companyName.value === "") {
+      ChangeState(setFormData, "Cannot be empty", "errors", "companyName");
+      isValid = false;
+    }
+    // Business ID 
+    if (formData.businessID.value === "") {
+      ChangeState(setFormData, "Cannot be empty", "errors", "businessID");
+      isValid = false;
+    }
+    else {
+      const businessIDRegex = /(^[0-9]{6,7})-([0-9])/;
+      if (!businessIDRegex.test(formData.businessID.value)) {
+        ChangeState(setFormData, "Business ID is not valid", "errors", "businessID");
+        isValid = false;
+      }
+    }
 
-    console.log(formData);
-
-    if (!isValid)
-      return false;
-    else
-      return true;
+    if (isValid)
+      Register();
   }
 
   const Form = Object.keys(formData).map(item => {

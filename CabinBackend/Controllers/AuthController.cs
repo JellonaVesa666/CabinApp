@@ -38,6 +38,9 @@ namespace CabinBackend.Controllers
                 Address = dto.Address,
                 PostalCode = dto.PostalCode,
                 Role = dto.Role,
+                CompanyForm = dto.CompanyForm,
+                Company = dto.Company,
+                BusinessID = dto.BusinessID,
                 CreatedDate = dto.CreatedDate,
                 ModifiedDate = dto.ModifiedDate,
                 IsActive = dto.IsActive,
@@ -72,7 +75,7 @@ namespace CabinBackend.Controllers
             }
 
             // Generates jwt by using user id
-            var jwt = _jwtService.Generate(user.Id);
+            var jwt = _jwtService.Generate(user.ID);
 
             // HTML response adds a cookie which contains the jwt
             Response.Cookies.Append("jwt", jwt, new CookieOptions
@@ -98,7 +101,7 @@ namespace CabinBackend.Controllers
 
             try
             {
-                user = await _context.Users.FirstOrDefaultAsync(user => user.Id == usedId);
+                user = await _context.Users.FirstOrDefaultAsync(user => user.ID == usedId);
 
                 return Ok(user);
             }
