@@ -27,7 +27,6 @@ namespace CabinBackend.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<IEnumerable<User>>> Register(RegisterDTO dto)
         {
-
             var user = new User
             {
                 FullName = dto.FullName,
@@ -38,16 +37,22 @@ namespace CabinBackend.Controllers
                 Address = dto.Address,
                 PostalCode = dto.PostalCode,
                 Role = dto.Role,
-                CompanyForm = dto.CompanyForm,
-                Company = dto.Company,
-                BusinessID = dto.BusinessID,
+                Company = dto.CompanyName,
                 CreatedDate = dto.CreatedDate,
                 ModifiedDate = dto.ModifiedDate,
                 IsActive = dto.IsActive,
             };
 
-            // Add User
+            var company = new Company
+            {
+                CompanyForm = dto.CompanyForm,
+                CompanyName = dto.CompanyName,
+                BusinessID = dto.BusinessID,
+            };
+
+            // Add User and Company
             _context.Add(user);
+            _context.Add(company);
             await _context.SaveChangesAsync();
 
             // Stringify user
