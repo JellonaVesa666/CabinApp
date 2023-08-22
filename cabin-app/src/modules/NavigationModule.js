@@ -25,6 +25,7 @@ export const NavigationModule = (props) => {
           src={logoBanner}
           alt=""
           style={{ position: "absolute", left: 0, top: 0, width: "100%" }}
+          onClick={(event) => (navigate("/"), props.SetModalState(""))}
         />
       </div>
       <button className="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +67,7 @@ export const NavigationModule = (props) => {
                           <ButtonInput
                             key={item}
                             id={navigationData[type][item].route}
-                            onClick={(event) => (navigate(event.target.id), props.SetModalState(""))}
+                            onClick={(event) => (navigate(event.target.id), props.SetModalState(navigationData[type][item]?.modal !== "" ? navigationData[type][item]?.modal : ""))}
                           >
                             {navigationData[type][item][child].name.toUpperCase()}
                           </ButtonInput>

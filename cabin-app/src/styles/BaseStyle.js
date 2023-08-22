@@ -7,21 +7,21 @@ export const BodyBackground = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  height: 80%;
+  width: 100%;
+  background-image: url(${backgroundForest});
+  background-size: cover;
+`
+
+export const LoginBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
   background-image: url(${backgroungCabin});
   background-size: cover;
 `
-
-/* export const BodyBackground = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 80%;
-  width: 100%;
-  background-image: url(${backgroundForest});
-  background-size: cover;
-` */
 
 export const Logo = styled.div`
   background: url(${logoLight}) no-repeat;

@@ -218,6 +218,7 @@ export const RegisterModule = (props) => {
       }
     }
 
+    console.log(formData);
     if (isValid)
       Register();
   }

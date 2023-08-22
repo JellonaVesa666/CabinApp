@@ -4,16 +4,15 @@ import React, { useState } from "react";
 import { useLocation } from 'react-router-dom';
 /* Modules */
 import { NavigationModule } from "./modules/NavigationModule";
-import { BodyBackground } from "./styles/BaseStyle"
+import { BodyBackground, LoginBackground } from "./styles/BaseStyle"
 import { SearchBarModule } from './modules/SearchBarModule';
 import { ContentModule } from "./modules/ContentModule";
 import { ModalModule } from "./modules/ModalModule";
 /* Data */
 import { defaultSearchFilters } from "./mockup/searchFilterData";
 
-
 export default function App() {
-  const [modalState, setModalState] = useState("register");
+  const [modalState, setModalState] = useState("");
   const [searchFilters, setSearchFilters] = useState(defaultSearchFilters);
   const [reservationDetails, setReservationDetails] = useState();
   const routePath = useLocation().pathname;
@@ -64,11 +63,11 @@ export default function App() {
         </BodyBackground>
       }
       {routePath === "/login" &&
-        <BodyBackground>
+        <LoginBackground>
           <NavigationModule
             SetModalState={setModalState}
           />
-        </BodyBackground>
+        </LoginBackground>
       }
     </>
   );
