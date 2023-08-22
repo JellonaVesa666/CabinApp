@@ -330,14 +330,15 @@ export const Password = (props) => {
         onChange={(event) => props.changeState(event)}
       />
       <div
-        style={{ position: "absolute", top: "15%", left: "90%" }}
-        onClick={() => setHidePassword(!showPassword)}
+        className="d-flex justify-content-end align-items-center"
+        style={{ position: "absolute", width: "auto", top: "35%", right: 15}}
       >
         {showPassword &&
           <img
             src={eyeShow}
             alt=""
             style={{ height: "16px", width: "auto" }}
+            onClick={() => setHidePassword(!showPassword)}
           />
         }
         {!showPassword &&
@@ -345,6 +346,7 @@ export const Password = (props) => {
             src={eyeHide}
             alt=""
             style={{ height: "16px", width: "auto" }}
+            onClick={() => setHidePassword(!showPassword)}
           />
         }
       </div>

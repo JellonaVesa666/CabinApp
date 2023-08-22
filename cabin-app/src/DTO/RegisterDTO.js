@@ -227,11 +227,17 @@ export const registerDO = {
     },
     0: {
       fi:
+        "Ei valittu",
+      en:
+        "Not selected",
+    },
+    1: {
+      fi:
         "Kiinteistö yritys",
       en:
         "Property company",
     },
-    1: {
+    2: {
       fi:
         "Yksityisyritys",
       en:
