@@ -13,38 +13,55 @@ import { colors } from "../styles/Colors";
 import { InputStyle } from "../styles/InputStyle";
 /* Data */
 import { registerDO, registerDTO } from "../DTO/RegisterDTO";
+import { LoadingSpinner } from "../styles/ModalStyle";
+/* Images */
+import iconSpinner from "../images/icon_spinner.png";
+import iconChecked from "../images/icon_checked.png";
+import iconRestricted from "../images/icon_restricted.png";
 
 export const RegisterModule = (props) => {
   const language = useSelector(state => state.session.language);
   const [formData, setFormData] = useState(registerDO);
+  const [isLoading, setIsLoading] = useState("");
 
   const Register = async () => {
-    console.log("register");
-    /*     if (isValid) {
-          // Create post formData for request
-          registerDTO.fullName = formData.fullName.value;
-          registerDTO.username = formData.username.value;
-          registerDTO.email = formData.email.value;
-          registerDTO.emailConfirm = formData.emailConfirm.value;
-          registerDTO.password = formData.password.value;
-          registerDTO.passwordConfirm = formData.passwordConfirm.value;
-          registerDTO.phone = formData.countryCode.value + formData.phone.value;
-          registerDTO.address = formData.address.value;
-          registerDTO.postalCode = formData.postalCode.value;
-          registerDTO.role = formData.role.value;
-          registerDTO.createdDate = Date.now;
-          registerDTO.modifiedDate = Date.now;
-          registerDTO.isActive = 1;
-    
-    
-          createAPIEndpoint(ENDPOINTS.register)
-            .post(registerDTO)
-            .then(response => console.log(response))
-            .catch(error => console.log(error));
-        } */
+
+    setIsLoading("loading");
+
+    // Create post formData for request
+    registerDTO.fullName = formData.fullName.value;
+    registerDTO.username = formData.username.value;
+    registerDTO.email = formData.email.value;
+    registerDTO.password = formData.password.value;
+    registerDTO.phone = formData.phone[0].value + formData.phone[1].value;
+    registerDTO.address = formData.address.value;
+    registerDTO.postalcode = formData.postalCode.value;
+    registerDTO.role = 1;
+    registerDTO.companyform = formData.companyForm.value;
+    registerDTO.companyname = formData.companyName.value;
+    registerDTO.businessid = formData.businessID.value;
+    registerDTO.createddate = new Date(Date.now()).toISOString();
+    registerDTO.modifieddate = new Date(Date.now()).toISOString();
+    registerDTO.isActive = 1;
+
+    createAPIEndpoint(ENDPOINTS.register)
+      .post(registerDTO)
+      .then(async response => {
+        console.log(response);
+        setIsLoading("success");
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        setIsLoading("");
+        props.SetModalState("");
+      })
+      .catch(async error => {
+        console.log(error);
+        setIsLoading("fail");
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        setIsLoading("");
+      });
   }
 
-  const validateForm = () => {
+  const ValidateForm = () => {
     //console.log(formData);
     let isValid = true;
 
@@ -339,48 +356,71 @@ export const RegisterModule = (props) => {
   })
 
   return (
-    <div
-      className="row col-12 d-flex justify-content-center align-items-center pt-4"
-    >
-      {Form}
-      <div
-        className="row col-12 d-flex justify-content-center align-items-center pt-4"
-      >
-        <input
-          type="button"
-          value="Register"
-          className="col-4 d-flex justify-content-center align-items-center my-2"
-          style={{ height: "60px", fontSize: "1.2rem", fontWeight: 500, border: "1px solid grey" }}
-          onClick={() => validateForm()}
-        />
+    <>
+      {isLoading !== "" &&
         <div
-          className="row col-12 justify-content-center align-items-center m-0 mt-4 p-0"
-          style={{ backgroundColor: colors.navy, height: "50px" }}
+          className="row col-12 d-flex justify-content-center align-items-center pt-4"
         >
-          <div
-            className="row col-6 justify-content-center align-items-center m-0 pe-5"
+          <LoadingSpinner
+            animation={isLoading === "loading" ? "1.5s linear infinite" : ""}
           >
-            <a
-              href="https://example.com/faq.html"
-              rel="noreferrer"
-              style={{ textAlign: "right", color: "white" }}
-            >
-              Käyttöehdot
-            </a>
-          </div>
+            <img
+              alt=""
+              src={isLoading === "loading" ? iconSpinner : isLoading === "fail" ? iconRestricted : iconChecked}
+              style={{ height: "50%", width: "auto", zIndex: 0 }}
+            />
+          </LoadingSpinner>
           <div
-            className="row col-6 justify-content-center align-items-center m-0 ps-5"
+            className="col-12 d-flex justify-content-center align-items-center"
           >
-            <a
-              href="https://example.com/faq.html"
-              rel="noreferrer"
-              style={{ textAlign: "left", color: "white" }}
-            >
-              Tietosuoja
-            </a>
           </div>
         </div>
-      </div>
-    </div>
+      }
+      {isLoading === "" &&
+        <div
+          className="row col-12 d-flex justify-content-center align-items-center pt-4"
+        >
+          {Form}
+          <div
+            className="row col-12 d-flex justify-content-center align-items-center pt-4"
+          >
+            <input
+              type="button"
+              value="Register"
+              className="col-4 d-flex justify-content-center align-items-center my-2"
+              style={{ height: "60px", fontSize: "1.2rem", fontWeight: 500, border: "1px solid grey" }}
+              onClick={() => ValidateForm()}
+            />
+            <div
+              className="row col-12 justify-content-center align-items-center m-0 mt-4 p-0"
+              style={{ backgroundColor: colors.navy, height: "50px" }}
+            >
+              <div
+                className="row col-6 justify-content-center align-items-center m-0 pe-5"
+              >
+                <a
+                  href="https://example.com/faq.html"
+                  rel="noreferrer"
+                  style={{ textAlign: "right", color: "white" }}
+                >
+                  Käyttöehdot
+                </a>
+              </div>
+              <div
+                className="row col-6 justify-content-center align-items-center m-0 ps-5"
+              >
+                <a
+                  href="https://example.com/faq.html"
+                  rel="noreferrer"
+                  style={{ textAlign: "left", color: "white" }}
+                >
+                  Tietosuoja
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </>
   )
 }

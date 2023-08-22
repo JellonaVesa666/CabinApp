@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components';
 import { colors } from "./Colors";
 
 export const ModalContent = styled.section`
@@ -65,4 +65,25 @@ export const ModalLinkH4 = styled.h4`
     color: rgba(0, 0, 0, 1);
     text-decoration: underline;
   }
+`
+
+const spinner = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`
+
+export const LoadingSpinner = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 200px;
+  border: 10px solid #f3f3f3; /* Light grey */
+  border - top: 10px solid #383636; /* Black */
+  border - radius: 50 %;
+  animation: ${spinner} ${props => (props.animation)};
 `

@@ -13,7 +13,7 @@ import { defaultSearchFilters } from "./mockup/searchFilterData";
 
 
 export default function App() {
-  const [modalState, setModalState] = useState("login");
+  const [modalState, setModalState] = useState("register");
   const [searchFilters, setSearchFilters] = useState(defaultSearchFilters);
   const [reservationDetails, setReservationDetails] = useState();
   const routePath = useLocation().pathname;

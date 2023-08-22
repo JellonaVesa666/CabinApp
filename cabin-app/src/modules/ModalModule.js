@@ -1,9 +1,7 @@
 /* React */
 import React, { useRef, useEffect, useState } from "react";
-
 /* Redux */
 import { useSelector } from "react-redux";
-
 /* Modules */
 import { ModalContent } from "../styles/ModalStyle";
 import { RangeSlider, CheckBox, Counter } from "./InputModules";
@@ -12,13 +10,10 @@ import { colors } from "../styles/Colors";
 import { CabinCardModule } from "./CabinCardModule";
 import { cabinData } from "../mockup/cabinData";
 import { RegisterModule } from "./RegisterModule";
-
 /* Helpers */
 import { GetDatesBetween } from "../helpers/HelperFunctions";
-
 /* Styles */
 import { InputStyle } from "../styles/InputStyle";
-
 /* Images */
 import iconUser from "../images/icon_user.png";
 import starGrey from "../images/icon_star_grey.png";
@@ -272,7 +267,7 @@ export const ModalModule = (props) => {
       </ModalContent>
     )
   }
-  else if (props.state === "login") {
+  else if (props.state === "register") {
     return (
       <ModalContent
         ref={wrapperRef}
@@ -300,7 +295,9 @@ export const ModalModule = (props) => {
           >
             Tunnuksella voit luoda kohteita ja hallita kohteiden tiloja, varauksia sekä käyttäjätunnuksia.
           </p> */}
-          <RegisterModule />
+          <RegisterModule 
+            SetModalState={props.SetModalState}
+          />
         </div>
       </ModalContent>
     )
@@ -347,7 +344,6 @@ export const ModalModule = (props) => {
       }
       return listItems;
     };
-
 
     return (
       <ModalContent
