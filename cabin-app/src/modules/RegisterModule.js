@@ -376,7 +376,7 @@ export const RegisterModule = (props) => {
     }) */
 
   // Static filter items
-  const staticFilters = Object.keys(formData).map(item => {
+  const Form = Object.keys(formData).map(item => {
     return (
       <div
         key={item}
@@ -449,8 +449,12 @@ export const RegisterModule = (props) => {
               i={item}
               data={formData}
               placeholder={formData[item]?.placeholder[language]}
-              value={`+${formData[item][0].value}`}
-              onChange={(event) => ChangeState(setFormData, event.target.value, "value", item, 0)}
+              value={formData[item][0].value}
+              onChange={(event) => {
+                const input = event.target.value;
+                event.target.value = "+" + input.substring(1);
+                ChangeState(setFormData, event.target.value.slice(0, 4), "value", item, 0)
+              }}
             />
             < InputStyle
               type={formData[item].type}
@@ -503,55 +507,13 @@ export const RegisterModule = (props) => {
         }
       </div>
     )
-
   })
 
   return (
     <div
       className="row col-12 d-flex justify-content-center align-items-center pt-4"
     >
-      {staticFilters}
-      {/*       <div className="p-5" style={{ position: "relative" }}>
-        <CloseBtn onClick={() => props.onRegisterHide(0)}>
-          <p className="m-auto p-auto" style={{ textTransform: "uppercase" }}>
-            close
-          </p>
-        </CloseBtn>
-        <h4 className="mb-4 mt-2 text-center"
-          style={{
-            fontWeight: "300",
-          }}
-        >
-          Register
-        </h4>
-        <div className="mb-4"
-          style={{
-            background: "grey", height: "2px", width: "100%"
-          }}
-        />
-        {listItems}
-        <div style={{ padding: "0px 20px 0px 20px" }}>
-          <SubmitBtn
-            onClick={register}
-            className="form-control text-uppercase"
-          >
-            Submit
-          </SubmitBtn>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-          onClick={() => props.onRegisterHide(0)}
-        >
-          <LinkH4 className="mt-4"
-          >
-            Cancel
-          </LinkH4>
-        </div>
-      </div> */}
+      {Form}
     </div>
   )
 }

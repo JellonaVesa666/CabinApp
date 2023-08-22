@@ -11,6 +11,7 @@ import { ModalModule } from "./modules/ModalModule";
 /* Data */
 import { defaultSearchFilters } from "./mockup/searchFilterData";
 
+
 export default function App() {
   const [modalState, setModalState] = useState("login");
   const [searchFilters, setSearchFilters] = useState(defaultSearchFilters);
@@ -62,7 +63,7 @@ export default function App() {
           />
         </BodyBackground>
       }
-      {routePath == "/login" &&
+      {routePath === "/login" &&
         <BodyBackground>
           <NavigationModule
             SetModalState={setModalState}

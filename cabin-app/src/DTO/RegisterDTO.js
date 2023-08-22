@@ -152,7 +152,7 @@ export const registerDO = {
         "xxxxxxxxx",
     },
     0: {
-      value: "358"
+      value: "+358"
     },
     1: {
       value: ""
