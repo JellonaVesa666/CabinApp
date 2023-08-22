@@ -11,7 +11,7 @@ import { CalendarModule } from "./CalendarModule";
 import { colors } from "../styles/Colors";
 import { CabinCardModule } from "./CabinCardModule";
 import { cabinData } from "../mockup/cabinData";
-import RegisterComponent from "./RegisterComponent";
+import { RegisterModule } from "./RegisterModule";
 
 /* Helpers */
 import { GetDatesBetween } from "../helpers/HelperFunctions";
@@ -300,7 +300,7 @@ export const ModalModule = (props) => {
           >
             Tunnuksella voit luoda kohteita ja hallita kohteiden tiloja, varauksia sekä käyttäjätunnuksia.
           </p> */}
-          <RegisterComponent />
+          <RegisterModule />
           <div
             className="row col-12 d-flex justify-content-center align-items-center pt-4"
           >

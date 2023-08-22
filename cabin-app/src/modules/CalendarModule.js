@@ -305,8 +305,8 @@ export const CalendarModule = (props) => {
       delete selected[0].index;
       delete selected[1].index;
 
-      ChangeState(props.SetSearchFilters, selected[0], 0, "searchDate", "value")
-      ChangeState(props.SetSearchFilters, selected[1], 1, "searchDate", "value")
+      ChangeState(props.changeState, selected[0], 0, "searchDate", "value")
+      ChangeState(props.changeState, selected[1], 1, "searchDate", "value")
 
       setClicks(3);
     }

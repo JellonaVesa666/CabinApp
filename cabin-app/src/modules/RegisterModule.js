@@ -10,11 +10,11 @@ import { CardHeader } from "../styles/SearchBarStyle";
 import { RegisterBody, CloseBtn, SubmitBtn, LinkH4 } from "../styles/RegisterStyle";
 import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 import { colors } from "../styles/Colors";
-import { Option, Password } from "../modules/InputModules";
+import { Option, Password } from "./InputModules";
 import { InputStyle } from "../styles/InputStyle";
 
 
-export default function RegisterComponent(props) {
+export const RegisterModule = (props) => {
   const language = useSelector(state => state.session.language);
   const [formData, setFormData] = useState(registerDO);
 
