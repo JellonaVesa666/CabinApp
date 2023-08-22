@@ -147,6 +147,7 @@ export const ModalModule = (props) => {
       <ModalContent
         ref={wrapperRef}
         width={"auto"}
+        top={"16.5%"}
       >
         <CalendarModule
           defaultValue={props.searchFilters["searchDate"].defaultValue}
@@ -164,6 +165,7 @@ export const ModalModule = (props) => {
       <ModalContent
         ref={wrapperRef}
         width={"auto"}
+        top={"16.5%"}
       >
         {Object.keys(props.searchFilters).map(item => {
           if (item === props.state) {
@@ -189,6 +191,7 @@ export const ModalModule = (props) => {
       <ModalContent
         ref={wrapperRef}
         width={"auto"}
+        top={"16.5%"}
       >
         {Object.keys(props.searchFilters).map(item => {
           if (item === props.state) {
@@ -214,7 +217,8 @@ export const ModalModule = (props) => {
       <ModalContent
         className="secondaryColor"
         ref={wrapperRef}
-        width={"43.5%"}
+        width={"35%"}
+        top={"16.5%"}
       >
         {Object.keys(props.searchFilters).map(item => {
           if (!props.searchFilters?.[item]?.static &&
@@ -289,12 +293,6 @@ export const ModalModule = (props) => {
           >
             Rekisteröi Lapland Camping Tunnus
           </p>
-          {/*           <p
-            className="m-0 pt-1"
-            style={{ textAlign: "center", fontSize: "1rem", fontWeight: 400, width: "50%" }}
-          >
-            Tunnuksella voit luoda kohteita ja hallita kohteiden tiloja, varauksia sekä käyttäjätunnuksia.
-          </p> */}
           <RegisterModule 
             SetModalState={props.SetModalState}
           />
