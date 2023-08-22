@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Slider, RangeInput, RangeValue, SliderBackground, InputStyle, OptionStyle, MultiSelectInput, CheckInput, CounterButton, RangeWrapper } from "../styles/InputStyle"
 import { colors } from "../styles/Colors";
 import { ChangeState } from "../helpers/HelperFunctions";
+import eyeShow from "../images/icon_eye_show.png";
+import eyeHide from "../images/icon_eye_hide.png";
 
 export const RangeSlider = (props) => {
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
@@ -79,7 +81,7 @@ export const RangeSlider = (props) => {
                 <>
                   <div
                     className="col-3 position-absolute d-flex justify-content-start align-items-center"
-                    style={{right: "75%" ,fontWeight: 400, letterSpacing: "2px ", marginBottom: "2.25rem", paddingLeft: "15%", fontSize: "0.75em" }}
+                    style={{ right: "75%", fontWeight: 400, letterSpacing: "2px ", marginBottom: "2.25rem", paddingLeft: "15%", fontSize: "0.75em" }}
                   >
                     {props?.data?.[props.i]?.[item]?.[props.language].toUpperCase()}
                   </div>
@@ -311,32 +313,41 @@ export const CheckBox = (props) => {
   }
 };
 
-export const PasswordField = (props) => {
-  //const [showPassword, setHidePassword] = useState(false);
+export const Password = (props) => {
+  const [showPassword, setHidePassword] = useState(false);
   return (
     <>
       <InputStyle
         width={props.width}
         height={props.height}
-        //type={showPassword ? "text" : props.data[props.i].type}
+        radius={props.radius}
+        border={props.border}
+        padding={props.padding}
+        textAlign={props.textAlign}
+        placeholder={props.placeholder}
+        type={showPassword ? "text" : props.data[props.i].type}
         value={props.data[props.i].value}
         onChange={(event) => props.changeState(event)}
       />
-      {/*       {showPassword && <FontAwesomeIcon icon={faEye} onClick={() => setHidePassword(false)} style={{ position: "absolute", top: 40, left: 185 }} />}
-      {!showPassword && <FontAwesomeIcon icon={faEyeSlash} onClick={() => setHidePassword(true)} style={{ position: "absolute", top: 40, left: 185 }} />} */}
-    </>
-  )
-};
-
-export const Date = (props) => {
-  return (
-    <>
-      <InputStyle
-        className="px-2"
-        style={{ borderRadius: "6px", border: "1px solid grey", width: "45%", fontSize: "14px" }}
-        type="date"
-        name=""
-      />
+      <div
+        style={{ position: "absolute", top: "15%", left: "90%" }}
+        onClick={() => setHidePassword(!showPassword)}
+      >
+        {showPassword &&
+          <img
+            src={eyeShow}
+            alt=""
+            style={{ height: "16px", width: "auto" }}
+          />
+        }
+        {!showPassword &&
+          <img
+            src={eyeHide}
+            alt=""
+            style={{ height: "16px", width: "auto" }}
+          />
+        }
+      </div>
     </>
   )
 };

@@ -10,7 +10,7 @@ import { CardHeader } from "../styles/SearchBarStyle";
 import { RegisterBody, CloseBtn, SubmitBtn, LinkH4 } from "../styles/RegisterStyle";
 import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 import { colors } from "../styles/Colors";
-import { Option } from "../modules/InputModules";
+import { Option, Password } from "../modules/InputModules";
 import { InputStyle } from "../styles/InputStyle";
 
 
@@ -397,7 +397,7 @@ export default function RegisterComponent(props) {
             < InputStyle
               type={formData[item].type}
               width={"100%"}
-              height={"50px"}
+              height={"45px"}
               radius={"0px"}
               border={"1px solid grey"}
               padding={"0rem 0rem 0rem 2rem"}
@@ -411,6 +411,27 @@ export default function RegisterComponent(props) {
           </div>
         }
         {formData[item].static &&
+          formData[item].type === "password" &&
+          formData[item].context === "field" &&
+          !formData[item].modal &&
+          <div
+            className="position-relative col-8 d-flex justify-content-center align-items-center m-0 p-0"
+          >
+            <Password
+              width={"100%"}
+              height={"45px"}
+              radius={"0px"}
+              border={"1px solid grey"}
+              padding={"0rem 0rem 0rem 2rem"}
+              textAlign={"left"}
+              data={formData}
+              i={item}
+              placeholder={formData[item]?.placeholder[language]}
+              changeState={(event) => ChangeState(setFormData, event.target.value, "value", item)}
+            />
+          </div>
+        }
+        {formData[item].static &&
           formData[item].type === "tel" &&
           formData[item].context === "field" &&
           !formData[item].modal &&
@@ -420,7 +441,7 @@ export default function RegisterComponent(props) {
             < InputStyle
               type={formData[item].type}
               width={"30%"}
-              height={"50px"}
+              height={"45px"}
               radius={"0px"}
               border={"1px solid grey"}
               padding={"0rem 0rem 0rem 2rem"}
@@ -434,7 +455,7 @@ export default function RegisterComponent(props) {
             < InputStyle
               type={formData[item].type}
               width={"70%"}
-              height={"50px"}
+              height={"45px"}
               radius={"0px"}
               border={"1px solid grey"}
               padding={"0rem 0rem 0rem 2rem"}

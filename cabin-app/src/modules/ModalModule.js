@@ -277,7 +277,7 @@ export const ModalModule = (props) => {
       <ModalContent
         ref={wrapperRef}
         width={"25%"}
-        top={"4%"}
+        top={"2.5%"}
       >
         <div
           className="row d-flex justify-content-center align-items-center m-0 p-0"
@@ -294,21 +294,48 @@ export const ModalModule = (props) => {
           >
             Rekisteröi Lapland Camping Tunnus
           </p>
-          <p
+          {/*           <p
             className="m-0 pt-1"
             style={{ textAlign: "center", fontSize: "1rem", fontWeight: 400, width: "50%" }}
           >
             Tunnuksella voit luoda kohteita ja hallita kohteiden tiloja, varauksia sekä käyttäjätunnuksia.
-          </p>
+          </p> */}
           <RegisterComponent />
           <div
             className="row col-12 d-flex justify-content-center align-items-center pt-4"
           >
             <div
-              className="col-4 d-flex justify-content-center align-items-center ms-3"
+              className="col-4 d-flex justify-content-center align-items-center my-2"
               style={{ height: "60px", fontSize: "1.2rem", fontWeight: 500, border: "1px solid grey" }}
             >
               Register
+            </div>
+            <div
+              className="row col-12 justify-content-center align-items-center m-0 mt-4 p-0"
+              style={{ backgroundColor: colors.navy, height: "50px" }}
+            >
+              <div
+                className="row col-6 justify-content-center align-items-center m-0 pe-5"
+              >
+                <a
+                  href="https://example.com/faq.html"
+                  rel="noreferrer"
+                  style={{ textAlign: "right", color: "white" }}
+                >
+                  Käyttöehdot
+                </a>
+              </div>
+              <div
+                className="row col-6 justify-content-center align-items-center m-0 ps-5"
+              >
+                <a
+                  href="https://example.com/faq.html"
+                  rel="noreferrer"
+                  style={{ textAlign: "left", color: "white" }}
+                >
+                  Tietosuoja
+                </a>
+              </div>
             </div>
           </div>
         </div>

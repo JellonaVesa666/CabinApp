@@ -239,6 +239,50 @@ export const registerDO = {
     },
     errors: "",
   },
+  companyName: {
+    type: "text",
+    context: "field",
+    static: true,
+    modal: false,
+    value: "",
+    info: {
+      header: {
+        fi:
+          "Yritys",
+        en:
+          "Company",
+      },
+    },
+    placeholder: {
+      fi:
+        "",
+      en:
+        "",
+    },
+    errors: "",
+  },
+  companyId: {
+    type: "text",
+    context: "field",
+    static: true,
+    modal: false,
+    value: "",
+    info: {
+      header: {
+        fi:
+          "Y-tunnus",
+        en:
+          "Business ID",
+      },
+    },
+    placeholder: {
+      fi:
+        "",
+      en:
+        "",
+    },
+    errors: "",
+  },
   termsOfService: {
     type: "checkbox",
     static: true,
