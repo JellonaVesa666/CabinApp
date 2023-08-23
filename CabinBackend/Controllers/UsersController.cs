@@ -25,7 +25,7 @@ namespace CabinBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            var employee = await _context.Users.ToListAsync();
+            var employee = await _context.User.ToListAsync();
 
             if (employee == null)
             {
@@ -39,11 +39,11 @@ namespace CabinBackend.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            if (_context.Users == null)
+            if (_context.User == null)
             {
                 return NotFound();
             }
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.User.FindAsync(id);
 
             if (user == null)
             {
@@ -58,7 +58,7 @@ namespace CabinBackend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != user.ID)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
@@ -89,31 +89,31 @@ namespace CabinBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            if (_context.Users == null)
+            if (_context.User == null)
             {
                 return Problem("Entity set 'AppDBContext.Users'  is null.");
             }
-            _context.Users.Add(user);
+            _context.User.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.ID }, user);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
         // DELETE: api/Users
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            if (_context.Users == null)
+            if (_context.User == null)
             {
                 return NotFound();
             }
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.User.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
+            _context.User.Remove(user);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -121,7 +121,7 @@ namespace CabinBackend.Controllers
 
         private bool UserExists(int id)
         {
-            return (_context.Users?.Any(e => e.ID == id)).GetValueOrDefault();
+            return (_context.User?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

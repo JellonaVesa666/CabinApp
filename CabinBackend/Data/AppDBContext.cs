@@ -8,7 +8,7 @@ namespace CabinBackend.Data
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) { }
 
         // Classes used by ef migrations
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> User { get; set; }
         public DbSet<Cabin> Cabin { get; set; }
         public DbSet<Company> Company { get; set; }
 
@@ -24,7 +24,7 @@ namespace CabinBackend.Data
             // Restricts usage of same business id
             modelBuilder.Entity<Company>(entity =>
             {
-                entity.HasIndex(company =>  company.BusinessID).IsUnique();
+                entity.HasIndex(company =>  company.BusinessId).IsUnique();
             });
         }
     }

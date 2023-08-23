@@ -13,7 +13,7 @@
         public string Company { get; set; } = string.Empty;
         public int CompanyForm { get; set; } = 0;
         public string CompanyName { get; set; } = string.Empty;
-        public string BusinessID { get; set; } = string.Empty;
+        public string BusinessId { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime ModifiedDate { get; set; } = DateTime.Now;
         public byte IsActive { get; set; } = 0;

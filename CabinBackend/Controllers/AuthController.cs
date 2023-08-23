@@ -4,6 +4,7 @@ using CabinBackend.Helpers;
 using CabinBackend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text.Json;
 
@@ -27,6 +28,18 @@ namespace CabinBackend.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<IEnumerable<User>>> Register(RegisterDTO dto)
         {
+            var company = new Company
+            {
+                CompanyForm = dto.CompanyForm,
+                CompanyName = dto.CompanyName,
+                BusinessId = dto.BusinessId,
+            };
+
+            // Add Company
+            _context.Add(company);
+            // Save Context
+            await _context.SaveChangesAsync();
+
             var user = new User
             {
                 FullName = dto.FullName,
@@ -37,22 +50,15 @@ namespace CabinBackend.Controllers
                 Address = dto.Address,
                 PostalCode = dto.PostalCode,
                 Role = dto.Role,
-                Company = dto.CompanyName,
+                Company = company.Id,
                 CreatedDate = dto.CreatedDate,
                 ModifiedDate = dto.ModifiedDate,
                 IsActive = dto.IsActive,
             };
 
-            var company = new Company
-            {
-                CompanyForm = dto.CompanyForm,
-                CompanyName = dto.CompanyName,
-                BusinessID = dto.BusinessID,
-            };
-
-            // Add User and Company
+            // Add User
             _context.Add(user);
-            _context.Add(company);
+            // Save Context
             await _context.SaveChangesAsync();
 
             // Stringify user
@@ -66,7 +72,7 @@ namespace CabinBackend.Controllers
         public async Task<ActionResult<IEnumerable<User>>> Login(LoginDTO dto)
         {
             // Find user by email or username
-            User? user = await _context.Users.FirstOrDefaultAsync(user => user.Email == dto.Email || user.Username == dto.Username);
+            User? user = await _context.User.FirstOrDefaultAsync(user => user.Email == dto.Email || user.Username == dto.Username);
 
             // Check email
             if (user == null)
@@ -80,7 +86,7 @@ namespace CabinBackend.Controllers
             }
 
             // Generates jwt by using user id
-            var jwt = _jwtService.Generate(user.ID);
+            var jwt = _jwtService.Generate(user.Id);
 
             // HTML response adds a cookie which contains the jwt
             Response.Cookies.Append("jwt", jwt, new CookieOptions
@@ -106,7 +112,7 @@ namespace CabinBackend.Controllers
 
             try
             {
-                user = await _context.Users.FirstOrDefaultAsync(user => user.ID == usedId);
+                user = await _context.User.FirstOrDefaultAsync(user => user.Id == usedId);
 
                 return Ok(user);
             }

@@ -7,7 +7,7 @@ namespace CabinBackend.Models
     public class Company
     {
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public int CompanyForm { get; set; }
@@ -18,6 +18,6 @@ namespace CabinBackend.Models
 
         [StringLength(255)]
         [Required]
-        public string? BusinessID { get; set; }
+        public string? BusinessId { get; set; }
     }
 }
