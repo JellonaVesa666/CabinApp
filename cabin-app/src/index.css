@@ -4,9 +4,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-y: scroll;
+  overflow: overlay;
   padding: 0;
   margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar-track {
+  
+  border-radius: 5px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  
+  border-radius: 5px;
+  background: transparent;
+  background-color:#2f374b;
 }
 
 code {
