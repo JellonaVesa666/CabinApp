@@ -60,23 +60,14 @@ export const SliderBackground = styled.div.attrs(props => ({
     background-color: ${colors.blue};
   }
 `
-export const RangeWrapper = styled.div.attrs(props => ({
-  style: {
-    marginLeft: props.marginleft,
-    marginRight: props.marginright,
-  },
-}))`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 9.5%;
+export const RangeWrapper = styled.div`
   &::after {
     content: ${(props) => ("'" + props.suffix + "'")};
   }
 `
 
 export const RangeValue = styled.input`
-  width: 100%;
+  width: 45px;
   border: none;
   background: none;
   &::-webkit-inner-spin-button{

@@ -106,29 +106,30 @@ export const RangeSlider = (props) => {
                     />
                     <SliderBackground left={props.data?.[props.i]?.[item]?.minValue / props.data?.[props.i]?.[item]?.maxDefault * 100} right={props.data?.[props.i]?.[item]?.maxValue / props.data?.[props.i]?.[item]?.maxDefault * 100} className="center" />
                     <SliderBackground />
-                    <RangeWrapper
-                      className="mt-5 mb-3"
-                      marginright={"40.5%"}
-                      suffix={props.data?.[props.i]?.[item]?.suffix}
+                    <div
+                      className="row col-12 d-flex justify-content-center align-items-center m-0 p-0"
                     >
-                      <RangeValue
-                        type="number"
-                        value={props.data?.[props.i]?.[item]?.minValue}
-
-                        onChange={(event) => ChangeState(props.changeState, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
-                      />
-                    </RangeWrapper>
-                    <RangeWrapper
-                      className="mt-5 mb-3"
-                      marginleft={"40.5%"}
-                      suffix={props.data?.[props.i]?.[item]?.suffix}
-                    >
-                      <RangeValue
-                        type="number"
-                        value={props.data?.[props.i]?.[item]?.maxValue}
-                        onChange={(event) => ChangeState(props.changeState, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
-                      />
-                    </RangeWrapper>
+                      <RangeWrapper
+                        className="col d-flex justify-content-start align-items-center mt-5 mb-3 p-0"
+                        suffix={props.data?.[props.i]?.[item]?.suffix}
+                      >
+                        <RangeValue
+                          type="number"
+                          value={props.data?.[props.i]?.[item]?.minValue}
+                          onChange={(event) => ChangeState(props.changeState, Math.max(props.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
+                        />
+                      </RangeWrapper>
+                      <RangeWrapper
+                        className="col d-flex justify-content-end align-items-center mt-5 mb-3 p-0"
+                        suffix={props.data?.[props.i]?.[item]?.suffix}
+                      >
+                        <RangeValue
+                          type="number"
+                          value={props.data?.[props.i]?.[item]?.maxValue}
+                          onChange={(event) => ChangeState(props.changeState, Math.max(props.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
+                        />
+                      </RangeWrapper>
+                    </div>
                   </Slider>
                 </>
               }
@@ -331,7 +332,7 @@ export const Password = (props) => {
       />
       <div
         className="d-flex justify-content-end align-items-center"
-        style={{ position: "absolute", width: "auto", top: "35%", right: 15}}
+        style={{ position: "absolute", width: "auto", top: "35%", right: 15 }}
       >
         {showPassword &&
           <img

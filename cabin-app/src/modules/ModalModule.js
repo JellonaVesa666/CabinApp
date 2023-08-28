@@ -147,7 +147,6 @@ export const ModalModule = (props) => {
       <ModalContent
         ref={wrapperRef}
         width={"auto"}
-        top={"16.5%"}
       >
         <CalendarModule
           defaultValue={props.searchFilters["searchDate"].defaultValue}
@@ -165,7 +164,6 @@ export const ModalModule = (props) => {
       <ModalContent
         ref={wrapperRef}
         width={"auto"}
-        top={"16.5%"}
       >
         {Object.keys(props.searchFilters).map(item => {
           if (item === props.state) {
@@ -191,7 +189,6 @@ export const ModalModule = (props) => {
       <ModalContent
         ref={wrapperRef}
         width={"auto"}
-        top={"16.5%"}
       >
         {Object.keys(props.searchFilters).map(item => {
           if (item === props.state) {
@@ -218,7 +215,6 @@ export const ModalModule = (props) => {
         className="secondaryColor"
         ref={wrapperRef}
         width={"35%"}
-        top={"16.5%"}
       >
         {Object.keys(props.searchFilters).map(item => {
           if (!props.searchFilters?.[item]?.static &&
