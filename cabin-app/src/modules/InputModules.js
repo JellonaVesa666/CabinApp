@@ -39,28 +39,32 @@ export const RangeSlider = (props) => {
                 />
                 <SliderBackground left={props?.data?.[props.i]?.[item]?.minValue / props?.data?.[props.i]?.[item]?.maxDefault * 100} right={props?.data?.[props.i]?.[item]?.maxValue / props?.data?.[props.i]?.[item]?.maxDefault * 100} className="center" />
                 <SliderBackground />
-                <RangeWrapper
-                  className="mt-5 mb-3"
-                  marginright={"auto"}
-                  suffix={props?.data?.[props.i]?.[item]?.suffix}
+                <div
+                  className="row col-12 d-flex justify-content-center align-items-center m-0 p-0"
                 >
-                  <RangeValue
-                    type="number"
-                    value={props?.data?.[props.i]?.[item]?.minValue}
-                    onChange={(event) => ChangeState(props?.changeState, Math.max(props?.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
-                  />
-                </RangeWrapper>
-                <RangeWrapper
-                  className="mt-5 mb-3"
-                  marginleft={"auto"}
-                  suffix={props?.data?.[props.i]?.[item]?.suffix}
-                >
-                  <RangeValue
-                    type="number"
-                    value={props?.data?.[props.i]?.[item]?.maxValue}
-                    onChange={(event) => ChangeState(props?.changeState, Math.max(props?.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
-                  />
-                </RangeWrapper>
+                  <RangeWrapper
+                    className="col d-flex justify-content-start align-items-center mt-5 mb-3 p-0"
+                    marginright={"auto"}
+                    suffix={props?.data?.[props.i]?.[item]?.suffix}
+                  >
+                    <RangeValue
+                      type="number"
+                      value={props?.data?.[props.i]?.[item]?.minValue}
+                      onChange={(event) => ChangeState(props?.changeState, Math.max(props?.data?.[props.i]?.[item]?.minDefault, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxValue)), "minValue", props.i, item)}
+                    />
+                  </RangeWrapper>
+                  <RangeWrapper
+                    className="col d-flex justify-content-end align-items-center mt-5 mb-3 p-0"
+                    marginleft={"auto"}
+                    suffix={props?.data?.[props.i]?.[item]?.suffix}
+                  >
+                    <RangeValue
+                      type="number"
+                      value={props?.data?.[props.i]?.[item]?.maxValue}
+                      onChange={(event) => ChangeState(props?.changeState, Math.max(props?.data?.[props.i]?.[item]?.minValue, Math.min(event.target.value, props?.data?.[props.i]?.[item]?.maxDefault)), "maxValue", props.i, item)}
+                    />
+                  </RangeWrapper>
+                </div>
               </Slider>
             </div>
           )
@@ -207,9 +211,11 @@ export const Option = (props) => {
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   return (
     <OptionStyle
-      className="mx-auto my-3 py-1 px-2"
+      className="mx-auto px-2"
       width={props.width}
+      height={props.height}
       radius={props.radius}
+      padding={props.padding}
       value={props.data[props.i].value}
       onChange={(event) => props.changeState(event)}
     >
@@ -301,7 +307,7 @@ export const CheckBox = (props) => {
                   checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
                   onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.changeState, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.changeState, Number(item), "value", props.i)}
                 />
-                <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: "2px", fontSize: "0.75em", paddingLeft: "15px" }}>
+                <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: "2px", fontSize: "0.75em", paddingLeft: "15px", textAlign: "left" }}>
                   {(props.data[props.i][item]?.[props.language])?.toUpperCase()}
                 </label>
               </div>
@@ -332,7 +338,7 @@ export const Password = (props) => {
       />
       <div
         className="d-flex justify-content-end align-items-center"
-        style={{ position: "absolute", width: "auto", top: "35%", right: 15 }}
+        style={{ position: "absolute", width: "auto", top: "30%", right: 15 }}
       >
         {showPassword &&
           <img

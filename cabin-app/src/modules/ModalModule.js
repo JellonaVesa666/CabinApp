@@ -272,16 +272,15 @@ export const ModalModule = (props) => {
       <ModalContent
         ref={wrapperRef}
         width={"25%"}
-        top={"2.5%"}
+        top={"120px"}
       >
         <div
           className="row d-flex justify-content-center align-items-center m-0 p-0"
-          style={{ width: "100%", height: "100%" }}
         >
           <img
             alt=""
             src={logoDark}
-            style={{ height: "120px", width: "auto" }}
+            style={{ height: "10vh", width: "auto" }}
           />
           <p
             className="m-0 pt-4"

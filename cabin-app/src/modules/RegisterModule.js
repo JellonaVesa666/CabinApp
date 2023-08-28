@@ -227,7 +227,8 @@ export const RegisterModule = (props) => {
     return (
       <div
         key={item}
-        className="row col-12 d-flex justify-content-center align-items-center m-0 py-2"
+        className="row col-12 d-flex justify-content-center align-items-center m-0"
+        style={{height: "4vh"}}
       >
         <div
           className="col-4 d-flex justify-content-start align-items-center m-0 p-0"
@@ -244,10 +245,10 @@ export const RegisterModule = (props) => {
             < InputStyle
               type={formData[item].type}
               width={"100%"}
-              height={"45px"}
+              height={"auto"}
               radius={"0px"}
               border={"1px solid grey"}
-              padding={"0rem 0rem 0rem 2rem"}
+              padding={"0.35rem 0rem 0.35rem 2rem"}
               textAlign={"left"}
               i={item}
               data={formData}
@@ -266,10 +267,10 @@ export const RegisterModule = (props) => {
           >
             <Password
               width={"100%"}
-              height={"45px"}
+              height={"auto"}
               radius={"0px"}
               border={"1px solid grey"}
-              padding={"0rem 0rem 0rem 2rem"}
+              padding={"0.35rem 0rem 0.35rem 2rem"}
               textAlign={"left"}
               data={formData}
               i={item}
@@ -288,10 +289,10 @@ export const RegisterModule = (props) => {
             < InputStyle
               type={formData[item].type}
               width={"30%"}
-              height={"45px"}
+              height={"auto"}
               radius={"0px"}
               border={"1px solid grey"}
-              padding={"0rem 0rem 0rem 2rem"}
+              padding={"0.35rem 0rem 0.35rem 2rem"}
               textAlign={"left"}
               i={item}
               data={formData}
@@ -306,10 +307,10 @@ export const RegisterModule = (props) => {
             < InputStyle
               type={formData[item].type}
               width={"70%"}
-              height={"45px"}
+              height={"auto"}
               radius={"0px"}
               border={"1px solid grey"}
-              padding={"0rem 0rem 0rem 2rem"}
+              padding={"0.35rem 0rem 0.35rem 2rem"}
               textAlign={"left"}
               i={item}
               data={formData}
@@ -329,6 +330,9 @@ export const RegisterModule = (props) => {
           >
             <Option
               width={"100%"}
+              height={"auto"}
+              radius={"0px"}
+              padding={"0.35rem 0rem 0.35rem 2rem"}
               i={item}
               data={formData}
               language={language}
@@ -388,13 +392,13 @@ export const RegisterModule = (props) => {
             <input
               type="button"
               value="Register"
-              className="col-4 d-flex justify-content-center align-items-center my-2"
-              style={{ height: "60px", fontSize: "1.2rem", fontWeight: 500, border: "1px solid grey" }}
+              className="col-4 d-flex justify-content-center align-items-center"
+              style={{ height: "3.5vh", fontSize: "1.2rem", fontWeight: 500, border: "1px solid grey" }}
               onClick={() => ValidateForm()}
             />
             <div
               className="row col-12 justify-content-center align-items-center m-0 mt-4 p-0"
-              style={{ backgroundColor: colors.navy, height: "50px" }}
+              style={{ backgroundColor: colors.navy, height: "3.5vh" }}
             >
               <div
                 className="row col-6 justify-content-center align-items-center m-0 pe-5"
