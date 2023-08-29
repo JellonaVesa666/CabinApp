@@ -183,7 +183,6 @@ export const OptionStyle = styled.select`
   }
 `
 
-// Text Input //radius:40px
 export const InputStyle = styled.input.attrs((props) => ({
   id: props.id,
   type: props.type
@@ -197,7 +196,7 @@ export const InputStyle = styled.input.attrs((props) => ({
   margin: ${props => (props.margin)};
   padding: ${props => (props.padding)};
   outline: none;
-  font-size: 14px;
+  font-size: calc(0.6rem + 0.25vw);
   font-weight: 500;
   text-align: ${props => (props.textAlign ? props.textAlign : "center")};
   &::placeholder {

@@ -26,13 +26,17 @@ export const ModalContent = styled.section`
   &.secondaryColor > :nth-child(even) {
     background-color: ${colors.whiteDark};
   }
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 380px) {
     width: ${props => (`${props.width * 3.5}%`)};
-    top: ${props => (`${props.top * 0.2}px`)};
+    top: ${props => (`${props.top  * 0.025}px`)};
+  }
+  @media screen and (min-width: 380px) {
+    width: ${props => (`${props.width * 3.5}%`)};
+    top: ${props => (`${props.top  * 0.5}px`)};
   }
   @media screen and (min-width: 640px) {
     width: ${props => (`${props.width * 2.4}%`)};
-    top: ${props => (`${props.top * 0.6}px`)};
+    top: ${props => (`${props.top * 0.2}px`)};
   }
   @media screen and (min-width: 800px) {
     width: ${props => (`${props.width * 2}%`)};
@@ -56,7 +60,7 @@ export const ModalContent = styled.section`
   }
   @media screen and (min-width: 1680px) {
     width: ${props => (`${props.width}%`)};
-    top: ${props => (props.top ? props.top : "212px")};
+    top: ${props => (`${props.top * 1}px`)};
   }
 `
 

@@ -337,14 +337,14 @@ export const Password = (props) => {
         onChange={(event) => props.changeState(event)}
       />
       <div
-        className="d-flex justify-content-end align-items-center"
-        style={{ position: "absolute", width: "auto", top: "30%", right: 15 }}
+        className="d-flex justify-content-center align-items-center"
+        style={{ width: "15%", height: "100%", borderRadius: props.radius, border: props.border }}
       >
         {showPassword &&
           <img
             src={eyeShow}
             alt=""
-            style={{ height: "16px", width: "auto" }}
+            style={{ height: "40%", width: "auto" }}
             onClick={() => setHidePassword(!showPassword)}
           />
         }
@@ -352,7 +352,7 @@ export const Password = (props) => {
           <img
             src={eyeHide}
             alt=""
-            style={{ height: "16px", width: "auto" }}
+            style={{ height: "40%", width: "auto" }}
             onClick={() => setHidePassword(!showPassword)}
           />
         }

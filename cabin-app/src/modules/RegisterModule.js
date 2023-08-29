@@ -227,11 +227,12 @@ export const RegisterModule = (props) => {
     return (
       <div
         key={item}
-        className="row col-12 d-flex justify-content-center align-items-center m-0"
-        style={{height: "4vh"}}
+        className="row col-12 d-flex justify-content-center align-items-center m-0 my-1"
+        style={{ height: "3vh" }}
       >
         <div
           className="col-4 d-flex justify-content-start align-items-center m-0 p-0"
+          style={{ height: "100%", fontSize: "calc(0.6rem + 0.25vw)" }}
         >
           {formData[item]?.info?.header?.[language]}
         </div>
@@ -241,14 +242,15 @@ export const RegisterModule = (props) => {
           !formData[item].modal &&
           <div
             className="col-8 d-flex justify-content-center align-items-center m-0 p-0"
+            style={{ height: "100%" }}
           >
             < InputStyle
               type={formData[item].type}
               width={"100%"}
-              height={"auto"}
+              height={"100%"}
               radius={"0px"}
               border={"1px solid grey"}
-              padding={"0.6vh 0rem 0.6vh 2rem"}
+              padding={"0rem 0rem 0rem 1rem"}
               textAlign={"left"}
               i={item}
               data={formData}
@@ -263,14 +265,13 @@ export const RegisterModule = (props) => {
           formData[item].context === "field" &&
           !formData[item].modal &&
           <div
-            className="position-relative col-8 d-flex justify-content-center align-items-center m-0 p-0"
+            className="col-8 d-flex justify-content-center align-items-center h-100 m-0 p-0"
           >
             <Password
-              width={"100%"}
-              height={"auto"}
+              width={"85%"}
               radius={"0px"}
               border={"1px solid grey"}
-              padding={"0.6vh 0rem 0.6vh 2rem"}
+              padding={"0rem 0rem 0rem 1rem"}
               textAlign={"left"}
               data={formData}
               i={item}
@@ -284,15 +285,14 @@ export const RegisterModule = (props) => {
           formData[item].context === "field" &&
           !formData[item].modal &&
           <div
-            className="col-8 d-flex justify-content-center align-items-center m-0 p-0"
+            className="col-8 d-flex justify-content-center align-items-center h-100 m-0 p-0"
           >
             < InputStyle
               type={formData[item].type}
               width={"30%"}
-              height={"auto"}
               radius={"0px"}
               border={"1px solid grey"}
-              padding={"0.6vh 0rem 0.6vh 2rem"}
+              padding={"0rem 0rem 0rem 1rem"}
               textAlign={"left"}
               i={item}
               data={formData}
@@ -307,10 +307,10 @@ export const RegisterModule = (props) => {
             < InputStyle
               type={formData[item].type}
               width={"70%"}
-              height={"auto"}
+              height={"100%"}
               radius={"0px"}
               border={"1px solid grey"}
-              padding={"0.6vh 0rem 0.6vh 2rem"}
+              padding={"0rem 0rem 0rem 1rem"}
               textAlign={"left"}
               i={item}
               data={formData}
@@ -330,9 +330,9 @@ export const RegisterModule = (props) => {
           >
             <Option
               width={"100%"}
-              height={"auto"}
+              height={"100%"}
               radius={"0px"}
-              padding={"0.6vh 0rem 0.6vh 2rem"}
+              padding={"0rem 0rem 0rem 1rem"}
               i={item}
               data={formData}
               language={language}
