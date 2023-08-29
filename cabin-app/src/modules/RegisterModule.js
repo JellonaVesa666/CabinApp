@@ -327,7 +327,7 @@ export const RegisterModule = (props) => {
           !formData[item].multiSelect &&
           !formData[item].modal &&
           <div
-            className="col-8 d-flex justify-content-center align-items-center m-0 p-0"
+            className="col-8 h-100 d-flex justify-content-center align-items-center m-0 p-0"
           >
             <Option
               width={"100%"}
@@ -420,7 +420,7 @@ export const RegisterModule = (props) => {
                 <a
                   href="https://example.com/faq.html"
                   rel="noreferrer"
-                  style={{ textAlign: "right", color: "white" }}
+                  style={{ fontSize: "calc(14px + 0.1vw)", textAlign: "right", color: "white" }}
                 >
                   Käyttöehdot
                 </a>
@@ -431,7 +431,7 @@ export const RegisterModule = (props) => {
                 <a
                   href="https://example.com/faq.html"
                   rel="noreferrer"
-                  style={{ textAlign: "left", color: "white" }}
+                  style={{ fontSize: "calc(14px + 0.1vw)", textAlign: "left", color: "white" }}
                 >
                   Tietosuoja
                 </a>
