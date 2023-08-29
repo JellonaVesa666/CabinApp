@@ -19,7 +19,6 @@ import iconUser from "../images/icon_user.png";
 import starGrey from "../images/icon_star_grey.png";
 import starYellow from "../images/icon_star_yellow.png";
 import starHalftone from "../images/icon_star_halftone.png";
-import logoDark from "../images/logo_Dark.png"
 
 export const ModalModule = (props) => {
 
@@ -274,24 +273,9 @@ export const ModalModule = (props) => {
         width={"25"}
         top={"120"}
       >
-        <div
-          className="row d-flex justify-content-center align-items-center m-0 p-0"
-        >
-          <img
-            alt=""
-            src={logoDark}
-            style={{ height: "10vh", width: "auto" }}
-          />
-          <p
-            className="m-0 pt-4"
-            style={{ textAlign: "center", fontSize: "1.2rem", fontWeight: 500 }}
-          >
-            Rekisteröi Lapland Camping Tunnus
-          </p>
-          <RegisterModule 
-            SetModalState={props.SetModalState}
-          />
-        </div>
+        <RegisterModule
+          SetModalState={props.SetModalState}
+        />
       </ModalContent>
     )
   }

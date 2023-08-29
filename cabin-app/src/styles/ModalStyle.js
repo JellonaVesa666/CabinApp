@@ -32,7 +32,7 @@ export const ModalContent = styled.section`
   }
   @media screen and (min-width: 380px) {
     width: ${props => (`${props.width * 3.5}%`)};
-    top: ${props => (`${props.top  * 0.5}px`)};
+    top: ${props => (`${props.top  * 0.1}px`)};
   }
   @media screen and (min-width: 640px) {
     width: ${props => (`${props.width * 2.4}%`)};

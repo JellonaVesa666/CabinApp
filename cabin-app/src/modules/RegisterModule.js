@@ -15,6 +15,7 @@ import { InputStyle } from "../styles/InputStyle";
 import { registerDO, registerDTO } from "../DTO/RegisterDTO";
 import { LoadingSpinner } from "../styles/ModalStyle";
 /* Images */
+import logoDark from "../images/logo_Dark.png"
 import iconSpinner from "../images/icon_spinner.png";
 import iconChecked from "../images/icon_checked.png";
 import iconRestricted from "../images/icon_restricted.png";
@@ -232,7 +233,7 @@ export const RegisterModule = (props) => {
       >
         <div
           className="col-4 d-flex justify-content-start align-items-center m-0 p-0"
-          style={{ height: "100%", fontSize: "calc(0.6rem + 0.25vw)" }}
+          style={{ height: "100%", fontSize: "calc(12px + 0.1vw)" }}
         >
           {formData[item]?.info?.header?.[language]}
         </div>
@@ -361,7 +362,20 @@ export const RegisterModule = (props) => {
   })
 
   return (
-    <>
+    <div
+      className="row d-flex justify-content-center align-items-center m-0 p-0"
+    >
+      <img
+        alt=""
+        src={logoDark}
+        style={{ height: "10vh", width: "auto" }}
+      />
+      <p
+        className="m-0 pt-4"
+        style={{ textAlign: "center", fontSize: "calc(16px + 0.1vw)", fontWeight: 500 }}
+      >
+        Rekisteröi Lapland Camping Tunnus
+      </p>
       {isLoading !== "" &&
         <div
           className="row col-12 d-flex justify-content-center align-items-center pt-4"
@@ -393,7 +407,7 @@ export const RegisterModule = (props) => {
               type="button"
               value="Register"
               className="col-4 d-flex justify-content-center align-items-center"
-              style={{ height: "3.5vh", fontSize: "1.2rem", fontWeight: 500, border: "1px solid grey" }}
+              style={{ height: "3.5vh", fontSize: "calc(12px + 0.1vw)", fontWeight: 500, border: "1px solid grey" }}
               onClick={() => ValidateForm()}
             />
             <div
@@ -426,6 +440,6 @@ export const RegisterModule = (props) => {
           </div>
         </div>
       }
-    </>
+    </div>
   )
 }
