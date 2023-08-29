@@ -4,7 +4,6 @@ import { colors } from "./Colors";
 export const ModalContent = styled.section`
   z-index:10;
   position: absolute;
-  top: ${props => (props.top ? props.top : "212px")};
   left: 50%;
   -ms-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
@@ -15,7 +14,6 @@ export const ModalContent = styled.section`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  width: ${props => (props.width)};
   height: auto;
   border-radius: 2px;
   padding-top: 1rem;
@@ -27,6 +25,38 @@ export const ModalContent = styled.section`
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   &.secondaryColor > :nth-child(even) {
     background-color: ${colors.whiteDark};
+  }
+  @media screen and (max-width: 640px) {
+    width: ${props => (`${props.width * 3.5}%`)};
+    top: ${props => (`${props.top * 0.2}px`)};
+  }
+  @media screen and (min-width: 640px) {
+    width: ${props => (`${props.width * 2.4}%`)};
+    top: ${props => (`${props.top * 0.6}px`)};
+  }
+  @media screen and (min-width: 800px) {
+    width: ${props => (`${props.width * 2}%`)};
+    top: ${props => (`${props.top * 0.6}px`)};
+  }
+  @media screen and (min-width: 1024px) {
+    width: ${props => (`${props.width * 1.4}%`)};
+    top: ${props => (`${props.top * 0.65}px`)};
+  }
+  @media screen and (min-width: 1280px) {
+    width: ${props => (`${props.width * 1.3}%`)};
+    top: ${props => (`${props.top * 0.7}px`)};
+  }
+  @media screen and (min-width: 1366px) {
+    width: ${props => (`${props.width * 1.3}%`)};
+    top: ${props => (`${props.top * 0.75}px`)};
+  }
+  @media screen and (min-width: 1536px) {
+    width: ${props => (`${props.width * 1.2}%`)};
+    top: ${props => (`${props.top * 0.8}px`)};
+  }
+  @media screen and (min-width: 1680px) {
+    width: ${props => (`${props.width}%`)};
+    top: ${props => (props.top ? props.top : "212px")};
   }
 `
 

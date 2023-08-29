@@ -271,8 +271,8 @@ export const ModalModule = (props) => {
     return (
       <ModalContent
         ref={wrapperRef}
-        width={"25%"}
-        top={"120px"}
+        width={"25"}
+        top={"120"}
       >
         <div
           className="row d-flex justify-content-center align-items-center m-0 p-0"

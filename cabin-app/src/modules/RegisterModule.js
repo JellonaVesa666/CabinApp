@@ -248,7 +248,7 @@ export const RegisterModule = (props) => {
               height={"auto"}
               radius={"0px"}
               border={"1px solid grey"}
-              padding={"0.35rem 0rem 0.35rem 2rem"}
+              padding={"0.6vh 0rem 0.6vh 2rem"}
               textAlign={"left"}
               i={item}
               data={formData}
@@ -270,7 +270,7 @@ export const RegisterModule = (props) => {
               height={"auto"}
               radius={"0px"}
               border={"1px solid grey"}
-              padding={"0.35rem 0rem 0.35rem 2rem"}
+              padding={"0.6vh 0rem 0.6vh 2rem"}
               textAlign={"left"}
               data={formData}
               i={item}
@@ -292,7 +292,7 @@ export const RegisterModule = (props) => {
               height={"auto"}
               radius={"0px"}
               border={"1px solid grey"}
-              padding={"0.35rem 0rem 0.35rem 2rem"}
+              padding={"0.6vh 0rem 0.6vh 2rem"}
               textAlign={"left"}
               i={item}
               data={formData}
@@ -310,7 +310,7 @@ export const RegisterModule = (props) => {
               height={"auto"}
               radius={"0px"}
               border={"1px solid grey"}
-              padding={"0.35rem 0rem 0.35rem 2rem"}
+              padding={"0.6vh 0rem 0.6vh 2rem"}
               textAlign={"left"}
               i={item}
               data={formData}
@@ -332,7 +332,7 @@ export const RegisterModule = (props) => {
               width={"100%"}
               height={"auto"}
               radius={"0px"}
-              padding={"0.35rem 0rem 0.35rem 2rem"}
+              padding={"0.6vh 0rem 0.6vh 2rem"}
               i={item}
               data={formData}
               language={language}
