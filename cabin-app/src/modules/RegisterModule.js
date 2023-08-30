@@ -250,7 +250,7 @@ export const RegisterModule = (props) => {
               width={"100%"}
               height={"100%"}
               radius={"0px"}
-              border={"1px solid grey"}
+              border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
               padding={"0rem 0rem 0rem 1rem"}
               textAlign={"left"}
               i={item}
@@ -271,7 +271,7 @@ export const RegisterModule = (props) => {
             <Password
               width={"85%"}
               radius={"0px"}
-              border={"1px solid grey"}
+              border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
               padding={"0rem 0rem 0rem 1rem"}
               textAlign={"left"}
               data={formData}
@@ -334,10 +334,11 @@ export const RegisterModule = (props) => {
               height={"100%"}
               radius={"0px"}
               padding={"0rem 0rem 0rem 1rem"}
+              color={formData[item]?.errors?.length > 0 ? "red" : "black"}
               i={item}
               data={formData}
               language={language}
-              changeState={(event) => ChangeState(setFormData, event.target.value, "value", item)}
+              changeState={(event) => ChangeState(setFormData, Number(event.target.value), "value", item)}
             />
           </div>
         }
@@ -351,8 +352,11 @@ export const RegisterModule = (props) => {
             <CheckBox
               key={item}
               i={item}
+              color={formData[item]?.errors?.length > 0 ? "red" : "black"}
               data={formData}
               language={language}
+              letterSpacing={"0.5px"}
+              fontSize={"10px"}
               changeState={setFormData}
             />
           </div>
@@ -411,27 +415,27 @@ export const RegisterModule = (props) => {
               onClick={() => ValidateForm()}
             />
             <div
-              className="row col-12 justify-content-center align-items-center m-0 mt-4 p-0"
+              className="row col-12 d-flex justify-content-evenly align-items-center m-0 mt-4 p-0"
               style={{ backgroundColor: colors.navy, height: "3.5vh" }}
             >
               <div
-                className="row col-6 justify-content-center align-items-center m-0 pe-5"
+                className="col-6 d-flex justify-content-end align-items-center m-0 pe-5"
               >
                 <a
                   href="https://example.com/faq.html"
                   rel="noreferrer"
-                  style={{ fontSize: "calc(14px + 0.1vw)", textAlign: "right", color: "white" }}
+                  style={{ fontSize: "calc(14px + 0.1vw)", /* textAlign: "right", */ color: "white" }}
                 >
                   Käyttöehdot
                 </a>
               </div>
               <div
-                className="row col-6 justify-content-center align-items-center m-0 ps-5"
+                className="col-6 d-flex justify-content-start align-items-center m-0 ps-5"
               >
                 <a
                   href="https://example.com/faq.html"
                   rel="noreferrer"
-                  style={{ fontSize: "calc(14px + 0.1vw)", textAlign: "left", color: "white" }}
+                  style={{ fontSize: "calc(14px + 0.1vw)", /* textAlign: "left", */ color: "white" }}
                 >
                   Tietosuoja
                 </a>

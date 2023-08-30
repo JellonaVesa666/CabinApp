@@ -168,7 +168,7 @@ export const OptionStyle = styled.select`
   height: ${props => (props.height)};
   border-radius: ${props => (props.radius)};
   padding: ${props => (props.padding)};
-  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  border: 1.5px solid ${props => (props.color ? props.color : "rgba(0, 0, 0, 0.2)")};
   background-color: rgba(255, 255, 255, 0.7);
   color: rgba(0, 0, 0, 0.6);
   outline: none !important;
@@ -193,7 +193,6 @@ export const InputStyle = styled.input.attrs((props) => ({
   border: ${props => (props.border)};
   border-radius: ${props => (props.borderRadius)};
   background: ${props => (props.backgroundColor ? props.backgroundColor : colors.white)};
-  color: ${props => (props.color ? props.color : colors.black)};
   margin: ${props => (props.margin)};
   padding: ${props => (props.padding)};
   outline: none;
@@ -216,7 +215,7 @@ export const CheckInput = styled.input`
   max-height: 16px;
   background-color: white;
   border-radius: 0.1rem;
-  border: 0.05rem solid rgba(0, 0 ,0, 0.3);
+  border: 0.05rem solid ${props => (props.color ? props.color : "rgba(0, 0, 0, 0.3)")};
   vertical-align: middle;
   cursor: pointer;
   &:hover {
@@ -230,13 +229,8 @@ export const CheckInput = styled.input`
   }
   &:checked {
     border: 0.15rem solid transparent;
-    background-color: ${props => (props.color)};
     accent-color: #4b7cc5;
     -webkit-appearance: button;
-  }
-  &.invalid {
-    border: 0.1rem solid transparent !important;
-    outline: 0.15rem solid ${colors.lightRed} !important;
   }
 `
 

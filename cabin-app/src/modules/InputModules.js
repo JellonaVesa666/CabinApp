@@ -213,6 +213,7 @@ export const Option = (props) => {
     <OptionStyle
       className="mx-auto px-2"
       width={props.width}
+      color={props.color}
       height={props.height}
       radius={props.radius}
       padding={props.padding}
@@ -277,7 +278,6 @@ export const CheckBox = (props) => {
               >
                 <CheckInput
                   type="checkbox"
-                  color={props.color}
                   checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
                   onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.changeState, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.changeState, Number(item), "value", props.i)}
                 />
@@ -307,7 +307,7 @@ export const CheckBox = (props) => {
                   checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
                   onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.changeState, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.changeState, Number(item), "value", props.i)}
                 />
-                <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: "calc(2px + 0.0025vw)", fontSize: "calc(10px + 0.1vw)", paddingLeft: "15px", textAlign: "left" }}>
+                <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: `calc(${props.letterSpacing} + 0.0025vw)`, fontSize: `calc(${props.fontSize} + 0.1vw)`, paddingLeft: "15px", textAlign: "left" }}>
                   {(props.data[props.i][item]?.[props.language])?.toUpperCase()}
                 </label>
               </div>
