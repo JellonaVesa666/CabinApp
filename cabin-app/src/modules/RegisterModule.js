@@ -224,145 +224,219 @@ export const RegisterModule = (props) => {
       Register();
   }
 
-  const Form = Object.keys(formData).map(item => {
-    return (
-      <div
-        key={item}
-        className="row col-12 d-flex justify-content-center align-items-center m-0 my-1"
-        style={{ height: "3vh" }}
-      >
-        <div
-          className="col-4 d-flex justify-content-start align-items-center m-0 p-0"
-          style={{ height: "100%", fontSize: "calc(12px + 0.1vw)" }}
-        >
-          {formData[item]?.info?.header?.[language]}
-        </div>
-        {formData[item].static &&
-          (formData[item].type === "text" || formData[item].type === "email") &&
-          formData[item].context === "field" &&
-          !formData[item].modal &&
-          <div
-            className="col-8 d-flex justify-content-center align-items-center m-0 p-0"
-            style={{ height: "100%" }}
-          >
-            < InputStyle
-              type={formData[item].type}
-              width={"100%"}
-              height={"100%"}
-              radius={"0px"}
-              border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
-              padding={"0rem 0rem 0rem 1rem"}
-              textAlign={"left"}
-              i={item}
-              data={formData}
-              placeholder={formData[item]?.placeholder[language]}
-              value={formData[item].value}
-              onChange={(event) => ChangeState(setFormData, event.target.value, "value", item)}
-            />
-          </div>
-        }
-        {formData[item].static &&
-          formData[item].type === "password" &&
-          formData[item].context === "field" &&
-          !formData[item].modal &&
-          <div
-            className="col-8 d-flex justify-content-center align-items-center h-100 m-0 p-0"
-          >
-            <Password
-              width={"85%"}
-              radius={"0px"}
-              border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
-              padding={"0rem 0rem 0rem 1rem"}
-              textAlign={"left"}
-              data={formData}
-              i={item}
-              placeholder={formData[item]?.placeholder[language]}
-              changeState={(event) => ChangeState(setFormData, event.target.value, "value", item)}
-            />
-          </div>
-        }
-        {formData[item].static &&
-          formData[item].type === "tel" &&
-          formData[item].context === "field" &&
-          !formData[item].modal &&
-          <div
-            className="col-8 d-flex justify-content-center align-items-center h-100 m-0 p-0"
-          >
+  const FormDescription = Object.keys(formData).map(item => {
+    if (formData[item].type === "description") {
+      return (
+        <>
+          {formData[item].static &&
+            formData[item].type === "description" &&
+            !formData[item].modal &&
+            <p
+              className="m-0 pt-4"
+              style={{ textAlign: "center", fontSize: "calc(16px + 0.1vw)", fontWeight: 500 }}
+            >
+              {formData[item]?.info?.[language]}
+            </p>
+          }
+        </>
+      )
+    }
+    return null;
+  })
+
+  const FormButton = Object.keys(formData).map(item => {
+    if (formData[item].type === "button") {
+      return (
+        <>
+          {formData[item].static &&
+            formData[item].type === "button" &&
+            !formData[item].modal &&
             < InputStyle
               type={formData[item].type}
               width={"30%"}
+              height={"3.5vh"}
               radius={"0px"}
-              border={"1px solid grey"}
-              padding={"0rem 0rem 0rem 1rem"}
-              textAlign={"left"}
+              border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
+              textAlign={"center"}
               i={item}
               data={formData}
-              placeholder={formData[item]?.placeholder[language]}
-              value={formData[item][0].value}
-              onChange={(event) => {
-                const input = event.target.value;
-                event.target.value = "+" + input.substring(1);
-                ChangeState(setFormData, event.target.value.slice(0, 4), "value", item, 0)
-              }}
+              value={formData[item]?.info.header[language]}
+              onClick={() => ValidateForm()}
             />
-            < InputStyle
-              type={formData[item].type}
-              width={"70%"}
-              height={"100%"}
-              radius={"0px"}
-              border={"1px solid grey"}
-              padding={"0rem 0rem 0rem 1rem"}
-              textAlign={"left"}
-              i={item}
-              data={formData}
-              placeholder={formData[item]?.placeholder[language]}
-              value={formData[item][1].value}
-              onChange={(event) => ChangeState(setFormData, event.target.value, "value", item, 1)}
-            />
-          </div>
-        }
-        {formData[item].static &&
-          formData[item].type === "option" &&
-          formData[item].context === "dropdown" &&
-          !formData[item].multiSelect &&
-          !formData[item].modal &&
+          }
+        </>
+      )
+    }
+    return null;
+  })
+
+  const FormLinks = Object.keys(formData).map(item => {
+    if (formData[item].type === "link") {
+      return (
+        <>
+          {formData[item].static &&
+            formData[item].type === "link" &&
+            !formData[item].modal &&
+            <div
+              className="col-4 d-flex justify-content-center align-items-center m-0"
+            >
+              <a
+                href="https://example.com/faq.html"
+                rel="noreferrer"
+                style={{ fontSize: "calc(14px + 0.1vw)", color: "white" }}
+              >
+                {formData[item]?.info?.header?.[language]}
+              </a>
+            </div>
+          }
+        </>
+      )
+    }
+    return null;
+  })
+
+  const FormFields = Object.keys(formData).map(item => {
+    if (formData[item].type !== "link" && formData[item].type !== "button" && formData[item].type !== "description") {
+      return (
+        <div
+          key={item}
+          className="row col-12 d-flex justify-content-center align-items-center m-0 my-1"
+          style={{ height: "3vh" }}
+        >
           <div
-            className="col-8 h-100 d-flex justify-content-center align-items-center m-0 p-0"
+            className="col-4 d-flex justify-content-start align-items-center m-0 p-0"
+            style={{ height: "100%", fontSize: "calc(12px + 0.1vw)" }}
           >
-            <Option
-              width={"100%"}
-              height={"100%"}
-              radius={"0px"}
-              padding={"0rem 0rem 0rem 1rem"}
-              color={formData[item]?.errors?.length > 0 ? "red" : "black"}
-              i={item}
-              data={formData}
-              language={language}
-              changeState={(event) => ChangeState(setFormData, Number(event.target.value), "value", item)}
-            />
+            {formData[item]?.info?.header?.[language]}
           </div>
-        }
-        {formData[item].static &&
-          formData[item].type === "checkbox" &&
-          !formData[item].multiSelect &&
-          !formData[item].modal &&
-          <div
-            className="col-8 d-flex justify-content-center align-items-center m-0 p-0"
-          >
-            <CheckBox
-              key={item}
-              i={item}
-              color={formData[item]?.errors?.length > 0 ? "red" : "black"}
-              data={formData}
-              language={language}
-              letterSpacing={"0.5px"}
-              fontSize={"10px"}
-              changeState={setFormData}
-            />
-          </div>
-        }
-      </div>
-    )
+          {formData[item].static &&
+            (formData[item].type === "text" || formData[item].type === "email") &&
+            formData[item].context === "field" &&
+            !formData[item].modal &&
+            <div
+              className="col-8 d-flex justify-content-center align-items-center m-0 p-0"
+              style={{ height: "100%" }}
+            >
+              < InputStyle
+                type={formData[item].type}
+                width={"100%"}
+                height={"100%"}
+                radius={"0px"}
+                border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
+                padding={"0rem 0rem 0rem 1rem"}
+                textAlign={"left"}
+                i={item}
+                data={formData}
+                placeholder={formData[item]?.placeholder[language]}
+                value={formData[item].value}
+                onChange={(event) => ChangeState(setFormData, event.target.value, "value", item)}
+              />
+            </div>
+          }
+          {formData[item].static &&
+            formData[item].type === "password" &&
+            formData[item].context === "field" &&
+            !formData[item].modal &&
+            <div
+              className="col-8 d-flex justify-content-center align-items-center h-100 m-0 p-0"
+            >
+              <Password
+                width={"85%"}
+                radius={"0px"}
+                border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
+                padding={"0rem 0rem 0rem 1rem"}
+                textAlign={"left"}
+                data={formData}
+                i={item}
+                placeholder={formData[item]?.placeholder[language]}
+                changeState={(event) => ChangeState(setFormData, event.target.value, "value", item)}
+              />
+            </div>
+          }
+          {formData[item].static &&
+            formData[item].type === "tel" &&
+            formData[item].context === "field" &&
+            !formData[item].modal &&
+            <div
+              className="col-8 d-flex justify-content-center align-items-center h-100 m-0 p-0"
+            >
+              < InputStyle
+                type={formData[item].type}
+                width={"30%"}
+                radius={"0px"}
+                border={"1px solid grey"}
+                padding={"0rem 0rem 0rem 1rem"}
+                textAlign={"left"}
+                i={item}
+                data={formData}
+                placeholder={formData[item]?.placeholder[language]}
+                value={formData[item][0].value}
+                onChange={(event) => {
+                  const input = event.target.value;
+                  event.target.value = "+" + input.substring(1);
+                  ChangeState(setFormData, event.target.value.slice(0, 4), "value", item, 0)
+                }}
+              />
+              < InputStyle
+                type={formData[item].type}
+                width={"70%"}
+                height={"100%"}
+                radius={"0px"}
+                border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
+                padding={"0rem 0rem 0rem 1rem"}
+                textAlign={"left"}
+                i={item}
+                data={formData}
+                placeholder={formData[item]?.placeholder[language]}
+                value={formData[item][1].value}
+                onChange={(event) => ChangeState(setFormData, event.target.value, "value", item, 1)}
+              />
+            </div>
+          }
+          {formData[item].static &&
+            formData[item].type === "option" &&
+            formData[item].context === "dropdown" &&
+            !formData[item].multiSelect &&
+            !formData[item].modal &&
+            <div
+              className="col-8 h-100 d-flex justify-content-center align-items-center m-0 p-0"
+            >
+              <Option
+                width={"100%"}
+                height={"100%"}
+                radius={"0px"}
+                padding={"0rem 0rem 0rem 1rem"}
+                color={formData[item]?.errors?.length > 0 ? "red" : "black"}
+                i={item}
+                data={formData}
+                language={language}
+                changeState={(event) => ChangeState(setFormData, Number(event.target.value), "value", item)}
+              />
+            </div>
+          }
+          {formData[item].static &&
+            formData[item].type === "checkbox" &&
+            !formData[item].multiSelect &&
+            !formData[item].modal &&
+            <div
+              className="col-8 d-flex justify-content-center align-items-center m-0 p-0"
+            >
+              <CheckBox
+                key={item}
+                i={item}
+                color={formData[item]?.errors?.length > 0 ? "red" : "black"}
+                data={formData}
+                language={language}
+                letterSpacing={"0.5px"}
+                fontSize={"10px"}
+                changeState={setFormData}
+              />
+            </div>
+          }
+        </div>
+      )
+    }
+    return null;
   })
 
   return (
@@ -374,12 +448,7 @@ export const RegisterModule = (props) => {
         src={logoDark}
         style={{ height: "10vh", width: "auto" }}
       />
-      <p
-        className="m-0 pt-4"
-        style={{ textAlign: "center", fontSize: "calc(16px + 0.1vw)", fontWeight: 500 }}
-      >
-        Rekisteröi Lapland Camping Tunnus
-      </p>
+      {FormDescription}
       {isLoading !== "" &&
         <div
           className="row col-12 d-flex justify-content-center align-items-center pt-4"
@@ -403,44 +472,17 @@ export const RegisterModule = (props) => {
         <div
           className="row col-12 d-flex justify-content-center align-items-center pt-4"
         >
-          {Form}
+          {FormFields}
           <div
             className="row col-12 d-flex justify-content-center align-items-center pt-4"
           >
-            <input
-              type="button"
-              value="Register"
-              className="col-4 d-flex justify-content-center align-items-center"
-              style={{ height: "3.5vh", fontSize: "calc(12px + 0.1vw)", fontWeight: 500, border: "1px solid grey" }}
-              onClick={() => ValidateForm()}
-            />
-            <div
-              className="row col-12 d-flex justify-content-evenly align-items-center m-0 mt-4 p-0"
-              style={{ backgroundColor: colors.navy, height: "3.5vh" }}
-            >
-              <div
-                className="col-6 d-flex justify-content-end align-items-center m-0 pe-5"
-              >
-                <a
-                  href="https://example.com/faq.html"
-                  rel="noreferrer"
-                  style={{ fontSize: "calc(14px + 0.1vw)", /* textAlign: "right", */ color: "white" }}
-                >
-                  Käyttöehdot
-                </a>
-              </div>
-              <div
-                className="col-6 d-flex justify-content-start align-items-center m-0 ps-5"
-              >
-                <a
-                  href="https://example.com/faq.html"
-                  rel="noreferrer"
-                  style={{ fontSize: "calc(14px + 0.1vw)", /* textAlign: "left", */ color: "white" }}
-                >
-                  Tietosuoja
-                </a>
-              </div>
-            </div>
+            {FormButton}
+          </div>
+          <div
+            className="row col-12 d-flex justify-content-evenly align-items-center m-0 mt-4 p-0"
+            style={{ backgroundColor: colors.navy, height: "3.5vh" }}
+          >
+            {FormLinks}
           </div>
         </div>
       }

@@ -281,7 +281,7 @@ export const CheckBox = (props) => {
                   checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
                   onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.changeState, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.changeState, Number(item), "value", props.i)}
                 />
-                <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: "2px", fontSize: "calc(12px + 0.1vw)", paddingLeft: "15px" }}>
+                <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: `calc(${props.letterSpacing} + 0.0025vw)`, fontSize: `calc(${props.fontSize} + 0.1vw)`, paddingLeft: "15px" }}>
                   {props.data[props.i][item]?.[props.language] !== undefined ? props.data[props.i][item][props.language].toUpperCase() : "ERROR"}
                 </label>
               </div>

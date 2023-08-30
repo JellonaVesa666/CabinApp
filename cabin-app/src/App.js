@@ -28,16 +28,15 @@ export default function App() {
 
   return (
     <>
-      {modalState !== "" &&
-        <ModalModule
-          defaultSearchFilters={defaultSearchFilters}
-          searchFilters={searchFilters}
-          SetSearchFilters={setSearchFilters}
-          state={modalState}
-          SetModalState={setModalState}
-          setReservationDetails={setReservationDetails}
-        />
-      }
+      <ModalModule
+        routePath={routePath}
+        defaultSearchFilters={defaultSearchFilters}
+        searchFilters={searchFilters}
+        SetSearchFilters={setSearchFilters}
+        state={modalState}
+        SetModalState={setModalState}
+        setReservationDetails={setReservationDetails}
+      />
       {routePath === "/" &&
         <BodyBackground>
           <div
@@ -62,7 +61,7 @@ export default function App() {
           />
         </BodyBackground>
       }
-      {routePath === "/login" &&
+      {routePath === "/register" &&
         <LoginBackground>
           <NavigationModule
             SetModalState={setModalState}

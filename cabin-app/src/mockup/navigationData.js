@@ -14,7 +14,7 @@ export const navigationData = {
       }
     },
     1: {
-      route: "/login",
+      route: "/register",
       modal: "register",
       en: {
         name: "register",

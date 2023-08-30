@@ -1,4 +1,15 @@
 export const registerDO = {
+  description: {
+    type: "description",
+    static: true,
+    modal: false,
+    info: {
+      fi:
+        "Rekisteröi Lapland Camping Tunnus",
+      en:
+        "Register Lapland Camping Account",
+    }
+  },
   fullName: {
     type: "text",
     context: "field",
@@ -147,9 +158,9 @@ export const registerDO = {
     },
     placeholder: {
       fi:
-        "xxxxxxxxx",
+        "402266670",
       en:
-        "xxxxxxxxx",
+        "402266670",
     },
     0: {
       value: "+358"
@@ -197,9 +208,9 @@ export const registerDO = {
     },
     placeholder: {
       fi:
-        "xxxxx",
+        "12345",
       en:
-        "xxxxx",
+        "12345",
     },
     errors: "",
   },
@@ -218,12 +229,6 @@ export const registerDO = {
         en:
           "Company form",
       },
-    },
-    placeholder: {
-      fi:
-        "xxxxx",
-      en:
-        "xxxxx",
     },
     0: {
       fi:
@@ -261,9 +266,9 @@ export const registerDO = {
     },
     placeholder: {
       fi:
-        "",
+        "Testi Yritys",
       en:
-        "",
+        "Test Company",
     },
     errors: "",
   },
@@ -283,9 +288,9 @@ export const registerDO = {
     },
     placeholder: {
       fi:
-        "",
+        "1234567-1",
       en:
-        "",
+        "1234567-1",
     },
     errors: "",
   },
@@ -311,6 +316,45 @@ export const registerDO = {
         "I agree to the terms and conditions of the Service",
     },
   },
+  registerButton: {
+    type: "button",
+    static: true,
+    modal: false,
+    info: {
+      header: {
+        fi:
+          "Rekisteröi",
+        en:
+          "Register",
+      },
+    },
+  },
+  termsOfServiceLink: {
+    type: "link",
+    static: true,
+    modal: false,
+    info: {
+      header: {
+        fi:
+          "Käyttöehdot",
+        en:
+          "Terms and conditions",
+      },
+    },
+  },
+  privacyPolicyLink: {
+    type: "link",
+    static: true,
+    modal: false,
+    info: {
+      header: {
+        fi:
+          "Tietosuoja",
+        en:
+          "Privacy policy",
+      },
+    },
+  }
 };
 
 

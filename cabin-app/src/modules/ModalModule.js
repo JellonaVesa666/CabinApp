@@ -27,11 +27,10 @@ export const ModalModule = (props) => {
 
   const OutsideClick = (ref) => {
     useEffect(() => {
-
       // If clicked on outside of element
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
-          if (event.target.id !== "modalBtn") {
+          if (event.target.id !== "modalBtn" && (props.state !== "register" || props.routePath !== "/register")) {
             props.SetModalState("");
           }
         }
@@ -140,6 +139,8 @@ export const ModalModule = (props) => {
 
     return rating;
   }
+
+  console.log(props);
 
   if (props.state === "searchDate") {
     return (
@@ -252,8 +253,9 @@ export const ModalModule = (props) => {
                   key={item}
                   data={props.searchFilters}
                   i={item}
+                  letterSpacing={"2px"}
+                  fontSize={"12px"}
                   language={language}
-                  color={colors.blue}
                   changeState={props.SetSearchFilters}
                 />
               </div>
@@ -266,7 +268,7 @@ export const ModalModule = (props) => {
       </ModalContent>
     )
   }
-  else if (props.state === "register") {
+  else if (props.state === "register" || props.routePath === "/register") {
     return (
       <ModalContent
         ref={wrapperRef}
@@ -609,6 +611,7 @@ export const ModalModule = (props) => {
               style={{ marginTop: "17.5rem" }}
             >
               <iframe
+                title="map"
                 width="100%"
                 height="450px"
                 loading="lazy"
