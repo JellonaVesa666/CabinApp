@@ -61,7 +61,7 @@ export default function App() {
           />
         </BodyBackground>
       }
-      {routePath === "/register" &&
+      {(routePath === "/register" || routePath === "/login") &&
         <LoginBackground>
           <NavigationModule
             SetModalState={setModalState}

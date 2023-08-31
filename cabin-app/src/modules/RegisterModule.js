@@ -227,7 +227,9 @@ export const RegisterModule = (props) => {
   const FormDescription = Object.keys(formData).map(item => {
     if (formData[item].type === "description") {
       return (
-        <>
+        <div
+          key={item}
+        >
           {formData[item].static &&
             formData[item].type === "description" &&
             !formData[item].modal &&
@@ -238,7 +240,7 @@ export const RegisterModule = (props) => {
               {formData[item]?.info?.[language]}
             </p>
           }
-        </>
+        </div>
       )
     }
     return null;
@@ -247,7 +249,10 @@ export const RegisterModule = (props) => {
   const FormButton = Object.keys(formData).map(item => {
     if (formData[item].type === "button") {
       return (
-        <>
+        <div
+          className="row col-12 d-flex justify-content-center align-items-center pt-4"
+          key={item}
+        >
           {formData[item].static &&
             formData[item].type === "button" &&
             !formData[item].modal &&
@@ -257,14 +262,14 @@ export const RegisterModule = (props) => {
               height={"3.5vh"}
               radius={"0px"}
               border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
-              textAlign={"center"}
+              textalign={"center"}
               i={item}
               data={formData}
               value={formData[item]?.info.header[language]}
               onClick={() => ValidateForm()}
             />
           }
-        </>
+        </div>
       )
     }
     return null;
@@ -273,23 +278,22 @@ export const RegisterModule = (props) => {
   const FormLinks = Object.keys(formData).map(item => {
     if (formData[item].type === "link") {
       return (
-        <>
+        <div
+          className="col-5 d-flex justify-content-center align-items-center m-0"
+          key={item}
+        >
           {formData[item].static &&
             formData[item].type === "link" &&
             !formData[item].modal &&
-            <div
-              className="col-4 d-flex justify-content-center align-items-center m-0"
+            <a
+              href="https://example.com/faq.html"
+              rel="noreferrer"
+              style={{ fontSize: "calc(14px + 0.1vw)", color: "white" }}
             >
-              <a
-                href="https://example.com/faq.html"
-                rel="noreferrer"
-                style={{ fontSize: "calc(14px + 0.1vw)", color: "white" }}
-              >
-                {formData[item]?.info?.header?.[language]}
-              </a>
-            </div>
+              {formData[item]?.info?.header?.[language]}
+            </a>
           }
-        </>
+        </div>
       )
     }
     return null;
@@ -324,7 +328,7 @@ export const RegisterModule = (props) => {
                 radius={"0px"}
                 border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
                 padding={"0rem 0rem 0rem 1rem"}
-                textAlign={"left"}
+                textalign={"left"}
                 i={item}
                 data={formData}
                 placeholder={formData[item]?.placeholder[language]}
@@ -345,7 +349,7 @@ export const RegisterModule = (props) => {
                 radius={"0px"}
                 border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
                 padding={"0rem 0rem 0rem 1rem"}
-                textAlign={"left"}
+                textalign={"left"}
                 data={formData}
                 i={item}
                 placeholder={formData[item]?.placeholder[language]}
@@ -366,7 +370,7 @@ export const RegisterModule = (props) => {
                 radius={"0px"}
                 border={"1px solid grey"}
                 padding={"0rem 0rem 0rem 1rem"}
-                textAlign={"left"}
+                textalign={"left"}
                 i={item}
                 data={formData}
                 placeholder={formData[item]?.placeholder[language]}
@@ -384,7 +388,7 @@ export const RegisterModule = (props) => {
                 radius={"0px"}
                 border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
                 padding={"0rem 0rem 0rem 1rem"}
-                textAlign={"left"}
+                textalign={"left"}
                 i={item}
                 data={formData}
                 placeholder={formData[item]?.placeholder[language]}
@@ -473,11 +477,7 @@ export const RegisterModule = (props) => {
           className="row col-12 d-flex justify-content-center align-items-center pt-4"
         >
           {FormFields}
-          <div
-            className="row col-12 d-flex justify-content-center align-items-center pt-4"
-          >
-            {FormButton}
-          </div>
+          {FormButton}
           <div
             className="row col-12 d-flex justify-content-evenly align-items-center m-0 mt-4 p-0"
             style={{ backgroundColor: colors.navy, height: "3.5vh" }}

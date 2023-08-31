@@ -6,6 +6,7 @@ export const navigationData = {
   button: {
     0: {
       route: "/login",
+      modal: "login",
       en: {
         name: "login",
       },

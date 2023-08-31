@@ -136,7 +136,7 @@ export const defaultSearchFilters = {
       suffix: "m",
     },
   },
-  class: {
+  grade: {
     type: "checkbox",
     isActive: true,
     static: false,
@@ -148,7 +148,7 @@ export const defaultSearchFilters = {
         fi:
           "luokka",
         en:
-          "class",
+          "grade",
       }
     },
     0: {

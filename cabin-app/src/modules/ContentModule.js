@@ -27,7 +27,7 @@ export const ContentModule = (props) => {
         className="d-flex justify-content-center align-items-center m-0 p-0"
         style={{ height: "42vh" }}
       >
-        <div class="row mb-auto py-3">
+        <div className="row mb-auto py-3">
           <p
             className="my-0"
             style={{ color: colors.white, fontSize: "2rem", fontWeight: 400, textAlign: "center" }}
@@ -50,7 +50,7 @@ export const ContentModule = (props) => {
           className="row row-cols-3"
           style={{ width: "76%", paddingTop: "5rem" }}
         >
-          <div class="col px-4 pb-5">
+          <div className="col px-4 pb-5">
             <div
               className="position-relative d-flex"
             >
@@ -151,7 +151,7 @@ export const ContentModule = (props) => {
               </div>
             </div>
           </div>
-          <div class="col px-4 pb-5">
+          <div className="col px-4 pb-5">
             <div
               className="position-relative d-flex"
             >
@@ -252,7 +252,7 @@ export const ContentModule = (props) => {
               </div>
             </div>
           </div>
-          <div class="col px-4 pb-5">
+          <div className="col px-4 pb-5">
             <div
               className="position-relative d-flex"
             >
@@ -353,7 +353,7 @@ export const ContentModule = (props) => {
               </div>
             </div>
           </div>
-          <div class="col px-4 pb-5">
+          <div className="col px-4 pb-5">
             <div
               className="position-relative d-flex"
             >
@@ -454,7 +454,7 @@ export const ContentModule = (props) => {
               </div>
             </div>
           </div>
-          <div class="col px-4 pb-5">
+          <div className="col px-4 pb-5">
             <div
               className="position-relative d-flex"
             >
@@ -555,7 +555,7 @@ export const ContentModule = (props) => {
               </div>
             </div>
           </div>
-          <div class="col px-4 pb-5">
+          <div className="col px-4 pb-5">
             <div
               className="position-relative d-flex"
             >

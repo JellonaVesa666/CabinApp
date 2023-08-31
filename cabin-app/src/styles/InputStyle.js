@@ -195,10 +195,11 @@ export const InputStyle = styled.input.attrs((props) => ({
   background: ${props => (props.backgroundColor ? props.backgroundColor : colors.white)};
   margin: ${props => (props.margin)};
   padding: ${props => (props.padding)};
+  color: ${props => (props.color ? props.color : colors.black )};
   outline: none;
   font-size: calc(12px + 0.1vw);
   font-weight: 500;
-  text-align: ${props => (props.textAlign ? props.textAlign : "center")};
+  text-align: ${props => (props.textalign ? props.textalign : "center")};
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }
