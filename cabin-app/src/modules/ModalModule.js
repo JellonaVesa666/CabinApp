@@ -145,6 +145,7 @@ export const ModalModule = (props) => {
                   i={item}
                   language={language}
                   changeState={props.SetSearchFilters}
+                  toUpperCase={true}
                 />
               </div>
             )
@@ -154,7 +155,7 @@ export const ModalModule = (props) => {
             return (
               <div className=" row col-12 d-flex justify-content-center align-items-center py-3 m-0">
                 <div
-                  className="col d-flex justify-content-start align-items-center mb-auto ps-5 pt-3"
+                  className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5 pt-3"
                   style={{ fontWeight: 500, letterSpacing: "2px", fontSize: "1em" }}
                 >
                   {(props.searchFilters?.[item]?.info?.header?.[language])?.toUpperCase()}
@@ -163,11 +164,11 @@ export const ModalModule = (props) => {
                   key={item}
                   data={props.searchFilters}
                   i={item}
-                  letterSpacing={"2px"}
-                  fontSize={"12px"}
+                  letterSpacing={2}
+                  fontSize={10}
                   language={language}
                   changeState={props.SetSearchFilters}
-                  toUpperCase={false}
+                  toUpperCase={true}
                 />
               </div>
             )
@@ -185,6 +186,7 @@ export const ModalModule = (props) => {
         ref={wrapperRef}
         width={"18.5"}
         top={"100"}
+        background={"none"}
       >
         <RegisterModule
           SetModalState={props.SetModalState}
@@ -198,6 +200,7 @@ export const ModalModule = (props) => {
         ref={wrapperRef}
         width={"25"}
         top={"120"}
+        background={"none"}
       >
         <LoginModule
           SetModalState={props.SetModalState}

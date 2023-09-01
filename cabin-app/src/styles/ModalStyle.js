@@ -21,7 +21,7 @@ export const ModalContent = styled.section`
   padding-right: 0;
   padding-left: 0;
   margin: 0;
-  /* background-color: ${colors.white}; */
+  background-color: ${props => (`${props.background ? props.background : colors.white}`)};
   /* box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px; */
   &.secondaryColor > :nth-child(even) {
     background-color: ${colors.whiteDark};
@@ -116,8 +116,5 @@ export const LoadingSpinner = styled.div`
   align-items: center;
   width: 50px;
   height: 200px;
-  border: 10px solid #f3f3f3; /* Light grey */
-  border - top: 10px solid #383636; /* Black */
-  border - radius: 50 %;
   animation: ${spinner} ${props => (props.animation)};
 `

@@ -237,7 +237,7 @@ export const RegisterModule = (props) => {
             < InputStyle
               type={formData[item].type}
               width={"100%"}
-              height={"3.5vh"}
+              height={"3.75vh"}
               radius={"40px"}
               border={"none"}
               color={colors.white}
@@ -248,7 +248,7 @@ export const RegisterModule = (props) => {
               i={item}
               data={formData}
               value={formData[item]?.info.header[language].toUpperCase()}
-              onClick={(event) => {ValidateForm()}}
+              onClick={(event) => { ValidateForm() }}
             />
           }
         </div>
@@ -282,25 +282,31 @@ export const RegisterModule = (props) => {
   })
 
   const FormFields = Object.keys(formData).map(item => {
-    if (formData[item].type !== "link" && formData[item].type !== "submit" && formData[item].type !== "description") {
+    if (formData[item].type !== "link" && formData[item].type !== "submit") {
       return (
         <div
           key={item}
           className="row col-12 d-flex justify-content-center align-items-center"
           style={{ height: "3.75vh", marginBottom: "1.5vh" }}
         >
-          {/*           <div
-            className="col-4 d-flex justify-content-start align-items-center m-0 p-0"
-            style={{ height: "100%", fontSize: "calc(12px + 0.1vw)" }}
+          <div
+            className="col-12 position-relative d-flex justify-content-start align-items-center m-0 p-0"
           >
-            {formData[item]?.info?.header?.[language]}
-          </div> */}
+            {formData[item].type !== "checkbox" &&
+              <p
+                className="position-absolute d-flex"
+                style={{ top: 0, left: 25, color: "rgba(0, 0, 0, 0.3)", fontSize: "calc(11px + 0.1vw)" }}
+              >
+                {formData[item]?.info?.header?.[language]}
+              </p>
+            }
+          </div>
           {formData[item].static &&
             (formData[item].type === "text" || formData[item].type === "email") &&
             formData[item].context === "field" &&
             !formData[item].modal &&
             <div
-              className="col d-flex justify-content-center align-items-center m-0 p-0"
+              className="col-12 d-flex justify-content-center align-items-center m-0 p-0"
               style={{ height: "100%" }}
             >
               < InputStyle
@@ -310,7 +316,7 @@ export const RegisterModule = (props) => {
                 radius={"40px"}
                 border={`0.1rem solid ${formData[item]?.errors?.length > 0 ? "red" : colors.lightGrey}`}
                 backgroundColor={"rgba(255, 255, 255, 0.9)"}
-                padding={"0rem 0rem 0rem 1.5rem"}
+                padding={"0.75rem 0rem 0rem 2rem"}
                 fontWeight={400}
                 fontSize={14}
                 textalign={"left"}
@@ -327,7 +333,7 @@ export const RegisterModule = (props) => {
             formData[item].context === "field" &&
             !formData[item].modal &&
             <div
-              className="col d-flex justify-content-center align-items-center h-100 m-0 p-0"
+              className="col-12 d-flex justify-content-center align-items-center h-100 m-0 p-0"
             >
               <Password
                 width={"100%"}
@@ -336,7 +342,7 @@ export const RegisterModule = (props) => {
                 radiusIcon={"0px 40px 40px 0px"}
                 border={`0.1rem solid ${formData[item]?.errors?.length > 0 ? "red" : colors.lightGrey}`}
                 backgroundColor={"rgba(255, 255, 255, 0.9)"}
-                padding={"0rem 0rem 0rem 1.5rem"}
+                padding={"0.75rem 0rem 0rem 2rem"}
                 fontWeight={400}
                 fontSize={14}
                 textalign={"left"}
@@ -352,15 +358,16 @@ export const RegisterModule = (props) => {
             formData[item].context === "field" &&
             !formData[item].modal &&
             <div
-              className="col d-flex justify-content-center align-items-center h-100 m-0 p-0"
+              className="col-12 d-flex justify-content-center align-items-center h-100 m-0 p-0"
             >
               < InputStyle
                 type={formData[item].type}
                 width={"30%"}
                 height={"100%"}
-                radius={"40px"}
+                radius={"40px 0px 0px 40px"}
                 border={`0.1rem solid ${formData[item]?.errors?.length > 0 ? "red" : colors.lightGrey}`}
                 backgroundColor={"rgba(255, 255, 255, 0.9)"}
+                padding={"0.75rem 0rem 0rem 0rem"}
                 fontWeight={400}
                 fontSize={14}
                 textalign={"center"}
@@ -378,10 +385,10 @@ export const RegisterModule = (props) => {
                 type={formData[item].type}
                 width={"70%"}
                 height={"100%"}
-                radius={"40px"}
+                radius={"0px 40px 40px 0px"}
                 border={`0.1rem solid ${formData[item]?.errors?.length > 0 ? "red" : colors.lightGrey}`}
-                padding={"0rem 0rem 0rem 1.5rem"}
                 backgroundColor={"rgba(255, 255, 255, 0.9)"}
+                padding={"0.75rem 0rem 0rem 2rem"}
                 fontWeight={400}
                 fontSize={14}
                 textalign={"left"}
@@ -399,14 +406,14 @@ export const RegisterModule = (props) => {
             !formData[item].multiSelect &&
             !formData[item].modal &&
             <div
-              className="col h-100 d-flex justify-content-center align-items-center m-0 p-0"
+              className="col-12 h-100 d-flex justify-content-center align-items-center m-0 p-0"
             >
               <Option
                 width={"100%"}
                 height={"100%"}
                 radius={"40px"}
                 border={`0.1rem solid ${formData[item]?.errors?.length > 0 ? "red" : colors.lightGrey}`}
-                padding={"0rem 0rem 0rem 1.5rem"}
+                padding={"0.75rem 0rem 0rem 2rem"}
                 fontWeight={400}
                 fontSize={14}
                 i={item}
@@ -421,7 +428,7 @@ export const RegisterModule = (props) => {
             !formData[item].multiSelect &&
             !formData[item].modal &&
             <div
-              className="col d-flex justify-content-center align-items-center m-0 p-0 px-4"
+              className="col-12 d-flex justify-content-center align-items-center m-0 p-0 px-4"
             >
               <CheckBox
                 key={item}
@@ -466,10 +473,6 @@ export const RegisterModule = (props) => {
               style={{ height: "50%", width: "auto", zIndex: 0 }}
             />
           </LoadingSpinner>
-          <div
-            className="col-12 d-flex justify-content-center align-items-center"
-          >
-          </div>
         </div>
       }
       {isLoading === "" &&

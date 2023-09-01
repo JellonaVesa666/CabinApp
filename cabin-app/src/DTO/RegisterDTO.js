@@ -1,15 +1,4 @@
 export const registerDO = {
-  description: {
-    type: "description",
-    static: true,
-    modal: false,
-    info: {
-      fi:
-        "Rekisteröi Lapland Camping Tunnus",
-      en:
-        "Register Lapland Camping Account",
-    }
-  },
   fullName: {
     type: "text",
     context: "field",
