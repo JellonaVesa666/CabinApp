@@ -1,11 +1,35 @@
 export const LoginDO = {
-  loginEmail: {
+  username: {
+    type: "text",
+    context: "field",
+    static: true,
+    modal: false,
     value: "",
     errors: "",
+    info: {
+      header: {
+        fi:
+          "Sähköposti / Käyttäjätunnus",
+        en:
+          "Email / Username",
+      }
+    },
   },
-  loginPassword: {
+  password: {
+    type: "text",
+    context: "field",
+    static: true,
+    modal: false,
     value: "",
     errors: "",
+    info: {
+      header: {
+        fi:
+          "Salasana",
+        en:
+          "Password",
+      }
+    },
   },
 };
 
