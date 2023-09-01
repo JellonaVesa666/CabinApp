@@ -3,7 +3,7 @@ import { ENDPOINTS, createAPIEndpoint } from "../api";
 import { LoginBody, Input, Checkbox, Link, SignInBtn } from "../styles/LoginStyle";
 import { LoginDO, LoginDTO } from "../DTO/LoginDTO";
 
-export default function LoginComponent(props) {
+export const LoginModule = (props) => {
 
   const [showPassword, setHidePassword] = useState(false);
   const [data, setFormData] = useState(LoginDO);

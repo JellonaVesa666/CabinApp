@@ -8,6 +8,7 @@ import { RangeSlider, CheckBox, Counter } from "./InputModules";
 import { CalendarModule } from "./CalendarModule";
 import { CabinCardModule } from "./CabinCardModule";
 import { RegisterModule } from "./RegisterModule";
+import { LoginModule } from "./LoginModule";
 
 export const ModalModule = (props) => {
 
@@ -153,7 +154,7 @@ export const ModalModule = (props) => {
             return (
               <div className=" row col-12 d-flex justify-content-center align-items-center py-3 m-0">
                 <div
-                  className="col-3 d-flex justify-content-start align-items-center mb-auto ps-5 pt-3"
+                  className="col d-flex justify-content-start align-items-center mb-auto ps-5 pt-3"
                   style={{ fontWeight: 500, letterSpacing: "2px", fontSize: "1em" }}
                 >
                   {(props.searchFilters?.[item]?.info?.header?.[language])?.toUpperCase()}
@@ -166,6 +167,7 @@ export const ModalModule = (props) => {
                   fontSize={"12px"}
                   language={language}
                   changeState={props.SetSearchFilters}
+                  toUpperCase={false}
                 />
               </div>
             )
@@ -177,19 +179,27 @@ export const ModalModule = (props) => {
       </ModalContent>
     )
   }
-  else if (
-    (props.state === "register" || props.state === "login")
-    ||
-    (props.routePath === ("/register") || props.routePath === ("/login")
+  else if (props.state === "register" || props.routePath === "/register") {
+    return (
+      <ModalContent
+        ref={wrapperRef}
+        width={"18.5"}
+        top={"100"}
+      >
+        <RegisterModule
+          SetModalState={props.SetModalState}
+        />
+      </ModalContent>
     )
-  ) {
+  }
+  else if (props.state === "login" || props.routePath === "/login") {
     return (
       <ModalContent
         ref={wrapperRef}
         width={"25"}
         top={"120"}
       >
-        <RegisterModule
+        <LoginModule
           SetModalState={props.SetModalState}
         />
       </ModalContent>

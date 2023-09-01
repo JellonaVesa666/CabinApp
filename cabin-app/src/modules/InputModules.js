@@ -211,12 +211,14 @@ export const Option = (props) => {
   const result = Object.keys(props.data[props.i]).filter((i) => typeof i === "string" && !isNaN(i));
   return (
     <OptionStyle
-      className="mx-auto px-2"
       width={props.width}
       color={props.color}
       height={props.height}
+      border={props.border}
       radius={props.radius}
       padding={props.padding}
+      fontWeight={props.fontWeight}
+      fontSize={props.fontSize}
       value={props.data[props.i].value}
       onChange={(event) => props.changeState(event)}
     >
@@ -281,8 +283,8 @@ export const CheckBox = (props) => {
                   checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
                   onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.changeState, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.changeState, Number(item), "value", props.i)}
                 />
-                <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: `calc(${props.letterSpacing} + 0.0025vw)`, fontSize: `calc(${props.fontSize} + 0.1vw)`, paddingLeft: "15px" }}>
-                  {props.data[props.i][item]?.[props.language] !== undefined ? props.data[props.i][item][props.language].toUpperCase() : "ERROR"}
+                <label style={{ color: props.labelColor ? props.labelColor : "rgba(0, 0, 0, 0.8)", fontWeight: props.fontWeight ? props.fontWeight : "400", letterSpacing: `calc(${props.letterSpacing}px + 0.0025vw)`, fontSize: `calc(${props.fontSize}px + 0.1vw)`, paddingLeft: "15px" }}>
+                {props.toUpperCase ? `${props.data[props.i][item]?.[props.language]?.toUpperCase()}` : `${props.data[props.i][item]?.[props.language]}`}
                 </label>
               </div>
             )
@@ -307,8 +309,8 @@ export const CheckBox = (props) => {
                   checked={props.data?.[props.i]?.multiSelect ? props.data[props.i][item].value : props.data[props.i].value === Number(item) ? true : false}
                   onChange={props.data?.[props.i]?.multiSelect ? () => ChangeState(props.changeState, !props.data[props.i][item].value, "value", props.i, item) : () => ChangeState(props.changeState, Number(item), "value", props.i)}
                 />
-                <label style={{ color: "rgba(0, 0, 0, 0.8)", fontWeight: "400", letterSpacing: `calc(${props.letterSpacing} + 0.0025vw)`, fontSize: `calc(${props.fontSize} + 0.1vw)`, paddingLeft: "15px", textAlign: "left" }}>
-                  {(props.data[props.i][item]?.[props.language])?.toUpperCase()}
+                <label style={{ color: props.labelColor ? props.labelColor : "rgba(0, 0, 0, 0.8)", fontWeight: props.fontWeight ? props.fontWeight : "400", letterSpacing: `calc(${props.letterSpacing}px + 0.0025vw)`, fontSize: `calc(${props.fontSize}px + 0.1vw)`, paddingLeft: "15px", textAlign: "left" }}>
+                  {props.toUpperCase ? `${props.data[props.i][item]?.[props.language]?.toUpperCase()}` : `${props.data[props.i][item]?.[props.language]}`}
                 </label>
               </div>
             )
@@ -330,7 +332,10 @@ export const Password = (props) => {
         radius={props.radius}
         border={props.border}
         padding={props.padding}
-        textAlign={props.textAlign}
+        fontSize={props.fontSize}
+        fontWeight={props.fontWeight}
+        textalign={props.textalign}
+        backgroundColor={props.backgroundColor}
         placeholder={props.placeholder}
         type={showPassword ? "text" : props.data[props.i].type}
         value={props.data[props.i].value}
@@ -338,7 +343,7 @@ export const Password = (props) => {
       />
       <div
         className="d-flex justify-content-center align-items-center"
-        style={{ width: "15%", height: "100%", borderRadius: props.radius, border: props.border }}
+        style={{ width: "15%", height: "100%", backgroundColor: props.backgroundColor,borderRadius: props.radiusIcon, border: props.border }}
       >
         {showPassword &&
           <img

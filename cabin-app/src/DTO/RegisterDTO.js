@@ -317,7 +317,7 @@ export const registerDO = {
     },
   },
   registerButton: {
-    type: "button",
+    type: "submit",
     static: true,
     modal: false,
     info: {

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import backgroundForest from "../images/background_forest.jpg";
 import backgroungCabin from "../images/background_cabin.jpg";
+import backgroungOcean from "../images/background_ocean.jpg";
 import logoLight from "../images/logo_Light.png";
 
 export const BodyBackground = styled.div`
@@ -19,7 +20,7 @@ export const LoginBackground = styled.div`
   left: 0;
   height: 100%;
   width: 100%;
-  background-image: url(${backgroungCabin});
+  background-image: url(${backgroungOcean});
   background-size: cover;
 `
 

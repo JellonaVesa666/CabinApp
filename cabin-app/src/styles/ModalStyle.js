@@ -21,44 +21,44 @@ export const ModalContent = styled.section`
   padding-right: 0;
   padding-left: 0;
   margin: 0;
-  background-color: ${colors.white};
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  /* background-color: ${colors.white}; */
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px; */
   &.secondaryColor > :nth-child(even) {
     background-color: ${colors.whiteDark};
   }
   @media screen and (max-width: 380px) {
-    width: ${props => (`${props.width * 3.5}%`)};
-    top: ${props => (`${props.top  * 0.025}px`)};
+    width: ${props => (`${props.width * 4.5}%`)};
+    top: ${props => (`${props.top * 0.025}px`)};
   }
-  @media screen and (min-width: 380px) {
-    width: ${props => (`${props.width * 3.5}%`)};
-    top: ${props => (`${props.top  * 0.1}px`)};
+  @media screen and (min-width: 380px) and (max-width: 640px)  {
+    width: ${props => (`${props.width * 4}%`)};
+    top: ${props => (`${props.top * 0}px`)};
   }
-  @media screen and (min-width: 640px) {
-    width: ${props => (`${props.width * 2.4}%`)};
+  @media screen and (min-width: 640px) and (max-width: 860px)  {
+    width: ${props => (`${props.width * 2.5}%`)};
+    top: ${props => (`${props.top * 0.1}px`)};
+  }
+  @media screen and (min-width: 860px) and (max-width: 1024px) {
+    width: ${props => (`${props.width * 2.25}%`)};
     top: ${props => (`${props.top * 0.2}px`)};
   }
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: 1024px) and (max-width: 1280px)  {
     width: ${props => (`${props.width * 2}%`)};
+    top: ${props => (`${props.top * 0.5}px`)};
+  }
+  @media screen and (min-width: 1280px) and (max-width: 1366px) {
+    width: ${props => (`${props.width * 1.75}%`)};
     top: ${props => (`${props.top * 0.6}px`)};
   }
-  @media screen and (min-width: 1024px) {
-    width: ${props => (`${props.width * 1.4}%`)};
-    top: ${props => (`${props.top * 0.65}px`)};
-  }
-  @media screen and (min-width: 1280px) {
-    width: ${props => (`${props.width * 1.3}%`)};
+  @media screen and (min-width: 1366px) and (max-width: 1680px) {
+    width: ${props => (`${props.width * 1.5}%`)};
     top: ${props => (`${props.top * 0.7}px`)};
   }
-  @media screen and (min-width: 1366px) {
-    width: ${props => (`${props.width * 1.3}%`)};
-    top: ${props => (`${props.top * 0.75}px`)};
+  @media screen and (min-width: 1680px) and (max-width: 1920px){
+    width: ${props => (`${props.width * 1.25}%`)};
+    top: ${props => (`${props.top * 1}px`)};
   }
-  @media screen and (min-width: 1536px) {
-    width: ${props => (`${props.width * 1.2}%`)};
-    top: ${props => (`${props.top * 0.8}px`)};
-  }
-  @media screen and (min-width: 1680px) {
+  @media screen and (min-width: 1920px){
     width: ${props => (`${props.width}%`)};
     top: ${props => (`${props.top * 1}px`)};
   }

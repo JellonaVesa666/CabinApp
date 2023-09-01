@@ -166,10 +166,10 @@ export const MultiSelectInput = styled.li.attrs({
 export const OptionStyle = styled.select`
   width: ${props => (props.width)};
   height: ${props => (props.height)};
+  border: ${props => (props.border)};
   border-radius: ${props => (props.radius)};
   padding: ${props => (props.padding)};
-  border: 1.5px solid ${props => (props.color ? props.color : "rgba(0, 0, 0, 0.2)")};
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.9);
   color: rgba(0, 0, 0, 0.6);
   outline: none !important;
   font-size: calc(12px + 0.1vw);
@@ -177,10 +177,6 @@ export const OptionStyle = styled.select`
     border: 1.5px solid rgba(0, 0, 0, 0.6);
     cursor: pointer;
     color: black;
-  }
-    &.invalid {
-    border: 0.1rem solid transparent !important;
-    outline: 0.15rem solid ${colors.lightRed} !important;
   }
 `
 
@@ -191,17 +187,27 @@ export const InputStyle = styled.input.attrs((props) => ({
   width: ${props => (props.width ? props.width : "100%")};
   height: ${props => (props.height ? props.height : "100%")};
   border: ${props => (props.border)};
-  border-radius: ${props => (props.borderRadius)};
+  border-radius: ${props => (props.radius)};
   background: ${props => (props.backgroundColor ? props.backgroundColor : colors.white)};
   margin: ${props => (props.margin)};
   padding: ${props => (props.padding)};
-  color: ${props => (props.color ? props.color : colors.black )};
+  color: ${props => (props.color ? props.color : colors.black)};
   outline: none;
-  font-size: calc(12px + 0.1vw);
-  font-weight: 500;
+  font-size: ${props => (props.fontSize ? `calc(${props.fontSize}px + 0.1vw)` : "calc(12px + 0.1vw)")};
+  font-weight: ${props => (props.fontWeight ? props.fontWeight : "500")};
   text-align: ${props => (props.textalign ? props.textalign : "center")};
   &::placeholder {
-    color: rgba(0, 0, 0, 0.3);
+    color: ${colors.grey};
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    border: ${props => (props.type !== "submit" ? "0.1rem solid transparent" : "none")};
+    outline: ${props => (props.type !== "submit" ? `0.15rem solid ${colors.grey}` : "none")};
+  }
+  &:active {
+    transform: ${props => (props.type === "submit" ? "scale(0.95)" : "")};
   }
 `
 

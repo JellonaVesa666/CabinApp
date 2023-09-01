@@ -224,49 +224,31 @@ export const RegisterModule = (props) => {
       Register();
   }
 
-  const FormDescription = Object.keys(formData).map(item => {
-    if (formData[item].type === "description") {
-      return (
-        <div
-          key={item}
-        >
-          {formData[item].static &&
-            formData[item].type === "description" &&
-            !formData[item].modal &&
-            <p
-              className="m-0 pt-4"
-              style={{ textAlign: "center", fontSize: "calc(16px + 0.1vw)", fontWeight: 500 }}
-            >
-              {formData[item]?.info?.[language]}
-            </p>
-          }
-        </div>
-      )
-    }
-    return null;
-  })
-
   const FormButton = Object.keys(formData).map(item => {
-    if (formData[item].type === "button") {
+    if (formData[item].type === "submit") {
       return (
         <div
           className="row col-12 d-flex justify-content-center align-items-center pt-4"
           key={item}
         >
           {formData[item].static &&
-            formData[item].type === "button" &&
+            formData[item].type === "submit" &&
             !formData[item].modal &&
             < InputStyle
               type={formData[item].type}
-              width={"30%"}
+              width={"100%"}
               height={"3.5vh"}
-              radius={"0px"}
-              border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
+              radius={"40px"}
+              border={"none"}
+              color={colors.white}
+              backgroundColor={colors.navy}
               textalign={"center"}
+              fontWeight={400}
+              fontSize={14}
               i={item}
               data={formData}
-              value={formData[item]?.info.header[language]}
-              onClick={() => ValidateForm()}
+              value={formData[item]?.info.header[language].toUpperCase()}
+              onClick={(event) => {ValidateForm()}}
             />
           }
         </div>
@@ -279,7 +261,7 @@ export const RegisterModule = (props) => {
     if (formData[item].type === "link") {
       return (
         <div
-          className="col-5 d-flex justify-content-center align-items-center m-0"
+          className="col-5 d-flex justify-content-center align-items-center mx-0"
           key={item}
         >
           {formData[item].static &&
@@ -288,7 +270,7 @@ export const RegisterModule = (props) => {
             <a
               href="https://example.com/faq.html"
               rel="noreferrer"
-              style={{ fontSize: "calc(14px + 0.1vw)", color: "white" }}
+              style={{ fontSize: "calc(14px + 0.1vw)", color: "rgba(0, 0, 0, 0.5)", fontWeight: "500" }}
             >
               {formData[item]?.info?.header?.[language]}
             </a>
@@ -300,34 +282,37 @@ export const RegisterModule = (props) => {
   })
 
   const FormFields = Object.keys(formData).map(item => {
-    if (formData[item].type !== "link" && formData[item].type !== "button" && formData[item].type !== "description") {
+    if (formData[item].type !== "link" && formData[item].type !== "submit" && formData[item].type !== "description") {
       return (
         <div
           key={item}
-          className="row col-12 d-flex justify-content-center align-items-center m-0 my-1"
-          style={{ height: "3vh" }}
+          className="row col-12 d-flex justify-content-center align-items-center"
+          style={{ height: "3.75vh", marginBottom: "1.5vh" }}
         >
-          <div
+          {/*           <div
             className="col-4 d-flex justify-content-start align-items-center m-0 p-0"
             style={{ height: "100%", fontSize: "calc(12px + 0.1vw)" }}
           >
             {formData[item]?.info?.header?.[language]}
-          </div>
+          </div> */}
           {formData[item].static &&
             (formData[item].type === "text" || formData[item].type === "email") &&
             formData[item].context === "field" &&
             !formData[item].modal &&
             <div
-              className="col-8 d-flex justify-content-center align-items-center m-0 p-0"
+              className="col d-flex justify-content-center align-items-center m-0 p-0"
               style={{ height: "100%" }}
             >
               < InputStyle
                 type={formData[item].type}
                 width={"100%"}
                 height={"100%"}
-                radius={"0px"}
-                border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
-                padding={"0rem 0rem 0rem 1rem"}
+                radius={"40px"}
+                border={`0.1rem solid ${formData[item]?.errors?.length > 0 ? "red" : colors.lightGrey}`}
+                backgroundColor={"rgba(255, 255, 255, 0.9)"}
+                padding={"0rem 0rem 0rem 1.5rem"}
+                fontWeight={400}
+                fontSize={14}
                 textalign={"left"}
                 i={item}
                 data={formData}
@@ -342,13 +327,18 @@ export const RegisterModule = (props) => {
             formData[item].context === "field" &&
             !formData[item].modal &&
             <div
-              className="col-8 d-flex justify-content-center align-items-center h-100 m-0 p-0"
+              className="col d-flex justify-content-center align-items-center h-100 m-0 p-0"
             >
               <Password
-                width={"85%"}
-                radius={"0px"}
-                border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
-                padding={"0rem 0rem 0rem 1rem"}
+                width={"100%"}
+                height={"100%"}
+                radius={"40px 0px 0px 40px"}
+                radiusIcon={"0px 40px 40px 0px"}
+                border={`0.1rem solid ${formData[item]?.errors?.length > 0 ? "red" : colors.lightGrey}`}
+                backgroundColor={"rgba(255, 255, 255, 0.9)"}
+                padding={"0rem 0rem 0rem 1.5rem"}
+                fontWeight={400}
+                fontSize={14}
                 textalign={"left"}
                 data={formData}
                 i={item}
@@ -362,15 +352,18 @@ export const RegisterModule = (props) => {
             formData[item].context === "field" &&
             !formData[item].modal &&
             <div
-              className="col-8 d-flex justify-content-center align-items-center h-100 m-0 p-0"
+              className="col d-flex justify-content-center align-items-center h-100 m-0 p-0"
             >
               < InputStyle
                 type={formData[item].type}
                 width={"30%"}
-                radius={"0px"}
-                border={"1px solid grey"}
-                padding={"0rem 0rem 0rem 1rem"}
-                textalign={"left"}
+                height={"100%"}
+                radius={"40px"}
+                border={`0.1rem solid ${formData[item]?.errors?.length > 0 ? "red" : colors.lightGrey}`}
+                backgroundColor={"rgba(255, 255, 255, 0.9)"}
+                fontWeight={400}
+                fontSize={14}
+                textalign={"center"}
                 i={item}
                 data={formData}
                 placeholder={formData[item]?.placeholder[language]}
@@ -385,9 +378,12 @@ export const RegisterModule = (props) => {
                 type={formData[item].type}
                 width={"70%"}
                 height={"100%"}
-                radius={"0px"}
-                border={`1px solid ${formData[item]?.errors?.length > 0 ? "red" : "grey"}`}
-                padding={"0rem 0rem 0rem 1rem"}
+                radius={"40px"}
+                border={`0.1rem solid ${formData[item]?.errors?.length > 0 ? "red" : colors.lightGrey}`}
+                padding={"0rem 0rem 0rem 1.5rem"}
+                backgroundColor={"rgba(255, 255, 255, 0.9)"}
+                fontWeight={400}
+                fontSize={14}
                 textalign={"left"}
                 i={item}
                 data={formData}
@@ -403,14 +399,16 @@ export const RegisterModule = (props) => {
             !formData[item].multiSelect &&
             !formData[item].modal &&
             <div
-              className="col-8 h-100 d-flex justify-content-center align-items-center m-0 p-0"
+              className="col h-100 d-flex justify-content-center align-items-center m-0 p-0"
             >
               <Option
                 width={"100%"}
                 height={"100%"}
-                radius={"0px"}
-                padding={"0rem 0rem 0rem 1rem"}
-                color={formData[item]?.errors?.length > 0 ? "red" : "black"}
+                radius={"40px"}
+                border={`0.1rem solid ${formData[item]?.errors?.length > 0 ? "red" : colors.lightGrey}`}
+                padding={"0rem 0rem 0rem 1.5rem"}
+                fontWeight={400}
+                fontSize={14}
                 i={item}
                 data={formData}
                 language={language}
@@ -423,7 +421,7 @@ export const RegisterModule = (props) => {
             !formData[item].multiSelect &&
             !formData[item].modal &&
             <div
-              className="col-8 d-flex justify-content-center align-items-center m-0 p-0"
+              className="col d-flex justify-content-center align-items-center m-0 p-0 px-4"
             >
               <CheckBox
                 key={item}
@@ -431,8 +429,10 @@ export const RegisterModule = (props) => {
                 color={formData[item]?.errors?.length > 0 ? "red" : "black"}
                 data={formData}
                 language={language}
-                letterSpacing={"0.5px"}
-                fontSize={"10px"}
+                letterSpacing={"1.5"}
+                fontSize={"12"}
+                fontWeight={"500"}
+                labelColor={"rgba(0, 0, 0, 0.5)"}
                 changeState={setFormData}
               />
             </div>
@@ -447,12 +447,12 @@ export const RegisterModule = (props) => {
     <div
       className="row d-flex justify-content-center align-items-center m-0 p-0"
     >
-      <img
-        alt=""
-        src={logoDark}
-        style={{ height: "10vh", width: "auto" }}
-      />
-      {FormDescription}
+      <h2
+        className=" text-center"
+        style={{ fontWeight: "300", marginBottom: "1vh" }}
+      >
+        Register
+      </h2>
       {isLoading !== "" &&
         <div
           className="row col-12 d-flex justify-content-center align-items-center pt-4"
@@ -477,13 +477,8 @@ export const RegisterModule = (props) => {
           className="row col-12 d-flex justify-content-center align-items-center pt-4"
         >
           {FormFields}
+          {FormLinks}
           {FormButton}
-          <div
-            className="row col-12 d-flex justify-content-evenly align-items-center m-0 mt-4 p-0"
-            style={{ backgroundColor: colors.navy, height: "3.5vh" }}
-          >
-            {FormLinks}
-          </div>
         </div>
       }
     </div>
